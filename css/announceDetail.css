@@ -1,0 +1,22 @@
+.announceDetailPage{
+	padding:0.46rem 0.3rem 0 0.3rem;
+}
+.announceDetailTil{
+	font-size:0.34rem;
+	color:#333;
+	line-height:0.4rem;
+	text-align:center;
+}
+.announceDetailTime{
+	font-size: 0.24rem;
+	color:#999;
+	line-height:0.3rem;
+	margin-top:0.35rem;
+	margin-bottom: 0.3rem;;
+}
+.announceDetailMainbody{
+	font-size:0.28rem;
+	color:#1d0101;
+	line-height:0.42rem;
+	text-indent: 2em;
+}

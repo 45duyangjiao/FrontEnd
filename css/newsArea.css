@@ -1,0 +1,64 @@
+html,body{
+	width:100%;
+	height:100%;
+}
+.newsAera{
+	padding:0 0.2rem;
+	width:100%;
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+}
+.myChannel{
+	width:100%;
+}
+ .myChannelTil{
+	margin-top:0.35rem;
+	margin-bottom:0.35rem;
+	line-height:0.36rem;	
+	color:#919299;
+	border-left:0.06rem solid #3385ff;
+	padding:0 0.1rem;
+}
+.floatL{
+	font-size:0.34rem;
+}
+.floatR{
+	font-size:0.3rem;
+}
+.myChannelmodule{
+	min-height:2.46rem;
+	padding:0 0.1rem;
+}
+.channelOriginal{
+	width:1.5rem;
+	line-height:0.76rem;
+	text-align:center;
+	font-size:0.3rem;
+	color:#333;
+	background:#f2f3f6;
+	margin-right:0.2rem;
+	margin-bottom:0.2rem;
+	border-radius:0.1rem;
+}
+.channelActive{
+	color:#3385ff;
+}
+.compileChannel{
+	flex:1;
+	-webkit-flex:1;
+}
+.dynamicallyAdd{
+	min-height:2.48rem;
+	
+}
+.compileAddChannelTile{
+	margin-bottom:0.2rem;
+	line-height:0.3rem;
+	font-size:0.3rem;
+	color:#666;
+	padding:0  0.2rem;
+}
+.commonHeight{
+	min-height:calc(100% - 0.3rem);
+}

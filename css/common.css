@@ -1,0 +1,33 @@
+body, h1, h2,h3,h4,h5,h6,p,dl,dd,ol,ul,form, input,textarea,th,td,select { margin:0; padding:0;font-family: "Microsoft YaHei";}
+html,body{
+	background: #fff;
+}
+em,i { font-style:normal;}
+li { list-style:none;}
+a { text-decoration:none; cursor:pointer; color: #333; }
+sub,sup {}
+a:focus {outline:none;}
+b{ font-weight:normal;}
+img { border:none; vertical-align:top;}/*鍗存帀鍥剧墖闂撮殭*/
+input, textarea {vertical-align: middle;outline: none; border:none; background:none; box-sizing:content-box;}
+textarea { resize:none; overflow:auto; }
+table { border-spacing:0px; border:none; border-collapse:collapse;}/*\5b8b\4f53 瀹嬩綋*/
+body, input, select, button, textarea {font-size: 14px;font-family:MicrosoftYaHei;background:#fff;}
+.clearfix:after{content:"";clear:both;display:block;height:0;overflow: hidden;visibility: hidden;}
+h2{
+	font-size:16px;
+	font-weight:bold;
+}
+input[type="submit"],input[type="reset"],input[type="button"],button {-webkit-appearance: none;}
+input::-ms-clear { display: none; } 
+::-ms-clear,::-ms-reveal{display:none;}
+.floatL{
+	float:left;
+}
+.floatR{
+	float:right;
+}
+.goodActive{
+	background:url(../img/goods.png) no-repeat center center;
+	background-size:100% 100%;
+}

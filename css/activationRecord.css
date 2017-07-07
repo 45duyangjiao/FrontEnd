@@ -1,0 +1,18 @@
+.activationRecord{
+	border-top:0.02rem solid #ddd;
+}
+.activationRecordLi{
+	height:1.38rem;
+	padding:0.29rem 0 0.25rem 0.3rem;
+	border-bottom:1px  solid #ddd;
+}
+.EventTitle{
+	font-size:0.28rem;
+	color:#333;
+	line-height:0.3rem;
+	margin-bottom:0.15rem;
+}
+.EventTime{
+	font-size:0.22rem;
+	color:#999;
+}

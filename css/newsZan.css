@@ -1,0 +1,18 @@
+.newsZanPage{
+	border:0.01rem solid #ddd;
+	
+}
+.newsZanPage .newsZanLi{
+	line-height:0.58rem;
+	padding:0.3rem 0 0.18rem 0.3rem;
+	border-bottom:1px  solid #ddd;
+}
+.newsZanPage .newsZanLi img{
+	width:0.56rem;
+	height:0.56rem;
+	margin-right:0.2rem;	
+}
+.newsZanPage .newsZanLi span{
+	font-size:0.28rem;
+	color:#333333;
+}
