@@ -18,7 +18,7 @@ function searchAttestationResult(){
 					var baseInf  = data.baseInfor;
 					var coreInf = data.certInfor;
 				mui.openWindowWithTitle({
-					    url:'result.html',
+					    url:'identifyresult.html',
 					  // id:'detail'
 					  	extras:{
 					        baseInfo:baseInf, //扩展参数，data中药获取的字段
