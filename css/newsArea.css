@@ -9,6 +9,17 @@ html,body{
 	display: -webkit-flex;
 	flex-direction: column;
 }
+
+.supDelate{
+	position: absolute;
+	right: 3px;
+	top:5px;
+	width: 10px;
+    height: 10px;
+    font-size: 12px;
+    color: red;
+    display: none;
+}
 .myChannel{
 	width:100%;
 }
@@ -40,6 +51,7 @@ html,body{
 	margin-right:0.2rem;
 	margin-bottom:0.2rem;
 	border-radius:0.1rem;
+	position: relative;
 }
 .channelActive{
 	color:#3385ff;

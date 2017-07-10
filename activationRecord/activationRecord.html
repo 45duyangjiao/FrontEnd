@@ -15,47 +15,32 @@
 	<body>
 		<div class="mui-scroll-wrapper" id="protocol">
 			<div class="mui-scroll">
-				<ul class="activationRecord">
-					<li class="activationRecordLi">
-						<div class="EventTitle">
-							青少年跆拳道夏令营活动
-						</div>
-						<div class="EventTime">
-							活动时间：2017年6月20日至2017年6月25日
-						</div>
-					</li>
-					<li class="activationRecordLi">
-						<div class="EventTitle">
-							青少年跆拳道夏令营活动
-						</div>
-						<div class="EventTime">
-							活动时间：2017年6月20日至2017年6月25日
-						</div>
-					</li>
-					<li class="activationRecordLi">
-						<div class="EventTitle">
-							青少年跆拳道夏令营活动
-						</div>
-						<div class="EventTime">
-							活动时间：2017年6月20日至2017年6月25日
-						</div>
-					</li>
-					<li class="activationRecordLi">
-						<div class="EventTitle">
-							青少年跆拳道夏令营活动
-						</div>
-						<div class="EventTime">
-							活动时间：2017年6月20日至2017年6月25日
-						</div>
-					</li>
+				<ul class="activationRecord">	
+					
 				</ul>
 			</div>
 		</div>
+		<script type="text/html" id="protocol-temp">
+			
+			{{each activition as value}}
+			<li class="activationRecordLi">
+				<div class="EventTitle">
+					{{value.title}}
+				</div>
+				<div class="EventTime">
+					活动时间：{{value.EndDate}}至{{value.StartDate}}
+				</div>
+			</li>
+			{{/each}}	
+		</script>
+		
 		<script src="../js/flexable.js"></script>
 		<script src="../js/zepto_1.1.3.js"></script>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/common.js"></script>
 		<script src="../js/activationRecord.js"></script>
+		<script src="../js/artTemplate.js"></script>
+
 	</body>
 
 </html>
