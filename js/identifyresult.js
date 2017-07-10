@@ -39,7 +39,7 @@ var BaseDiv = '<ul id="resultUl">'
 				}else if(0 == memberBaseInfo.sex){
 					BaseDiv += '<li><span class="commonColor">性别：</span><span id="endTime" class="commonRight">未知</span></li>'
 				}
-				+'<li><span class="commonColor">出生日期：</span><span id="memberBirth" class="commonRight">'+memberBaseInfo.birthday+'</span></li>'
+				BaseDiv += '<li><span class="commonColor">出生日期：</span><span id="memberBirth" class="commonRight">'+memberBaseInfo.birthday+'</span></li>'
 				+'<li><span class="commonColor">身份证号：</span><span id="endTime" class="commonRight">'+memberBaseInfo.idcard+'</span></li>'
 				+'<li><span class="commonColor">电话号码：</span><span id="endTime" class="commonRight">'+memberBaseInfo.phone+'</span></li>'
 				+'<li><span class="commonColor">地址：</span><span id="endTime" class="commonRight">'+memberBaseInfo.address+'</span></li>'
