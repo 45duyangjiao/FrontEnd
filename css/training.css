@@ -159,7 +159,7 @@ img {
   float: right;
 }
 .saishi_text h2,
-.saishi_text p {
+.saishi_text .mui-text-justify {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -173,7 +173,7 @@ img {
   font-weight: bold;
   margin-top: 1px;
 }
-.saishi_text > p {
+.saishi_text > .mui-text-justify {
   height: 0.8rem;
   line-height: 0.4rem;
   font-size: 0.28rem;

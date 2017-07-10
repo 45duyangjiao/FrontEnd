@@ -111,7 +111,7 @@
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul class="mui-table-view">
-									<li class="mui-table-view-cell mui-media">
+									<!--<li class="mui-table-view-cell mui-media">
 										<a href="javascript:;">
 											<img class="mui-pull-left" src="../img/saishi_img.jpg">
 											<div class="saishi_text mui-media-body">
@@ -123,7 +123,7 @@
 											<p class="peixun_p">培训时间：<span></span></p>
 											<button onclick="" class="mui-btn-blue border-radius">快速报名</button>
 										</div>
-									</li>
+									</li>-->
 								</ul>
 							</div>
 						</div>
@@ -132,19 +132,6 @@
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul class="mui-table-view">
-									<li class="mui-table-view-cell mui-media">
-										<a href="javascript:;">
-											<img class="mui-pull-left" src="../img/saishi_img.jpg">
-											<div class="saishi_text mui-media-body">
-												<h2 class="">2017年全国大众跆拳道一级以上裁判员年审复训培训班3</h2>
-												<p class="mui-text-justify">内容简介：2017年全国大众跆拳道一级以上裁判员年审复训</p>
-											</div>
-										</a>
-										<div class="saishi_time">
-											<p class="peixun_p">培训时间：2017年5月20日</p>
-											<button class="mui-btn-blue border-radius">快速报名</button>
-										</div>
-									</li>
 								</ul>
 							</div>
 						</div>
@@ -153,19 +140,6 @@
 						<div class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul class="mui-table-view">
-									<li class="mui-table-view-cell mui-media">
-										<a href="javascript:;">
-											<img class="mui-pull-left" src="../img/saishi_img.jpg">
-											<div class="saishi_text mui-media-body">
-												<h2 class="">2017年全国大众跆拳道一级以上裁判员年审复训培训班</h2>
-												<p class="mui-text-justify">内容简介：2017年全国大众跆拳道一级以上裁判员年审复训</p>
-											</div>
-										</a>
-										<div class="saishi_time">
-											<p class="peixun_p">培训时间：2017年5月20日</p>
-											<button class="mui-btn-blue border-radius">快速报名</button>
-										</div>
-									</li>
 								</ul>
 							</div>
 						</div>
@@ -175,40 +149,92 @@
 		</div>
 		
 
-		<script src="../js/mui.js"></script>
+		<script src="../js/mui.min.js"></script>
 		<script src="../js/mui.pullToRefresh.js"></script>
 		<script src="../js/mui.pullToRefresh.material.js"></script>
 		<script>
 
-			
+//			var url='http://d2p7pk.natappfree.cc/Train/TrainList';
+//			    $.ajax({
+//				    url:url,
+//				    dataType:'json',
+//				    processData: false, 
+//				    type:'post',
+//				    success:function(data){
+//						var cur=document.querySelectorAll("#cur>a");
+//						var name=0;
+//						for(var i=0;i<cur.length;i++){
+//							cur[i].addEventListener('tap',function(){
+//								name=$(this).attr('name');
+//								console.log($(this).attr('name'))
+//								if(name==0){
+//									var fragment = document.createDocumentFragment();
+//									var li; 
+//							    	for(var i=0;i<data.Data.Data.length;i++){
+//							    		li = document.createElement('li');
+//										li.className = 'mui-table-view-cell mui-media';
+//										li.innerHTML = '<a href="'+'"><img class="mui-pull-left" src="'
+//										+data.Data.Data[i].ThumbImg
+//										+'"><div class="saishi_text mui-media-body"><h2 class="">'
+//										+data.Data.Data[i].Title
+//										+'</h2><div class="mui-text-justify">内容简介：'
+//										+data.Data.Data[i].BodyMsg
+//										+'</div></div></a><div class="saishi_time"><p class="peixun_p">培训时间：'
+//										+data.Data.Data[i].TrainTime
+//										+'</p><button class="mui-btn-blue border-radius">快速报名</button></div>'
+//										fragment.appendChild(li);
+//							    	}
+//									document.querySelector("#item1mobile ul").appendChild(fragment);
+//								}else if(name==1){
+//									var fragment = document.createDocumentFragment();
+//									var li; 
+//							    	for(var i=0;i<data.Data.Data.length;i++){
+//							    		li = document.createElement('li');
+//										li.className = 'mui-table-view-cell mui-media';
+//										li.innerHTML = '<a href="'+'"><img class="mui-pull-left" src="'
+//										+data.Data.Data[i].ThumbImg
+//										+'"><div class="saishi_text mui-media-body"><h2 class="">'
+//										+data.Data.Data[i].Title
+//										+'</h2><div class="mui-text-justify">内容简介：'
+//										+data.Data.Data[i].BodyMsg
+//										+'</div></div></a><div class="saishi_time"><p class="peixun_p">培训时间：'
+//										+data.Data.Data[i].TrainTime
+//										+'</p><button class="mui-btn-blue border-radius">快速报名</button></div>'
+//										fragment.appendChild(li);
+//							    	}
+//									document.querySelector("#item2mobile ul").appendChild(fragment);
+//								}else{
+//									var fragment = document.createDocumentFragment();
+//									var li; 
+//							    	for(var i=0;i<data.Data.Data.length;i++){
+//							    		li = document.createElement('li');
+//										li.className = 'mui-table-view-cell mui-media';
+//										li.innerHTML = '<a href="'+'"><img class="mui-pull-left" src="'
+//										+data.Data.Data[i].ThumbImg
+//										+'"><div class="saishi_text mui-media-body"><h2 class="">'
+//										+data.Data.Data[i].Title
+//										+'</h2><div class="mui-text-justify">内容简介：'
+//										+data.Data.Data[i].BodyMsg
+//										+'</div></div></a><div class="saishi_time"><p class="peixun_p">培训时间：'
+//										+data.Data.Data[i].TrainTime
+//										+'</p><button class="mui-btn-blue border-radius">快速报名</button></div>'
+//										fragment.appendChild(li);
+//							    	}
+//									document.querySelector("#item3mobile ul").appendChild(fragment);
+//								}
+//							})
+//						}
+//						
+////				    	console.log(JSON.stringify(data));
+//				    },
+//				    error:fail
+//			    });
+//			function fail(data) {
+//		        alert(JSON.stringify(data));
+//			}
 			
 			(function(){
-				var url='http://d2p7pk.natappfree.cc/Train/TrainList';
-				$.ajax({
-				    url:url,
-				    dataType:'json',
-				    processData: false, 
-				    type:'post',
-					success:function(data){
-					    	console.log(data);
-					},
-					error:function(XMLHttpRequest, textStatus, errorThrown) {
-//				       alert(XMLHttpRequest.status);
-	//				       alert(XMLHttpRequest.readyState);
-	//				       alert(textStatus);
-					}
-				});
-			   
-//				$.ajax({
-//		            type:"POST",
-//					url:"http://d2p7pk.natappfree.cc/Train/TrainList",
-//		            dataType: "jsonp",
-//		            headers:{'Content-Type':'application/json'},
-//		            success: function(data){
-//		            	console.log(data)
-//		            }
-//		        });
-				
+//				console.log(Title)
 				var btn=document.querySelectorAll(".saishi_time>button");
 				for(var i=0;i<btn.length;i++){
 					btn[i].addEventListener('tap', function() {
@@ -222,15 +248,7 @@
 						});
 					});
 				}
-				var cur=document.querySelectorAll("#cur>a");
-				var name=0;
-				for(var i=0;i<cur.length;i++){
-					cur[i].addEventListener('tap',function(){
-						name=$(this).attr('name');
-						console.log($(this).attr('name'))
 
-					})
-				}
 				var t=setTimeout(function(){
 					$("#time2").slideUp();
 					clearInterval(t)
@@ -242,12 +260,20 @@
 			(function($) {
 				//阻尼系数
 				var deceleration = mui.os.ios?0.003:0.0009;
+
+			    var myTitle="";
+			    var myThumbImg="";
+			    var myBodyMsg="";
+			    var myTrainTime="";
 				$('.mui-scroll-wrapper').scroll({
 					bounce: false,
 					indicators: true, //是否显示滚动条
 					deceleration:deceleration
 				});
-				
+
+				function fail(data) {
+			        alert(data);
+				}
 				$.ready(function() {
 					//循环初始化所有下拉刷新，上拉加载。
 					$.each(document.querySelectorAll('#item1mobile .mui-scroll'), function(index, pullRefreshEl) {
