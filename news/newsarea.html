@@ -13,7 +13,7 @@
 	</head>
 	<body>
 		<div class="mui-scroll-wrapper" id="protocol">
-			<div class="mui-scroll">
+	<div class="mui-scroll">
 		<div class="newsAera">
 			<div class="myChannel">
 				<div class="myChannelTil clearfix">
@@ -23,7 +23,7 @@
 				<ul class="myChannelmodule clearfix">
 					<li class="floatL channelOriginal channelActive">国内 <sup class="supDelate">x</sup></li>
 					<li class="floatL channelOriginal">国际 <sup class="supDelate">x</sup></li>
-					<li class="floatL channelOriginal">品势  <sup class="supDelate">x</sup></li>
+					<li class="floatL channelOriginal">品势 <sup class="supDelate">x</sup></li>
 					<li class="floatL channelOriginal">竞技 <sup class="supDelate">x</sup></li>
 					<li class="floatL channelOriginal">地区 <sup class="supDelate">x</sup></li>
 				</ul>
@@ -61,16 +61,17 @@
 				</div>
 				<div class="dynamicallyAdd">
 					<p class="compileAddChannelTile">组织</p>
-					<ul class="compileAddChannelOrganization commonHeight clearfix"">
-						<li class="floatL channelOriginal channelActive">赛事</li>
-						<li class="floatL channelOriginal">培训</li>
-						<li class="floatL channelOriginal">活动</li>
-						<li class="floatL channelOriginal">公益</li>
-						<li class="floatL channelOriginal">会议</li>
-					</ul>
-				</div>
+							<ul class="compileAddChannelOrganization commonHeight clearfix">
+								<li class="floatL channelOriginal channelActive ">赛事</li>
+								<li class="floatL channelOriginal ">培训</li>
+								<li class="floatL channelOriginal ">活动</li>
+								<li class="floatL channelOriginal ">公益</li>
+								<li class="floatL channelOriginal ">会议</li>
+							</ul>
+						</div>
+					</div>
+				</div>	
 			</div>
-		</div>
 		</div>
 		</div>
 		<script src="../js/flexable.js"></script>
@@ -78,22 +79,57 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/common.js"></script>
 		<script src="../js/newsarea.js"></script>
+		<script src="../js/artTemplate.js"></script>
+		<script type="text/html" id="channel">
+			{{each channel as value}}
+				<p class="compileAddChannelTile">{{value.Title}}</p>
+			{{/each}}
+		</script>
+		
+		
 		<script>
 			$('.floatR').click(function(){	
 				if($(".supDelate").css("display")=="none"){
 					$(".supDelate").show();
+					$('.floatR').html("完成");
 				}else{
 					$(".supDelate").hide();
+					$('.floatR').html("编辑")
 				}
 				
 			})
 
 			$('.supDelate').bind('click',function(){
 				$(this).parent().remove();
+				
 			})
+			
+			$(document).ready(function() {
+				var url = 'http://d2p7pk.natappfree.cc/News/GetMoreNewsType';
+				$.ajax({
+					url: url,
+					dataType: 'json',
+					type: 'post',
+					success: function(data) {
+						console.log(data);
+						var str = template("channel", {channel: data.Data.Data})
+						$(".dynamicallyAdd").html(str);
+						
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(XMLHttpRequest.status);
+						alert(XMLHttpRequest.readyState);
+						alert(textStatus);
+					}
+				});
+			});
+
 			
 		
 		</script>
+		
+		
+		
 		
 	</body>
 

@@ -17,7 +17,7 @@ html,body{
 	width: 10px;
     height: 10px;
     font-size: 12px;
-    color: red;
+    color: grey;
     display: none;
 }
 .myChannel{
@@ -73,4 +73,9 @@ html,body{
 }
 .commonHeight{
 	min-height:calc(100% - 0.3rem);
+}
+
+
+.myChannelmodule li:first-child,.compileAddChannelArea li:first-child{
+	color:#3385ff;
 }
