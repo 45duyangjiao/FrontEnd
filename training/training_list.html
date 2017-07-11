@@ -9,8 +9,8 @@
 
 		<link rel="stylesheet" href="../css/mui.min.css">
 		<link rel="stylesheet" href="../css/training.css" />
-		<script src="../js/flexable.js"></script>
 		<script src="../js/jquery-1.9.1.min.js"></script>
+		<script src="../js/flexable.js"></script>
 		<style>
 			.mui-bar~.mui-content .mui-fullscreen {
 				top: 44px;
@@ -90,6 +90,16 @@
 			.mui-table-view-cell>a:not(.mui-btn){
 				white-space:inherit
 			}
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+				border-bottom: 2px solid #007aff;
+			}
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item{
+				display: block;
+				float: left;
+			}
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+				transition:none;
+			}
 		</style>
 	</head>
 
@@ -98,11 +108,11 @@
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<div id="cur" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-						<a id="a22" class="mui-control-item mui-active" href="#item1mobile"></a>
-						<a id="a23" class="mui-control-item" href="#item2mobile"></a>
-						<a id="a24" class="mui-control-item" href="#item3mobile"></a>
+	<!--			 <a class="mui-control-item mui-active" href="#item1mobile">省级</a>
+						<a class="mui-control-item" href="javascript:getJosn(22)">国家级</a>
+						<a class="mui-control-item" href="#item3mobile">国际级</a> -->
 					</div>
-					<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+					<!--<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>-->
 					<div id="time2" class="current-position">地区</div>
 				</div>
 
@@ -110,7 +120,7 @@
 					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul class="mui-table-view">
+								<ul class="mui-table-view" id="List">
 									<!--<li class="mui-table-view-cell mui-media">
 										<a href="javascript:;">
 											<img class="mui-pull-left" src="../img/saishi_img.jpg">
@@ -127,246 +137,146 @@
 								</ul>
 							</div>
 						</div>
-					</div>
-					<div id="item2mobile" class="mui-slider-item mui-control-content">
-						<div id="scroll1" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul class="mui-table-view">
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item3mobile" class="mui-slider-item mui-control-content">
-						<div class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul class="mui-table-view">
-								</ul>
-							</div>
-						</div>
-					</div>
+					</div> 
 				</div>
 			</div>
 		</div>
+		 
+		<!--<script src="../js/mui.min.js"></script>-->
+		<!--<script src="../js/mui.pullToRefresh.js"></script>-->
+		<!--<script src="../js/mui.pullToRefresh.material.js"></script>-->
 		
-
-		<script src="../js/mui.min.js"></script>
-		<script src="../js/mui.pullToRefresh.js"></script>
-		<script src="../js/mui.pullToRefresh.material.js"></script>
-		<script>
-			var cur=document.querySelectorAll("#cur>a")
-			var id=[];
-			$.each(cur, function(index,value) {
-				id.push(value.id.slice(1))
-				console.log(id)
-			});
-			
-			var url='http://d2p7pk.natappfree.cc/Train/TrainNavBar';
-		    $.ajax({
-			    url:url,
-			    data:{
-			    	typeId:id,
-			    	pageindex:5
-			    },
-			    type:'post',
-			    dataType:'json',
-			    processData: false, 
-			    success:function(data){
-			    	
-			    	console.log(document.querySelectorAll("#cur>a"))
-			    	for(var i=0;i<data.Data.Data.length;i++){
-			    		cur[0].innerHTML=data.Data.Data[2].Title
-			    		cur[1].innerHTML=data.Data.Data[1].Title
-			    		cur[2].innerHTML=data.Data.Data[0].Title
-
-			    		if(data.Data.Data[i].Id==22){//第一个导航栏name值
-							var fragment = document.createDocumentFragment();//创建一个代码片段
-							var li;
-					    	for(var i=0;i<data.Data.Data.length;i++){//循环输出data中的数据
-					    		li = document.createElement('li');
-								li.className = 'mui-table-view-cell mui-media';
-								li.innerHTML = '<a href="'+'"><img class="mui-pull-left" src="'
-								+data.Data.Data[i].ThumbImg
-								+'"><div class="saishi_text mui-media-body"><h2 class="">'
-								+data.Data.Data[i].Title
-								+'</h2><div class="mui-text-justify">内容简介1：'
-								+data.Data.Data[i].BodyMsg 
-								+'</div></div></a><div class="saishi_time"><p class="peixun_p">培训时间1：'
-								+data.Data.Data[i].TrainTime
-								+'</p><button class="mui-btn-blue border-radius">快速报名</button></div>'
-								fragment.appendChild(li);
-					    	}
-							document.querySelector("#item1mobile ul").appendChild(fragment);//输出到#item1mobile的页面内容
-						}
-			    	}
-
-					var btn=document.querySelectorAll(".saishi_time>button");//列表中的所有快速报名按钮
-					for(var i=0;i<btn.length;i++){
-						btn[i].addEventListener('tap', function() {
-							var mytext=$(this).parent().prev().find('h2').text();//当前按钮上面h2中的内容
-							mui.openWindow({
-								url: 'index_con.html', //跳转的页面
-								id:'index_con.html',
-								extras:{
-									texts:mytext//传递数据的参数
-								},
-							});
-						});
-					}
-//				    	console.log(JSON.stringify(data));
-			    },
-			    error:fail
-		    });
-			function fail(data) {
-		        alert(JSON.stringify(data));
-			}
-			
+		
+	    <script>
 			(function(){
-				var t=setTimeout(function(){//两秒后地区隐藏
+				var cur=$("#cur>a");
+					$("#cur>a").click(function(){
+						for(var i=0;i<cur.length;i++){
+							if(cur.hasClass('mui-active')){
+								console.log(cur[i])
+								break;
+							}
+						}
+					})
+				var t=setTimeout(function(){
 					$("#time2").slideUp();
 					clearInterval(t)
 				},2000)
 			})()
+			
+	        var NavUrl = "http://47.93.192.128:5001/Train/TrainNavBar";
+	        var ListUrl = "http://47.93.192.128:5001/Train/TrainList";
+	       
+            //加载列表的方法
+	        function innerList(typeid) {
+	        	
+	            $.ajax({
+	                type: "post",
+	                url: ListUrl,
+	                data: {
+	                    typeId: typeid,
+	                    pageindex:1
+	                },
+	                datatype: "json",
+	                success: function (data) {
+	                    data = eval('(' + data + ')');
+	                    var fragment = document.createDocumentFragment(); //创建一个代码片段
+	                    var li;
+	                    if (typeof (data.Data.Data) != "undefined") {
+	                        for (var i = 0; i < data.Data.Data.length; i++) {//循环输出data中的数据
+	                            li = document.createElement('li');
+	                            li.className = 'mui-table-view-cell mui-media';
+	                            li.innerHTML = '<a href="' + '"><img class="mui-pull-left" src="'
+								+ data.Data.Data[i].ThumbImg
+								+ '"><div class="saishi_text mui-media-body"><h2 class="">'
+								+ data.Data.Data[i].Title
+								+ '</h2><div class="mui-text-justify">内容简介1：'
+								+ data.Data.Data[i].BodyMsg
+								+ '</div></div></a><div class="saishi_time"><p class="peixun_p">培训时间1：'
+								+ data.Data.Data[i].TrainTime
+								+ '</p><button class="mui-btn-blue border-radius">快速报名</button></div>'
+	                            fragment.appendChild(li);
+	                        }
+	                    }
+	                    
+	                    $('#List li').remove();
+	                    document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
 
-			mui.init();
-			(function($) {
+	                },
+	                error: function () {
 
-				//阻尼系数
-				var deceleration = mui.os.ios?0.003:0.0009;
-			    var myTitle="";
-			    var myThumbImg="";
-			    var myBodyMsg="";
-			    var myTrainTime="";
-				$('.mui-scroll-wrapper').scroll({
-					bounce: false,
-					indicators: true, //是否显示滚动条
-					deceleration:deceleration
+	                }
+	            });
+	        }
+            //加载导航的方法
+	        function innerNav() {
+	        	
+	            $.ajax({
+	                type: "post",
+	                url: NavUrl,
+	                datatype: "json",
+	                success: function (data) {
+	                    data = eval('(' + data + ')');
+	                    var fragment = document.createDocumentFragment(); //创建一个代码片段
+	                    var a;
+	                    if (typeof (data.Data.Data) != "undefined") {//这里是判断是不是有数据的 如果没数据直接不用循环 否则 undefined len属性
+	                        for (var i = data.Data.Data.length-1; i >=0 ; i--) {//循环输出data中的数据
+	                            a = document.createElement('a');
+	                            if (i == 0) { // 
+	                                a.className = 'mui-control-item mui-active';
+	                            }
+	                            else {
+	                                a.className = 'mui-control-item';
+	                            }
+	                            a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
+	                            a.innerHTML = data.Data.Data[i].Title;
+	                            fragment.appendChild(a);
+	                        }
+	                    }
+	                    document.querySelector("#cur").appendChild(fragment); //输出到#item1mobile的页面内容
+						$("#cur>a").bind("click",function(){
+							$("#cur>a").removeClass("mui-active");
+							$(this).addClass("mui-active")
+						})
+	                    innerList(parseInt(data.Data.Data[0].Id));
+	                },
+	                error: function () {
+
+	                }
+	            });
+	        }
+
+			var btn=document.querySelectorAll(".saishi_time>button");//列表中的所有快速报名按钮
+			for(var i=0;i<btn.length;i++){
+				btn[i].addEventListener('tap', function() {
+					var mytext=$(this).parent().prev().find('h2').text();//当前按钮上面h2中的内容
+					alert(1)
+					mui.openWindow({
+						url: 'index_con.html', //跳转的页面
+						id:'index_con.html',
+						extras:{
+							texts:mytext//传递数据的参数
+						},
+					});
 				});
+			}
 
-				$.ready(function() {
-
-					//循环初始化所有下拉刷新，上拉加载。
-					$.each(document.querySelectorAll('#item1mobile .mui-scroll'), function(index, pullRefreshEl) {
-						$(pullRefreshEl).pullToRefresh({
-							down: {
-								callback: function() {
-									var self = this;
-									setTimeout(function() {
-										var ul = self.element.querySelector('.mui-table-view');
-										ul.insertBefore(createFragment1(ul, index, 10, true), ul.firstChild);
-										self.endPullDownToRefresh();
-									}, 1000);
-								}
-							}, 
-							up: {
-								callback: function() {
-									var self = this;
-									setTimeout(function() {
-										var ul = self.element.querySelector('.mui-table-view');
-										ul.appendChild(createFragment1(ul, index, 5));
-										self.endPullUpToRefresh();
-									}, 1000);
-								}
-							}
-						});
-					});
-					
-					$.each(document.querySelectorAll('#item2mobile .mui-scroll'), function(index, pullRefreshE2) {
-						$(pullRefreshE2).pullToRefresh({
-							down: {
-								callback: function() {
-									var self = this;
-									setTimeout(function() {
-										var ul = self.element.querySelector('.mui-table-view');
-										ul.insertBefore(createFragment2(ul, index, 10, true), ul.firstChild);
-										self.endPullDownToRefresh();
-									}, 1000);
-								}
-							}, 
-							up: {
-								callback: function() {
-									var self = this;
-									setTimeout(function() {
-										var ul = self.element.querySelector('.mui-table-view');
-										ul.appendChild(createFragment2(ul, index, 5));
-										self.endPullUpToRefresh();
-									}, 1000);
-								}
-							}
-						});
-					});
-				
-					$.each(document.querySelectorAll('#item3mobile .mui-scroll'), function(index, pullRefreshE2) {
-						$(pullRefreshE2).pullToRefresh({
-							down: {
-								callback: function() {
-									var self = this;
-									setTimeout(function() {
-										var ul = self.element.querySelector('.mui-table-view');
-										ul.insertBefore(createFragment3(ul, index, 10, true), ul.firstChild);
-										self.endPullDownToRefresh();
-									}, 1000);
-								}
-							}, 
-							up: {
-								callback: function() {
-									var self = this;
-									setTimeout(function() {
-										var ul = self.element.querySelector('.mui-table-view');
-										ul.appendChild(createFragment3(ul, index, 5));
-										self.endPullUpToRefresh();
-									}, 1000);
-								}
-							}
-						});
-					});
-					
-					
-					var createFragment1 = function(ul, index, count, reverse) {
-						var length = ul.querySelectorAll('li').length;
-						var fragment = document.createDocumentFragment();
-						var li; 
-						
-						for (var i = 0; i < count; i++) {
-							li = document.createElement('li');
-							li.className = 'mui-table-view-cell mui-media';
-							li.innerHTML = '<a href="javascript:;"><img class="mui-pull-left" src="../img/saishi_img.jpg"><div class="saishi_text mui-media-body"><h2 class="">2017年全国大众跆拳道11111年审复训培训班1</h2><p class="mui-text-justify">内容简介：2017年全国大众跆111111判员年审复训1</p></div></a><div class="saishi_time"><p class="peixun_p">培训时间：2017年5月20日</p><button class="mui-btn-blue border-radius">快速报名</button></div>';
-							fragment.appendChild(li);
-						}
-						return fragment;
-					};
-					
-					var createFragment2 = function(ul, index, count, reverse) {
-						var length = ul.querySelectorAll('li').length;
-						var fragment = document.createDocumentFragment();
-						var li; 
-						
-						for (var i = 0; i < count; i++) {
-							li = document.createElement('li');
-							li.className = 'mui-table-view-cell mui-media';
-							li.innerHTML = '<a href="javascript:;"><img class="mui-pull-left" src="../img/saishi_img.jpg"><div class="saishi_text mui-media-body"><h2 class="">2017年全国大众跆拳道2222年审复训培训班1</h2><p class="mui-text-justify">内容简介：2017年全国大众跆22222判员年审复训1</p></div></a><div class="saishi_time"><p class="peixun_p">培训时间：2017年5月20日</p><button class="mui-btn-blue border-radius">快速报名</button></div>';
-							fragment.appendChild(li);
-						}
-						return fragment;
-					};
-					
-					var createFragment3 = function(ul, index, count, reverse) {
-						var length = ul.querySelectorAll('li').length;
-						var fragment = document.createDocumentFragment();
-						var li; 
-						
-						for (var i = 0; i < count; i++) {
-							li = document.createElement('li');
-							li.className = 'mui-table-view-cell mui-media';
-							li.innerHTML = '<a href="javascript:;"><img class="mui-pull-left" src="../img/saishi_img.jpg"><div class="saishi_text mui-media-body"><h2 class="">2017年全国大众跆333332年审复训培训班1</h2><p class="mui-text-justify">内容简介：2017年全国大众33333年审复训1</p></div></a><div class="saishi_time"><p class="peixun_p">培训时间：2017年5月20日</p><button class="mui-btn-blue border-radius">快速报名</button></div>';
-							fragment.appendChild(li);
-						}
-						return fragment;
-					};
-					
-				});
-			})(mui);
-		
-		</script>
+            //页面价在后执行   加载导航的方法
+	        window.onload = function () {
+	        	getRem(750,100)
+	            innerNav();
+	        } 
+			window.onresize = function(){
+			    getRem(750,100)
+			};
+			function getRem(pwidth,prem){
+			    var html = document.getElementsByTagName("html")[0];
+			    
+			    var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+			    html.style.fontSize = oWidth/pwidth*prem + "px";
+			}
+                
+	    </script>
+	    
 	</body>
-
 </html>
