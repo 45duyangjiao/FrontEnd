@@ -1,6 +1,8 @@
 html,body{
 	width:100%;
 	height:100%;
+	overflow: auto;
+	overflow-y: auto;
 }
 .newsAera{
 	padding:0 0.2rem;
@@ -61,7 +63,7 @@ html,body{
 	-webkit-flex:1;
 }
 .dynamicallyAdd{
-	min-height:2.48rem;
+	min-height:1.48rem;
 	
 }
 .compileAddChannelTile{
