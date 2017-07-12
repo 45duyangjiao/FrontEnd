@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<title>培训列表页</title>
@@ -16,6 +17,7 @@
 				top: 44px;
 				height: auto;
 			}
+			
 			.mui-pull-top-tips {
 				position: absolute;
 				top: -20px;
@@ -26,9 +28,11 @@
 				border-radius: 100%;
 				z-index: 1;
 			}
+			
 			.mui-bar~.mui-pull-top-tips {
 				top: 24px;
 			}
+			
 			.mui-pull-top-wrapper {
 				width: 42px;
 				height: 42px;
@@ -41,24 +45,28 @@
 				box-shadow: 0 4px 10px #bbb;
 				overflow: hidden;
 			}
+			
 			.mui-pull-top-tips.mui-transitioning {
 				-webkit-transition-duration: 200ms;
 				transition-duration: 200ms;
 			}
+			
 			.mui-pull-top-tips .mui-pull-loading {
 				/*-webkit-backface-visibility: hidden;
 				-webkit-transition-duration: 400ms;
 				transition-duration: 400ms;*/
-				
 				margin: 0;
 			}
+			
 			.mui-pull-top-wrapper .mui-icon,
 			.mui-pull-top-wrapper .mui-spinner {
 				margin-top: 7px;
 			}
+			
 			.mui-pull-top-wrapper .mui-icon.mui-reverse {
 				/*-webkit-transform: rotate(180deg) translateZ(0);*/
 			}
+			
 			.mui-pull-bottom-tips {
 				text-align: center;
 				background-color: #efeff4;
@@ -66,6 +74,7 @@
 				line-height: 40px;
 				color: #777;
 			}
+			
 			.mui-pull-top-canvas {
 				overflow: hidden;
 				background-color: #fafafa;
@@ -75,32 +84,41 @@
 				height: 40px;
 				margin: 0 auto;
 			}
+			
 			.mui-pull-top-canvas canvas {
 				width: 40px;
 			}
+			
 			.mui-slider-indicator.mui-segmented-control {
 				background-color: #fff;
 			}
-			.mui-slider .mui-slider-group .mui-slider-item img{
+			
+			.mui-slider .mui-slider-group .mui-slider-item img {
 				width: 32%;
 			}
-			.mui-table-view-cell{
+			
+			.mui-table-view-cell {
 				padding: 11px 12px;
 			}
-			.mui-table-view-cell>a:not(.mui-btn){
-				white-space:inherit
+			
+			.mui-table-view-cell>a:not(.mui-btn) {
+				white-space: inherit
 			}
-			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
+			
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
 				border-bottom: 2px solid #007aff;
 			}
-			.mui-segmented-control.mui-scroll-wrapper .mui-control-item{
+			
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
 				display: block;
 				float: left;
 			}
-			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active{
-				transition:none;
+			
+			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+				transition: none;
 			}
 		</style>
+	
 	</head>
 
 	<body>
@@ -108,10 +126,11 @@
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<div id="cur" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-	<!--			 <a class="mui-control-item mui-active" href="#item1mobile">省级</a>
+						<!--			 <a class="mui-control-item mui-active" href="#item1mobile">省级</a>
 						<a class="mui-control-item" href="javascript:getJosn(22)">国家级</a>
 						<a class="mui-control-item" href="#item3mobile">国际级</a> -->
 					</div>
+					
 					<!--<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>-->
 					<div id="time2" class="current-position">地区</div>
 				</div>
@@ -137,146 +156,176 @@
 								</ul>
 							</div>
 						</div>
-					</div> 
+					</div>
 				</div>
 			</div>
 		</div>
-		 
+
 		<!--<script src="../js/mui.min.js"></script>-->
 		<!--<script src="../js/mui.pullToRefresh.js"></script>-->
 		<!--<script src="../js/mui.pullToRefresh.material.js"></script>-->
-		
-		
-	    <script>
-			(function(){
-				var cur=$("#cur>a");
-					$("#cur>a").click(function(){
-						for(var i=0;i<cur.length;i++){
-							if(cur.hasClass('mui-active')){
-								console.log(cur[i])
-								break;
-							}
-						}
-					})
-				var t=setTimeout(function(){
+
+		<script>
+			(function() {
+				var t = setTimeout(function() {
 					$("#time2").slideUp();
 					clearInterval(t)
-				},2000)
+				}, 2000)
 			})()
-			
-	        var NavUrl = "http://47.93.192.128:5001/Train/TrainNavBar";
-	        var ListUrl = "http://47.93.192.128:5001/Train/TrainList";
-	       
-            //加载列表的方法
-	        function innerList(typeid) {
-	        	
-	            $.ajax({
-	                type: "post",
-	                url: ListUrl,
-	                data: {
-	                    typeId: typeid,
-	                    pageindex:1
-	                },
-	                datatype: "json",
-	                success: function (data) {
-	                    data = eval('(' + data + ')');
-	                    var fragment = document.createDocumentFragment(); //创建一个代码片段
-	                    var li;
-	                    if (typeof (data.Data.Data) != "undefined") {
-	                        for (var i = 0; i < data.Data.Data.length; i++) {//循环输出data中的数据
-	                            li = document.createElement('li');
-	                            li.className = 'mui-table-view-cell mui-media';
-	                            li.innerHTML = '<a href="' + '"><img class="mui-pull-left" src="'
-								+ data.Data.Data[i].ThumbImg
-								+ '"><div class="saishi_text mui-media-body"><h2 class="">'
-								+ data.Data.Data[i].Title
-								+ '</h2><div class="mui-text-justify">内容简介1：'
-								+ data.Data.Data[i].BodyMsg
-								+ '</div></div></a><div class="saishi_time"><p class="peixun_p">培训时间1：'
-								+ data.Data.Data[i].TrainTime
-								+ '</p><button class="mui-btn-blue border-radius">快速报名</button></div>'
-	                            fragment.appendChild(li);
-	                        }
-	                    }
-	                    
-	                    $('#List li').remove();
-	                    document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
 
-	                },
-	                error: function () {
+			var NavUrl = "http://47.93.192.128:5001/Train/TrainNavBar";
+			var ListUrl = "http://47.93.192.128:5001/Train/TrainList";
+			//默认加载
+			$.ajax({
+				
+				type: "post",
+				url: ListUrl,
+				data: {
+					typeId: 22,
+					pageindex: 1
+				},
+				datatype: "json",
+				success: function(data) {
+					data = eval('(' + data + ')');
+					var fragment = document.createDocumentFragment(); //创建一个代码片段
+					var li;
+					for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
+						li = document.createElement('li');
+						li.className = 'mui-table-view-cell mui-media';
+						li.innerHTML = '<a href="' + '"><img class="mui-pull-left" src="' +
+							data.Data.Data[i].ThumbImg +
+							'"><div class="saishi_text mui-media-body"><h2 class="">' +
+							data.Data.Data[i].Title +
+							'</h2><div class="mui-text-justify">内容简介1：' +
+							data.Data.Data[i].BodyMsg +
+							'</div></div></a><div class="saishi_time"><p class="peixun_p">培训时间1：' +
+							data.Data.Data[i].TrainTime +
+							'</p><button class="mui-btn-blue border-radius">快速报名</button></div>'
+						fragment.appendChild(li);
+					}
 
-	                }
-	            });
-	        }
-            //加载导航的方法
-	        function innerNav() {
-	        	
-	            $.ajax({
-	                type: "post",
-	                url: NavUrl,
-	                datatype: "json",
-	                success: function (data) {
-	                    data = eval('(' + data + ')');
-	                    var fragment = document.createDocumentFragment(); //创建一个代码片段
-	                    var a;
-	                    if (typeof (data.Data.Data) != "undefined") {//这里是判断是不是有数据的 如果没数据直接不用循环 否则 undefined len属性
-	                        for (var i = data.Data.Data.length-1; i >=0 ; i--) {//循环输出data中的数据
-	                            a = document.createElement('a');
-	                            if (i == 0) { // 
-	                                a.className = 'mui-control-item mui-active';
-	                            }
-	                            else {
-	                                a.className = 'mui-control-item';
-	                            }
-	                            a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
-	                            a.innerHTML = data.Data.Data[i].Title;
-	                            fragment.appendChild(a);
-	                        }
-	                    }
-	                    document.querySelector("#cur").appendChild(fragment); //输出到#item1mobile的页面内容
-						$("#cur>a").bind("click",function(){
+
+					$('#List li').remove();
+					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
+
+				},
+				error: function() {
+
+				}
+			});
+
+			//加载列表的方法
+			function innerList(typeid) {
+
+				$.ajax({
+					type: "post",
+					url: ListUrl,
+					data: {
+						typeId: typeid,
+						pageindex: 1
+					},
+					datatype: "json",
+					success: function(data) {
+						data = eval('(' + data + ')');
+						var fragment = document.createDocumentFragment(); //创建一个代码片段
+						var li;
+						if(typeof(data.Data.Data) != "undefined") {
+							for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
+								li = document.createElement('li');
+								li.className = 'mui-table-view-cell mui-media';
+								li.innerHTML = '<a href="' + '"><img class="mui-pull-left" src="' +
+									data.Data.Data[i].ThumbImg +
+									'"><div class="saishi_text mui-media-body"><h2 class="">' +
+									data.Data.Data[i].Title +
+									'</h2><div class="mui-text-justify">内容简介1：' +
+									data.Data.Data[i].BodyMsg +
+									'</div></div></a><div class="saishi_time"><p class="peixun_p">培训时间1：' +
+									data.Data.Data[i].TrainTime +
+									'</p><button class="mui-btn-blue border-radius">快速报名</button></div>'
+								fragment.appendChild(li);
+							}
+						}
+
+//						function newBtn(btn) {
+//							var mytext = btn.parent().prev().find('h2').text(); //当前按钮上面h2中的内容
+//							alert(mytext)
+//							mui.openWindow({
+//								url: 'index_con.html', //跳转的页面
+//								id: 'index_con.html',
+//								extras: {
+//									texts: mytext //传递数据的参数
+//								},
+//							});
+//						}
+
+						$('#List li').remove();
+						document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
+
+					},
+					error: function() {
+
+					}
+				});
+			}
+			//加载导航的方法
+			function innerNav() {
+
+				$.ajax({
+					type: "post",
+					url: NavUrl,
+					datatype: "json",
+					success: function(data) {
+						data = eval('(' + data + ')');
+						var fragment = document.createDocumentFragment(); //创建一个代码片段
+						var a;
+						if(typeof(data.Data.Data) != "undefined") { //这里是判断是不是有数据的 如果没数据直接不用循环 否则 undefined len属性
+							for(var i = data.Data.Data.length - 1; i >= 0; i--) { //循环输出data中的数据
+								a = document.createElement('a');
+								a.className = 'mui-control-item';
+								a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
+								a.innerHTML = data.Data.Data[i].Title;
+								fragment.appendChild(a);
+
+							}
+						}
+
+						document.querySelector("#cur").appendChild(fragment); //输出到#item1mobile的页面内容
+						$("#cur>a:first-child").addClass("mui-active")
+						$("#cur>a").bind("click", function() {
 							$("#cur>a").removeClass("mui-active");
 							$(this).addClass("mui-active")
 						})
-	                    innerList(parseInt(data.Data.Data[0].Id));
-	                },
-	                error: function () {
+//						innerList(parseInt(data.Data.Data[0].Id));
 
-	                }
-	            });
-	        }
+					},
+					error: function() {
 
-			var btn=document.querySelectorAll(".saishi_time>button");//列表中的所有快速报名按钮
-			for(var i=0;i<btn.length;i++){
-				btn[i].addEventListener('tap', function() {
-					var mytext=$(this).parent().prev().find('h2').text();//当前按钮上面h2中的内容
-					alert(1)
-					mui.openWindow({
-						url: 'index_con.html', //跳转的页面
-						id:'index_con.html',
-						extras:{
-							texts:mytext//传递数据的参数
-						},
-					});
+					}
 				});
 			}
 
-            //页面价在后执行   加载导航的方法
-	        window.onload = function () {
-	        	getRem(750,100)
-	            innerNav();
-	        } 
-			window.onresize = function(){
-			    getRem(750,100)
-			};
-			function getRem(pwidth,prem){
-			    var html = document.getElementsByTagName("html")[0];
-			    
-			    var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
-			    html.style.fontSize = oWidth/pwidth*prem + "px";
+			//页面价在后执行   加载导航的方法
+			window.onload = function() {
+
+				getRem(750, 100)
+				innerNav();
+
 			}
-                
-	    </script>
-	    
+			window.onresize = function() {
+				getRem(750, 100)
+			};
+
+			function getRem(pwidth, prem) {
+				var html = document.getElementsByTagName("html")[0];
+
+				var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+				html.style.fontSize = oWidth / pwidth * prem + "px";
+			}
+			
+			
+			
+		</script>
+
 	</body>
+
 </html>
