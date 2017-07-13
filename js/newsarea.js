@@ -40,7 +40,73 @@ $(document).ready(function() {
 });
 
 
+$('.floatR').click(function(){	
+				if($(".supDelate").css("display")=="none"){
+					$(".supDelate").show();
+					$('.floatR').html("完成");
+				}else{
+					$(".supDelate").hide();
+					$('.floatR').html("编辑")
+				}
+				
+			})
 
+			$(document).ready(function() {
+				var url = 'http://47.93.192.128:5001/News/GetMoreNewsType';
+				$.ajax({
+					url: url,
+					dataType: 'json',
+					type: 'post',
+					success: function(data) {
+						console.log(data)
+						var str = template("channel", {channel: data.Data.Data});	
+						$(".dynamicallyAdd").html(str);
+
+						$(".compileChannel .pu").bind("click",function(e){
+							$(e.target).removeClass('pu').addClass('zhu')
+							e.target.remove()
+							$('.myChannelmodule').append(e.target)
+							var  channelId=$(e.target).attr("id");
+							console.log(channelId);
+							
+							$.ajax({
+								type:"post",
+								url:"http://47.93.192.128:5001/News/AddMyChannel",
+								async:true,
+								dataType: 'json',
+								data:{
+									userId:10002,
+									channelId:channelId
+								},
+								success:function(data){
+									alert("添加 成功")
+								}
+								
+							});
+						})
+						
+						$(".myChannelmodule .zhu").bind("click",function(e){
+							console.log(11)
+//							e.target.remove()
+//							alert(e.target.id)
+//							if(e.target.id<10)
+//							$('#Ty0').append(e.target)
+//							else if(e.target < 30)
+//							$('#Ty1').append(e.target)
+//							else if(e.target > 30)
+//							$('#Ty2').append(e.target)
+						})
+									
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(XMLHttpRequest.status);
+
+					}
+				});
+			});
+
+			　　
+				
 
 
 
