@@ -13,7 +13,7 @@
 	</head>
 
 	<body>
-		<div class="mui-scroll-wrapper">
+		<!--<div class="mui-scroll-wrapper">
 			<div class="mui-scroll">
 				<ul class="newsZanPage">
 					<li class="newsZanLi"><img src="../img/timg6.png"/><span>幽雅</span></li>
@@ -21,12 +21,75 @@
 					<li class="newsZanLi"><img src="../img/timg6.png"/><span>幽雅</span></li>
 				</ul>
 			</div>
-		</div>
+		</div>-->
+		<div id="view"></div>
 		<script src="../js/flexable.js"></script>
 		<script src="../js/zepto_1.1.3.js"></script>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/common.js"></script>
 		<script src="../js/newsZan.js"></script>
+		<script src="../js/laytpl.js"></script>
+		
+		<script id="demo" type="text/html">
+		 <div class="mui-scroll-wrapper">
+			<div class="mui-scroll">
+			<ul class="newsZanPage">
+			{{# for(var i = 0, len = d.list.length; i < len; i++){ }}
+			  <li class="newsZanLi">
+			  	<img src="{{ d.list[i].pic }}"/>
+			  	<span >{{ d.list[i].nickname }}</span>
+			    <!--<span>{{ d.list[i].date }}</span>-->
+			  </li>
+			{{# } }}
+			</ul>
+			</div>
+			</div>
+		</script>
+		
+		<script type="text/javascript">
+//		var data = {
+//		  title: '前端攻城师',
+//		  list: [{name: '贤心', city: '杭州'}, {name: '谢亮', city: '北京'}, {name: '浅浅', city: '杭州'}, {name: 'Dem', city: '北京'}]
+//		};
+//		var gettpl = document.getElementById('demo').innerHTML;
+//		laytpl(gettpl).render(data, function(html){
+//		  document.getElementById('view').innerHTML = html;
+//		});
+
+			window.onload=function(){
+
+				if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+
+					xmlhttp=new XMLHttpRequest();
+
+				}else{// code for IE6, IE5
+
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                    
+				}
+                xmlhttp.open("POST",'http://d2p7pk.natappfree.cc/News/commentLikeUserList',true);
+                xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8") 
+                var params="commentId="+4;
+				xmlhttp.send(params);	
+				xmlhttp.onreadystatechange=function(){
+
+					if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                    console.log(111111111111);
+ 					var data = JSON.parse(xmlhttp.responseText).Data.Data;
+ 					console.log(data)
+ 					var data = {
+					  title: '前端攻城师',
+					  list: data
+					};
+					var gettpl = document.getElementById('demo').innerHTML;
+					laytpl(gettpl).render(data, function(html){
+					  document.getElementById('view').innerHTML = html;
+					});
+
+				}
+				};
+			}
+		</script>
 	</body>
 
 </html>

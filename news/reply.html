@@ -33,7 +33,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="allComments">
+					<div id="view"></div>
+					<!--<div class="allComments">
 						<div class="allCommentsTil">全部评论</div>
 						<ul class="allCommentsUl">
 							<li>
@@ -57,14 +58,90 @@
 								</div>
 							</li>
 						</ul>
-					</div>
+					</div>-->
 				</div>
 			</div>
 		</div>
+		
 		<script src="../js/flexable.js"></script>	
 		<script src="../js/zepto_1.1.3.js"></script>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/common.js"></script>
 		<script src="../js/reply.js" ></script>
+		<script src="../js/laytpl.js"></script>
+		<script id="demo" type="text/html">
+		<div class="allComments">
+		 <div class="allCommentsTil">全部评论</div>
+			<ul class="allCommentsUl">
+			{{# for(var i = 0, len = d.list.length; i < len; i++){ }}
+			 <li>
+				<div class="floatL">
+					<img src="../img/timg6.png" alt="" />
+				</div>
+				<div class="floatR">
+					<p class="MainpName MainActive"><span class="floatL">{{d.list[i].nickname }}</span><span class="floatR"><i></i>2</span></p>
+					<p class="MainpComment">{{d.list[i].content }} </p>
+					<p class="MainpTime"><span>{{d.list[i].data }}</span><span> 回复</span></p>
+				</div>
+			</li>
+			{{# } }}
+			</ul>
+		</div>
+		
+			  </div>
+		</script>
+		<script type="text/javascript">
+		
+			window.onload=function(){
+
+				if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+
+					xmlhttp=new XMLHttpRequest();
+
+				}else{// code for IE6, IE5
+
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                
+				}
+            xmlhttp.open("POST",'http://d2p7pk.natappfree.cc/News/ReplyDetail',true);
+            xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8") 
+            var params="commentId="+1;
+				xmlhttp.send(params);	
+				xmlhttp.onreadystatechange=function(){
+
+					if(xmlhttp.readyState==4 && xmlhttp.status==200){
+                console.log(111111111111);
+					var data = JSON.parse(xmlhttp.responseText).Data.Data;
+ 					console.log(data)
+					var data = {
+					  title: '前端攻城师',
+					  list: data
+					};
+					var gettpl = document.getElementById('demo').innerHTML;
+					laytpl(gettpl).render(data, function(html){
+					  document.getElementById('view').innerHTML = html;
+					});
+
+				}
+				};
+			}
+//			mui.ajax({
+//			    dataType:'json',//服务器返回json格式数据
+//				type:'post',//HTTP请求类型
+//				url:'http://d2p7pk.natappfree.cc/News/ReplyDetail',
+//				data:{commentId:'1'},
+//				timeout:10000,//超时时间设置为10秒；
+//				headers:{'Content-Type':'application/json'},	              
+//				success:function(data){
+//					//服务器返回响应，根据响应结果，分析是否登录成功；
+//					console.log(data);
+//				},
+//				error:function(xhr,type,errorThrown){
+//					//异常处理；
+//					mui.toast('123456');
+//				}
+//			});
+		</script>
 	</body>
 </html>
+
