@@ -11,8 +11,20 @@
 	color:#333;
 	line-height:0.3rem;
 	margin-bottom:0.15rem;
+	line-height:20px;
 }
 .EventTime{
 	font-size:0.22rem;
 	color:#999;
+}
+.activationRecordLiFlex{
+	display: flex;
+}
+.EventTitleCont{
+	flex: 3;
+}
+
+.EventTimeLeft{
+	flex: 1;
+	text-align: center;
 }

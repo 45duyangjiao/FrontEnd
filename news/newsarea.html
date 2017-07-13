@@ -40,7 +40,7 @@
 		
 		<!-- 我的频频道，删除，添加-->
 		<script type="text/html" id="myChannel">
-			{{each myChannel as value}}
+			{{each myChannel as value i}}
 				<li class="floatL channelOriginal zhu" id='{{value.channelid}}'>{{value.title}}
 					<sup class="supDelate">x</sup>
 				</li>
