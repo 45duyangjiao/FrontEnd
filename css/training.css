@@ -39,6 +39,9 @@ textarea {
 img {
   max-width: 100%;
 }
+.overflow {
+  overflow: hidden;
+}
 .current-position {
   line-height: 30px;
   text-align: center;

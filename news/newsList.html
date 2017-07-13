@@ -59,10 +59,12 @@
 			</div>
 		</div>
 
-
 		<script>
+			function texts(id) {
+				window.location.href = "newsContent.html?id=" + id;
+			}
 			(function() {
-				$("#newsarea").click(function(){
+				$("#newsarea").click(function() {
 					window.open("newsarea.html")
 				})
 				var t = setTimeout(function() {
@@ -98,30 +100,18 @@
 							if(data.Data.Data[i].pics.length == 3) {
 								console.log(data.Data.Data[i].pics)
 								console.log(data.Data.Data[i].id)
-								li.innerHTML = '<div class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelyImg" id="purelyImg"><img src="' + data.Data.Data[i].pics[0] + '"><img src="' + data.Data.Data[i].pics[1] + '"><img src="' + data.Data.Data[i].pics[2] + '"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
+								li.innerHTML = '<div class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div onclick="texts(' + data.Data.Data[i].id + ')" class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelyImg" id="purelyImg"><img src="' + data.Data.Data[i].pics[0] + '"><img src="' + data.Data.Data[i].pics[1] + '"><img src="' + data.Data.Data[i].pics[2] + '"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
 
 							} else if(data.Data.Data[i].pics.length == 0 && data.Data.Data[i].thumbImg) {
 								li.innerHTML = '<div class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="mui-table-Img">' +
-									'<img src="' + data.Data.Data[i].thumbImg + '"/></div><div class="mui-table-text"><p class="mui-table-Tile">' + data.Data.Data[i].title + '</p><p class="mui-table-look"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
+									'<img src="' + data.Data.Data[i].thumbImg + '"/></div><div class="mui-table-text"><p onclick="texts(' + data.Data.Data[i].id + ')" class="mui-table-Tile">' + data.Data.Data[i].title + '</p><p class="mui-table-look"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
 							} else {
-								li.innerHTML = '<div class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>';
+								li.innerHTML = '<div class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div onclick="texts(' + data.Data.Data[i].id + ')" class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>';
 							}
 
 							fragment.appendChild(li);
 						}
 					}
-
-//					function newBtn(btn) {//需要用真机测试
-//						var mytext = btn.parent().prev().find('h2').text(); //当前按钮上面h2中的内容
-//						alert(mytext)
-//						mui.openWindow({
-//							url: 'news/newsarea.html', //跳转的页面
-//							id: 'index_con.html',
-//							extras: {
-//								texts: mytext //传递数据的参数
-//							},
-//						});
-//					}
 
 					$('#List li').remove();
 					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
@@ -171,18 +161,6 @@
 								fragment.appendChild(li);
 							}
 						}
-
-						//						function newBtn(btn) {//需要用真机测试
-						//							var mytext = btn.parent().prev().find('h2').text(); //当前按钮上面h2中的内容
-						//							alert(mytext)
-						//							mui.openWindow({
-						//								url: 'index_con.html', //跳转的页面
-						//								id: 'index_con.html',
-						//								extras: {
-						//									texts: mytext //传递数据的参数
-						//								},
-						//							});
-						//						}
 
 						$('#List li').remove();
 						document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容

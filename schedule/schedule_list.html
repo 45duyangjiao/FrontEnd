@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="utf-8">
 		<title>赛事列表页</title>
@@ -117,7 +118,7 @@
 				transition: none;
 			}
 		</style>
-	
+
 	</head>
 
 	<body>
@@ -137,7 +138,6 @@
 							<div class="mui-scroll">
 								<ul class="mui-table-view" id="List">
 
-
 								</ul>
 							</div>
 						</div>
@@ -147,8 +147,10 @@
 			</div>
 		</div>
 
-
 		<script>
+			function texts(id) {
+				window.location.href = "scheduleContent.html?id=" + id;
+			}
 			(function() {
 				var t = setTimeout(function() {
 					$("#time2").slideUp();
@@ -172,22 +174,21 @@
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
 					if(typeof(data.Data.Data) != "undefined") {
-							for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
-								li = document.createElement('li');
-								li.className = 'mui-table-view-cell mui-media';
-								li.innerHTML = '<a href="' + '"><img class="mui-pull-left" src="' +
+						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
+							li = document.createElement('li');
+							li.className = 'mui-table-view-cell mui-media';
+							li.innerHTML = '<div class="overflow"><img class="mui-pull-left" src="' +
 									data.Data.Data[i].pic +
-									'"><div class="saishi_text mui-media-body"><h2 class="">' +
+									'"><div onclick="texts(' + data.Data.Data[i].id + ')" class="saishi_text mui-media-body"><h2 class="">' +
 									data.Data.Data[i].Title +
-									'</h2><div class="mui-text-justify">内容简介1：' +
+									'</h2><div class="mui-text-justify">内容简介：' +
 									data.Data.Data[i].content +
-									'</div></div></a><div class="saishi_time"><p class="peixun_p">培训时间1：' +
+									'</div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
 									data.Data.Data[i].MatchDate +
 									'</p><button class="mui-btn-blue border-radius">快速报名</button></div>'
-								fragment.appendChild(li);
-							}
+							fragment.appendChild(li);
 						}
-
+					}
 
 					$('#List li').remove();
 					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
@@ -218,30 +219,18 @@
 							for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
 								li = document.createElement('li');
 								li.className = 'mui-table-view-cell mui-media';
-								li.innerHTML = '<a href="' + '"><img class="mui-pull-left" src="' +
+								li.innerHTML = '<div class="overflow"><img class="mui-pull-left" src="' +
 									data.Data.Data[i].pic +
-									'"><div class="saishi_text mui-media-body"><h2 class="">' +
+									'"><div onclick="texts(' + data.Data.Data[i].id + ')" class="saishi_text mui-media-body"><h2 class="">' +
 									data.Data.Data[i].Title +
-									'</h2><div class="mui-text-justify">内容简介1：' +
+									'</h2><div class="mui-text-justify">内容简介：' +
 									data.Data.Data[i].content +
-									'</div></div></a><div class="saishi_time"><p class="peixun_p">培训时间1：' +
+									'</div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
 									data.Data.Data[i].MatchDate +
 									'</p><button class="mui-btn-blue border-radius">快速报名</button></div>'
 								fragment.appendChild(li);
 							}
 						}
-
-//						function newBtn(btn) {
-//							var mytext = btn.parent().prev().find('h2').text(); //当前按钮上面h2中的内容
-//							alert(mytext)
-//							mui.openWindow({
-//								url: 'index_con.html', //跳转的页面
-//								id: 'index_con.html',
-//								extras: {
-//									texts: mytext //传递数据的参数
-//								},
-//							});
-//						}
 
 						$('#List li').remove();
 						document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
@@ -280,7 +269,7 @@
 							$("#cur>a").removeClass("mui-active");
 							$(this).addClass("mui-active")
 						})
-//						innerList(parseInt(data.Data.Data[0].Id));
+						//						innerList(parseInt(data.Data.Data[0].Id));
 
 					},
 					error: function() {
@@ -305,9 +294,7 @@
 				var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
 				html.style.fontSize = oWidth / pwidth * prem + "px";
 			}
-			
-			
-			
 		</script>
 	</body>
+
 </html>
