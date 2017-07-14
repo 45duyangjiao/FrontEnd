@@ -10,42 +10,92 @@
 		<link rel="stylesheet" href="../css/searchList.css" />
 		<link rel="stylesheet" href="../css/common.css" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/jquery-1.9.1.min.js"></script>
+		<script src="../js/flexable.js"></script>
+		
 	</head>
 
 	<body>
 		<div class="mui-content">
 			<div id="slider" class="mui-slider mui-fullscreen">
-				<ul class="searchListPage">
+				<ul class="searchListPage" id="List">
+					<!--<li class="mxhLi">
+						<div class="mui-table-Img"><img src="../img/img1.png" /></div>
+						<div class="mui-table-text">
+							<p class="mui-table-Tile">2017年全国大众跆拳道一级以上裁判员年审复训培训班</p>
+							<p class="mui-table-look"><span class="lookLeft">2017年5月20日 中跆协官网</span><span class="lookRight"><i class="look"></i> 5686</span></p>
+						</div>
+					</li>
 					<li class="mxhLi">
-				        <div class="mui-table-Img"><img src="../img/img1.png"/></div>
-				        <div class="mui-table-text">
-				        	<p class="mui-table-Tile">2017年全国大众跆拳道一级以上裁判员年审复训培训班</p>
-				        	<p class="mui-table-look"><span class="lookLeft">2017年5月20日 中跆协官网</span><span class="lookRight"><i class="look"></i> 5686</span></p>
-				        </div>
-				    </li>
-				     <li class="mxhLi">
-				        <div class="muipurelyTitle">2017年亚跆联新品势学习班汇报分享新品势学习班汇报分享</div>
-				        <div class="muipurelytext ">								        
-				        	<p class="muipurelylook clearfix"><span class="lookLeft">2017年5月20日 CCTV5</span><span class="lookRight"><i class="look"></i> 1.5万</span></p>
-				        </div>
-				    </li>
-				     <li class="mxhLi viewcellHeight">
-				        <div class="muipurelyTitle">中国女子跆拳道队蝉联2016世界杯女子团</div>
-				        <div class="muipurelyImg" id="purelyImg">
-				        	<img src="../img/timg.jpg" alt=""/>
-				        	<img src="../img/timg2.jpg" alt=""/>
-				        	<img src="../img/timg3.jpg" alt=""/>
-				        </div>
-				        <div class="muipurelytext ">								        
-				        	<p class="muipurelylook clearfix"><span class="lookLeft">2017年5月20日 CCTV5</span><span class="lookRight"><i class="look"></i> 1.5万</span></p>
-				        </div>
-				    </li>
+						<div class="muipurelyTitle">2017年亚跆联新品势学习班汇报分享新品势学习班汇报分享</div>
+						<div class="muipurelytext ">
+							<p class="muipurelylook clearfix"><span class="lookLeft">2017年5月20日 CCTV5</span><span class="lookRight"><i class="look"></i> 1.5万</span></p>
+						</div>
+					</li>
+					<li class="mxhLi">
+						<div class="muipurelyTitle">中国女子跆拳道队蝉联2016世界杯女子团</div>
+						<div class="muipurelyImg" id="purelyImg">
+							<img src="../img/timg.jpg" alt="" />
+							<img src="../img/timg2.jpg" alt="" />
+							<img src="../img/timg3.jpg" alt="" />
+						</div>
+						<div class="muipurelytext ">
+							<p class="muipurelylook clearfix"><span class="lookLeft">2017年5月20日 CCTV5</span><span class="lookRight"><i class="look"></i> 1.5万</span></p>
+						</div>-->
+					</li>
 				</ul>
-		<script src="../js/flexable.js"></script>
-		<script src="../js/zepto_1.1.3.js"></script>
-		<script src="../js/mui.min.js"></script>
-		<script src="../js/common.js"></script>
-		<script src="../js/searchList.js"></script>
+			</div>
+		</div>
+
+		<script>
+			function texts(id) {
+				window.location.href = "newsContent.html?id=" + id;
+			}
+
+			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
+			//默认加载
+			$.ajax({
+				type: "post",
+				url: searchUrl,
+				data: {
+					key: "赛事"
+				},
+				datatype: "json",
+				success: function(data) {
+					console.log(data)
+					data = eval('(' + data + ')');
+					var fragment = document.createDocumentFragment(); //创建一个代码片段
+					var li;
+
+					if(typeof(data.Data.Data) != "undefined") {
+						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
+							li = document.createElement('li');
+							//li.className = 'mui-table-view-cell mui-media';
+							if(data.Data.Data[i].pics.length == 3) {
+								console.log(data.Data.Data[i].pics)
+								console.log(data.Data.Data[i].id)
+								li.innerHTML = '<div class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div onclick="texts(' + data.Data.Data[i].id + ')" class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelyImg" id="purelyImg"><img src="' + data.Data.Data[i].pics[0] + '"><img src="' + data.Data.Data[i].pics[1] + '"><img src="' + data.Data.Data[i].pics[2] + '"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
+
+							} else if(data.Data.Data[i].pics.length == 0 && data.Data.Data[i].thumbImg) {
+								li.innerHTML = '<div class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="mui-table-Img">' +
+									'<img src="' + data.Data.Data[i].thumbImg + '"/></div><div class="mui-table-text"><p onclick="texts(' + data.Data.Data[i].id + ')" class="mui-table-Tile">' + data.Data.Data[i].title + '</p><p class="mui-table-look"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
+							} else {
+								li.innerHTML = '<div class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div onclick="texts(' + data.Data.Data[i].id + ')" class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>';
+							}
+
+							fragment.appendChild(li);
+						}
+					}
+
+//					$('#List li').remove();
+					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
+
+				},
+				error: function() {
+
+				}
+			});
+		</script>
 	</body>
 
 </html>
