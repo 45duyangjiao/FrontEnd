@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>个人中心的活动记录页面</title>
+		<title>公益新闻列表</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -22,9 +22,9 @@
 		</div>
 		<script type="text/html" id="GetGongyiNewsList">
 			{{each activition as value}}
-			<li class="activationRecordLi activationRecordLiFlex" id="{{value.newsid}}">
-				<div class="EventTitle EventTitleCont">
-					<a href="">{{value.newstitle}}</a>
+			<li class="activationRecordLi activationRecordLiFlex"  id="{{value.newsid}}">
+				<div class="EventTitle EventTitleCont" >
+					<a>{{value.newstitle}}</a>
 				</div>
 				<div class="EventTime EventTimeLeft">
 					{{value.createtime}}
@@ -39,7 +39,7 @@
 		<script src="../js/common.js"></script>
 		<script src="../js/GetGongyiNewsList.js"></script>
 		<script src="../js/artTemplate.js"></script>
-
+				
 	</body>
 
 </html>

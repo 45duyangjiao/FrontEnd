@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>已认证道馆信息</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/training.css" />
+		<link rel="stylesheet" href="../css/iconfont.css" />
+
+		<script src="../js/flexable.js"></script>
+		<style>
+			body {
+				background: #f5f5f5;
+			}
+			
+			.mui-table-view-cell>a:not(.mui-btn) {
+				white-space: inherit;
+				text-overflow: inherit;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="Certification"></div>
+
+		<script type="text/html" id="Certification">
+			<div class="dg_banner"><img src="../img/daoguan_banner.jpg" alt="" /></div>
+			{{each Certification as value}}
+		
+			<div class="dg_head">
+				<h2>{{value.title}}</h2>
+				<h3><span class="dh_Star" style="display: none;">★★★★★</span> 协会认证 &nbsp;&nbsp;&nbsp;&nbsp;CTA06</h3>
+				<p><i class="mui-icon iconfont icon-shijian"></i><span>&nbsp;&nbsp;{{value.BusinessHours}}</span></p>
+				<div class="dh_head_Certification">
+					<a href=""><i><img src="../img/daoguan_icon_Certification.png" alt="" /></i>
+						<p>{{value.IsCertification}}</p>
+					</a>
+				</div>
+			</div>
+			<div class="dg_function mt15">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right"><i class="mui-icon iconfont icon-dingwei fontColor-blue"></i><span>{{value.address}}</span></a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="tel:010-51726666"><i class="mui-icon iconfont icon-dianhua fontColor-blue"></i><span>{{value.phone}}</span></a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="dg_jianjie_box mui-table-view mt15">
+				<h2 class="dg_title"><span>简介详情</span></h2>
+				<p class="dg_p">{{value.content}}</p>
+				<div class=" dg_scroll">
+					{{include "dg_scroll" value}}
+				</div>
+			</div>
+
+			<div class="dg_jianjie_box mui-table-view mt15">
+				<h2 class="dg_title dg_title_border"><span>课程表</span></h2>
+				<table class="dg_table">
+					<thead>
+						<tr>
+							<th>时间</th>
+							<th>课程</th>
+							<th>费用</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{include "Course" value}}
+
+					</tbody>
+				</table>
+			</div>
+
+			<div class="dg_jianjie_box mui-table-view mt15">
+				<h2 class="dg_title"><i>预</i>道馆活动</h2>
+				<div class="dg_list">
+					<ul>
+						<li>
+							<div class="dg_Activities">
+								<h2>为庆祝第十一届全国跆拳道大赛成功举为庆祝第十一届全国跆拳道大赛成功举</h2>
+								<p>活动时间：2017年5月20日-2017年8月25日</p>
+							</div>
+							<button class="dg_btn">预约</button>
+						</li>
+						<li>
+							<div class="dg_Activities">
+								<h2>为庆祝第十一届全国跆拳道大赛成功举...</h2>
+								<p>活动时间：2017年5月20日-2017年8月25日</p>
+							</div>
+							<button class="dg_btn">预约</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			{{/each}}
+
+		</script>
+
+		<script type="text/html" id="dg_scroll">
+			{{each picList as value }}
+			<a href=""><img src="../img/daoguan_img2.jpg" alt="{{value.url}}" /></a>
+			{{/each}}
+
+		</script>
+
+		<script type="text/html" id="Course">
+			{{each Course as value }}
+			<tr>
+				<td><b>{{value.Coursedate}}</b>10：30-11：50</td>
+				<td>{{value.CourseName}}</td>
+				<td>¥：{{value.Price}}</td>
+			</tr>
+			{{/each}}
+
+		</script>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/flexable.js"></script>
+		<script src="../js/zepto_1.1.3.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/daoguan_Certification.js"></script>
+		<script src="../js/artTemplate.js"></script>
+		<script>
+			$(document).ready(function() {
+				var url = 'http://47.93.192.128:5001/daoguan/DaoGuan_Detail';
+				$.ajax({
+					url: url,
+					dataType: 'json',
+					type: 'post',
+					data: {
+						dgId: 7,
+						user_Id: 10003
+					},
+					success: function(data) {
+						console.log(data);
+						var str = template("Certification", {Certification: data.Data})
+						var imgUrl = data.Data.Data.pic;
+						console.log(imgUrl)
+						$(".Certification").html(str);
+						
+						var htmlList = '';
+						var data = data.list;
+						
+						$.each(data, function(i,value) {
+						    htmlList +='<div class="weui_media_box weui_media_text">'+
+						    '<a href="'+ el.url +'" target="_blank"><h4 class="weui_media_title">'+ el.title +'</h4></a>'+
+						    '<p class="weui_media_desc">'+ el.desc +'</p>'+
+						'</div>';
+						});
+						
+						$('.js-blog-list').empty().append(htmlList);
+						
+						
+						
+						
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(XMLHttpRequest.status);
+
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>
