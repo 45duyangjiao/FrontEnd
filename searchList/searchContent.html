@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>新闻详情</title>
+		<title>查询详情</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -42,35 +42,34 @@
 				return null;
 			}
 			var id = GetQueryString("id");
-			var viewCount = GetQueryString("viewCount");
 			console.log(id)
-			console.log(viewCount)
 
-			var DetailUrl = "http://47.93.192.128:5001/News/NewsInfo";
+			var DetailUrl = "http://47.93.192.128:5001/Search/SearchByKey";
 			//默认加载
 			$.ajax({
 				type: "post",
 				url: DetailUrl,
 				data: {
-					id: id
+//					key: "新闻",
+					Id: id
 				},
 				datatype: "json",
 				success: function(data) {
 					data = eval('(' + data + ')');
 					console.log(data)
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
-					//					console.log(data.Data.Data[i].id)
+					//console.log(data.Data.Data[i].id)
 					var div = document.createElement('div');
 					
 					div.className = 'announceDetailPage';
 					div.innerHTML = '<div class="announceDetailTil">' +
-						data.Data.Data.tilte +
+						data.Data.query.Title +
 						'</div><div class="announceDetailTime clearfix"><span class="floatL Ltime">' +
-						data.Data.Data.publishDate +
+						data.Data.query.createTime +
 						'</span><span class="floatR Rfrom">' +
-						data.Data.Data.source +
+						data.Data.query.source +
 						'</span></div><div class="announceDetailMainbody">' +
-						data.Data.Data.content +
+						data.Data.query.content +
 						'</div>'
 					fragment.appendChild(div);
 

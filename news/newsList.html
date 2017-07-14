@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -58,8 +59,8 @@
 		</div>
 
 		<script>
-			function texts(id,viewCount) {
-				window.location.href = "newsContent.html?id=" + id+"&viewCount="+viewCount;
+			function texts(id, viewCount) {
+				window.location.href = "newsContent.html?id=" + id + "&viewCount=" + viewCount;
 			}
 			(function() {
 				$("#newsarea").click(function() {
@@ -85,7 +86,7 @@
 					areaid: ""
 				},
 				datatype: "json",
-//				headers:{"appId":appId,"Content-Type":"text/plain;charset=UTF-8"},
+				//				headers:{"appId":appId,"Content-Type":"text/plain;charset=UTF-8"},
 				success: function(data) {
 					//console.log(data)
 					data = eval('(' + data + ')');
@@ -99,13 +100,13 @@
 							if(data.Data.Data[i].pics.length == 3) {
 								console.log(data.Data.Data[i].pics)
 								console.log(data.Data.Data[i].id)
-								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ','+data.Data.Data[i].viewCount+')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelyImg" id="purelyImg"><img src="' + data.Data.Data[i].pics[0] + '"><img src="' + data.Data.Data[i].pics[1] + '"><img src="' + data.Data.Data[i].pics[2] + '"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
+								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelyImg" id="purelyImg"><img src="' + data.Data.Data[i].pics[0] + '"><img src="' + data.Data.Data[i].pics[1] + '"><img src="' + data.Data.Data[i].pics[2] + '"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
 
 							} else if(data.Data.Data[i].pics.length == 0 && data.Data.Data[i].thumbImg) {
-								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ','+data.Data.Data[i].viewCount+')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="mui-table-Img">' +
-									'<img src="' + data.Data.Data[i].thumbImg + '"/></div><div class="mui-table-text"><p class="mui-table-Tile">' + data.Data.Data[i].title + '</p><p class="mui-table-look"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
+								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="mui-table-Img">' +
+									'<img src="' + data.Data.Data[i].thumbImg + '"/></div><div class="mui-table-text"><p class="mui-table-Tile">' + data.Data.Data[i].title + '</p><p class="mui-table-look"><span class="lookLeft">' + data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
 							} else {
-								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ','+data.Data.Data[i].viewCount+')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>';
+								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>';
 							}
 
 							fragment.appendChild(li);
@@ -146,16 +147,43 @@
 								li = document.createElement('li');
 								//								li.className = 'mui-table-view-cell mui-media';
 								if(data.Data.Data[i].pics.length == 3) {
-								console.log(data.Data.Data[i].pics)
-								console.log(data.Data.Data[i].id)
-								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ','+data.Data.Data[i].viewCount+')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelyImg" id="purelyImg"><img src="' + data.Data.Data[i].pics[0] + '"><img src="' + data.Data.Data[i].pics[1] + '"><img src="' + data.Data.Data[i].pics[2] + '"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
+									//								console.log(data.Data.Data[i].pics)
+									//								console.log(data.Data.Data[i].id)
+									li.innerHTML = '<div onclick="texts(' +data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount +')" class="mui-table-view-cell" id="' +
+										data.Data.Data[i].id +
+										'"><div class="muipurelyTitle">' +
+										data.Data.Data[i].title +
+										'</div><div class="muipurelyImg" id="purelyImg"><img src="' +
+										data.Data.Data[i].pics[0] + '"><img src="' + data.Data.Data[i].pics[1] + '"><img src="' + data.Data.Data[i].pics[2] +
+										'"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
+										data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source +
+										'</span><span class="lookRight"><i class="look"></i>' +
+										data.Data.Data[i].viewCount +
+										'</span></p></div></div>'
 
-							} else if(data.Data.Data[i].pics.length == 0 && data.Data.Data[i].thumbImg) {
-								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ','+data.Data.Data[i].viewCount+')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="mui-table-Img">' +
-									'<img src="' + data.Data.Data[i].thumbImg + '"/></div><div class="mui-table-text"><p class="mui-table-Tile">' + data.Data.Data[i].title + '</p><p class="mui-table-look"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
-							} else {
-								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ','+data.Data.Data[i].viewCount+')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>';
-							}
+								} else if(data.Data.Data[i].pics.length == 0 && data.Data.Data[i].thumbImg) {
+									li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + 
+										data.Data.Data[i].id + 
+										'"><div class="mui-table-Img"><img src="' + 
+										data.Data.Data[i].thumbImg + 
+										'"/></div><div class="mui-table-text"><p class="mui-table-Tile">' + 
+										data.Data.Data[i].title + 
+										'</p><p class="mui-table-look"><span class="lookLeft">' + 
+										data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + 
+										'</span><span class="lookRight"><i class="look"></i>' + 
+										data.Data.Data[i].viewCount + 
+										'</span></p></div></div>'
+								} else {
+									li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + 
+									data.Data.Data[i].id + 
+									'"><div class="muipurelyTitle">' + 
+									data.Data.Data[i].title + 
+									'</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + 
+									data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + 
+									'</span><span class="lookRight"><i class="look"></i>' + 
+									data.Data.Data[i].viewCount + 
+									'</span></p></div></div>';
+								}
 
 								fragment.appendChild(li);
 							}
