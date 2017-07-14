@@ -3,16 +3,22 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>新闻详情</title>
+		<title>查询详情</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 		<link href="../css/common.css" rel="stylesheet" />
 		<link href="../css/announceDetail.css" rel="stylesheet" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
-		<script src="../js/jquery-1.9.1.min.js"></script>
+		<!--<script src="../js/jquery-1.9.1.min.js"></script>-->
 		<!--<script src="../js/mui.min.js"></script>-->
+		<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="../js/flexable.js"></script>
+		<style>
+			.mui-fullscreen{
+				position: relative;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -42,37 +48,58 @@
 				return null;
 			}
 			var id = GetQueryString("id");
-			var viewCount = GetQueryString("viewCount");
 			console.log(id)
-			console.log(viewCount)
+			var testUrl=window.location.href
+			testUrl=decodeURIComponent(testUrl.substr(testUrl.lastIndexOf("=")).slice(1))
+			console.log(testUrl)
+			
 
-			var DetailUrl = "http://47.93.192.128:5001/News/NewsInfo";
+			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
 			//默认加载
 			$.ajax({
 				type: "post",
-				url: DetailUrl,
+				url: searchUrl,
 				data: {
-					id: id
+					key: testUrl
 				},
 				datatype: "json",
 				success: function(data) {
+					
 					data = eval('(' + data + ')');
 					console.log(data)
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
-					//					console.log(data.Data.Data[i].id)
 					var div = document.createElement('div');
-					
 					div.className = 'announceDetailPage';
-					div.innerHTML = '<div class="announceDetailTil">' +
-						data.Data.Data.tilte +
-						'</div><div class="announceDetailTime clearfix"><span class="floatL Ltime">' +
-						data.Data.Data.publishDate +
-						'</span><span class="floatR Rfrom">' +
-						data.Data.Data.source +
-						'</span></div><div class="announceDetailMainbody">' +
-						data.Data.Data.content +
-						'</div>'
-					fragment.appendChild(div);
+					if(data.Data.query.length != undefined) {
+//						alert(1)
+						for(var i = 0; i < data.Data.query.length; i++) {
+							if(data.Data.query[i].Id == id) {
+								div.innerHTML = '<div class="announceDetailTil">' +
+									data.Data.query[i].Title +
+									'</div><div class="announceDetailTime clearfix"><span class="floatL Ltime">' +
+									data.Data.query[i].createTime +
+									'</span><span class="floatR Rfrom">' +
+									data.Data.query[i].source +
+									'</span></div><div class="announceDetailMainbody">' +
+									data.Data.query[i].content +
+									'</div>'
+								fragment.appendChild(div);
+							}
+						}
+					}else{
+						if(data.Data.query[0].Id == id) {
+								div.innerHTML = '<div class="announceDetailTil">' +
+									data.Data.query[0].Title +
+									'</div><div class="announceDetailTime clearfix"><span class="floatL Ltime">' +
+									data.Data.query[0].createTime +
+									'</span><span class="floatR Rfrom">' +
+									data.Data.query[0].source +
+									'</span></div><div class="announceDetailMainbody">' +
+									data.Data.query[0].content +
+									'</div>'
+								fragment.appendChild(div);
+							}
+					}
 
 					//$('.mui-scroll div').remove();
 					document.querySelector(".mui-scroll").appendChild(fragment); //输出到#item1mobile的页面内容
