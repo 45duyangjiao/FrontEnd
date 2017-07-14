@@ -52,65 +52,55 @@
 		</div>
 
 		<script>
-			function texts(id) {
-				window.location.href = "searchContent.html?id=" + id;
-			}
+
 
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
+			var searchtest="新闻";
+			function texts(id,searchtest) {
+				window.location.href = "searchContent.html?id=" + id+"&searchtest="+searchtest;
+			}
+			
 			//默认加载
 			$.ajax({
 				type: "post",
 				url: searchUrl,
 				data: {
-//					typeid: 3,
-					key: "新闻"
+					key: searchtest
 				},
 				datatype: "json",
 				success: function(data) {
 					data = eval('(' + data + ')');
-//					console.log(data)
-//					console.log(data.Data)
-//					console.log(data.Data.query)
-					console.log(data.Data.query)
 					console.log(data.Data.query.length)
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
-					
 					if(typeof(data.Data.query) != "undefined") {
 					for(var i = 0; i < data.Data.query.length; i++) { //循环输出data中的数据
 							li = document.createElement('li');
 							li.className = 'mxhLi';
+							
 							console.log(data.Data.query[i].pic.length)
-							if(data.Data.query[i].pic.length == 3) {
-//								console.log(data.Data.query[i].pic)
-//								console.log(data.Data.query[i].Title)
-								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ')"><div class="muipurelyTitle">' +
+							if(data.Data.query[i].pic.length > 0) {
+								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+encodeURIComponent(searchtest)+'\')"><div class="muipurelyTitle">' +
 									data.Data.query[i].Title +
 									'</div><div class="muipurelyImg" id="purelyImg"><img src="' +
 									data.Data.query[i].pic + '"><img src="' + data.Data.query[i].pic[1] + '"><img src="' + data.Data.query[i].pic[2] +
 									'"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
 									data.Data.query[i].createTime +
-									'</span><span class="lookRight"><i class="look"></i>' +
-									data.Data.query[i].viewCount +
 									'</span></p></div></div>'
 							} else if(data.Data.query[i].pic.length == 0) {
 //								console.log(data.Data.query[i].Title)
-								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ')"><div class="mui-table-Img"><img src="' +
+								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+encodeURIComponent(searchtest)+'\')"><div class="mui-table-Img"><img src="' +
 									data.Data.query[i].pic +
 									'" /></div><div class="mui-table-text"><p class="mui-table-Tile">' +
 									data.Data.query[i].Title +
 									'</p><p class="mui-table-look"><span class="lookLeft">' +
 									data.Data.query[i].createTime +
-									'</span><span class="lookRight"><i class="look"></i>' +
-									data.Data.query[i].viewCount +
 									'</span></p></div></div>'
 							} else {
-								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ')"><div class="muipurelyTitle">' +
+								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+encodeURIComponent(searchtest)+'\')"><div class="muipurelyTitle">' +
 									data.Data.query[i].Title +
 									'</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
 									data.Data.query[i].createTime +
-									'</span><span class="lookRight"><i class="look"></i>' +
-									data.Data.query[i].viewCount +
 									'</span></p></div></div>'
 							}
 
