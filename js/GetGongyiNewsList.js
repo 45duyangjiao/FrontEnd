@@ -15,7 +15,6 @@ $(document).ready(function() {
 		        let id=$(this).attr('id');// 获取id
 		        window.location.href = "newsContent.html?id=" + id;
 		    })
-		
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
 			alert(XMLHttpRequest.status);

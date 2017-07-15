@@ -17,14 +17,12 @@ function searchAttestationResult(){
 				console.log(data);
 				/*获取这个人所有信息*/
 				if(data.sign==0x10320000){
-					window.location.href = "identifyResult.html"		
+					window.location.href = "identifyResult.html"
 				}else{
-					alert("暂无数据");
+					mui.toast('没有会员信息',{ duration:'1000', type:'div' })  
 				}
 			},
-			error:function(){
-				             
-			}
+			
 		});
 	}	
 }
