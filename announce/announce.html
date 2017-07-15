@@ -68,13 +68,11 @@
 					},
 					datatype: "json",
 					success: function(data) {
-						//						console.log(data)
 						data = eval('(' + data + ')');
 						var fragment = document.createDocumentFragment(); //创建一个代码片段
 						var li;
 						if(typeof(data.Data.Data) != "undefined") {
 							for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
-								//								console.log(data.Data.Data[i].Id)
 								li = document.createElement('li');
 								li.className = 'mui-table-view-cell announceLi';
 								li.innerHTML = '<div class="floatL announceNewsImg"><img src="' +

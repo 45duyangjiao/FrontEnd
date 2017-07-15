@@ -43,8 +43,6 @@
 			}
 			var id = GetQueryString("id");
 			var viewCount = GetQueryString("viewCount");
-			console.log(id)
-			console.log(viewCount)
 
 			var DetailUrl = "http://47.93.192.128:5001/News/NewsInfo";
 			//默认加载
@@ -57,9 +55,7 @@
 				datatype: "json",
 				success: function(data) {
 					data = eval('(' + data + ')');
-					console.log(data)
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
-					//					console.log(data.Data.Data[i].id)
 					var div = document.createElement('div');
 					
 					div.className = 'announceDetailPage';

@@ -48,11 +48,8 @@
 				return null;
 			}
 			var id = GetQueryString("id");
-			console.log(id)
 			var testUrl=window.location.href
 			testUrl=decodeURIComponent(testUrl.substr(testUrl.lastIndexOf("=")).slice(1))
-			console.log(testUrl)
-			
 
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
 			//默认加载
@@ -66,7 +63,6 @@
 				success: function(data) {
 					
 					data = eval('(' + data + ')');
-					console.log(data)
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var div = document.createElement('div');
 					div.className = 'announceDetailPage';

@@ -42,7 +42,6 @@
 				return null;
 			}
 			var id = GetQueryString("id");
-			console.log(id)
 
 			var DetailUrl = "http://47.93.192.128:5001/Notice/Notice_Detail";
 			//默认加载
@@ -56,7 +55,6 @@
 				success: function(data) {
 					data = eval('(' + data + ')');
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
-					//					console.log(data.Data.Data[i].id)
 					var div = document.createElement('div');
 					div.className = 'announceDetailPage';
 					div.innerHTML = '<div class="announceDetailTil">' +

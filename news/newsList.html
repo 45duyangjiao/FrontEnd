@@ -88,7 +88,6 @@
 				datatype: "json",
 				//				headers:{"appId":appId,"Content-Type":"text/plain;charset=UTF-8"},
 				success: function(data) {
-					//console.log(data)
 					data = eval('(' + data + ')');
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
@@ -98,8 +97,6 @@
 							li = document.createElement('li');
 							//li.className = 'mui-table-view-cell mui-media';
 							if(data.Data.Data[i].pics.length == 3) {
-								console.log(data.Data.Data[i].pics)
-								console.log(data.Data.Data[i].id)
 								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelyImg" id="purelyImg"><img src="' + data.Data.Data[i].pics[0] + '"><img src="' + data.Data.Data[i].pics[1] + '"><img src="' + data.Data.Data[i].pics[2] + '"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
 
 							} else if(data.Data.Data[i].pics.length == 0 && data.Data.Data[i].thumbImg) {
@@ -137,7 +134,6 @@
 					},
 					datatype: "json",
 					success: function(data) {
-						//						console.log(data)
 						data = eval('(' + data + ')');
 						var fragment = document.createDocumentFragment(); //创建一个代码片段
 						var li;
@@ -147,8 +143,6 @@
 								li = document.createElement('li');
 								//								li.className = 'mui-table-view-cell mui-media';
 								if(data.Data.Data[i].pics.length == 3) {
-									//								console.log(data.Data.Data[i].pics)
-									//								console.log(data.Data.Data[i].id)
 									li.innerHTML = '<div onclick="texts(' +data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount +')" class="mui-table-view-cell" id="' +
 										data.Data.Data[i].id +
 										'"><div class="muipurelyTitle">' +
@@ -216,8 +210,6 @@
 								a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
 								a.innerHTML = data.Data.Data[i].Title;
 								fragment.appendChild(a);
-								console.log(a.href)
-
 							}
 						}
 
