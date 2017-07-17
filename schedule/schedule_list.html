@@ -149,9 +149,8 @@
 		</div>
 
 		<script>
-			var name="赛事";
-			function texts(id,name) {
-				window.location.href = "scheduleContent.html?id=" + id+"&name="+name;
+			function texts(id) {
+				window.location.href = "scheduleContent.html?id=" + id;
 			}
 			(function() {
 				var t = setTimeout(function() {
@@ -187,7 +186,7 @@
 									data.Data.Data[i].content +
 									'</div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
 									data.Data.Data[i].MatchDate +
-									'</p><button onclick="texts(' + data.Data.Data[i].id + ',\''+name+'\')" class="mui-btn-blue border-radius">快速报名</button></div>'
+									'</p><button onclick="texts(' + data.Data.Data[i].id + ')" class="mui-btn-blue border-radius">快速报名</button></div>'
 							fragment.appendChild(li);
 						}
 					}
@@ -228,7 +227,7 @@
 									data.Data.Data[i].content +
 									'</div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
 									data.Data.Data[i].MatchDate +
-									'</p><button onclick="texts(' + data.Data.Data[i].id + ',\''+name+'\')" class="mui-btn-blue border-radius">快速报名</button></div>'
+									'</p><button onclick="texts(' + data.Data.Data[i].id + ')" class="mui-btn-blue border-radius">快速报名</button></div>'
 								fragment.appendChild(li);
 							}
 						}
