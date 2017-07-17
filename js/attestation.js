@@ -16,8 +16,10 @@ function searchAttestationResult(){
 			success:function(data){
 				console.log(data);
 				/*获取这个人所有信息*/
+				var memberNo=data.baseInfor.userNo;
+				console.log(memberNo)
 				if(data.sign==0x10320000){
-					window.location.href = "identifyResult.html"
+					window.location.href = "identifyresult.html?memberNo="+memberNo
 				}else{
 					mui.toast('没有会员信息',{ duration:'1000', type:'div' })  
 				}
@@ -29,33 +31,6 @@ function searchAttestationResult(){
 var InquireBtn = document.getElementById("inquireBtn");
 InquireBtn.addEventListener("tap",searchAttestationResult);
 
-
-
-function GetQueryString(name) {
-	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-	var r = window.location.search.substr(1).match(reg);
-	if(r != null) return unescape(r[2]);
-	return null;
-}
-var memberNo = GetQueryString("memberNo");
-console.log(memberNo)
-
-var DetailUrl = "http://47.93.192.128:5001/Match/MatchDetail";
-//默认加载
-$.ajax({
-	type: "post",
-	url: DetailUrl,
-	data: {
-		memberNo: memberNo
-	},
-	datatype: "json",
-	success: function(data) {
-		window.open("identifyResult.html?memberNo="+memberNo)
-	},
-	error: function() {
-
-	}
-});
 
 
 
