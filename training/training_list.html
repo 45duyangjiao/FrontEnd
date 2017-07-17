@@ -167,9 +167,12 @@
 		<!--<script src="../js/mui.pullToRefresh.material.js"></script>-->
 
 		<script>
-			var name="培训";
-			function texts(id,name) {
-				window.location.href = "scheduleContent.html?id=" + id+"&name="+name;
+			function texts(id) {
+				window.location.href = "trainingContent.html?id=" + id;
+			}
+			var TRAIN="培训";
+			function btnOpen(id,TRAIN) {
+				window.location.href = "trainingContent.html?id=" + id+"&TRAIN="+TRAIN;
 			}
 			(function() {
 				var t = setTimeout(function() {
@@ -205,7 +208,7 @@
 									data.Data.Data[i].BodyMsg +
 									'</div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
 									data.Data.Data[i].TrainTime +
-									'</p><button onclick="texts(' + data.Data.Data[i].id + ',\''+name+'\')" class="mui-btn-blue border-radius">快速报名</button></div>'
+									'</p><button onclick="btnOpen(' + data.Data.Data[i].id + ',\''+TRAIN+'\')" class="mui-btn-blue border-radius">快速报名</button></div>'
 						fragment.appendChild(li);
 					}
 
@@ -246,7 +249,7 @@
 									data.Data.Data[i].BodyMsg +
 									'</div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
 									data.Data.Data[i].TrainTime +
-									'</p><button onclick="texts(' + data.Data.Data[i].id + ',\''+name+'\')" class="mui-btn-blue border-radius">快速报名</button></div>'
+									'</p><button onclick="btnOpen(' + data.Data.Data[i].id + ',\''+TRAIN+'\')" class="mui-btn-blue border-radius">快速报名</button></div>'
 								fragment.appendChild(li);
 							}
 						}

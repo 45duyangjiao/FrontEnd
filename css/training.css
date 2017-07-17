@@ -102,7 +102,6 @@ img {
   line-height: 30px;
 }
 .peixun_info > div {
-  line-height: 30px;
   overflow: hidden;
 }
 .peixun_info > div > i {
@@ -111,16 +110,26 @@ img {
 }
 .peixun_info > div > p {
   color: #666;
-  font-size: 16px;
   display: inline-block;
 }
 .peixun_info > div > span {
+  width: 72%;
+  line-height: 0.4rem;
   color: #999;
   font-size: 14px;
   float: right;
 }
+@media screen and (min-width: 321px) and (max-width: 375px) {
+  .peixun_info > div > span {
+    width: 66%;
+  }
+}
+.peixunCon_box button {
+  margin-top: 0.5rem;
+}
 .peixun_new {
-  margin-top: 25px;
+  padding-top: 25px;
+  margin: 0 0 10px;
 }
 .peixun_new > h2 {
   line-height: 30px;
@@ -135,6 +144,9 @@ img {
 }
 .peixun_new > p {
   text-indent: 30px;
+}
+.peixun_info {
+  border-top: 10px solid #efeff4;
 }
 .peixun_Input {
   border: 1px solid #c8c7cc;

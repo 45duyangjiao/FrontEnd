@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>赛事内容页</title>
+		<title>培训内容页</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -31,29 +31,29 @@
 	<body>
 		<div class="peixunCon_box">
 			<div class="peixun_new mui-content-padded">
-				<h2 class="mui-h4 mui-text-center"></h2>
-				<p class="mui-text-justify"></p>
+				<h2 class="mui-h4 mui-text-center">培训详情</h2>
+				<p class="mui-text-justify">所谓竞技跆拳道是指在统一的礼仪和规则要求下，具体分析评判从跆拳道总体技术中选出的一些极其重要的典型技术的优劣，是对技术动作本身和练习者掌握技术运用能力两方面进行的综合比较。而普通跆拳道则是指包括了所有有关跆拳道礼仪、技术、精神、哲学思想及文化价值在内的全部内容，其中更验和生产的关系。</p>
 			</div>
 			<div class="mui-table-view peixun_info">
-				<div id="con_name" class="mui-table-view-cell mui-collapse">
+				<div id="Time" class="mui-table-view-cell mui-collapse">
 					<p class="">比赛项目名称：</p>
-					<span class=""></span>
+					<span class="">是比啥的啊</span>
 				</div>
-				<div id="con_age" class="mui-table-view-cell mui-collapse">
+				<div id="Adresse" class="mui-table-view-cell mui-collapse">
 					<p>出生年龄段：</p>
-					<span></span>
+					<span>2010-1-1 至 2012-1-1</span>
 				</div>
-				<div id="con_six" class="mui-table-view-cell mui-collapse">
+				<div id="Contact" class="mui-table-view-cell mui-collapse">
 					<p>男女要求：</p>
-					<span></span>
+					<span>不残疾即可</span>
 				</div>
-				<div id="con_weight" class="mui-table-view-cell mui-collapse">
+				<div id="Phone" class="mui-table-view-cell mui-collapse">
 					<p>体重要求：</p>
-					<span></span>
+					<span>吹不走即可</span>
 				</div>
 			</div>
-			<button class="mui-btn mui-btn-primary mui-btn-block" onclick="btnOpen(' + data.Data.Data[i].id + ','+type+')">立即报名</button>
-			<br />
+			
+			<button class="mui-btn mui-btn-primary mui-btn-block" onclick="myUrl()">立即报名</button>
 		</div>
 		
 		
@@ -67,10 +67,6 @@
 				return null;
 			}
 			var id = GetQueryString("id");
-			var GAME="赛事";
-			function btnOpen(id,type) {
-				window.location.href = "segue://FrontEnd/schedule/schedule_list.html?id=" + id+"&type="+GAME;
-			}
 
 			var DetailUrl = "http://47.93.192.128:5001/Match/MatchDetail";
 			//默认加载
@@ -78,24 +74,25 @@
 				type: "post",
 				url: DetailUrl,
 				data: {
-					MatchId: 1006
+					MatchId: 1086
 				},
 				datatype: "json",
 				success: function(data) {
 					data = eval('(' + data + ')');
-					console.log(data)
-					var con_h2=data.Data.Data.Title;
-					var con_con=data.Data.Data.content;
-					$(".peixun_new>h2").html(con_h2)
-					$(".peixun_new>p").html(con_con)
-					var con_name=data.Data.Data.gameName;
-					var con_age=data.Data.Data.BirthAge;
-					var con_six=data.Data.Data.genderClaim;
-					var con_weight=data.Data.Data.weightClaim;
-					$("#con_name>span").html(con_name)
-					$("#con_age>span").html(con_age)
-					$("#con_six>span").html(con_six)
-					$("#con_weight>span").html(con_weight)
+					var fragment = document.createDocumentFragment(); //创建一个代码片段
+					var div = document.createElement('div');
+					
+					div.className = 'peixun_new mui-content-padded';
+					div.innerHTML = '<h2 class="mui-h4 mui-text-center">'+
+					data.Data.Data.Title+
+					'</h2><p class="mui-text-justify">'+
+					data.Data.Data.content+
+					'</p>'
+					fragment.appendChild(div);
+
+					//$('.mui-scroll div').remove();
+					document.querySelector(".mui-scroll").appendChild(fragment); //输出到#item1mobile的页面内容
+
 				},
 				error: function() {
 
