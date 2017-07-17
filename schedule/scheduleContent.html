@@ -52,7 +52,7 @@
 					<span></span>
 				</div>
 			</div>
-			<button class="mui-btn mui-btn-primary mui-btn-block" onclick="btnOpen(' + data.Data.Data[i].id + ','+type+')">立即报名</button>
+			<button class="mui-btn mui-btn-primary mui-btn-block" onclick="btnOpen(' + data.Data.Data.id + ','+type+')">立即报名</button>
 			<br />
 		</div>
 		
@@ -69,7 +69,7 @@
 			var id = GetQueryString("id");
 			var GAME="赛事";
 			function btnOpen(id,type) {
-				window.location.href = "segue://FrontEnd/schedule/schedule_list.html?id=" + id+"&type="+GAME;
+				window.location.href = "segue://schedule_list.html?id=" + id+"&type="+GAME;
 			}
 
 			var DetailUrl = "http://47.93.192.128:5001/Match/MatchDetail";
