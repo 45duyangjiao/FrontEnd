@@ -27,7 +27,38 @@ function searchAttestationResult(){
 	}	
 }
 var InquireBtn = document.getElementById("inquireBtn");
-InquireBtn.addEventListener("tap",searchAttestationResult)
+InquireBtn.addEventListener("tap",searchAttestationResult);
+
+
+
+function GetQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	var r = window.location.search.substr(1).match(reg);
+	if(r != null) return unescape(r[2]);
+	return null;
+}
+var memberNo = GetQueryString("memberNo");
+console.log(memberNo)
+
+var DetailUrl = "http://47.93.192.128:5001/Match/MatchDetail";
+//默认加载
+$.ajax({
+	type: "post",
+	url: DetailUrl,
+	data: {
+		memberNo: memberNo
+	},
+	datatype: "json",
+	success: function(data) {
+		window.open("identifyResult.html?memberNo="+memberNo)
+	},
+	error: function() {
+
+	}
+});
+
+
+
 //$("#inquireBtn").on("tap",searchAttestationResult);
 
 /*---------------------获取查询帮助的内容--------------------------------*/

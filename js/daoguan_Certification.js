@@ -23,7 +23,7 @@ $(document).ready(function() {
 			var value = data.Data.Data;
 			htmlList += '<div class="dg_banner"><img src="../img/daoguan_banner.jpg" alt="" /></div>' +
 				'<div class="dg_head"><h2>' + value.title + "</h2>" +
-				'<h3><span class="dh_Star" style="display: none;">★★★★★</span>协会认证 &nbsp;&nbsp;&nbsp;&nbsp;CTA06</h3>' +
+				'<h3><span class="dh_Star" num='+value.star+'></span>协会认证 &nbsp;&nbsp;&nbsp;&nbsp;CTA06</h3>' +
 				'<p><i class="mui-icon iconfont icon-shijian"></i><span>&nbsp;&nbsp;' + value.BusinessHours + '</span></p>' +
 				'<div class="dh_head_Certification">' +
 				'<a href=""><i><img src="../img/daoguan_icon_Certification.png" alt="" /></i><p>' + value.IsCertification + '</p></a>' +
@@ -36,6 +36,24 @@ $(document).ready(function() {
 				'<div class="dg_jianjie_box mui-table-view mt15"><h2 class="dg_title"><span>简介详情</span></h2><p class="dg_p">' + value.content + '</p></div>'
 
 			$('.Certification').empty().append(htmlList);
+			if($(".dh_Star").attr("num")==1){
+				$(".dh_Star").text("★")
+			}
+			if($(".dh_Star").attr("num")==2){
+				$(".dh_Star").text("★★")
+			}
+			
+			if($(".dh_Star").attr("num")==3){
+				$(".dh_Star").innerHTML="★★★"
+			}
+			
+			if($(".dh_Star").attr("num")==4){
+				$(".dh_Star").innerHTML="★★★★"
+			}
+			
+			if($(".dh_Star").attr("num")==5){
+				$(".dh_Star").innerHTML="★★★★★"
+			}
 
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {

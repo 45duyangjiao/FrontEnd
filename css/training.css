@@ -284,7 +284,9 @@ img {
 }
 .dg_head .dh_Star {
   color: #ffaa00;
-}
+  display: inline-block;
+  width: 80px;
+  }
 .dg_head > p {
   color: #fff;
 }
