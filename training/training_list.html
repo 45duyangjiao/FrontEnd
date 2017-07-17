@@ -170,10 +170,6 @@
 			function texts(id) {
 				window.location.href = "trainingContent.html?id=" + id;
 			}
-			var TRAIN="培训";
-			function btnOpen(id,TRAIN) {
-				window.location.href = "trainingContent.html?id=" + id+"&TRAIN="+TRAIN;
-			}
 			(function() {
 				var t = setTimeout(function() {
 					$("#time2").slideUp();
@@ -208,7 +204,7 @@
 									data.Data.Data[i].BodyMsg +
 									'</div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
 									data.Data.Data[i].TrainTime +
-									'</p><button onclick="btnOpen(' + data.Data.Data[i].id + ',\''+TRAIN+'\')" class="mui-btn-blue border-radius">快速报名</button></div>'
+									'</p><button onclick="texts(' + data.Data.Data[i].id + ')" class="mui-btn-blue border-radius">快速报名</button></div>'
 						fragment.appendChild(li);
 					}
 
@@ -249,22 +245,11 @@
 									data.Data.Data[i].BodyMsg +
 									'</div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
 									data.Data.Data[i].TrainTime +
-									'</p><button onclick="btnOpen(' + data.Data.Data[i].id + ',\''+TRAIN+'\')" class="mui-btn-blue border-radius">快速报名</button></div>'
+									'</p><button onclick="texts(' + data.Data.Data[i].id + ')" class="mui-btn-blue border-radius">快速报名</button></div>'
 								fragment.appendChild(li);
 							}
 						}
 
-//						function newBtn(btn) {
-//							var mytext = btn.parent().prev().find('h2').text(); //当前按钮上面h2中的内容
-//							alert(mytext)
-//							mui.openWindow({
-//								url: 'index_con.html', //跳转的页面
-//								id: 'index_con.html',
-//								extras: {
-//									texts: mytext //传递数据的参数
-//								},
-//							});
-//						}
 
 						$('#List li').remove();
 						document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容

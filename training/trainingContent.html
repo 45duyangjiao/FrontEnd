@@ -1,38 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="utf-8">
 		<title>培训详情</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<link href="../css/common.css" rel="stylesheet" />
-		<link href="../css/announceDetail.css" rel="stylesheet" />
-		<link href="../css/mui.min.css" rel="stylesheet" />
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/training.css" />
 		<script src="../js/jquery-1.9.1.min.js"></script>
-		<!--<script src="../js/mui.min.js"></script>-->
 		<script src="../js/flexable.js"></script>
+		<style>
+			body{
+				background: #fff;
+			}
+			.mui-table-view-cell:after{
+				left: 0;
+			}
+			.mui-btn-block{
+				width: 94%;
+				margin: 0 auto;
+			}
+			.mui-content-padded{
+				padding: 10px;
+			}
+		</style>
 	</head>
 
 	<body>
-		<div id="view"></div>
-		<div class="mui-scroll-wrapper" id="protocol">
-			<div class="mui-scroll">
-				<!--<div class="announceDetailPage">
-					<div class="announceDetailTil">
-						2017年全国大众跆拳道xxx赛事
-					</div>
-					<div class="announceDetailTime clearfix">
-						<span class="floatL Ltime">2017-3-24</span>
-						<span class="floatR Rfrom">【来源：道通天下,中国跆拳道协会】</span>
-					</div>
-					<div class="announceDetailMainbody">
-						     3月24日，为期五天的“2017年全国大众跆拳道一级以上裁判员年审复训培训班”进入考核阶段，历经《传统品势规则分析》、《自创品势规则分析》、《竞技新规则》、《竞赛运营实务》课程的紧张学习后，今天针对大众赛中广泛应用的品势、竞技两项内容进行了实操考核，并首次应用了对接国际形势的电教考核系统，避免了传统形式的考试误区。
-					</div>
-				</div>-->
+		<div class="peixunCon_box">
+			<div class="peixun_new mui-content-padded">
+				<h2 class="mui-h4 mui-text-center"></h2>
+				<p class="mui-text-justify"></p>
 			</div>
+			<div class="mui-table-view peixun_info">
+				<div id="con_name" class="mui-table-view-cell mui-collapse">
+					<p class="">培训项目名称：</p>
+					<span class=""></span>
+				</div>
+				<div id="con_age" class="mui-table-view-cell mui-collapse">
+					<p>出生年龄段：</p>
+					<span></span>
+				</div>
+				<div id="con_six" class="mui-table-view-cell mui-collapse">
+					<p>男女要求：</p>
+					<span></span>
+				</div>
+				<div id="con_weight" class="mui-table-view-cell mui-collapse">
+					<p>体重要求：</p>
+					<span></span>
+				</div>
+			</div>
+			<button class="mui-btn mui-btn-primary mui-btn-block" onclick="btnOpen(' + id + ','+type+')">立即报名</button>
+			<br />
 		</div>
+		
+		
+		
 
 		<script>
 			function GetQueryString(name) {
@@ -42,6 +67,10 @@
 				return null;
 			}
 			var id = GetQueryString("id");
+			var TRAIN="培训";
+			function btnOpen(id,type) {
+				window.location.href = "segue://training_list.html?id=" + id+"&type="+TRAIN;
+			}
 
 			var DetailUrl = "http://47.93.192.128:5001/Train/TrainDetail";
 			//默认加载
@@ -54,24 +83,19 @@
 				datatype: "json",
 				success: function(data) {
 					data = eval('(' + data + ')');
-					var fragment = document.createDocumentFragment(); //创建一个代码片段
-					var div = document.createElement('div');
-					
-					div.className = 'announceDetailPage';
-					div.innerHTML = '<div class="announceDetailTil">' +
-						data.Data.Data.Title +
-						'</div><div class="announceDetailTime clearfix"><span class="floatL Ltime">' +
-						data.Data.Data.TrainTime +
-						'</span><span class="floatR Rfrom">' +
-						data.Data.Data.TrainAddress +
-						'</span></div><div class="announceDetailMainbody">' +
-						data.Data.Data.TrainContent +
-						'</div>'
-					fragment.appendChild(div);
-
-					//					$('.mui-scroll div').remove();
-					document.querySelector(".mui-scroll").appendChild(fragment); //输出到#item1mobile的页面内容
-
+					console.log(data)
+					var con_h2=data.Data.Data.Title;
+					var con_con=data.Data.Data.content;
+					$(".peixun_new>h2").html(con_h2)
+					$(".peixun_new>p").html(con_con)
+					var con_name=data.Data.Data.gameName;
+					var con_age=data.Data.Data.BirthAge;
+					var con_six=data.Data.Data.genderClaim;
+					var con_weight=data.Data.Data.weightClaim;
+					$("#con_name>span").html(con_name)
+					$("#con_age>span").html(con_age)
+					$("#con_six>span").html(con_six)
+					$("#con_weight>span").html(con_weight)
 				},
 				error: function() {
 
@@ -80,5 +104,4 @@
 		</script>
 
 	</body>
-
 </html>
