@@ -18,6 +18,21 @@ textarea {
   -ms-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
 }
+.mui-content {
+  margin-top: 38px;
+}
+.mui-fullscreen {
+  position: inherit;
+}
+.mui-slider-indicator.mui-segmented-control {
+  position: fixed;
+}
+.mui-scroll {
+  position: inherit;
+}
+.mui-fullscreen .mui-segmented-control ~ .mui-slider-group {
+  position: inherit;
+}
 .fontColor-blue {
   color: #3385ff;
 }

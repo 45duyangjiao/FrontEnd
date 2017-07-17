@@ -12,8 +12,8 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<script src="../js/jquery-1.9.1.min.js"></script>
 		<script src="../js/flexable.js"></script>
-		<link rel="stylesheet" href="../css/swiper.min.css">
-		<script src="../js/swiper.min.js"></script>
+		<!--<link rel="stylesheet" href="../css/swiper.min.css">-->
+		<!--<script src="../js/swiper.min.js"></script>-->
 	</head>
 
 	<body>
@@ -30,7 +30,7 @@
 				</div>
 				<div class="mui-slider-group">
 					<div id="tabs-container" class="mui-slider-item mui-control-content mui-active">
-						<div id="scroll1" class="mui-scroll-wrapper swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1362px, 0px, 0px);">
+						<div id="scroll1" class="mui-scroll-wrapper swiper-wrapper">
 							<div class="mui-scroll">
 								<div id="view"></div>
 								<ul class="swiper-slide mui-table-view announceUl" id="List">
@@ -82,7 +82,6 @@
 									data.Data.Data[i].pic +
 									'"/></div><div class="announceNews clearfix floatR"><div onclick="texts(' + data.Data.Data[i].Id + ')" class="announceNewsTil">' +
 									data.Data.Data[i].Title +
-									console.log(data.Data.Data[i].Title)
 									'</div><div class="announceNewsTime floatR">' +
 									data.Data.Data[i].CreatedTime +
 									'</div></div>'
