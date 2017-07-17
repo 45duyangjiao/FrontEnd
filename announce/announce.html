@@ -12,13 +12,15 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<script src="../js/jquery-1.9.1.min.js"></script>
 		<script src="../js/flexable.js"></script>
+		<link rel="stylesheet" href="../css/swiper.min.css">
+		<script src="../js/swiper.min.js"></script>
 	</head>
 
 	<body>
 		<div class="mui-content">
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-scroll" id="cur">
+					<div class="mui-scroll tabs" id="cur">
 						<!--<a class="mui-control-item mui-active" href="#item1mobile">政策法规</a>
 						<a class="mui-control-item" href="#item2mobile">会议</a>
 						<a class="mui-control-item" href="#item3mobile">通知</a>
@@ -27,11 +29,11 @@
 					</div>
 				</div>
 				<div class="mui-slider-group">
-					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
-						<div id="scroll1" class="mui-scroll-wrapper">
+					<div id="tabs-container" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(-1362px, 0px, 0px);">
 							<div class="mui-scroll">
 								<div id="view"></div>
-								<ul class="mui-table-view announceUl" id="List">
+								<ul class="swiper-slide mui-table-view announceUl" id="List">
 									<!--<li class="mui-table-view-cell announceLi">
 										<div class="floatL announceNewsImg"><img src="../img/timg4.jpg"/></div>
 										<div class="announceNews clearfix floatR">
@@ -69,6 +71,7 @@
 					datatype: "json",
 					success: function(data) {
 						data = eval('(' + data + ')');
+						console.log(data)
 						var fragment = document.createDocumentFragment(); //创建一个代码片段
 						var li;
 						if(typeof(data.Data.Data) != "undefined") {
@@ -79,6 +82,7 @@
 									data.Data.Data[i].pic +
 									'"/></div><div class="announceNews clearfix floatR"><div onclick="texts(' + data.Data.Data[i].Id + ')" class="announceNewsTil">' +
 									data.Data.Data[i].Title +
+									console.log(data.Data.Data[i].Title)
 									'</div><div class="announceNewsTime floatR">' +
 									data.Data.Data[i].CreatedTime +
 									'</div></div>'
@@ -131,12 +135,28 @@
 					}
 				});
 			}
-
+			
 			//页面价在后执行   加载导航的方法
 			window.onload = function() {
 				getRem(750, 100)
 				innerNav(11);
-
+				
+				var tabsSwiper = new Swiper('#tabs-container', {
+					speed: 500,
+					onSlideChangeStart: function() {
+						$(".tabs .active").removeClass('active')
+						$(".tabs a").eq(tabsSwiper.activeIndex).addClass('active')
+					}
+				})
+				$(".tabs a").on('touchstart mousedown', function(e) {
+					e.preventDefault()
+					$(".tabs .active").removeClass('active')
+					$(this).addClass('active')
+					tabsSwiper.slideTo($(this).index())
+				})
+				$(".tabs a").click(function(e) {
+					e.preventDefault()
+				})
 			}
 			window.onresize = function() {
 				getRem(750, 100)
