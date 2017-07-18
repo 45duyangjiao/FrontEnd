@@ -1,3 +1,7 @@
+img{
+	max-width: 100%;
+	display: block;
+}
 .newsDetailPage{
 	display: flex;
 	display: -webkit-flex;
