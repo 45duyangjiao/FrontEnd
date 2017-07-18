@@ -52,7 +52,7 @@
 					<span></span>
 				</div>
 			</div>
-			<button class="mui-btn mui-btn-primary mui-btn-block" onclick="btnOpen(' + id + ','+type+')">立即报名</button>
+			<button class="mui-btn mui-btn-primary mui-btn-block" >立即报名</button>
 			<br />
 		</div>
 		
@@ -67,9 +67,9 @@
 				return null;
 			}
 			var id = GetQueryString("id");
-			var GAME="赛事";
+			var GAME="game";
 			function btnOpen(id,type) {
-				window.location.href = "segue://schedule_list.html?id=" + id+"&type="+GAME;
+				window.location.href = "segue://?id=" + id+"&type="+GAME;
 			}
 
 			var DetailUrl = "http://47.93.192.128:5001/Match/MatchDetail";
@@ -96,6 +96,9 @@
 					$("#con_age>span").html(con_age)
 					$("#con_six>span").html(con_six)
 					$("#con_weight>span").html(con_weight)
+					$(".mui-btn-block").click(function(){
+						btnOpen(id,'+type+')
+					})
 				},
 				error: function() {
 
