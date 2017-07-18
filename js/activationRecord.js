@@ -1,3 +1,12 @@
+function GetQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	var r = window.location.search.substr(1).match(reg);
+	if(r != null) return unescape(r[2]);
+	return null;
+}
+
+var user_Id = GetQueryString("user_Id");
+console.log(user_Id);
 $(document).ready(function() {
 	var url = 'http://47.93.192.128:5001/Center/ActivictyRecord';
 	$.ajax({
@@ -5,7 +14,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		type: 'post',
 		data: {
-			UserId: 10003
+			UserId: user_Id
 		},
 		success: function(data) {
 			console.log(data);

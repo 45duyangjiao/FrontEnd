@@ -1,3 +1,12 @@
+function GetQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	var r = window.location.search.substr(1).match(reg);
+	if(r != null) return unescape(r[2]);
+	return null;
+}
+
+var user_Id = GetQueryString("user_Id");
+console.log(user_Id);
 
 $(document).ready(function() {
 	var url = 'http://47.93.192.128:5001/Daoguan/Activity_Record';
@@ -6,7 +15,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		type: 'post',
 		data: {
-			user_Id: 10003,
+			user_Id: user_Id,
 			DGId:7,
 			active_id:"",	
 			time_start:	"",
