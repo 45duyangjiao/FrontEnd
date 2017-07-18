@@ -142,7 +142,7 @@
 								li = document.createElement('li');
 								//								li.className = 'mui-table-view-cell mui-media';
 								if(data.Data.Data[i].pics.length == 3) {
-									li.innerHTML = '<div onclick="texts(' +data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount +')" class="mui-table-view-cell" id="' +
+									li.innerHTML = '<div onclick="texts(' +data.Data.Data[i].id + ',' + data.Data.Data[i].commentCount +')" class="mui-table-view-cell" id="' +
 										data.Data.Data[i].id +
 										'"><div class="muipurelyTitle">' +
 										data.Data.Data[i].title +
@@ -151,11 +151,11 @@
 										'"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
 										data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source +
 										'</span><span class="lookRight"><i class="look"></i>' +
-										data.Data.Data[i].viewCount +
+										data.Data.Data[i].commentCount +
 										'</span></p></div></div>'
 
 								} else if(data.Data.Data[i].pics.length == 0 && data.Data.Data[i].thumbImg) {
-									li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + 
+									li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].commentCount + ')" class="mui-table-view-cell" id="' + 
 										data.Data.Data[i].id + 
 										'"><div class="mui-table-Img"><img src="' + 
 										data.Data.Data[i].thumbImg + 
@@ -164,17 +164,17 @@
 										'</p><p class="mui-table-look"><span class="lookLeft">' + 
 										data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + 
 										'</span><span class="lookRight"><i class="look"></i>' + 
-										data.Data.Data[i].viewCount + 
+										data.Data.Data[i].commentCount + 
 										'</span></p></div></div>'
 								} else {
-									li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + 
+									li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].commentCount + ')" class="mui-table-view-cell" id="' + 
 									data.Data.Data[i].id + 
 									'"><div class="muipurelyTitle">' + 
 									data.Data.Data[i].title + 
 									'</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + 
 									data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + 
 									'</span><span class="lookRight"><i class="look"></i>' + 
-									data.Data.Data[i].viewCount + 
+									data.Data.Data[i].commentCount + 
 									'</span></p></div></div>';
 								}
 

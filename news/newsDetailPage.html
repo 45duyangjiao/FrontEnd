@@ -54,14 +54,6 @@
 			}
 			var id = GetQueryString("id");
 //			var viewCount = GetQueryString("viewCount");
-			
-			function reply(id,LikeCount){
-				window.location.href = "newsZan.html?id=" + id + "&LikeCount=" + LikeCount;
-			}
-			
-			function Thumb(id){
-				window.location.href = "newsZan.html?id=" + id;
-			}
 
 			var DetailUrl = "http://47.93.192.128:5001/News/NewsInfo";
 			//默认加载
@@ -89,13 +81,17 @@
 				}
 			});
 			
-			var CommentUrl = "http://47.93.192.128:5001/News/CommentDetail";
+			function reply(id,replyId){
+				window.location.href = "reply.html?id=" + id+"&replyId="+replyId;
+			}
+			
+			var CommentUrl = "http://47.93.192.128:5001/News/GetNewsReplyList";
 			//默认加载
 			$.ajax({
 				type: "post",
 				url: CommentUrl,
 				data: {
-					NewsId: id
+					articleId: id
 				},
 				datatype: "json",
 				success: function(data) {
@@ -107,17 +103,18 @@
 						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
 							li = document.createElement('li');
 							li.className = 'clearfix';
+							li.setAttribute('onclick','reply(\''+id+'\',\''+data.Data.Data[i].id+'\')')
 							li.innerHTML = '<div class="floatL avatar"><img src="'+
-							data.Data.Data[i].pic+
+							data.Data.Data[i].userImg+
 							'" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL">'+
-							data.Data.Data[i].nickname+
+							data.Data.Data[i].userName+
 							'</span><span class="floatR" ><i></i>'+
-							data.Data.Data[i].LikeCount+
+							data.Data.Data[i].likecount+
 							'</span></p><p class="pComments">'+
 							data.Data.Data[i].content+
 							'</p><p class="pTime"><span>'+
-							data.Data.Data[i].date+
-							'</span><span class="commontsReply" onclick="Thumb(\''+id+'\')">  回复</span></p></div>'
+							data.Data.Data[i].commentTime+
+							'</span><span class="commontsReply">  回复</span></p></div></a>'
 							fragment.appendChild(li);
 						}
 					}

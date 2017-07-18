@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>新闻点赞</title>
@@ -9,69 +10,67 @@
 		<link href="../css/common.css" rel="stylesheet" />
 		<link href="../css/newsZan.css" rel="stylesheet" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<script src="../js/jquery-1.9.1.min.js"></script>
+		<script src="../js/flexable.js"></script>
 	</head>
 
 	<body>
-		
-		<div id="view"></div>
-		<script src="../js/flexable.js"></script>
-		<script src="../js/zepto_1.1.3.js"></script>
-		<script src="../js/mui.min.js"></script>
-		<script src="../js/common.js"></script>
-		<script src="../js/newsZan.js"></script>
-		<script src="../js/laytpl.js"></script>
-		
-		<script id="demo" type="text/html">
-		 <div class="mui-scroll-wrapper">
+		<div class="mui-scroll-wrapper">
 			<div class="mui-scroll">
-			<ul class="newsZanPage">
-			{{# for(var i = 0, len = d.list.length; i < len; i++){ }}
-			  <li class="newsZanLi">
-			  	<img src="{{ d.list[i].pic }}"/>
-			  	<span >{{ d.list[i].nickname }}</span>
-			    <span>{{ d.list[i].date }}</span>
-			  </li>
-			{{# } }}
-			</ul>
+				<ul class="newsZanPage" id="List">
+					<!--<li class="newsZanLi">
+						<img src="" alt="" />
+						<span>111111111111111111111</span>
+						<span>2222222222</span>
+					</li>-->
+				</ul>
 			</div>
-			</div>
-		</script>
-		
-		<script type="text/javascript">
+		</div>
 
-			window.onload=function(){
-
-				if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-
-					xmlhttp=new XMLHttpRequest();
-
-				}else{// code for IE6, IE5
-
-					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                    
-				}
-                xmlhttp.open("POST",'http://47.93.192.128:5001/News/commentLikeUserList',true);
-                xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8") 
-                var params="commentId="+4;
-				xmlhttp.send(params);	
-				xmlhttp.onreadystatechange=function(){
-
-					if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                    console.log(111111111111);
- 					var data = JSON.parse(xmlhttp.responseText).Data.Data;
- 					console.log(data)
- 					var data = {
-					  title: '前端攻城师',
-					  list: data
-					};
-					var gettpl = document.getElementById('demo').innerHTML;
-					laytpl(gettpl).render(data, function(html){
-					  document.getElementById('view').innerHTML = html;
-					});
-
-				}
-				};
+		<script>
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
 			}
+			var replyId = GetQueryString("replyId");
+
+			var DetailUrl = "http://47.93.192.128:5001/News/commentLikeUserList";
+			//默认加载
+			$.ajax({
+				type: "post",
+				url: DetailUrl,
+				data: {
+					commentId: replyId
+				},
+				datatype: "json",
+				success: function(data) {
+					data = eval('(' + data + ')');
+					var fragment = document.createDocumentFragment(); //创建一个代码片段
+					var li;
+
+					if(typeof(data.Data.Data) != "undefined") {
+						for(var i = 0; i < data.Data.Data.length; i++) {
+							li = document.createElement('li');
+							li.className = 'newsZanLi';
+							li.innerHTML = '<img src="'+
+							data.Data.Data[i].pic+
+							'" alt="" /><span>'+
+							data.Data.Data[i].nickname+
+							'</span><span>'+
+							data.Data.Data[i].date+
+							'</span>'
+							fragment.appendChild(li);
+						}
+					}
+					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
+
+				},
+				error: function() {
+
+				}
+			});
 		</script>
 	</body>
 
