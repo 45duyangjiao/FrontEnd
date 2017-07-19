@@ -1,0 +1,52 @@
+{
+    "ContentEncoding": null,
+    "ContentType": null,
+    "Data": {
+        "Success": true,
+        "Msg": "获取新闻列表成功！",
+        "Data": [{
+            "title": "国家体育总局局长苟仲文在京会见世界跆拳道联合会主席赵正源",
+            "thumbImg": "",
+            "publishDate": "2017-07-17",
+            "source": "道通天下,中国跆拳道协会",
+            "viewCount": 0,
+            "id": 1185,
+            "pics": ["http://47.93.192.128:5001/ImgUpload/20170717/fb0d13f1-ddb0-475d-b699-6f051b3c8d77.jpg"]
+        }, {
+            "title": "的说法好的撒九分裤第三看",
+            "thumbImg": "http://47.93.192.128:5001/Content/upload/20170713/20170713094536510973.jpg",
+            "publishDate": "2017-07-10",
+            "source": "的说法是哒",
+            "viewCount": 0,
+            "id": 1037,
+            "pics": ["http://47.93.192.128:5001/Content/upload/8155fd48-dac0-4f6c-8bc7-d58e1a34ef8a.jpg", "http://47.93.192.128:5001/Content/upload/1af1abd7-0017-4821-8ac9-4d30d2c7b094.jpg", "http://47.93.192.128:5001/Content/upload/20170713/c99bd509-1f0e-49c1-88cd-a980809a7502.jpg", "http://47.93.192.128:5001/ImgUpload/20170717/737b431e-396b-46bb-bd4d-33a0d539a988.jpg"]
+        }, {
+            "title": "回房间撒粉红色大姐夫好受打击第几行",
+            "thumbImg": "http://47.93.192.128:5001/Content/upload/20170629140513533909.jpg",
+            "publishDate": "2017-06-29",
+            "source": "寒暑假啊开",
+            "viewCount": 0,
+            "id": 1005,
+            "pics": ["http://47.93.192.128:5001/Content/upload/20170627182158276191.jpg", "http://47.93.192.128:5001/Content/upload/20170711095118461481.jpg", "http://47.93.192.128:5001/Content/upload/20170627182158276191.jpg", "http://47.93.192.128:5001/Content/upload/20170711095118461481.jpg"]
+        }, {
+            "title": "ppppp",
+            "thumbImg": "http://47.93.192.128:5001/Content/upload/20170628092059457844.jpg",
+            "publishDate": "2017-06-28",
+            "source": "baidu",
+            "viewCount": 0,
+            "id": 1002,
+            "pics": []
+        }, {
+            "title": "测试新闻标题",
+            "thumbImg": "http://47.93.192.128:5001/Content/upload/20170627182158276191.jpg",
+            "publishDate": "2017-06-27",
+            "source": "中跆协网站",
+            "viewCount": 0,
+            "id": 1001,
+            "pics": ["http://47.93.192.128:5001/Content/upload/20170627182158276191.jpg", "http://47.93.192.128:5001/Content/upload/20170711095118461481.jpg"]
+        }]
+    },
+    "JsonRequestBehavior": 1,
+    "MaxJsonLength": null,
+    "RecursionLimit": null
+}
