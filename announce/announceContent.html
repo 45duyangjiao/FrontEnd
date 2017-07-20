@@ -13,70 +13,33 @@
 		<script src="../js/jquery-1.9.1.min.js"></script>
 		<!--<script src="../js/mui.min.js"></script>-->
 		<script src="../js/flexable.js"></script>
+		<script src="../js/announceContent.js"></script>
+		<script type="text/javascript" src="../js/artTemplate.js" ></script>
 	</head>
 
 	<body>
-		<div id="view"></div>
+		<div class="announceDetail"></div>
+		
+	<script type="text/html" id="announceDetail">
 		<div class="mui-scroll-wrapper" id="protocol">
 			<div class="mui-scroll">
-				<!--<div class="announceDetailPage">
+				<div class="announceDetailPage">
 					<div class="announceDetailTil">
-						2017年全国大众跆拳道xxx赛事
+						{{title}}
 					</div>
 					<div class="announceDetailTime clearfix">
-						<span class="floatL Ltime">2017-3-24</span>
-						<span class="floatR Rfrom">【来源：道通天下,中国跆拳道协会】</span>
+						<span class="floatL Ltime">{{time}}</span>
+						<span class="floatR Rfrom">{{source}}</span>
 					</div>
 					<div class="announceDetailMainbody">
-						     3月24日，为期五天的“2017年全国大众跆拳道一级以上裁判员年审复训培训班”进入考核阶段，历经《传统品势规则分析》、《自创品势规则分析》、《竞技新规则》、《竞赛运营实务》课程的紧张学习后，今天针对大众赛中广泛应用的品势、竞技两项内容进行了实操考核，并首次应用了对接国际形势的电教考核系统，避免了传统形式的考试误区。
+						    {{content}}
 					</div>
-				</div>-->
+				</div>
 			</div>
 		</div>
-
-		<script>
-			function GetQueryString(name) {
-				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-				var r = window.location.search.substr(1).match(reg);
-				if(r != null) return unescape(r[2]);
-				return null;
-			}
-			var id = GetQueryString("id");
-
-			var DetailUrl = "http://47.93.192.128:5001/Notice/Notice_Detail";
-			//默认加载
-			$.ajax({
-				type: "post",
-				url: DetailUrl,
-				data: {
-					id: id
-				},
-				datatype: "json",
-				success: function(data) {
-					data = eval('(' + data + ')');
-					var fragment = document.createDocumentFragment(); //创建一个代码片段
-					var div = document.createElement('div');
-					div.className = 'announceDetailPage';
-					div.innerHTML = '<div class="announceDetailTil">' +
-						data.Data.Data.title +
-						'</div><div class="announceDetailTime clearfix"><span class="floatL Ltime">' +
-						data.Data.Data.time +
-						'</span><span class="floatR Rfrom">' +
-						data.Data.Data.source +
-						'</span></div><div class="announceDetailMainbody">' +
-						data.Data.Data.content +
-						'</div>'
-					fragment.appendChild(div);
-
-					//					$('.mui-scroll div').remove();
-					document.querySelector(".mui-scroll").appendChild(fragment); //输出到#item1mobile的页面内容
-
-				},
-				error: function() {
-
-				}
-			});
-		</script>
+	</script>
+	
+		
 
 	</body>
 

@@ -1,63 +1,122 @@
-mui.init();
-(function($) {
-	//阻尼系数
-	var deceleration = mui.os.ios?0.003:0.0009;
-	$('.mui-scroll-wrapper').scroll({
-		bounce: false,
-		indicators: false, //是否显示滚动条
-		deceleration:deceleration
-	});
-	$.ready(function() {
-		//循环初始化所有下拉刷新，上拉加载。
-		$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
-			$(pullRefreshEl).pullToRefresh({
-				down: {
-					callback: function() {
-						var self = this;
-						setTimeout(function() {
-							var ul = self.element.querySelector('.mui-table-view');
-							mui.ajax("url",{
-								data:{
-									/*写入参数*/
-								},
-								type:"post",
-								dataType:"json",
-								success:function(data){
-									mui.each(data,function(index,value){
-										ul.insertBefore(createFragment(ul, index, 10, true), ul.firstChild);
-									});
-									self.endPullDownToRefresh();
-								},
-								error:function(xhr,type){
-									console.log(type);
-								}
-							})						
-						}, 1000);
-					}
-				},
-				up: {
-					callback: function() {
-						var self = this;
-						setTimeout(function() {
-							var ul = self.element.querySelector('.mui-table-view');
-							ul.appendChild(createFragment(ul, index, 5));
-							self.endPullUpToRefresh();
-						}, 1000);
-					}
-				}
-			});
-		});
-		var createFragment = function(ul, index, count, reverse) {
-			var length = ul.querySelectorAll('li').length;
-			var fragment = document.createDocumentFragment();
+function texts(id) {
+	window.location.href = "announceContent.html?id=" + id;
+}
+
+var NavUrl = "http://47.93.192.128:5001/Notice/NoticeNavBar";
+var ListUrl = "http://47.93.192.128:5001/Notice/Notice_List";
+
+//加载列表的方法
+function innerList(typeid) {
+
+	$.ajax({
+		type: "post",
+		url: ListUrl,
+		data: {
+			type_id: typeid,
+			pageindex: 1
+		},
+		datatype: "json",
+		success: function(data) {
+			data = eval('(' + data + ')');
+			console.log(data)
+			var fragment = document.createDocumentFragment(); //创建一个代码片段
 			var li;
-			/*for (var i = 0; i < count; i++) {
-				li = document.createElement('li');
-				li.className = 'mui-table-view-cell';
-				li.innerHTML = '第' + (index + 1) + '个选项卡子项-' + (length + (reverse ? (count - i) : (i + 1)));
-				fragment.appendChild(li);
+			if(typeof(data.Data.Data) != "undefined") {
+				for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
+					li = document.createElement('li');
+					li.className = 'mui-table-view-cell announceLi';
+					li.innerHTML = '<div class="floatL announceNewsImg"><img src="' +
+						data.Data.Data[i].pic +
+						'"/></div><div class="announceNews clearfix floatR"><div onclick="texts(' + data.Data.Data[i].Id + ')" class="announceNewsTil">' +
+						data.Data.Data[i].Title +
+						'</div><div class="announceNewsTime floatR">' +
+						data.Data.Data[i].CreatedTime +
+						'</div></div>'
+					fragment.appendChild(li);
+				}
+
 			}
-			return fragment;*/
-		};
+
+			$('#List li').remove();
+			document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
+
+		},
+		error: function() {
+
+		}
 	});
-})(mui);
+}
+
+innerList(11);
+//加载导航的方法
+function innerNav() {
+
+	$.ajax({
+		type: "post",
+		url: NavUrl,
+		datatype: "json",
+		success: function(data) {
+			data = eval('(' + data + ')');
+			var fragment = document.createDocumentFragment(); //创建一个代码片段
+			var a;
+			if(typeof(data.Data.Data) != "undefined") { //这里是判断是不是有数据的 如果没数据直接不用循环 否则 undefined len属性
+				for(var i = data.Data.Data.length - 1; i >= 0; i--) { //循环输出data中的数据
+					a = document.createElement('a');
+					a.className = 'mui-control-item';
+					a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
+					console.log(data.Data.Data[i].Id)
+					a.innerHTML = data.Data.Data[i].Title;
+					fragment.appendChild(a);
+				}
+			}
+
+			document.querySelector("#cur").appendChild(fragment); //输出到#item1mobile的页面内容
+			$("#cur>a:first-child").addClass("mui-active");
+			console.log(99999);
+
+			$("#cur>a").bind("click", function() {
+				console.log('zhixing');
+				$("#cur>a").removeClass("mui-active");
+				$(this).addClass("mui-active");
+			});
+			//innerList(parseInt(data.Data.Data[0].Id));
+
+		},
+		error: function() {
+
+		}
+	});
+}
+
+//页面价在后执行   加载导航的方法
+window.onload = function() {
+	getRem(750, 100)
+	innerNav(11);
+
+	var tabsSwiper = new Swiper('#tabs-container', {
+		speed: 500,
+		onSlideChangeStart: function() {
+			$(".tabs .active").removeClass('active')
+			$(".tabs a").eq(tabsSwiper.activeIndex).addClass('active')
+		}
+	})
+	$(".tabs a").on('touchstart mousedown', function(e) {
+		e.preventDefault()
+		$(".tabs .active").removeClass('active')
+		$(this).addClass('active')
+		tabsSwiper.slideTo($(this).index())
+	})
+	$(".tabs a").click(function(e) {
+		e.preventDefault()
+	})
+}
+window.onresize = function() {
+	getRem(750, 100);
+};
+
+function getRem(pwidth, prem) {
+	var html = document.getElementsByTagName("html")[0];
+
+	var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+	html.style.fontSize = oWidth / pwidth * prem + "px";
+}

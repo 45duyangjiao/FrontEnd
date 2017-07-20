@@ -12,8 +12,8 @@
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<script src="../js/jquery-1.9.1.min.js"></script>
 		<script src="../js/flexable.js"></script>
-		<!--<link rel="stylesheet" href="../css/swiper.min.css">-->
-		<!--<script src="../js/swiper.min.js"></script>-->
+		<link rel="stylesheet" href="../css/swiper.min.css">
+		<script src="../js/swiper.min.js"></script>
 	</head>
 
 	<body>
@@ -21,11 +21,7 @@
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<div class="mui-scroll tabs" id="cur">
-						<!--<a class="mui-control-item mui-active" href="#item1mobile">政策法规</a>
-						<a class="mui-control-item" href="#item2mobile">会议</a>
-						<a class="mui-control-item" href="#item3mobile">通知</a>
-						<a class="mui-control-item" href="#item4mobile">声明</a>
-						<a class="mui-control-item" href="#item5mobile">其他</a>-->
+						
 					</div>
 				</div>
 				<div class="mui-slider-group">
@@ -34,13 +30,7 @@
 							<div class="mui-scroll">
 								<div id="view"></div>
 								<ul class="swiper-slide mui-table-view announceUl" id="List">
-									<!--<li class="mui-table-view-cell announceLi">
-										<div class="floatL announceNewsImg"><img src="../img/timg4.jpg"/></div>
-										<div class="announceNews clearfix floatR">
-											<div class="announceNewsTil">2017年全国大众跆拳道一级以上 裁判员年审复培训训班</div>
-											<div class="announceNewsTime floatR">2017-03-04</div>
-										</div>
-									</li>-->
+									
 								</ul>
 							</div>
 						</div>
@@ -50,125 +40,7 @@
 			</div>
 		</div>
 
-		<script>
-			function texts(id) {
-				window.location.href = "announceContent.html?id=" + id;
-			}
-
-			var NavUrl = "http://47.93.192.128:5001/Notice/NoticeNavBar";
-			var ListUrl = "http://47.93.192.128:5001/Notice/Notice_List";
-
-			//加载列表的方法
-			function innerList(typeid) {
-
-				$.ajax({
-					type: "post",
-					url: ListUrl,
-					data: {
-						type_id: typeid,
-						pageindex: 1
-					},
-					datatype: "json",
-					success: function(data) {
-						data = eval('(' + data + ')');
-						console.log(data)
-						var fragment = document.createDocumentFragment(); //创建一个代码片段
-						var li;
-						if(typeof(data.Data.Data) != "undefined") {
-							for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
-								li = document.createElement('li');
-								li.className = 'mui-table-view-cell announceLi';
-								li.innerHTML = '<div class="floatL announceNewsImg"><img src="' +
-									data.Data.Data[i].pic +
-									'"/></div><div class="announceNews clearfix floatR"><div onclick="texts(' + data.Data.Data[i].Id + ')" class="announceNewsTil">' +
-									data.Data.Data[i].Title +
-									'</div><div class="announceNewsTime floatR">' +
-									data.Data.Data[i].CreatedTime +
-									'</div></div>'
-								fragment.appendChild(li);
-							}
-
-						}
-
-						$('#List li').remove();
-						document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
-
-					},
-					error: function() {
-
-					}
-				});
-			}
-			//加载导航的方法
-			function innerNav() {
-
-				$.ajax({
-					type: "post",
-					url: NavUrl,
-					datatype: "json",
-					success: function(data) {
-						data = eval('(' + data + ')');
-						var fragment = document.createDocumentFragment(); //创建一个代码片段
-						var a;
-						if(typeof(data.Data.Data) != "undefined") { //这里是判断是不是有数据的 如果没数据直接不用循环 否则 undefined len属性
-							for(var i = data.Data.Data.length - 1; i >= 0; i--) { //循环输出data中的数据
-								a = document.createElement('a');
-								a.className = 'mui-control-item';
-								a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
-								a.innerHTML = data.Data.Data[i].Title;
-								fragment.appendChild(a);
-							}
-						}
-
-						document.querySelector("#cur").appendChild(fragment); //输出到#item1mobile的页面内容
-						$("#cur>a:first-child").addClass("mui-active")
-						$("#cur>a").bind("click", function() {
-							$("#cur>a").removeClass("mui-active");
-							$(this).addClass("mui-active")
-						})
-						//innerList(parseInt(data.Data.Data[0].Id));
-
-					},
-					error: function() {
-
-					}
-				});
-			}
-			
-			//页面价在后执行   加载导航的方法
-			window.onload = function() {
-				getRem(750, 100)
-				innerNav(11);
-				
-				var tabsSwiper = new Swiper('#tabs-container', {
-					speed: 500,
-					onSlideChangeStart: function() {
-						$(".tabs .active").removeClass('active')
-						$(".tabs a").eq(tabsSwiper.activeIndex).addClass('active')
-					}
-				})
-				$(".tabs a").on('touchstart mousedown', function(e) {
-					e.preventDefault()
-					$(".tabs .active").removeClass('active')
-					$(this).addClass('active')
-					tabsSwiper.slideTo($(this).index())
-				})
-				$(".tabs a").click(function(e) {
-					e.preventDefault()
-				})
-			}
-			window.onresize = function() {
-				getRem(750, 100)
-			};
-
-			function getRem(pwidth, prem) {
-				var html = document.getElementsByTagName("html")[0];
-
-				var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
-				html.style.fontSize = oWidth / pwidth * prem + "px";
-			}
-		</script>
-
+		<script src="../js/announce.js"></script>
 	</body>
 
 </html>
