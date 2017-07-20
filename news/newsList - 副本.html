@@ -13,6 +13,7 @@
 	<body>
 		<div class="mui-content">
 			<div id="slider" class="mui-slider mui-fullscreen">
+<<<<<<< HEAD
 				
 				<div class="newList"></div>
 				
@@ -39,6 +40,24 @@
 								        	<p class="muipurelylook clearfix"><span class="lookLeft">2017年5月20日 CCTV5</span><span class="lookRight"><i class="look"></i> 1.5万</span></p>
 								        </div>
 								    </li>
+=======
+
+				<div style="width:90%;float:left;background:#fff;padding-left:0.3rem;">
+					<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+						<div class="mui-scroll newList">
+						</div>
+					</div>
+				</div>
+				
+				<div class="navAdd" style="width: 10%;float: right;"><i></i></div>
+				<div style="clear: both;"></div>
+				<div class="mui-slider-group">
+					<div id="3" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+								    
+>>>>>>> 0f5e841f6264932c4f3f670d877833bd1f394f43
 								     <li class="mui-table-view-cell viewcellHeight">
 								        <div class="muipurelyTitle">中国女子跆拳道队蝉联2016世界杯女子团</div>
 								        <div class="muipurelyImg" id="purelyImg">
@@ -50,6 +69,26 @@
 								        	<p class="muipurelylook clearfix"><span class="lookLeft">2017年5月20日 CCTV5</span><span class="lookRight"><i class="look"></i> 1.5万</span></p>
 								        </div>
 								    </li>
+<<<<<<< HEAD
+=======
+								   <li class="mui-table-view-cell">
+								        <div class="mui-table-Img"><img src="../img/img1.png"/></div>
+								        <div class="mui-table-text">
+								        	<p class="mui-table-Tile">2017年全国大众跆拳道一级以上裁判员年审复训培训班</p>
+								        	<p class="mui-table-look"><span class="lookLeft">2017年5月20日 中跆协官网</span><span class="lookRight"><i class="look"></i> 5686</span></p>
+								        </div>
+								    </li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
+					<div id="5" class="mui-slider-item mui-control-content">
+						<div class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+								    
+>>>>>>> 0f5e841f6264932c4f3f670d877833bd1f394f43
 								     <li class="mui-table-view-cell viewcellHeight">
 								        <div class="muipurelyTitle">中国女子跆拳道队蝉联2016世界杯女子团</div>
 								        <div class="muipurelyImg" id="purelyImg">
@@ -71,6 +110,7 @@
 								</ul>
 							</div>
 						</div>
+<<<<<<< HEAD
 					</div>-->
 
 					-->
@@ -112,13 +152,126 @@
 							<div class="picOne"></div>
 							<div class="picThree"></div>-->
 						<!--</ul>-->
+=======
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!--新闻导航模板-->
+		<script type="text/html" id="newList">
+				{{each newList as value}}
+				<a class="mui-control-item" href="#{{value.Id}}">
+					{{value.Title}}
+				</a>
+				{{/each}}
+		
+		</script>
+
+		<!-- 这个模板是为了以后整个界面切换的，ID是为了绑定切换的，才写的模板 -->
+		<script type="text/html" id="newsList">
+			<div id="4" class="mui-slider-item mui-control-content mui-active">
+				<div id="scroll1" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							{{each list as v i}}
+								<li class="mui-table-view-cell mui-media" id="{{v.id}}">
+									
+									{{if v.pics.length == 0}}
+									<div class="mui-table-img" style="display: none;"></div>
+									{{/if}}
+									{{if v.pics.length == 1}}
+									<div class="mui-table-img onePic"><img src="{{v.pics[0]}}" class="mui-media-object mui-pull-left"/></div>
+									{{/if}}
+									<div class="mui-table-text mui-media-body">
+										<p class="mui-table-title muipurelyTitle">{{v.title}}</p>
+										{{if v.pics.length >= 3}}
+										<div class="mui-table-pics muipurelyImg" id="purelyImg">
+											{{include "newsListPics" v }}
+										</div>
+										{{/if}}
+										<div class="muipurelytext">
+											<p class="mui-table-look muipurelylook clearfix">
+												<span class="lookLeft">{{v.publishDate}}{{v.source}}</span>
+												<span class="lookRight"><i class="look"></i>{{v.viewCount}}</span>
+											</p>
+										</div>
+										
+									</div>
+								</li>
+							{{/each}}
+						</ul>
+>>>>>>> 0f5e841f6264932c4f3f670d877833bd1f394f43
 					</div>
 				</div>
 			</div>
 
 		</script>
+<<<<<<< HEAD
 		
 		<script type="text/html" id="picNo">
+=======
+
+		<!--<li class="mui-table-view-cell">
+	        <div class="mui-table-Img"><img src="../img/img1.png"/></div>
+	        <div class="mui-table-text">
+	        	<p class="mui-table-Tile">2015年全国大众跆拳道一级以上裁判员年审复训培训班</p>
+	        	<p class="mui-table-look"><span class="lookLeft">2017年5月20日 中跆协官网</span><span class="lookRight"><i class="look"></i> 5686</span></p>
+	        </div>
+	    </li>
+
+		<li class="mui-table-view-cell">
+	        <div class="muipurelyTitle">2016年亚跆联新品势学习班汇报分享新品势学习班汇报分享</div>
+	        <div class="muipurelytext ">								        
+	        	<p class="muipurelylook clearfix"><span class="lookLeft">2017年5月20日 CCTV5</span><span class="lookRight"><i class="look"></i> 1.5万</span></p>
+	        </div>
+	    </li>
+	    
+	    
+	     <li class="mui-table-view-cell viewcellHeight">
+	        <div class="muipurelyTitle">中国女子跆拳道队蝉联2016世界杯女子团</div>
+	        <div class="muipurelyImg" id="purelyImg">
+	        	<img src="../img/timg.jpg" alt=""/>
+	        	<img src="../img/timg2.jpg" alt=""/>
+	        	<img src="../img/timg3.jpg" alt=""/>
+	        </div>
+	        <div class="muipurelytext ">								        
+	        	<p class="muipurelylook clearfix"><span class="lookLeft">2017年5月20日 CCTV5</span><span class="lookRight"><i class="look"></i> 1.5万</span></p>
+	        </div>
+	    </li>-->
+		<!-- 正常都在这一个模板里，可以用include引入另外的模板 -->
+		<!--<script type="text/html" id="newsList">
+			{{each list v i}}
+			<li class="mui-table-view-cell" id="{{v.id}}">
+				{{if v.pics.length == 1}}
+					<div class="mui-table-img"><img src="{{v.pics[0]}}" /></div>
+				{{/if}} 
+				<div class="mui-table-text">
+					<p class="mui-table-title">{{v.title}}</p>
+					{{if v.pics.length >= 3}}
+					<ul class="mui-table-pics">
+						{{include "newsListPics" v}}
+					</ul>
+					{{/if}}
+					这行始终都在一行就行了，不用管它那设计图
+					<p class="mui-table-look">
+						<span class="lookLeft">{{publishDate}}{{source}}</span>
+						<span class="lookRight"><i class="look"></i>{{viewCount}}</span>
+					</p>
+				</div>
+			</li>
+			{{/each}}
+		</script>-->
+
+		<script type="text/html" id="newsListPics">
+			{{each pics as v i}}
+				<img src="../img/Charity_img1.jpg" attr='{{v}}'>
+			{{/each}}
+		</script>
+
+
+		<!--<script type="text/html" id="picNo">
+>>>>>>> 0f5e841f6264932c4f3f670d877833bd1f394f43
 			<li class="mui-table-view-cell picNo" id="{{id}}">
 				<div class="muipurelyTitle">{{title}}</div>
 				<div class="muipurelytext ">
@@ -126,7 +279,11 @@
 				</div>
 			</li>
 		</script>
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 0f5e841f6264932c4f3f670d877833bd1f394f43
 		<script type="text/html" id="picOne">
 			<li class="mui-table-view-cell" id="{{id}}">
 				<div class="mui-table-Img"><img src="{{pics}}" /></div>
@@ -137,9 +294,12 @@
 			</li>
 		</script>
 		
+<<<<<<< HEAD
 		
 		
 		
+=======
+>>>>>>> 0f5e841f6264932c4f3f670d877833bd1f394f43
 		<script type="text/html" id="picThree">
 			<li class="mui-table-view-cell viewcellHeight" id="{{id}}">
 				<div class="muipurelyTitle">{{title}}</div>
@@ -150,6 +310,7 @@
 					<p class="muipurelylook clearfix"><span class="lookLeft">{{publishDate}}{{source}}</span><span class="lookRight"><i class="look"></i> {{viewCount}}</span></p>
 				</div>
 			</li>
+<<<<<<< HEAD
 			
 		</script>
 		<script type="text/html" id="purelyImgUrl">
@@ -158,16 +319,37 @@
 			{{/each}}
 		</script>
 		
+=======
+
+		</script>-->
+
+
+>>>>>>> 0f5e841f6264932c4f3f670d877833bd1f394f43
 		<script src="../js/flexable.js"></script>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/mui.pullToRefresh.js"></script>
 		<script src="../js/mui.pullToRefresh.material.js"></script>
+<<<<<<< HEAD
 		<script src="../js/jquery.js"></script>
 		<script src="../js/newsList1.js"></script>
     	<script type="text/javascript" src="../js/artTemplate.js"></script>
 		<script type="text/javascript">
 			
 			$(document).ready(function() {
+=======
+		<!--<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>-->
+  		<script src="../js/artTemplate.js"></script>
+  		<script src="../js/jquery.js"></script>
+		<script src="../js/newsList1.js"></script>
+    	<script src="../js/template-web.js"></script>
+		<script type="text/javascript">
+
+			$(document).ready(function() {
+				
+>>>>>>> 0f5e841f6264932c4f3f670d877833bd1f394f43
 				var url = 'http://47.93.192.128:5001/News/NewsNavBar';
 				$.ajax({
 					url: url,
@@ -175,9 +357,16 @@
 					type: 'post',
 					success: function(data) {
 						console.log(data.Data.Data);
+<<<<<<< HEAD
 						var str = template("newList", {newList: data.Data.Data})
 						$(".newList").html(str);
 
+=======
+						//新闻导航栏的结构
+						var str = template("newList", {newList: data.Data.Data})
+						$(".newList").html(str);
+						$("#sliderSegmentedControl>div a:first-child").addClass("mui-active")
+>>>>>>> 0f5e841f6264932c4f3f670d877833bd1f394f43
 //						$(".activationRecordLi").click(function () {
 //					        let id=$(this).attr('id');// 获取id
 //					        localStorage.setItem("ActivityId",id)
@@ -190,12 +379,22 @@
 						alert(textStatus);
 					}
 				});
+<<<<<<< HEAD
 				
 				var urll="http://47.93.192.128:5001/News/NewsList"
 				$.ajax({
 					url: urll,
 					dataType: 'json',
 					type: 'post',
+=======
+
+				var urll="http://47.93.192.128:5001/News/NewsList"
+				$.ajax({
+					url: "one.json",
+//					url:"http://47.93.192.128:5001/News/NewsList",
+					dataType: 'json',
+					type: 'get',
+>>>>>>> 0f5e841f6264932c4f3f670d877833bd1f394f43
 					data:{
 						pageindex:"",	//number	否	页数，不填默认第一页	1
 						typeid:3,	//number	否	栏目类型id	1
@@ -204,6 +403,7 @@
 						areaid:""	//number	否	区域id
 					},
 					success: function(data) {
+<<<<<<< HEAD
 						console.log(data);
 						var str = template("newListCont", {newListCont: data.Data.Data})
 						$(".mui-slider-group").html(str);
@@ -236,6 +436,13 @@
 							
 						}
 						
+=======
+						console.log(data.Data.Data);
+
+						//这个模板生成的字符串整个放到外面大容器里
+						var htmlStr = template("newsList", {list: data.Data.Data})
+						$(".mui-slider-group").html(htmlStr);
+>>>>>>> 0f5e841f6264932c4f3f670d877833bd1f394f43
 						
 //						$(".activationRecordLi").click(function () {
 //					        let id=$(this).attr('id');// 获取id
@@ -244,6 +451,7 @@
 //					    })
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
+<<<<<<< HEAD
 						
 						alert(textStatus);
 					}
@@ -251,6 +459,14 @@
 				
 			});
 			
+=======
+						alert(textStatus);
+					}
+				});
+
+			});
+
+>>>>>>> 0f5e841f6264932c4f3f670d877833bd1f394f43
 		</script>
 	</body>
 </html>
