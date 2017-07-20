@@ -5,7 +5,8 @@ $(document).ready(function() {
 				if(r != null) return unescape(r[2]);
 				return null;
 			}
-			var id = GetQueryString("id");
+
+		var id = GetQueryString("id");
 		var url = 'http://47.93.192.128:5001/Notice/Notice_Detail';
 		$.ajax({
 			url: url,
