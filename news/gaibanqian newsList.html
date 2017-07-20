@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>新闻列表页</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/common.css" rel="stylesheet" />
+		<link href="../css/newList.css" rel="stylesheet" />
+		<script src="../js/jquery-1.9.1.min.js"></script>
+		<script src="../js/flexable.js"></script>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div style="width:90%;float:left;background:#fff;padding-left:0.3rem;">
+					<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+						<div class="mui-scroll" id="cur">
+							<!--<a class="mui-control-item mui-active" href="#item1mobile">国内</a>
+						<a class="mui-control-item" href="#item2mobile">国外</a>
+						<a class="mui-control-item" href="#item3mobile">地区</a>
+						<a class="mui-control-item" href="#item4mobile">品势</a>
+						<a class="mui-control-item" href="#item5mobile">竞技</a>
+						<a class="mui-control-item" href="#item6mobile">特技</a>
+						<a class="mui-control-item" href="#item1mobile">跆拳舞</a>
+						<a class="mui-control-item" href="#item2mobile">教学</a>
+						<a class="mui-control-item" href="#item3mobile">经营</a>
+						<a class="mui-control-item" href="#item4mobile">跆图</a>
+						<a class="mui-control-item" href="#item5mobile">体育</a>
+						<a class="mui-control-item" href="#item6mobile">赛事</a>
+						<a class="mui-control-item" href="#item3mobile">培训</a>
+						<a class="mui-control-item" href="#item4mobile">活动</a>
+						<a class="mui-control-item" href="#item5mobile">公益</a>
+						<a class="mui-control-item" href="#item6mobile">会议</a>-->
+						</div>
+					</div>
+				</div>
+				<div class="navAdd" style="width: 10%;float: right;" id="newsarea">
+					<i></i>
+				</div>
+				<div style="clear: both;"></div>
+				<div class="mui-slider-group">
+					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view" id="List">
+
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<script>
+			function texts(id, viewCount) {
+				window.location.href = "newsDetailPage.html?id=" + id + "&viewCount=" + viewCount;
+			}
+			(function() {
+				$("#newsarea").click(function() {
+					window.open("newsarea.html")
+				})
+				var t = setTimeout(function() {
+					$("#time2").slideUp();
+					clearInterval(t)
+				}, 2000)
+			})()
+
+			var NavUrl = "http://47.93.192.128:5001/News/NewsNavBar";
+			var ListUrl = "http://47.93.192.128:5001/News/NewsList";
+			//默认加载
+			$.ajax({
+				type: "post",
+				url: ListUrl,
+				data: {
+					typeid: 3,
+					pageindex: 1,
+					proid: "",
+					cityid: "",
+					areaid: ""
+				},
+				datatype: "json",
+				//				headers:{"appId":appId,"Content-Type":"text/plain;charset=UTF-8"},
+				success: function(data) {
+					data = eval('(' + data + ')');
+					var fragment = document.createDocumentFragment(); //创建一个代码片段
+					var li;
+
+					if(typeof(data.Data.Data) != "undefined") {
+						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
+							li = document.createElement('li');
+							//li.className = 'mui-table-view-cell mui-media';
+							if(data.Data.Data[i].pics.length == 3) {
+								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelyImg" id="purelyImg"><img src="' + data.Data.Data[i].pics[0] + '"><img src="' + data.Data.Data[i].pics[1] + '"><img src="' + data.Data.Data[i].pics[2] + '"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
+
+							} else if(data.Data.Data[i].pics.length == 0 && data.Data.Data[i].thumbImg) {
+								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="mui-table-Img">' +
+									'<img src="' + data.Data.Data[i].thumbImg + '"/></div><div class="mui-table-text"><p class="mui-table-Tile">' + data.Data.Data[i].title + '</p><p class="mui-table-look"><span class="lookLeft">' + data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
+							} else {
+								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>';
+							}
+
+							fragment.appendChild(li);
+						}
+					}
+
+					$('#List li').remove();
+					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
+
+				},
+				error: function() {
+
+				}
+			});
+
+			//加载列表的方法
+			function innerList(typeid) {
+
+				$.ajax({
+					type: "post",
+					url: ListUrl,
+					data: {
+						typeid: typeid,
+						pageindex: 1,
+						proid: "",
+						cityid: "",
+						areaid: ""
+					},
+					datatype: "json",
+					success: function(data) {
+						data = eval('(' + data + ')');
+						var fragment = document.createDocumentFragment(); //创建一个代码片段
+						var li;
+
+						if(typeof(data.Data.Data) != "undefined") {
+							for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
+								li = document.createElement('li');
+								//								li.className = 'mui-table-view-cell mui-media';
+								if(data.Data.Data[i].pics.length == 3) {
+									li.innerHTML = '<div onclick="texts(' +data.Data.Data[i].id + ',' + data.Data.Data[i].commentCount +')" class="mui-table-view-cell" id="' +
+										data.Data.Data[i].id +
+										'"><div class="muipurelyTitle">' +
+										data.Data.Data[i].title +
+										'</div><div class="muipurelyImg" id="purelyImg"><img src="' +
+										data.Data.Data[i].pics[0] + '"><img src="' + data.Data.Data[i].pics[1] + '"><img src="' + data.Data.Data[i].pics[2] +
+										'"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
+										data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source +
+										'</span><span class="lookRight"><i class="look"></i>' +
+										data.Data.Data[i].commentCount +
+										'</span></p></div></div>'
+
+								} else if(data.Data.Data[i].pics.length == 0 && data.Data.Data[i].thumbImg) {
+									li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].commentCount + ')" class="mui-table-view-cell" id="' + 
+										data.Data.Data[i].id + 
+										'"><div class="mui-table-Img"><img src="' + 
+										data.Data.Data[i].thumbImg + 
+										'"/></div><div class="mui-table-text"><p class="mui-table-Tile">' + 
+										data.Data.Data[i].title + 
+										'</p><p class="mui-table-look"><span class="lookLeft">' + 
+										data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + 
+										'</span><span class="lookRight"><i class="look"></i>' + 
+										data.Data.Data[i].commentCount + 
+										'</span></p></div></div>'
+								} else {
+									li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].commentCount + ')" class="mui-table-view-cell" id="' + 
+									data.Data.Data[i].id + 
+									'"><div class="muipurelyTitle">' + 
+									data.Data.Data[i].title + 
+									'</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + 
+									data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + 
+									'</span><span class="lookRight"><i class="look"></i>' + 
+									data.Data.Data[i].commentCount + 
+									'</span></p></div></div>';
+								}
+
+								fragment.appendChild(li);
+							}
+						}
+
+						$('#List li').remove();
+						document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
+
+					},
+					error: function() {
+
+					}
+				});
+			}
+			//加载导航的方法
+			function innerNav() {
+
+				$.ajax({
+					type: "post",
+					url: NavUrl,
+					datatype: "json",
+					success: function(data) {
+						data = eval('(' + data + ')');
+						var fragment = document.createDocumentFragment(); //创建一个代码片段
+						var a;
+						if(typeof(data.Data.Data) != "undefined") { //这里是判断是不是有数据的 如果没数据直接不用循环 否则 undefined len属性
+							for(var i = data.Data.Data.length - 1; i >= 0; i--) { //循环输出data中的数据
+								a = document.createElement('a');
+								a.className = 'mui-control-item';
+								a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
+								a.innerHTML = data.Data.Data[i].Title;
+								fragment.appendChild(a);
+							}
+						}
+
+						document.querySelector("#cur").appendChild(fragment); //输出到#item1mobile的页面内容
+						$("#cur>a:first-child").addClass("mui-active")
+						$("#cur>a").bind("click", function() {
+							$("#cur>a").removeClass("mui-active");
+							$(this).addClass("mui-active")
+						})
+						//						innerList(parseInt(data.Data.Data[0].Id));
+
+					},
+					error: function() {
+
+					}
+				});
+			}
+
+			//页面价在后执行   加载导航的方法
+			window.onload = function() {
+				getRem(750, 100)
+				innerNav();
+			}
+			window.onresize = function() {
+				getRem(750, 100)
+			};
+
+			function getRem(pwidth, prem) {
+				var html = document.getElementsByTagName("html")[0];
+
+				var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+				html.style.fontSize = oWidth / pwidth * prem + "px";
+			}
+		</script>
+	</body>
+
+</html>

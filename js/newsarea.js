@@ -27,7 +27,8 @@ $(document).ready(function() {
 							myChannelId:myChannelId
 						},
 						success:function(data){
-							alert("删除成功")
+//							alert("删除成功")
+							
 						}
 						
 					});
@@ -39,8 +40,8 @@ $(document).ready(function() {
 	});
 });
 
-
-$('.floatR').click(function(){	
+// 编辑频道
+		$('.floatR').click(function(){	
 				if($(".supDelate").css("display")=="none"){
 					$(".supDelate").show();
 					$('.floatR').html("完成");
@@ -67,8 +68,9 @@ $('.floatR').click(function(){
 							e.target.remove()
 							$('.myChannelmodule').append(e.target)
 							var  channelId=$(e.target).attr("id");
-							console.log(channelId);
-							
+							if($(".supDelate").css("display")=="none"){
+							$(".supDelate").show();
+							$('.floatR').html("完成");}
 							$.ajax({
 								type:"post",
 								url:"http://47.93.192.128:5001/News/AddMyChannel",
@@ -79,7 +81,7 @@ $('.floatR').click(function(){
 									channelId:channelId
 								},
 								success:function(data){
-									alert("添加 成功")
+//									alert("添加 成功")
 								}
 								
 							});

@@ -5,244 +5,202 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<title>新闻列表页</title>
-		<link href="../css/mui.min.css" rel="stylesheet" />
+        <link href="../css/mui.min.css" rel="stylesheet" />
 		<link href="../css/common.css" rel="stylesheet" />
 		<link href="../css/newList.css" rel="stylesheet" />
-		<script src="../js/jquery-1.9.1.min.js"></script>
-		<script src="../js/flexable.js"></script>
+		<title>新闻列表页</title>
 	</head>
-
 	<body>
 		<div class="mui-content">
 			<div id="slider" class="mui-slider mui-fullscreen">
+
 				<div style="width:90%;float:left;background:#fff;padding-left:0.3rem;">
 					<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-						<div class="mui-scroll" id="cur">
-							<!--<a class="mui-control-item mui-active" href="#item1mobile">国内</a>
-						<a class="mui-control-item" href="#item2mobile">国外</a>
-						<a class="mui-control-item" href="#item3mobile">地区</a>
-						<a class="mui-control-item" href="#item4mobile">品势</a>
-						<a class="mui-control-item" href="#item5mobile">竞技</a>
-						<a class="mui-control-item" href="#item6mobile">特技</a>
-						<a class="mui-control-item" href="#item1mobile">跆拳舞</a>
-						<a class="mui-control-item" href="#item2mobile">教学</a>
-						<a class="mui-control-item" href="#item3mobile">经营</a>
-						<a class="mui-control-item" href="#item4mobile">跆图</a>
-						<a class="mui-control-item" href="#item5mobile">体育</a>
-						<a class="mui-control-item" href="#item6mobile">赛事</a>
-						<a class="mui-control-item" href="#item3mobile">培训</a>
-						<a class="mui-control-item" href="#item4mobile">活动</a>
-						<a class="mui-control-item" href="#item5mobile">公益</a>
-						<a class="mui-control-item" href="#item6mobile">会议</a>-->
+						<div class="mui-scroll newList">
 						</div>
 					</div>
 				</div>
-				<div class="navAdd" style="width: 10%;float: right;" id="newsarea">
-					<i></i>
-				</div>
+				
+				<div class="navAdd" style="width: 10%;float: right;"><i></i></div>
 				<div style="clear: both;"></div>
-				<div class="mui-slider-group">
-					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
-						<div id="scroll1" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul class="mui-table-view" id="List">
-
-								</ul>
-							</div>
-						</div>
-					</div>
-
-				</div>
+				<div class="mui-slider-group"></div>
 			</div>
 		</div>
+		<!--新闻导航模板-->
+		<script type="text/html" id="newList">
+				{{each newList as value}}
+				<a class="mui-control-item navList" href="#{{value.Id}}" name="{{value.Id}}">
+					{{value.Title}}
+				</a>
+				
+				{{/each}}
+		
+		</script>
 
-		<script>
-			function texts(id, viewCount) {
-				window.location.href = "newsDetailPage.html?id=" + id + "&viewCount=" + viewCount;
-			}
-			(function() {
-				$("#newsarea").click(function() {
-					window.open("newsarea.html")
-				})
-				var t = setTimeout(function() {
-					$("#time2").slideUp();
-					clearInterval(t)
-				}, 2000)
-			})()
+		<!-- 这个模板是为了以后整个界面切换的，ID是为了绑定切换的，才写的模板 -->
+		<script type="text/html" id="newsList">
+			<div class="mui-slider-item mui-control-content mui-active TabId">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							{{each list as v i}}
+								<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}">
+									
+									{{if v.pics.length == 0}}
+									<div class="mui-table-img" style="display: none;"></div>
+									{{/if}}
+									{{if v.pics.length == 1}}
+									<div class="mui-table-img onePic"><img src="{{v.pics[0]}}" class="mui-media-object mui-pull-left"/></div>
+									{{/if}}
+									<div class="mui-table-text mui-media-body">
+										<p class="mui-table-title muipurelyTitle">{{v.title}}</p>
+										{{if v.pics.length >= 3}}
+										<div class="mui-table-pics muipurelyImg" id="purelyImg">
+											{{include "newsListPics" v }}
+										</div>
+										{{/if}}
+										<div class="muipurelytext">
+											<p class="mui-table-look muipurelylook clearfix">
+												<span class="lookLeft">{{v.publishDate}}{{v.source}}</span>
+												<span class="lookRight"><i class="look"></i>{{v.viewCount}}</span>
+											</p>
+										</div>
+										
+									</div>
+								</li>
+							{{/each}}
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			
+		</script>
 
-			var NavUrl = "http://47.93.192.128:5001/News/NewsNavBar";
-			var ListUrl = "http://47.93.192.128:5001/News/NewsList";
-			//默认加载
-			$.ajax({
-				type: "post",
-				url: ListUrl,
-				data: {
-					typeid: 3,
-					pageindex: 1,
-					proid: "",
-					cityid: "",
-					areaid: ""
-				},
-				datatype: "json",
-				//				headers:{"appId":appId,"Content-Type":"text/plain;charset=UTF-8"},
-				success: function(data) {
-					data = eval('(' + data + ')');
-					var fragment = document.createDocumentFragment(); //创建一个代码片段
-					var li;
+		
+		
 
-					if(typeof(data.Data.Data) != "undefined") {
-						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
-							li = document.createElement('li');
-							//li.className = 'mui-table-view-cell mui-media';
-							if(data.Data.Data[i].pics.length == 3) {
-								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelyImg" id="purelyImg"><img src="' + data.Data.Data[i].pics[0] + '"><img src="' + data.Data.Data[i].pics[1] + '"><img src="' + data.Data.Data[i].pics[2] + '"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
+		<script type="text/html" id="newsListPics">
+			{{each pics as v i}}
+				<img src="../img/Charity_img1.jpg" attr='{{v}}'>
+			{{/each}}
+		</script>
 
-							} else if(data.Data.Data[i].pics.length == 0 && data.Data.Data[i].thumbImg) {
-								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="mui-table-Img">' +
-									'<img src="' + data.Data.Data[i].thumbImg + '"/></div><div class="mui-table-text"><p class="mui-table-Tile">' + data.Data.Data[i].title + '</p><p class="mui-table-look"><span class="lookLeft">' + data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>'
-							} else {
-								li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].viewCount + ')" class="mui-table-view-cell" id="' + data.Data.Data[i].id + '"><div class="muipurelyTitle">' + data.Data.Data[i].title + '</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + '</span><span class="lookRight"><i class="look"></i>' + data.Data.Data[i].viewCount + '</span></p></div></div>';
-							}
 
-							fragment.appendChild(li);
-						}
-					}
 
-					$('#List li').remove();
-					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
 
-				},
-				error: function() {
+		<script src="../js/flexable.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
+		<!--<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>-->
+  		<script src="../js/artTemplate.js"></script>
+  		<script src="../js/jquery.js"></script>
+		<script src="../js/newsList1.js"></script>
+    	<script src="../js/template-web.js"></script>
+		<script type="text/javascript">
 
-				}
-			});
-
-			//加载列表的方法
-			function innerList(typeid) {
-
+			$(document).ready(function() {
+				
+				var url = 'http://47.93.192.128:5001/News/NewsNavBar';
 				$.ajax({
-					type: "post",
-					url: ListUrl,
-					data: {
-						typeid: typeid,
-						pageindex: 1,
-						proid: "",
-						cityid: "",
-						areaid: ""
-					},
-					datatype: "json",
+					url: url,
+					dataType: 'json',
+					type: 'post',
 					success: function(data) {
-						data = eval('(' + data + ')');
-						var fragment = document.createDocumentFragment(); //创建一个代码片段
-						var li;
-
-						if(typeof(data.Data.Data) != "undefined") {
-							for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
-								li = document.createElement('li');
-								//								li.className = 'mui-table-view-cell mui-media';
-								if(data.Data.Data[i].pics.length == 3) {
-									li.innerHTML = '<div onclick="texts(' +data.Data.Data[i].id + ',' + data.Data.Data[i].commentCount +')" class="mui-table-view-cell" id="' +
-										data.Data.Data[i].id +
-										'"><div class="muipurelyTitle">' +
-										data.Data.Data[i].title +
-										'</div><div class="muipurelyImg" id="purelyImg"><img src="' +
-										data.Data.Data[i].pics[0] + '"><img src="' + data.Data.Data[i].pics[1] + '"><img src="' + data.Data.Data[i].pics[2] +
-										'"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
-										data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source +
-										'</span><span class="lookRight"><i class="look"></i>' +
-										data.Data.Data[i].commentCount +
-										'</span></p></div></div>'
-
-								} else if(data.Data.Data[i].pics.length == 0 && data.Data.Data[i].thumbImg) {
-									li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].commentCount + ')" class="mui-table-view-cell" id="' + 
-										data.Data.Data[i].id + 
-										'"><div class="mui-table-Img"><img src="' + 
-										data.Data.Data[i].thumbImg + 
-										'"/></div><div class="mui-table-text"><p class="mui-table-Tile">' + 
-										data.Data.Data[i].title + 
-										'</p><p class="mui-table-look"><span class="lookLeft">' + 
-										data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + 
-										'</span><span class="lookRight"><i class="look"></i>' + 
-										data.Data.Data[i].commentCount + 
-										'</span></p></div></div>'
-								} else {
-									li.innerHTML = '<div onclick="texts(' + data.Data.Data[i].id + ',' + data.Data.Data[i].commentCount + ')" class="mui-table-view-cell" id="' + 
-									data.Data.Data[i].id + 
-									'"><div class="muipurelyTitle">' + 
-									data.Data.Data[i].title + 
-									'</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' + 
-									data.Data.Data[i].publishDate + '&nbsp;&nbsp;' + data.Data.Data[i].source + 
-									'</span><span class="lookRight"><i class="look"></i>' + 
-									data.Data.Data[i].commentCount + 
-									'</span></p></div></div>';
+						console.log(data);
+						//新闻导航栏的结构
+						var str = template("newList", {newList: data.Data.Data})
+						$(".newList").html(str);
+						$("#sliderSegmentedControl>div a:first-child").addClass("mui-active");
+						$(".mui-control-item").click(function () {
+					        var  typeid=$(this).attr('name');// 获取id
+					        console.log(typeid);
+					        localStorage.setItem("typeid",typeid);
+					       	$.ajax({
+								url:"http://47.93.192.128:5001/News/NewsList",
+								dataType: 'json',
+								type: 'post',
+								data:{
+									pageindex:"",	//number	否	页数，不填默认第一页	1
+									typeid:typeid,	//number	否	栏目类型id	1
+									proid:"",	//number	否	省id	3
+									cityid:"",	//number	否	城市id	5
+									areaid:""	//number	否	区域id
+								},
+								success: function(data) {
+									console.log(data);
+									var OID=localStorage.typeid;
+									console.log(OID,"a");
+									//这个模板生成的字符串整个放到外面大容器里
+									var htmlStr = template("newsList", {list: data.Data.Data})
+									$(".mui-slider-group").html(htmlStr);
+									$(".TabId").attr("id",OID)
+									$(".TabIdSon").attr("id",'scroll'+OID)
+									$(".mediaId").click(function () {
+								        let id=$(this).attr('id');// 获取id
+								        console.log(id)
+								        window.location.href = "newsContent.html?id=" + id;
+								    })
+								},
+								error: function(XMLHttpRequest, textStatus, errorThrown) {
+									alert(textStatus);
 								}
-
-								fragment.appendChild(li);
+							});
+					        
+					   	});
+					   	var defultId=$("#sliderSegmentedControl>div a:first-child").attr("name");
+					   	console.log(defultId)
+					   	$.ajax({
+							url:"http://47.93.192.128:5001/News/NewsList",
+							dataType: 'json',
+							type: 'post',
+							data:{
+								pageindex:"",	//number	否	页数，不填默认第一页	1
+								typeid:defultId,	//number	否	栏目类型id	1
+								proid:"",	//number	否	省id	3
+								cityid:"",	//number	否	城市id	5
+								areaid:""	//number	否	区域id
+							},
+							success: function(data) {
+								console.log(data);
+								//这个模板生成的字符串整个放到外面大容器里
+								var htmlStr = template("newsList", {list: data.Data.Data})
+								$(".mui-slider-group").html(htmlStr);
+								
+								$(".mui-table-view-cell mui-media").click(function (e) {
+							        let id=$(this).attr('id');// 获取id
+							        console.log(id)
+							        window.location.href = "newsContent.html?id=" + id;
+							    })
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown) {
+								alert(textStatus);
 							}
-						}
-
-						$('#List li').remove();
-						document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
-
+						});
+					  
 					},
-					error: function() {
-
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(XMLHttpRequest.status);
+						alert(XMLHttpRequest.readyState);
+						alert(textStatus);
 					}
 				});
-			}
-			//加载导航的方法
-			function innerNav() {
 
-				$.ajax({
-					type: "post",
-					url: NavUrl,
-					datatype: "json",
-					success: function(data) {
-						data = eval('(' + data + ')');
-						var fragment = document.createDocumentFragment(); //创建一个代码片段
-						var a;
-						if(typeof(data.Data.Data) != "undefined") { //这里是判断是不是有数据的 如果没数据直接不用循环 否则 undefined len属性
-							for(var i = data.Data.Data.length - 1; i >= 0; i--) { //循环输出data中的数据
-								a = document.createElement('a');
-								a.className = 'mui-control-item';
-								a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
-								a.innerHTML = data.Data.Data[i].Title;
-								fragment.appendChild(a);
-							}
-						}
+				 $(".navAdd").click(function(){
+		        	window.location.href = "newsarea.html";
+		        });
 
-						document.querySelector("#cur").appendChild(fragment); //输出到#item1mobile的页面内容
-						$("#cur>a:first-child").addClass("mui-active")
-						$("#cur>a").bind("click", function() {
-							$("#cur>a").removeClass("mui-active");
-							$(this).addClass("mui-active")
-						})
-						//						innerList(parseInt(data.Data.Data[0].Id));
+			});
+			
+			
+			
+			
+			
 
-					},
-					error: function() {
-
-					}
-				});
-			}
-
-			//页面价在后执行   加载导航的方法
-			window.onload = function() {
-				getRem(750, 100)
-				innerNav();
-			}
-			window.onresize = function() {
-				getRem(750, 100)
-			};
-
-			function getRem(pwidth, prem) {
-				var html = document.getElementsByTagName("html")[0];
-
-				var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
-				html.style.fontSize = oWidth / pwidth * prem + "px";
-			}
 		</script>
 	</body>
-
 </html>

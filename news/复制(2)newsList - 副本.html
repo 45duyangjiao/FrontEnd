@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/common.css" rel="stylesheet" />
+		<link href="../css/newList.css" rel="stylesheet" />
+		<title>新闻列表页</title>
+	</head>
+	<body>
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+
+				<div style="width:90%;float:left;background:#fff;padding-left:0.3rem;">
+					<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+						<div class="mui-scroll newList">
+						</div>
+					</div>
+				</div>
+				
+				<div class="navAdd" style="width: 10%;float: right;"><i></i></div>
+				<div style="clear: both;"></div>
+				<div class="mui-slider-group"></div>
+			</div>
+		</div>
+		<!--新闻导航模板-->
+		<script type="text/html" id="newList">
+				{{each newList as value}}
+				<a class="mui-control-item navList" href="#{{value.Id}}" name="{{value.Id}}">
+					{{value.Title}}
+				</a>
+				<a class="mui-control-item" href="#item4mobile">
+							品势
+				</a>
+				<a class="mui-control-item" href="#item5mobile">
+					竞技
+				</a>
+				<a class="mui-control-item" href="#item6mobile">
+					特技
+				</a>
+				{{/each}}
+		
+		</script>
+
+		<!-- 这个模板是为了以后整个界面切换的，ID是为了绑定切换的，才写的模板 -->
+		<script type="text/html" id="newsList">
+			<div class="mui-slider-item mui-control-content mui-active TabId">
+				<div id="scroll1" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							{{each list as v i}}
+								<li class="mui-table-view-cell mui-media" id="{{v.id}}">
+									
+									{{if v.pics.length == 0}}
+									<div class="mui-table-img" style="display: none;"></div>
+									{{/if}}
+									{{if v.pics.length == 1}}
+									<div class="mui-table-img onePic"><img src="{{v.pics[0]}}" class="mui-media-object mui-pull-left"/></div>
+									{{/if}}
+									<div class="mui-table-text mui-media-body">
+										<p class="mui-table-title muipurelyTitle">{{v.title}}</p>
+										{{if v.pics.length >= 3}}
+										<div class="mui-table-pics muipurelyImg" id="purelyImg">
+											{{include "newsListPics" v }}
+										</div>
+										{{/if}}
+										<div class="muipurelytext">
+											<p class="mui-table-look muipurelylook clearfix">
+												<span class="lookLeft">{{v.publishDate}}{{v.source}}</span>
+												<span class="lookRight"><i class="look"></i>{{v.viewCount}}</span>
+											</p>
+										</div>
+										
+									</div>
+								</li>
+							{{/each}}
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="mui-slider-item mui-control-content mui-active">
+				<div id="scroll1" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							{{each list as v i}}
+								<li class="mui-table-view-cell mui-media" id="{{v.id}}">
+									
+									{{if v.pics.length == 0}}
+									<div class="mui-table-img" style="display: none;"></div>
+									{{/if}}
+									{{if v.pics.length == 1}}
+									<div class="mui-table-img onePic"><img src="{{v.pics[0]}}" class="mui-media-object mui-pull-left"/></div>
+									{{/if}}
+									<div class="mui-table-text mui-media-body">
+										<p class="mui-table-title muipurelyTitle">{{v.title}}</p>
+										{{if v.pics.length >= 3}}
+										<div class="mui-table-pics muipurelyImg" id="purelyImg">
+											{{include "newsListPics" v }}
+										</div>
+										{{/if}}
+										<div class="muipurelytext">
+											<p class="mui-table-look muipurelylook clearfix">
+												<span class="lookLeft">{{v.publishDate}}{{v.source}}</span>
+												<span class="lookRight"><i class="look"></i>{{v.viewCount}}</span>
+											</p>
+										</div>
+										
+									</div>
+								</li>
+							{{/each}}
+						</ul>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="mui-slider-item mui-control-content mui-active">
+				<div id="scroll1" class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="mui-table-view">
+							{{each list as v i}}
+								<li class="mui-table-view-cell mui-media" id="{{v.id}}">
+									
+									{{if v.pics.length == 0}}
+									<div class="mui-table-img" style="display: none;"></div>
+									{{/if}}
+									{{if v.pics.length == 1}}
+									<div class="mui-table-img onePic"><img src="{{v.pics[0]}}" class="mui-media-object mui-pull-left"/></div>
+									{{/if}}
+									<div class="mui-table-text mui-media-body">
+										<p class="mui-table-title muipurelyTitle">{{v.title}}</p>
+										{{if v.pics.length >= 3}}
+										<div class="mui-table-pics muipurelyImg" id="purelyImg">
+											{{include "newsListPics" v }}
+										</div>
+										{{/if}}
+										<div class="muipurelytext">
+											<p class="mui-table-look muipurelylook clearfix">
+												<span class="lookLeft">{{v.publishDate}}{{v.source}}</span>
+												<span class="lookRight"><i class="look"></i>{{v.viewCount}}</span>
+											</p>
+										</div>
+										
+									</div>
+								</li>
+							{{/each}}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</script>
+
+		
+		
+
+		<script type="text/html" id="newsListPics">
+			{{each pics as v i}}
+				<img src="../img/Charity_img1.jpg" attr='{{v}}'>
+			{{/each}}
+		</script>
+
+
+
+
+		<script src="../js/flexable.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
+		<!--<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>-->
+  		<script src="../js/artTemplate.js"></script>
+  		<script src="../js/jquery.js"></script>
+		<script src="../js/newsList1.js"></script>
+    	<script src="../js/template-web.js"></script>
+		<script type="text/javascript">
+
+			$(document).ready(function() {
+				
+				var url = 'http://47.93.192.128:5001/News/NewsNavBar';
+				$.ajax({
+					url: url,
+					dataType: 'json',
+					type: 'post',
+					success: function(data) {
+						console.log(data);
+						//新闻导航栏的结构
+						var str = template("newList", {newList: data.Data.Data})
+						$(".newList").html(str);
+						$("#sliderSegmentedControl>div a:first-child").addClass("mui-active");
+						$(".mui-control-item").click(function () {
+					        var  typeid=$(this).attr('name');// 获取id
+					        console.log(typeid);
+					        localStorage.setItem("typeid",typeid);
+					        $.ajax({
+							url:"http://47.93.192.128:5001/News/NewsList",
+							dataType: 'json',
+							type: 'post',
+							data:{
+								pageindex:"",	//number	否	页数，不填默认第一页	1
+								typeid:typeid,	//number	否	栏目类型id	1
+								proid:"",	//number	否	省id	3
+								cityid:"",	//number	否	城市id	5
+								areaid:""	//number	否	区域id
+							},
+							success: function(data) {
+								console.log(data);
+								var OID=localStorage.typeid;
+								console.log(OID,"a");
+								//这个模板生成的字符串整个放到外面大容器里
+								var htmlStr = template("newsList", {list: data.Data.Data})
+								$(".mui-slider-group").html(htmlStr);
+								$(".TabId").attr("id",OID)
+		//						$(".activationRecordLi").click(function () {
+		//					        let id=$(this).attr('id');// 获取id
+		//					        localStorage.setItem("ActivityId",id)
+		//					        window.location.href = "training_con.html?id=" + id;
+		//					    })
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown) {
+								alert(textStatus);
+							}
+						});
+					        
+					   	});
+					   	var defultId=$("#sliderSegmentedControl>div a:first-child").attr("name");
+					   	console.log(defultId)
+					   	$.ajax({
+							url:"http://47.93.192.128:5001/News/NewsList",
+							dataType: 'json',
+							type: 'post',
+							data:{
+								pageindex:"",	//number	否	页数，不填默认第一页	1
+								typeid:defultId,	//number	否	栏目类型id	1
+								proid:"",	//number	否	省id	3
+								cityid:"",	//number	否	城市id	5
+								areaid:""	//number	否	区域id
+							},
+							success: function(data) {
+								console.log(data);
+								//这个模板生成的字符串整个放到外面大容器里
+								var htmlStr = template("newsList", {list: data.Data.Data})
+								$(".mui-slider-group").html(htmlStr);
+								
+		//						$(".activationRecordLi").click(function () {
+		//					        let id=$(this).attr('id');// 获取id
+		//					        localStorage.setItem("ActivityId",id)
+		//					        window.location.href = "training_con.html?id=" + id;
+		//					    })
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown) {
+								alert(textStatus);
+							}
+						});
+					  
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(XMLHttpRequest.status);
+						alert(XMLHttpRequest.readyState);
+						alert(textStatus);
+					}
+				});
+
+				
+
+			});
+			
+			
+			
+			
+			
+
+		</script>
+	</body>
+</html>
