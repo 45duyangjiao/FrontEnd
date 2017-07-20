@@ -15,6 +15,7 @@ $(document).ready(function() {
 			dataType: 'json',
 			type: 'post',
 			success: function(data) {
+				console.log(data);
 			var data=data.Data.Data;
 			var content=data.content;
 			var obj = { 
@@ -24,7 +25,7 @@ $(document).ready(function() {
 			var str = template("announceDetail", data);
 			$(".announceDetail").html(str);
 			var strr=template("contnent", obj); 
-			$(".announceDetailTil").html(strr);
+			$(".announceDetailMainbody").html(strr);
 			
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
