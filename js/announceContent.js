@@ -16,9 +16,16 @@ $(document).ready(function() {
 			type: 'post',
 			success: function(data) {
 			var data=data.Data.Data;
-			console.log(data);
+			var content=data.content;
+			var obj = { 
+			    content:content 
+			}; 
+			template.config("escape", false); 
 			var str = template("announceDetail", data);
 			$(".announceDetail").html(str);
+			var strr=template("contnent", obj); 
+			$(".announceDetailTil").html(strr);
+			
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(XMLHttpRequest.status);

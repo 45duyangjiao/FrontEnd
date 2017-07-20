@@ -25,21 +25,23 @@
 			<div class="mui-scroll">
 				<div class="announceDetailPage">
 					<div class="announceDetailTil">
-						{{title}}
+						{{include "content"}}
 					</div>
 					<div class="announceDetailTime clearfix">
 						<span class="floatL Ltime">{{time}}</span>
 						<span class="floatR Rfrom">{{source}}</span>
 					</div>
 					<div class="announceDetailMainbody">
-						    {{content}}
+						 {{content}}
 					</div>
 				</div>
 			</div>
 		</div>
 	</script>
-	
-		
+	<script type="text/html" id="contnent">
+		{{content}}
+	</script>
+
 
 	</body>
 
