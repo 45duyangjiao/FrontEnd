@@ -16,9 +16,9 @@ function searchAttestationResult(){
 			success:function(data){
 				console.log(data);
 				/*获取这个人所有信息*/
-				var memberNo=data.baseInfor.userNo;
 				console.log(memberNo)
 				if(data.sign==0x10320000){
+					var memberNo=data.baseInfor.userNo;
 					window.location.href = "identifyresult.html?memberNo="+memberNo
 				}else{
 					mui.toast('没有会员信息',{ duration:'1000', type:'div' })  
