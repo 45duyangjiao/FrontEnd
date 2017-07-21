@@ -91,8 +91,4 @@ $(document).ready(function() {
 		}
 	});
 
-//	$(".navAdd").click(function() {
-//		window.location.href = "newsarea.html";
-//	});
-
 });
