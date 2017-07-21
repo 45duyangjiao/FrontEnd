@@ -110,7 +110,7 @@ html,body{
 	height: 0.8rem;
 	background:#fff;
 }
-.navAdd i{
+.navAdd a{
 	display: inline-block;
 	width:0.4rem;
 	height:0.4rem;

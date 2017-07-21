@@ -1,83 +1,271 @@
-html,body{
-	width:100%;
-	height:100%;
+html,
+body {
+	width: 100%;
+	height: 100%;
 	overflow: auto;
 	overflow-y: auto;
 }
-.newsAera{
-	padding:0 0.2rem;
-	width:100%;
+
+.newsAera {
+	padding: 0 0.2rem;
+	width: 100%;
 	display: flex;
 	display: -webkit-flex;
 	flex-direction: column;
 }
 
-.supDelate{
+.supDelate {
 	position: absolute;
 	right: 3px;
-	top:5px;
+	top: 5px;
 	width: 10px;
-    height: 10px;
-    font-size: 12px;
-    color: grey;
-    display: none;
+	height: 10px;
+	font-size: 12px;
+	color: grey;
+	display: none;
 }
-.myChannel{
-	width:100%;
+
+.myChannel {
+	width: 100%;
 }
- .myChannelTil{
-	margin-top:0.35rem;
-	margin-bottom:0.35rem;
-	line-height:0.36rem;	
-	color:#919299;
-	border-left:0.06rem solid #3385ff;
-	padding:0 0.1rem;
+
+.myChannelTil {
+	margin-top: 0.35rem;
+	margin-bottom: 0.35rem;
+	line-height: 0.36rem;
+	color: #919299;
+	border-left: 0.06rem solid #3385ff;
+	padding: 0 0.1rem;
 }
-.floatL{
-	font-size:0.34rem;
+
+.floatL {
+	font-size: 0.34rem;
 }
-.floatR{
-	font-size:0.3rem;
+
+.floatR {
+	font-size: 0.3rem;
 }
-.myChannelmodule{
-	min-height:2.46rem;
-	padding:0 0.1rem;
+
+.myChannelmodule {
+	min-height: 2.46rem;
+	padding: 0 0.1rem;
 }
-.channelOriginal{
-	width:1.5rem;
-	line-height:0.76rem;
-	text-align:center;
-	font-size:0.3rem;
-	color:#333;
-	background:#f2f3f6;
-	margin-right:0.2rem;
-	margin-bottom:0.2rem;
-	border-radius:0.1rem;
+
+.channelOriginal {
+	width: 1.5rem;
+	line-height: 0.76rem;
+	text-align: center;
+	font-size: 0.3rem;
+	color: #333;
+	background: #f2f3f6;
+	margin-right: 0.2rem;
+	margin-bottom: 0.2rem;
+	border-radius: 0.1rem;
 	position: relative;
 }
-.channelActive{
-	color:#3385ff;
+
+.channelActive {
+	color: #3385ff;
 }
-.compileChannel{
-	flex:1;
-	-webkit-flex:1;
+
+.compileChannel {
+	flex: 1;
+	-webkit-flex: 1;
 }
-.dynamicallyAdd{
-	min-height:1.48rem;
-	
+
+.dynamicallyAdd {
+	min-height: 1.48rem;
 }
-.compileAddChannelTile{
-	margin-bottom:0.2rem;
-	line-height:0.3rem;
-	font-size:0.3rem;
-	color:#666;
-	padding:0  0.2rem;
+
+.compileAddChannelTile {
+	margin-bottom: 0.2rem;
+	line-height: 0.3rem;
+	font-size: 0.3rem;
+	color: #666;
+	padding: 0 0.2rem;
 }
-.commonHeight{
-	min-height:calc(100% - 0.3rem);
+
+.commonHeight {
+	min-height: calc(100% - 0.3rem);
+}
+
+.myChannelmodule li:first-child,
+.compileAddChannelArea li:first-child {
+	color: #3385ff;
+}
+
+.mui-views,
+.mui-view,
+.mui-pages,
+.mui-page,
+.mui-page-content {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #efeff4;
+}
+
+.mui-pages {
+	height: auto;
+}
+
+.mui-page.mui-transitioning {
+	-webkit-transition: -webkit-transform 300ms ease;
+	transition: transform 300ms ease;
+}
+
+.mui-page-left {
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+.mui-ios .mui-page-left {
+	-webkit-transform: translate3d(-20%, 0, 0);
+	transform: translate3d(-20%, 0, 0);
+}
+
+.mui-navbar {
+	position: fixed;
+	right: 0;
+	left: 0;
+	z-index: 10;
+	height: 44px;
+	background-color: #f7f7f8;
+}
+
+.mui-navbar .mui-bar {
+	position: absolute;
+	background: transparent;
+	text-align: center;
+}
+
+.mui-android .mui-navbar-inner.mui-navbar-left {
+	opacity: 0;
+}
+
+.mui-ios .mui-navbar-left .mui-left,
+.mui-ios .mui-navbar-left .mui-center,
+.mui-ios .mui-navbar-left .mui-right {
+	opacity: 0;
+}
+
+.mui-navbar .mui-btn-nav {
+	-webkit-transition: none;
+	transition: none;
+	-webkit-transition-duration: .0s;
+	transition-duration: .0s;
+}
+
+.mui-navbar .mui-bar .mui-title {
+	display: inline-block;
+	width: auto;
+}
+
+.mui-page-shadow {
+	position: absolute;
+	right: 100%;
+	top: 0;
+	width: 16px;
+	height: 100%;
+	z-index: -1;
+	content: '';
+}
+
+.mui-page-shadow {
+	background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+	background: linear-gradient(to right, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, .01) 50%, rgba(0, 0, 0, .2) 100%);
+}
+
+.mui-navbar-inner.mui-transitioning,
+.mui-navbar-inner .mui-transitioning {
+	-webkit-transition: opacity 300ms ease, -webkit-transform 300ms ease;
+	transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.mui-page {
+	display: none;
+}
+
+.mui-pages .mui-page {
+	display: block;
+}
+
+.mui-page .mui-table-view:first-child {
+	margin-top: 15px;
+}
+
+.mui-page .mui-table-view:last-child {
+	margin-bottom: 30px;
+}
+
+.mui-table-view {
+	margin-top: 20px;
+}
+
+.mui-table-view span.mui-pull-right {
+	color: #999;
+}
+
+.mui-table-view-divider {
+	background-color: #efeff4;
+	font-size: 14px;
+}
+
+.mui-table-view-divider:before,
+.mui-table-view-divider:after {
+	height: 0;
+}
+
+.head {
+	height: 40px;
+}
+
+#head {
+	line-height: 40px;
+}
+
+.head-img {
+	width: 40px;
+	height: 40px;
+}
+
+#head-img1 {
+	position: absolute;
+	bottom: 10px;
+	right: 40px;
+	width: 40px;
+	height: 40px;
+}
+
+.update {
+	font-style: normal;
+	color: #999999;
+	margin-right: -25px;
+	font-size: 15px
+}
+
+.mui-ios .mui-navbar .mui-bar .mui-title {
+	position: static;
 }
 
 
-.myChannelmodule li:first-child,.compileAddChannelArea li:first-child{
-	color:#3385ff;
+/*问题反馈在setting页面单独的css*/
+
+#feedback .mui-popover {
+	position: fixed;
 }
+
+#feedback .mui-table-view:last-child {
+	margin-bottom: 0px;
+}
+
+#feedback .mui-table-view:first-child {
+	margin-top: 0px;
+}
+
+
+/*问题反馈在setting页面单独的css==end*/
