@@ -12,7 +12,9 @@ $(document).ready(function() {
 				newList: data.Data.Data
 			})
 			$(".newList").html(str);
-			$("#sliderSegmentedControl>div a:first-child").addClass("mui-active");
+			$(".newList a:first-child").addClass("mui-active");
+//			var ni=$(".mui-control-item").attr('name');
+			
 			$(".mui-control-item").click(function() {
 				var typeid = $(this).attr('name'); // 获取id
 				console.log(typeid);
@@ -51,7 +53,8 @@ $(document).ready(function() {
 				});
 
 			});
-			var defultId = $("#sliderSegmentedControl>div a:first-child").attr("name");
+			
+			var defultId = $(".newList a:first-child").attr("name");
 			console.log(defultId)
 			$.ajax({
 				url: "http://47.93.192.128:5001/News/NewsList",

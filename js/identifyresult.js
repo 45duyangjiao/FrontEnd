@@ -19,6 +19,7 @@ $(document).ready(function() {
 			idcard:"",
 		},
 		success: function(data) {
+			console.log(data)
 			var data = data.baseInfor;
 			var str = template("identifyResult", data)
 			$(".identifyResult").html(str);
