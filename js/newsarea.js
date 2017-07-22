@@ -10,13 +10,11 @@ $(document).ready(function() {
 			UserId: 10002
 		},
 		success: function(data) {
-			console.log(data);
 			var str = template("myChannel", {myChannel: data.Data.Data})
 			$(".myChannelmodule").html(str);
 			$('.supDelate').bind('click',function(e){
 				$(this).parent().remove();
 				var myChannelId=$(e.target).parent().attr("id");
-					console.log(myChannelId);
 					$.ajax({
 						type:"post",
 						url:"http://47.93.192.128:5001/News/DelMyChannel",
@@ -59,7 +57,6 @@ $(document).ready(function() {
 					dataType: 'json',
 					type: 'post',
 					success: function(data) {
-						console.log(data)
 						var str = template("channel", {channel: data.Data.Data});	
 						$(".dynamicallyAdd").html(str);
 
@@ -88,7 +85,6 @@ $(document).ready(function() {
 						})
 						
 						$(".myChannelmodule .zhu").bind("click",function(e){
-							console.log(11)
 //							e.target.remove()
 //							alert(e.target.id)
 //							if(e.target.id<10)
