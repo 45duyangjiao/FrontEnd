@@ -17,9 +17,38 @@ $(document).ready(function() {
 			var firstDiv = group.children(":first");
 			for(var i = 0, len = dataNav.length; i < len; i++){
 				var id = dataNav[i].Id;
-				
 				if(i == 0){
 					firstDiv.attr("id", id);
+					var newsId=firstDiv.attr("id");
+					$.ajax({
+						url: "http://47.93.192.128:5001/News/NewsList",
+						dataType: 'json',
+						type: 'post',
+						data: {
+							pageindex: "", //number	否	页数，不填默认第一页	1
+							typeid: newsId, //number	否	栏目类型id	1
+							proid: "", //number	否	省id	3
+							cityid: "", //number	否	城市id	5
+							areaid: "" //number	否	区域id
+						},
+						success: function(data) {
+							console.log(data);
+							//这个模板生成的字符串整个放到外面大容器里
+							var htmlStr = template("newsList", {
+								list: data.Data.Data
+							})
+							$("#"+newsId).html(htmlStr);
+							group.children(":first").addClass("mui-active")
+							$(".mediaId").click(function() {
+								let id = $(this).attr('id'); // 获取id
+								console.log(id)
+								window.location.href = "newsContent.html?id=" + id;
+							})
+						},
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+							alert(textStatus);
+						}
+					});
 				}else{
 					firstDiv.clone().attr("id", id).appendTo(group);
 				}
