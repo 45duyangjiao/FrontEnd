@@ -56,6 +56,7 @@ $(document).ready(function() {
 					list: data.Data.Data
 				})
 				$("#"+newsId).html(htmlStr);
+				group.children(":first").addClass("mui-active")
 				$(".mediaId").click(function() {
 					let id = $(this).attr('id'); // 获取id
 					console.log(id)
