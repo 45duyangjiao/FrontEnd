@@ -29,7 +29,7 @@ function searchAttestationResult(){
 	}	
 }
 
-var InquireBtn = document.getElementById("inquireBtn");
+//var InquireBtn = document.getElementById("inquireBtn");
 
 $(".attestationSelectButton").click(function(){
 	searchAttestationResult();
