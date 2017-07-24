@@ -19,5 +19,13 @@ $(document).ready(function() {
 				
 			}
 		});
+		
+		function goIos(){
+			 window.location.href = "segue://id=1019&type=NEWSPIC";
+		}
+		$("#goIos").click(function(){
+			window.location.href = "segue://id=1019&type=NEWSPIC";
+		})
+		
 	});
 				

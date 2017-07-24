@@ -33,18 +33,3 @@ InquireBtn.addEventListener("tap",searchAttestationResult);
 
 
 
-
-//$("#inquireBtn").on("tap",searchAttestationResult);
-
-/*---------------------获取查询帮助的内容--------------------------------*/
-//$.ajax({
-//	url:"",
-//	type:"post",
-//	dataType:"json",
-//	success:function(data){
-//		//console.log(data);
-//		var $P = '';
-//		$(".attestationHelpText").html($P);
-//	}
-//});
-	
