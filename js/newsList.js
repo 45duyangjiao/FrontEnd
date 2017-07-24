@@ -40,9 +40,9 @@ $(document).ready(function() {
 							$("#"+newsId).html(htmlStr);
 							group.children(":first").addClass("mui-active")
 							$(".mediaId").click(function() {
-								let id = $(this).attr('id'); // 获取id
-								console.log(id)
-								window.location.href = "newsContent.html?id=" + id;
+								let id = $(this).attr('id');// 获取id
+								let viewCount=$(this).attr('viewCount');
+								window.location.href = "newsDetailPage.html?id=" + id + "&viewCount=" + viewCount;
 							})
 						},
 						error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -87,9 +87,10 @@ $(document).ready(function() {
 				$("#"+newsId).html(htmlStr);
 				group.children(":first").addClass("mui-active")
 				$(".mediaId").click(function() {
-					let id = $(this).attr('id'); // 获取id
+					let id = $(this).attr('id');// 获取id
+					let viewCount=$(this).attr('viewCount')
 					console.log(id)
-					window.location.href = "newsContent.html?id=" + id;
+					window.location.href = "newsDetailPage.html?id=" + id + "&viewCount=" + viewCount;
 				})
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
