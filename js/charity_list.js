@@ -12,7 +12,10 @@ $(document).ready(function() {
 				$(".mui-table-view-cell").click(function () {
 			        let id=$(this).attr('id');// 获取id
 			        window.location.href = "newsContent.html?id=" + id;
-			    })
+			   });
+			   $("#goIos").click(function(){
+					window.location.href = "segue://id=1019&type=NEWSPIC";
+				})
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(XMLHttpRequest.status);
@@ -20,12 +23,8 @@ $(document).ready(function() {
 			}
 		});
 		
-		function goIos(){
-			 window.location.href = "segue://id=1019&type=NEWSPIC";
-		}
-		$("#goIos").click(function(){
-			window.location.href = "segue://id=1019&type=NEWSPIC";
-		})
+		
+		
 		
 	});
 				
