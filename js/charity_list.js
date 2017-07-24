@@ -13,8 +13,10 @@ $(document).ready(function() {
 			        let id=$(this).attr('id');// 获取id
 			        window.location.href = "newsContent.html?id=" + id;
 			   });
-			   $("#goIos").click(function(){
+			   
+			   $(".goIos").click(function(){
 					window.location.href = "segue://id=1019&type=NEWSPIC";
+					console.log($(this).html())
 				})
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
