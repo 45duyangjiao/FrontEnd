@@ -16,7 +16,6 @@ $(document).ready(function() {
 			   
 			   $(".goIos").click(function(){
 					window.location.href = "segue://id=1019&type=NEWSPIC";
-					console.log($(this).html())
 				})
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {

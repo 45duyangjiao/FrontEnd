@@ -29,7 +29,7 @@ function searchAttestationResult(){
 	}	
 }
 var InquireBtn = document.getElementById("inquireBtn");
-InquireBtn.addEventListener("tap",searchAttestationResult);
+InquireBtn.addEventListener("click",searchAttestationResult);
 
 
 
