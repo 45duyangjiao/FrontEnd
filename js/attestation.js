@@ -1,4 +1,6 @@
-function searchAttestationResult(){
+
+$(document).ready(function(){
+	function searchAttestationResult(){
 	var attestationInputVal =  $("#attestationInput").val().replace(/ /g,"");//获取身份证号或者会员编号
 	localStorage.setItem("memberNo",attestationInputVal);
 	if(attestationInputVal == ""){
@@ -28,11 +30,13 @@ function searchAttestationResult(){
 		});
 	}	
 }
-
-//var InquireBtn = document.getElementById("inquireBtn");
-
+	
 $(".attestationSelectButton").click(function(){
 	searchAttestationResult();
+})
+$(".test").click(function(){
+	alert("nihao")
+})
 })
 
 //InquireBtn.addEventListener("click",searchAttestationResult);
