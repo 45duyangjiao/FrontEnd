@@ -43,6 +43,7 @@ $(document).ready(function() {
 				if($(".supDelate").css("display")=="none"){
 					$(".supDelate").show();
 					$('.floatR').html("完成");
+					
 				}else{
 					$(".supDelate").hide();
 					$('.floatR').html("编辑")
@@ -78,7 +79,7 @@ $(document).ready(function() {
 									channelId:channelId
 								},
 								success:function(data){
-//									alert("添加 成功")
+									alert("添加 成功")
 								}
 								
 							});

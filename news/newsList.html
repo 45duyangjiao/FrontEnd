@@ -32,7 +32,7 @@
 					</div>
 				</div>
 		
-				<div class="navAdd" style="width: 10%;float: right;"><a href="#protocol"></a></div>
+				<div class="navAdd" style="width: 10%;float: right;"><a></a></div>
 				<div style="clear: both;"></div>
 				<div class="mui-slider-group">
 					<div class="mui-slider-item mui-control-content"></div>
@@ -41,7 +41,7 @@
 		</div>
 		
 		<!--新闻频道-->
-		<div class="mui-page" id="protocol">
+		<!--<div class="mui-page" id="protocol">
 			<div class="mui-scroll">
 				<div class="newsAera">
 					<div class="myChannel">
@@ -59,7 +59,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>-->
 			
 		<!--新闻导航模板-->
 		<script type="text/html" id="newsNav">
@@ -70,7 +70,7 @@
 			{{/each}}
 			
 		</script>
-		// 我的频道加进导航栏
+		 <!--我的频道加进导航栏-->
 		<script type="text/html" id="newsNavSub">
 			{{each list v}}
 			<a class="mui-control-item" href="#{{v.typeid}}">
@@ -130,16 +130,16 @@
 		<script src="../js/newsarea.js"></script>
 		
 		<!-- 我的频频道，删除，添加-->
-		<script type="text/html" id="myChannel">
+		<!--<script type="text/html" id="myChannel">
 			{{each myChannel value i}}
 				<li class="floatL channelOriginal zhu" id='{{value.channelid}}'>{{value.title}}
 					<sup class="supDelate">x</sup>
 				</li>
 			{{/each}}
-		</script>
+		</script>-->
 		
 		<!--循环ul模板嵌套并嵌套li循环-->
-		<script type="text/html" id="channel">
+		<!--<script type="text/html" id="channel">
 			{{each channel value i}}
 				<p class="compileAddChannelTile">{{value.Title}}</p>
 				<div class="dynamicallyAdd">
@@ -148,15 +148,15 @@
 					</ul>
 				</div>
 			{{/each}}
-		</script>
+		</script>-->
 		<!--ul中的li循环-->
-		<script type="text/html" id="channelSon">
+		<!--<script type="text/html" id="channelSon">
 			{{each Son value i}}
 				<li class="floatL channelOriginal pu" id='{{value.Id}}'>{{value.Title}}
 					<sup class="supDelate">x</sup>
 				</li>
 			{{/each}}
-		</script>
+		</script>-->
 		<script type="text/javascript">
 			mui.init();
 			//初始化单页view
