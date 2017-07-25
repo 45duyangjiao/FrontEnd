@@ -23,7 +23,7 @@
 		<div class="mui-content">
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<ul class="searchListPage" id="List">
-					<li class="mxhLi">
+					<!--<li class="mxhLi" onclick="texts(1030,11)">
 						<div class="mui-table-Img"><img src="../img/img1.png" /></div>
 						<div class="mui-table-text">
 							<p class="mui-table-Tile">2017年全国大众跆拳道一级以上裁判员年审复训培训班</p>
@@ -46,20 +46,19 @@
 						<div class="muipurelytext ">
 							<p class="muipurelylook clearfix"><span class="lookLeft">2017年5月20日 CCTV5</span><span class="lookRight"><i class="look"></i> 1.5万</span></p>
 						</div>
-					</li>
+					</li>-->
 				</ul>
 			</div>
 		</div>
 
 		<script>
 			
-			var searchtest=window.location.href
-			searchtest=decodeURIComponent(searchtest.substr(searchtest.lastIndexOf("=")).slice(1));
+			var key=window.location.href
+			key=decodeURIComponent(key.substr(key.lastIndexOf("=")).slice(1));
 			
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
-//			var searchtest=testUrl;
-			function texts(id,searchtest) {
-				window.location.href = "searchContent.html?id=" + id+"&searchtest="+searchtest;
+			function texts(id,key) {
+				window.location.href = "searchContent.html?id=" + id+"&key="+key;
 			}
 			
 			//默认加载
@@ -67,7 +66,7 @@
 				type: "post",
 				url: searchUrl,
 				data: {
-					key: searchtest
+					key: 11
 				},
 				datatype: "json",
 				success: function(data) {
@@ -80,7 +79,7 @@
 							li.className = 'mxhLi';
 							
 							if(data.Data.query[i].pic.length > 0) {
-								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+encodeURIComponent(searchtest)+'\')"><div class="muipurelyTitle">' +
+								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+encodeURIComponent(key)+'\')"><div class="muipurelyTitle">' +
 									data.Data.query[i].Title +
 									'</div><div class="muipurelyImg" id="purelyImg"><img src="' +
 									data.Data.query[i].pic + '"><img src="' + data.Data.query[i].pic[1] + '"><img src="' + data.Data.query[i].pic[2] +
@@ -88,7 +87,7 @@
 									data.Data.query[i].createTime +
 									'</span></p></div></div>'
 							} else if(data.Data.query[i].pic.length == 0) {
-								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+encodeURIComponent(searchtest)+'\')"><div class="mui-table-Img"><img src="' +
+								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+encodeURIComponent(key)+'\')"><div class="mui-table-Img"><img src="' +
 									data.Data.query[i].pic +
 									'" /></div><div class="mui-table-text"><p class="mui-table-Tile">' +
 									data.Data.query[i].Title +
@@ -96,7 +95,7 @@
 									data.Data.query[i].createTime +
 									'</span></p></div></div>'
 							} else {
-								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+encodeURIComponent(searchtest)+'\')"><div class="muipurelyTitle">' +
+								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+encodeURIComponent(key)+'\')"><div class="muipurelyTitle">' +
 									data.Data.query[i].Title +
 									'</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
 									data.Data.query[i].createTime +

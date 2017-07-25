@@ -48,17 +48,18 @@
 				return null;
 			}
 			var id = GetQueryString("id");
-			
-			var testUrl=window.location.href
-			testUrl=decodeURIComponent(testUrl.substr(testUrl.lastIndexOf("=")).slice(1))
-
+			var key=GetQueryString("key");
+			console.log(key)
+//			var testUrl=window.location.href
+//			testUrl=decodeURIComponent(testUrl.substr(testUrl.lastIndexOf("=")).slice(1))
+//			console.log(testUrl);
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
 			//默认加载
 			$.ajax({
 				type: "post",
 				url: searchUrl,
 				data: {
-					key: testUrl
+					key: key
 				},
 				datatype: "json",
 				success: function(data) {
