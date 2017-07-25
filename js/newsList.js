@@ -1,4 +1,13 @@
 $(document).ready(function() {
+	function GetQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if(r != null) return unescape(r[2]);
+		return null;
+	}
+
+	var userID = GetQueryString("userID");
+
 	var group = $(".mui-slider-group");
 
 	$.ajax({
@@ -12,14 +21,14 @@ $(document).ready(function() {
 				list: dataNav
 			})
 			$(".newsNav").html(str).children(":first").addClass("mui-active");
-			
+
 			//根据新闻导航渲染对应页签
 			var firstDiv = group.children(":first");
-			for(var i = 0, len = dataNav.length; i < len; i++){
+			for(var i = 0, len = dataNav.length; i < len; i++) {
 				var id = dataNav[i].Id;
-				if(i == 0){
+				if(i == 0) {
 					firstDiv.attr("id", id);
-					var newsId=firstDiv.attr("id");
+					var newsId = firstDiv.attr("id");
 					$.ajax({
 						url: "http://47.93.192.128:5001/News/NewsList",
 						dataType: 'json',
@@ -37,11 +46,11 @@ $(document).ready(function() {
 							var htmlStr = template("newsList", {
 								list: data.Data.Data
 							})
-							$("#"+newsId).html(htmlStr);
+							$("#" + newsId).html(htmlStr);
 							group.children(":first").addClass("mui-active")
 							$(".mediaId").click(function() {
-								let id = $(this).attr('id');// 获取id
-								let viewCount=$(this).attr('viewCount');
+								let id = $(this).attr('id'); // 获取id
+								let viewCount = $(this).attr('viewCount');
 								window.location.href = "newsDetailPage.html?id=" + id + "&viewCount=" + viewCount;
 							})
 						},
@@ -49,7 +58,7 @@ $(document).ready(function() {
 							alert(textStatus);
 						}
 					});
-				}else{
+				} else {
 					firstDiv.clone().attr("id", id).appendTo(group);
 				}
 
@@ -62,10 +71,10 @@ $(document).ready(function() {
 			alert(textStatus);
 		}
 	});
-	
+
 	document.getElementById('slider').addEventListener('slide', function(e) {
 		var slide = group.children().eq(e.detail.slideNumber);
-        var newsId=slide.attr("id");
+		var newsId = slide.attr("id");
 		console.log(newsId)
 		$.ajax({
 			url: "http://47.93.192.128:5001/News/NewsList",
@@ -84,11 +93,11 @@ $(document).ready(function() {
 				var htmlStr = template("newsList", {
 					list: data.Data.Data
 				})
-				$("#"+newsId).html(htmlStr);
+				$("#" + newsId).html(htmlStr);
 				group.children(":first").addClass("mui-active")
 				$(".mediaId").click(function() {
-					let id = $(this).attr('id');// 获取id
-					let viewCount=$(this).attr('viewCount')
+					let id = $(this).attr('id'); // 获取id
+					let viewCount = $(this).attr('viewCount')
 					console.log(id)
 					window.location.href = "newsDetailPage.html?id=" + id + "&viewCount=" + viewCount;
 				})
@@ -99,10 +108,8 @@ $(document).ready(function() {
 		});
 	});
 
-
-	$(".navAdd").click(function(){
-		window.location.href="newsarea.html"
+	$(".navAdd").click(function() {
+		window.location.href = "newsarea.html?userID=" + 10002;
 	})
-
 
 });
