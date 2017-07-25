@@ -40,17 +40,7 @@
 					<div class="allComments">
 						<div class="allCommentsTil">全部评论</div>
 						<ul class="allCommentsUl" id="List">
-							<!--<li>
-								<div class="floatL"><img src="../img/timg6.png" alt="" /></div>
-								<div class="floatR">
-									<p class="MainpName MainActive">
-										<span class="">11111</span>
-										<span class="floatR"><i></i>2</span>
-									</p>
-									<p class="MainpComment">111111111111</p>
-									<p class="MainpTime"><span>2017:0101</span><span> 回复</span></p>
-								</div>
-							</li>-->
+							
 						</ul>
 					</div>
 				</div>
@@ -87,6 +77,7 @@
 				},
 				datatype: "json",
 				success: function(data) {
+					console.log(data);
 					data = eval('(' + data + ')');
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
@@ -114,6 +105,7 @@
 							}
 							
 							li = document.createElement('li');
+							li.id=data.Data.Data[i].id;
 							li.innerHTML = '<div class="floatL"><img src="'+
 							data.Data.Data[i].userImg+
 							'" alt="" /></div><div class="floatR"><p class="MainpName MainActive"><span class="">'+
@@ -124,14 +116,18 @@
 							data.Data.Data[i].content+
 							'</p><p class="MainpTime"><span>'+
 							data.Data.Data[i].commentTime+
-							'</span><span onclick="reply(\''+id+'\',\''+data.Data.Data[i].id+'\')"> 回复</span></p></div>'
+							'</span><span class="commontsReply"> 回复</span></p></div>'
 							fragment.appendChild(li);
 						}
 					}
 					
 					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
-					
-					
+					$(".commontsReply").click(function(){
+						var reply=$(this).parent().parent().parent().attr("id");
+//						console.log("nihao")
+//						reply(id,replyId)
+					});
+					//onclick="reply(\''+id+'\',\''+data.Data.Data[i].id+'\')"
 					
 				},
 				error: function() {

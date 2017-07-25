@@ -27,7 +27,18 @@
 						<div id="con_con" class="newsImgBox"></div>
 					</div>
 					<ul class="newsDetailComments" id="List">
-						
+						<!--<li class="" >
+							<div class="floatL avatar">
+								<img src="../img/timg5.png" alt=""/>
+							</div>
+							<div class="floatR commentsOthers">
+								<p class="clearfix pName">
+									<span class="floatL">幽雅</span><span class="floatR"><i></i>366</span>
+								</p>
+								<p class="pComments">竞技两项内容进行实操考核，避免了传统形式的考</p>
+								<p class="pTime"><span>42分钟前</span><span class="commontsReply">  回复</span></p>
+							</div>
+						</li>-->
 					</ul>
 				</div>				
 			</div>
@@ -92,7 +103,7 @@
 						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
 							li = document.createElement('li');
 							li.className = 'clearfix';
-							li.id=data.Data.Data[i].id;
+							li.setAttribute('onclick','reply(\''+id+'\',\''+data.Data.Data[i].id+'\')')
 							li.innerHTML = '<div class="floatL avatar"><img src="'+
 							data.Data.Data[i].userImg+
 							'" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL">'+
@@ -103,19 +114,11 @@
 							data.Data.Data[i].content+
 							'</p><p class="pTime"><span>'+
 							data.Data.Data[i].commentTime+
-							'</span><span class="commontsReply">回复</span></p></div></a>'
+							'</span><span class="commontsReply">  回复</span></p></div></a>'
 							fragment.appendChild(li);
-
 						}
 					}
-					
-					
-					document.querySelector("#List").appendChild(fragment);//输出到#item1mobile的页面内容
-					$(".commontsReply").click(function(){
-						var replyId=$(this).parent().parent().parent().attr("id");
-						reply(id,replyId)
-					});
-				
+					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
 				},
 				error: function() {
 

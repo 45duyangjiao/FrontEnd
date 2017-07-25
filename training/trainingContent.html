@@ -82,6 +82,7 @@
 				},
 				datatype: "json",
 				success: function(data) {
+					console.log(data)
 					data = eval('(' + data + ')');
 					console.log(data)
 					var con_h2=data.Data.Data.Title;
