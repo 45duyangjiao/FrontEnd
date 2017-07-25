@@ -10,6 +10,7 @@
 		<link href="../css/common.css" rel="stylesheet" />
 		<link href="../css/announceDetail.css" rel="stylesheet" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/newsDetailPage.css"/>
 		<script src="../js/jquery-1.9.1.min.js"></script>
 		<!--<script src="../js/mui.min.js"></script>-->
 		<script src="../js/flexable.js"></script>
@@ -19,6 +20,9 @@
 		<div id="view"></div>
 		<div class="mui-scroll-wrapper" id="protocol">
 			<div class="mui-scroll">
+				<div class="newsCont"></div>
+				<ul class="newsDetailComments List">	
+				</ul>
 			</div>
 		</div>
 
@@ -61,8 +65,54 @@
 					fragment.appendChild(div);
 
 					//					$('.mui-scroll div').remove();
-					document.querySelector(".mui-scroll").appendChild(fragment); //输出到#item1mobile的页面内容
+					document.querySelector(".newsCont").appendChild(fragment); //输出到#item1mobile的页面内容
 
+				},
+				error: function() {
+
+				}
+			});
+			
+			
+			
+			function reply(id,replyId){
+				window.location.href = "../news/reply.html?id=" + id+"&replyId="+replyId;
+			}
+			
+			var CommentUrl = "http://47.93.192.128:5001/News/GetNewsReplyList";
+			//默认加载
+			$.ajax({
+				type: "post",
+				url: CommentUrl,
+				data: {
+					articleId: id
+				},
+				datatype: "json",
+				success: function(data) {
+					data = eval('(' + data + ')');
+					var fragment = document.createDocumentFragment(); //创建一个代码片段
+					var li;
+					console.log(data)
+					if(typeof(data.Data.Data) != "undefined") {
+						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
+							li = document.createElement('li');
+							li.className = 'clearfix';
+							li.setAttribute('onclick','reply(\''+id+'\',\''+data.Data.Data[i].id+'\')')
+							li.innerHTML = '<div class="floatL avatar"><img src="'+
+							data.Data.Data[i].userImg+
+							'" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL">'+
+							data.Data.Data[i].userName+
+							'</span><span class="floatR" ><i></i>'+
+							data.Data.Data[i].likecount+
+							'</span></p><p class="pComments">'+
+							data.Data.Data[i].content+
+							'</p><p class="pTime"><span>'+
+							data.Data.Data[i].commentTime+
+							'</span><span class="commontsReply">  回复</span></p></div></a>'
+							fragment.appendChild(li);
+						}
+					}
+					document.querySelector(".List").appendChild(fragment); //输出到#item1mobile的页面内容
 				},
 				error: function() {
 

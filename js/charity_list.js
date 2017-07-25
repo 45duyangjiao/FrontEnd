@@ -11,7 +11,8 @@ $(document).ready(function() {
 				$(".charityList").html(str);
 				$(".mui-table-view-cell").click(function () {
 			        let id=$(this).attr('id');// 获取id
-			        window.location.href = "newsContent.html?id=" + id;
+			        let viewCount=$(this).attr('viewCount');
+			        window.location.href = "newsContent.html?id=" + id+"&viewCount="+viewCount;
 			   });
 			   
 			   $(".goIos").click(function(){

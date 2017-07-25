@@ -27,7 +27,7 @@
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div style="width:90%;float:left;background:#fff;">
 					<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-						<div class="mui-scroll newsNav">
+						<div class="mui-scroll newsNav newsNavSub">
 						</div>
 					</div>
 				</div>
@@ -66,6 +66,15 @@
 			{{each list v}}
 			<a class="mui-control-item" href="#{{v.Id}}">
 				{{v.Title}}
+			</a>
+			{{/each}}
+			
+		</script>
+		// 我的频道加进导航栏
+		<script type="text/html" id="newsNavSub">
+			{{each list v}}
+			<a class="mui-control-item" href="#{{v.typeid}}">
+				{{v.title}}
 			</a>
 			{{/each}}
 		</script>
