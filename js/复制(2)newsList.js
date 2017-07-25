@@ -23,22 +23,22 @@ $(document).ready(function() {
 			var str = template("newsNav", {
 				list: dataNav
 			})
-			$(".newsNav").html(str).children(":first").addClass("mui-active");
+//			$(".newsNav").html(str).children(":first").addClass("mui-active");
 
 			//根据新闻导航渲染对应页签
 			var firstDiv = group.children(":first");
 			for(var i = 0, len = dataNav.length; i < len; i++) {
-				var id = dataNav[i].typeid;
+				var id = dataNav[i].Id;
 				if(i == 0) {
 					firstDiv.attr("id", id);
-					var typeid = firstDiv.attr("id");
+					var newsId = firstDiv.attr("id");
 					$.ajax({
 						url: "http://47.93.192.128:5001/News/NewsList",
 						dataType: 'json',
 						type: 'post',
 						data: {
 							pageindex: "", //number	否	页数，不填默认第一页	1
-							typeid: typeid, //number	否	栏目类型id	1
+							typeid: newsId, //number	否	栏目类型id	1
 							proid: "", //number	否	省id	3
 							cityid: "", //number	否	城市id	5
 							areaid: "" //number	否	区域id
@@ -49,7 +49,7 @@ $(document).ready(function() {
 							var htmlStr = template("newsList", {
 								list: data.Data.Data
 							})
-							$("#" + typeid).html(htmlStr);
+							$("#" + newsId).html(htmlStr);
 							group.children(":first").addClass("mui-active")
 							$(".mediaId").click(function() {
 								let id = $(this).attr('id'); // 获取id
@@ -58,7 +58,7 @@ $(document).ready(function() {
 							})
 						},
 						error: function(XMLHttpRequest, textStatus, errorThrown) {
-//							alert(textStatus);
+							alert(textStatus);
 						}
 					});
 				} else {
@@ -75,15 +75,15 @@ $(document).ready(function() {
 
 	document.getElementById('slider').addEventListener('slide', function(e) {
 		var slide = group.children().eq(e.detail.slideNumber);
-		var typeid = slide.attr("id");
-		console.log(typeid)
+		var newsId = slide.attr("id");
+		console.log(newsId)
 		$.ajax({
 			url: "http://47.93.192.128:5001/News/NewsList",
 			dataType: 'json',
 			type: 'post',
 			data: {
 				pageindex: "", //number	否	页数，不填默认第一页	1
-				typeid: typeid, //number	否	栏目类型id	1
+				typeid: newsId, //number	否	栏目类型id	1
 				proid: "", //number	否	省id	3
 				cityid: "", //number	否	城市id	5
 				areaid: "" //number	否	区域id
@@ -94,7 +94,7 @@ $(document).ready(function() {
 				var htmlStr = template("newsList", {
 					list: data.Data.Data
 				})
-				$("#" + typeid).html(htmlStr);
+				$("#" + newsId).html(htmlStr);
 				group.children(":first").addClass("mui-active")
 				$(".mediaId").click(function() {
 					let id = $(this).attr('id'); // 获取id
@@ -104,7 +104,7 @@ $(document).ready(function() {
 				})
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-//				alert(textStatus);
+				alert(textStatus);
 			}
 		});
 	});
