@@ -18,7 +18,6 @@ $(document).ready(function() {
 			UserId: userID
 		},
 		success: function(data) {
-			console.log(data.Data.Data)
 			var str = template("myChannel", {
 				myChannel: data.Data.Data
 			})
@@ -32,11 +31,10 @@ $(document).ready(function() {
 					async: true,
 					dataType: 'json',
 					data: {
-						userId: 10002,
+						userId: userID,
 						myChannelId: myChannelId
 					},
 					success: function(data) {
-						//							alert("删除成功")
 
 					}
 
@@ -47,25 +45,10 @@ $(document).ready(function() {
 			alert(XMLHttpRequest.status);
 		}
 	});
-});
 
-// 编辑频道
-$('.floatR').click(function() {
-	if($(".supDelate").css("display") == "none") {
-		$(".supDelate").show();
-		$('.floatR').html("完成");
-
-	} else {
-		$(".supDelate").hide();
-		$('.floatR').html("编辑")
-	}
-
-})
-
-$(document).ready(function() {
-	var url = 'http://47.93.192.128:5001/News/GetMoreNewsType';
+	var urll = 'http://47.93.192.128:5001/News/GetMoreNewsType';
 	$.ajax({
-		url: url,
+		url: urll,
 		dataType: 'json',
 		type: 'post',
 		success: function(data) {
@@ -89,11 +72,11 @@ $(document).ready(function() {
 					async: true,
 					dataType: 'json',
 					data: {
-						userId: 10002,
+						userId: userID,
 						channelId: channelId
 					},
 					success: function(data) {
-						alert("添加 成功")
+
 					}
 
 				});
@@ -116,6 +99,18 @@ $(document).ready(function() {
 
 		}
 	});
-});
 
-　　
+	// 编辑频道
+	$('.floatR').click(function() {
+		if($(".supDelate").css("display") == "none") {
+			$(".supDelate").show();
+			$('.floatR').html("完成");
+
+		} else {
+			$(".supDelate").hide();
+			$('.floatR').html("编辑")
+		}
+
+	})
+
+});
