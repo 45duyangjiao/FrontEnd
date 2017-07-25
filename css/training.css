@@ -97,6 +97,7 @@ img {
   line-height: 30px;
   padding-bottom: 30px;
   margin-top: 0;
+  text-align: center;
 }
 .peixun_info > h2 {
   line-height: 30px;
@@ -130,6 +131,7 @@ img {
 .peixun_new {
   padding-top: 25px;
   margin: 0 0 10px;
+  padding-left: 0;
 }
 .peixun_new > h2 {
   line-height: 30px;
@@ -539,4 +541,18 @@ img {
 }
 .dg_record p {
   font-size: 0.3rem;
+}
+.imgList{
+	width: 90%;
+	overflow: auto;
+	flex-wrap: nowrap;
+	padding: 0;
+	margin: 20px auto;
+}
+.imgList >li{
+	width: 30%;
+	height: 70px;
+	padding: 5px;
+	list-style: none;
+	display: inline-block;
 }
