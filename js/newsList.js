@@ -54,7 +54,8 @@ $(document).ready(function() {
 							$(".mediaId").click(function() {
 								let id = $(this).attr('id'); // 获取id
 								let viewCount = $(this).attr('viewCount');
-								window.location.href = "newsDetailPage.html?id=" + id + "&viewCount=" + viewCount+"&userID="+10005;
+								let commentCount=$(this).attr("commentCount");
+								window.location.href = "newsDetailPage.html?id=" + id + "&viewCount=" + viewCount+"&userID="+10005+"&commentCount="+commentCount;
 							})
 						},
 						error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -98,9 +99,10 @@ $(document).ready(function() {
 				group.children(":first").addClass("mui-active")
 				$(".mediaId").click(function() {
 					let id = $(this).attr('id'); // 获取id
-					let viewCount = $(this).attr('viewCount')
+					let viewCount = $(this).attr('viewCount');
+					let commentCount=$(this).attr("commentCount");
 					console.log(id)
-					window.location.href = "newsDetailPage.html?id=" + id + "&viewCount=" + viewCount;
+					window.location.href = "newsDetailPage.html?id=" + id + "&commentCount="+commentCount;
 				})
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
