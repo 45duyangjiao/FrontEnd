@@ -11,6 +11,7 @@ $(document).ready(function() {
 		},
 		success: function(data) {
 			var data=data.Data.Data[0];
+			console.log("称");
 			console.log(data);
 			var str = template("daoCon", data)
 			$(".daoCon").html(str);

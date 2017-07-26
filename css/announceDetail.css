@@ -1,6 +1,9 @@
 .announceDetailPage{
 	padding:0.46rem 0.3rem 0 0.3rem;
 }
+.announceDetailPageT{
+	    background: #f7f7f7;
+}
 .announceDetailTil{
 	font-size:0.34rem;
 	color:#333;
@@ -28,3 +31,4 @@ img{
 	max-width: 100%;
 	display: block;
 }
+

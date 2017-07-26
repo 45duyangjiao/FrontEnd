@@ -52,7 +52,9 @@
 				<h2 class="mui-h4"><i></i>培训详情</h2>
 				<p class="mui-text-justify">{{content}}</p>
 				<ul class="imgList">
-					<li><img src="{{pic}}"/></li>
+					{{each pics as value}}
+					<li><img src="http://47.93.192.128:5001{{value}}"/></li>
+					{{/each}}
 				</ul>
 			</div>
 			<button class="mui-btn mui-btn-primary mui-btn-block">已举办过的活动</button>

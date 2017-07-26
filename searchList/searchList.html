@@ -55,9 +55,7 @@
 			
 			var key=window.location.href
 			key=decodeURIComponent(key.substr(key.lastIndexOf("=")).slice(1));
-			console.log(11111111)
-			console.log(key)
-			console.log(11111111)
+			
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
 			function texts(id,key) {
 				window.location.href = "searchContent.html?id=" + id+"&key="+key;
@@ -68,14 +66,13 @@
 				type: "post",
 				url: searchUrl,
 				data: {
-					key: "何"
+					key: key
 				},
 				datatype: "json",
 				success: function(data) {
 					
 					
 					data = eval('(' + data + ')');
-					
 					console.log(data)
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;

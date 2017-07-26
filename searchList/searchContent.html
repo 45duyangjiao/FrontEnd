@@ -14,11 +14,7 @@
 		<!--<script src="../js/mui.min.js"></script>-->
 		<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="../js/flexable.js"></script>
-		<style>
-			.mui-fullscreen{
-				position: relative;
-			}
-		</style>
+		
 	</head>
 
 	<body>
@@ -50,17 +46,22 @@
 			var id = GetQueryString("id");
 			var key=GetQueryString("key");
 			console.log(key)
-//			var testUrl=window.location.href
+			var testUrl = location.search;
+			    testUrl = testUrl.slice(1,testUrl.length).split('&')[0];
+			    testUrlLength = testUrl.length;
+			    keyId = testUrl.slice(3,testUrlLength);
+			    
+			   
 //			testUrl=decodeURIComponent(testUrl.substr(testUrl.lastIndexOf("=")).slice(1))
-//			console.log(testUrl);
-			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
+			console.log(keyId);
+			var searchUrl = "http://47.93.192.128:5001/Search/SearchArticleDetail";
 			//默认加载
 			
 			$.ajax({
 				type: "post",
 				url: searchUrl,
 				data: {
-					key: key
+					id: keyId
 				},
 				datatype: "json",
 				success: function(data) {
@@ -68,55 +69,41 @@
 					data = eval('(' + data + ')');
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var div = document.createElement('div');
-					div.className = 'announceDetailPage';
-					console.log(data)
-					console.log(data.Data.query)
+					div.className = 'announceDetailPageT';
 					
-					if(data.Data.query != undefined) {
-//						alert(1)
-						for(var i = 0; i < data.Data.query.length; i++) {
-							if(data.Data.query[i].Id == id) {
-								div.innerHTML = '<div class="announceDetailTil">' +
-									data.Data.query[i].Title +
-									'</div><div class="announceDetailTime clearfix"><span class="floatL Ltime">' +
-									data.Data.query[i].createTime +
-									'</span><span class="floatR Rfrom">' +
-									data.Data.query[i].source +
-									'</span></div><div class="announceDetailMainbody">' +
-									data.Data.query[i].content +
-									'</div>'
+					if(data.Data.Msg == "查询成功") {
+						var searchD = data.Data.Data;
+						console.log(searchD)
+						div.innerHTML = '<div><div style="background: #f9f9f9;position: relative;"><div style="position: absolute;top: 10px; background: #fff; border-radius: 5px;left: 10%; width: 80%;"><div style="width:15%;float:left"><img style="margin-top:10px" src="'+searchD.thumbImg+'"></div><div style="width:85%;padding: 15px 0px 30px 5px;"><div>'+searchD.tilte+'</div><div style="font-size:14px;color:#989696">'+searchD.content+'</div></div></div><div style="clear:both"></div><div style="height:40px;background:#e4e4e4"></div><div style="color:#000;padding-top: 70px;background: #fbfbfb;padding-left: 10%;">嘉宾介绍:</div><div style="color:#989696;font-size:14px;padding-left:20px;padding: 5px 30px 10px 15%;    background: #fbfbfb;">'+searchD.content+'</div></div><div style="border-left:5px solid #2985d0;padding: 5px;">所获荣誉</div><div style="border-bottom: 1px solid #efefef;padding: 12px;font-size: 14px;color: #989696;background: #fff;"><span>'+searchD.honor[0].year+'</span><span style="margin: 0px 10px;">'+searchD.honor[0].name+'</span><span>'+searchD.honor[0].honorType+'</span></div></div>'
 								fragment.appendChild(div);
-							}
-						}
+
+
 					}else{
-//						if(data.Data.query[0].Id == id) {
-//								div.innerHTML = '<div class="announceDetailTil">' +
-//									data.Data.query[0].Title +
-//									'</div><div class="announceDetailTime clearfix"><span class="floatL Ltime">' +
-//									data.Data.query[0].createTime +
-//									'</span><span class="floatR Rfrom">' +
-//									data.Data.query[0].source +
-//									'</span></div><div class="announceDetailMainbody">' +
-//									data.Data.query[0].content +
-//									'</div>'
-//								fragment.appendChild(div);
-//							}
-//                   if(data.Data.query[0].Id == id) {
+
 								div.innerHTML = '<div class="announceDetailTil">未搜索到相关内容</div>'
 								fragment.appendChild(div);
-//							}
 					}
 
-					//$('.mui-scroll div').remove();
 					document.querySelector(".mui-scroll").appendChild(fragment); //输出到#item1mobile的页面内容
 
 				},
-				error: function() {
-
+				error: function(e) {
+                    console.log(e)
 				}
 			});
 		</script>
-
+        <style>
+			.mui-fullscreen{
+				position: relative;
+			}
+			.announceDetailTil{
+				width: 20%;
+				float: left;
+			}
+			.searchDetailTilL{
+				width: 80%;
+			}
+		</style>
 	</body>
 
 </html>
