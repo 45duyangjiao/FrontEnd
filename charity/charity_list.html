@@ -46,7 +46,7 @@
 			<div class="charity_list">
 				<ul class="mui-table-view">
 					{{each newslist as value i}}
-					 <li class="mui-table-view-cell" id="{{value.newsid}}" viewCount="{{value.newsid}}">
+					 <li class="mui-table-view-cell" id="{{value.newsid}}" viewCount="{{value.commentCount}}">
 					 	<a><p>{{value.newstitle}}</p><span>{{value.createtime}}</span></a>
 					 </li>
 					 {{/each}}

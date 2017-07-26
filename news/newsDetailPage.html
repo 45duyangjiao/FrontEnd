@@ -43,7 +43,7 @@
 			}
 			var id = GetQueryString("id");
 			var userID=GetQueryString("userID");
-//			var viewCount = GetQueryString("viewCount");
+			var viewCount = GetQueryString("viewCount");
 
 			var DetailUrl = "http://47.93.192.128:5001/News/NewsInfo";
 			//默认加载
@@ -72,7 +72,7 @@
 			});
 			
 			function reply(id,replyId,name,userID){
-				window.location.href = "reply.html?id=" + id+"&replyId="+replyId+"&name="+name+"&userID="+userID;
+				window.location.href = "reply.html?id=" + id+"&replyId="+replyId+"&name="+name+"&userID="+userID+"&userID="+10005;
 			}
 			
 			var CommentUrl = "http://47.93.192.128:5001/News/GetNewsReplyList";
@@ -93,8 +93,7 @@
 						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
 							li = document.createElement('li');
 							li.className = 'clearfix';
-							li.id=data.Data.Data[i].id;
-						
+							li.id=data.Data.Data[i].id;		
 							li.innerHTML = '<div class="floatL avatar"><img src="'+
 							data.Data.Data[i].userImg+
 							'" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL">'+

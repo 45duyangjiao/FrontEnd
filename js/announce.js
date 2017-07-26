@@ -1,5 +1,14 @@
-function texts(id) {
-	window.location.href = "announceContent.html?id=" + id;
+function GetQueryString(name) {
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+	var r = window.location.search.substr(1).match(reg);
+	if(r != null) return unescape(r[2]);
+	return null;
+}
+var id = GetQueryString("id");
+var userID=GetQueryString("userID");
+
+function texts(id,viewCount,userID) {
+	window.location.href = "announceContent.html?id=" + id+"&viewCount="+viewCount+"&userID="+userID;
 }
 
 var NavUrl = "http://47.93.192.128:5001/Notice/NoticeNavBar";
@@ -24,10 +33,13 @@ function innerList(typeid) {
 			if(typeof(data.Data.Data) != "undefined") {
 				for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
 					li = document.createElement('li');
+					li.id=data.Data.Data[i].Id;
+					var commentCount=data.Data.Data[i].commentCount;
+					li.setAttribute("commentCount",commentCount);
 					li.className = 'mui-table-view-cell announceLi';
 					li.innerHTML = '<div class="floatL announceNewsImg"><img src="' +
 						data.Data.Data[i].pic +
-						'"/></div><div class="announceNews clearfix floatR"><div onclick="texts(' + data.Data.Data[i].Id + ')" class="announceNewsTil">' +
+						'"/></div><div class="announceNews clearfix floatR"><div class="announceNewsTil">' +
 						data.Data.Data[i].Title +
 						'</div><div class="announceNewsTime floatR">' +
 						data.Data.Data[i].CreatedTime +
@@ -36,13 +48,17 @@ function innerList(typeid) {
 				}
 
 			}
-
+			
 			$('#List li').remove();
 			document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
-
+			$(".announceLi").click(function(){
+				var id=$(this).attr("id");
+				var viewCount=$(this).attr("commentCount");
+				console.log(viewCount);
+				texts(id,viewCount,userID)
+			})
 		},
 		error: function() {
-
 		}
 	});
 }

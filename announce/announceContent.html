@@ -10,8 +10,9 @@
 		<link href="../css/common.css" rel="stylesheet" />
 		<link href="../css/announceDetail.css" rel="stylesheet" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/newsDetailPage.css" rel="stylesheet" />
 		<script src="../js/jquery-1.9.1.min.js"></script>
-		<!--<script src="../js/mui.min.js"></script>-->
+		<script src="../js/mui.min.js"></script>
 		<script src="../js/flexable.js"></script>
 		<script src="../js/announceContent.js"></script>
 		<script type="text/javascript" src="../js/artTemplate.js" ></script>
@@ -19,7 +20,9 @@
 
 
 	<body>
-		<div class="announceDetail"></div>
+
+			<div class="announceDetail"></div>
+			
 		
 	<script type="text/html" id="announceDetail">
 		<div class="mui-scroll-wrapper" id="protocol">
@@ -34,6 +37,7 @@
 					</div>
 					<div class="announceDetailMainbody">
 					</div>
+					<ul class="newsDetailComments" id="List"></ul>
 				</div>
 			</div>
 		</div>
@@ -41,8 +45,7 @@
 	<script type="text/html" id="contnent">
 		{{content}}
 	</script>
-
-
+	
 	</body>
 
 </html>
