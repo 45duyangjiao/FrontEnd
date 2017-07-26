@@ -38,6 +38,7 @@
 		
 		<script src="../js/artTemplate.js"></script>
 		<script type="text/html" id="reply">
+			
 			<div class="floatL" id="con_img"><img src="{{userImg}}" alt="" /></div>
 			<div class="floatR" style="width: 86%;">
 				<p id="con_tilte" class="MainpName MainActive">{{userName}}</p>
@@ -45,8 +46,14 @@
 				<p id="con_pub" class="MainpTime">{{commentTime}}评论</p>
 				<div class="MainpZan clearfix">
 					<div class="floatL">
-						<span id="con_imgs"></span>
-						<span onclick="replylist(replyId)"><span id="con_num"></span>个人赞过></span>
+							<div id="con_imgs">
+							{{each likeUserList as v i}}
+								<span class="con_imgs_div"><img src="../img/Charity_img1.jpg{{v.likeUserImg}}"/></span>
+								
+							{{/each}}
+							</div>
+						
+						<span onclick="replylist(replyId)"><span id="con_num">{{likecount}}</span>个人赞过></span>
 					</div>
 					<div class="floatR"><i></i><span id="con_source">{{likecount}}</span></div>
 				</div>
@@ -64,6 +71,7 @@
 			}
 			var id = GetQueryString("id");
 			var replyId = GetQueryString("replyId");
+			console.log(replyId);
 			var name = GetQueryString("name");
 			
 			function reply(id,replyId){
@@ -95,17 +103,17 @@
 				}
 			});
 
-			var DetailUrl = "http://47.93.192.128:5001/News/GetNewsReplyList";
+			var DetailUrl = "http://47.93.192.128:5001/News/ReplyDetail";
 			//默认加载
 			$.ajax({
 				type: "post",
 				url: DetailUrl,
 				data: {
-					articleId: 1001
+					commentId: replyId
 				},
 				datatype: "json",
 				success: function(data) {
-					
+					console.log(data);
 					data = eval('(' + data + ')');
 					console.log(data);
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
@@ -113,13 +121,13 @@
 					if(typeof(data.Data.Data) != "undefined") {
 						for(var i = 0; i < data.Data.Data.length; i++) {
 							if(data.Data.Data[i].id==replyId){
-								var con_tilte = data.Data.Data[i].userName;
+								var con_tilte = data.Data.Data[i].nickname;
 								var con_con = data.Data.Data[i].content;
 								$("#con_tilte").html(con_tilte)
 								$("#con_con").html(con_con)
-								var con_pub = data.Data.Data[i].commentTime;
-								var con_source = data.Data.Data[i].likecount;
-								var con_img=data.Data.Data[i].userImg;
+								var con_pub = data.Data.Data[i].date;
+								var con_source = data.Data.Data[i].likeCount;
+								var con_img=data.Data.Data[i].pic;
 								$("#con_pub").html(con_pub)
 								$("#con_source").html(con_source)
 								var con_num = data.Data.Data[i].likeUserList.length
@@ -136,15 +144,15 @@
 							li = document.createElement('li');
 							li.id=data.Data.Data[i].id;
 							li.innerHTML = '<div class="floatL"><img src="'+
-							data.Data.Data[i].userImg+
+							data.Data.Data[i].pic+
 							'" alt="" /></div><div class="floatR"><p class="MainpName MainActive"><span class="">'+
-							data.Data.Data[i].userName+
+							data.Data.Data[i].nickname+
 							'</span><span class="floatR"><i></i>'+
-							data.Data.Data[i].likecount+
+							data.Data.Data[i].likeCount+
 							'</span></p><p class="MainpComment">'+
 							data.Data.Data[i].content+
 							'</p><p class="MainpTime"><span>'+
-							data.Data.Data[i].commentTime+
+							data.Data.Data[i].date+
 							'</span><span class="commontsReply"> 回复</span></p></div>'
 							fragment.appendChild(li);
 						}
@@ -153,8 +161,7 @@
 					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
 					$(".commontsReply").click(function(){
 						var reply=$(this).parent().parent().parent().attr("id");
-//						console.log("nihao")
-//						reply(id,replyId)
+
 					});
 					//onclick="reply(\''+id+'\',\''+data.Data.Data[i].id+'\')"
 					
