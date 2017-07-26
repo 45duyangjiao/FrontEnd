@@ -55,6 +55,7 @@
 //			console.log(testUrl);
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
 			//默认加载
+			
 			$.ajax({
 				type: "post",
 				url: searchUrl,
@@ -63,12 +64,15 @@
 				},
 				datatype: "json",
 				success: function(data) {
-					console.log(data)
+					
 					data = eval('(' + data + ')');
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var div = document.createElement('div');
 					div.className = 'announceDetailPage';
-					if(data.Data.query.length != undefined) {
+					console.log(data)
+					console.log(data.Data.query)
+					
+					if(data.Data.query != undefined) {
 //						alert(1)
 						for(var i = 0; i < data.Data.query.length; i++) {
 							if(data.Data.query[i].Id == id) {
@@ -85,18 +89,22 @@
 							}
 						}
 					}else{
-						if(data.Data.query[0].Id == id) {
-								div.innerHTML = '<div class="announceDetailTil">' +
-									data.Data.query[0].Title +
-									'</div><div class="announceDetailTime clearfix"><span class="floatL Ltime">' +
-									data.Data.query[0].createTime +
-									'</span><span class="floatR Rfrom">' +
-									data.Data.query[0].source +
-									'</span></div><div class="announceDetailMainbody">' +
-									data.Data.query[0].content +
-									'</div>'
+//						if(data.Data.query[0].Id == id) {
+//								div.innerHTML = '<div class="announceDetailTil">' +
+//									data.Data.query[0].Title +
+//									'</div><div class="announceDetailTime clearfix"><span class="floatL Ltime">' +
+//									data.Data.query[0].createTime +
+//									'</span><span class="floatR Rfrom">' +
+//									data.Data.query[0].source +
+//									'</span></div><div class="announceDetailMainbody">' +
+//									data.Data.query[0].content +
+//									'</div>'
+//								fragment.appendChild(div);
+//							}
+//                   if(data.Data.query[0].Id == id) {
+								div.innerHTML = '<div class="announceDetailTil">未搜索到相关内容</div>'
 								fragment.appendChild(div);
-							}
+//							}
 					}
 
 					//$('.mui-scroll div').remove();
