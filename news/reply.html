@@ -22,23 +22,23 @@
 			<div class="mui-scroll">
 				<div class="replyPage">
 					<div class="commentsMain">
-						
+
 					</div>
 					<div id="view"></div>
 					<div class="allComments">
 						<div class="allCommentsTil">全部评论</div>
 						<ul class="allCommentsUl" id="List">
-							
+
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 		</div>
-		
+
 		<script src="../js/artTemplate.js"></script>
 		<script type="text/html" id="reply">
-			
+
 			<div class="floatL" id="con_img"><img src="{{userImg}}" alt="" /></div>
 			<div class="floatR" style="width: 86%;">
 				<p id="con_tilte" class="MainpName MainActive">{{userName}}</p>
@@ -46,22 +46,19 @@
 				<p id="con_pub" class="MainpTime">{{commentTime}}评论</p>
 				<div class="MainpZan clearfix">
 					<div class="floatL">
-							<div id="con_imgs">
+						<div id="con_imgs">
 							{{each likeUserList as v i}}
-								<span class="con_imgs_div"><img src="../img/Charity_img1.jpg{{v.likeUserImg}}"/></span>
-								
-							{{/each}}
-							</div>
-						
-						<span onclick="replylist(replyId)"><span id="con_num">{{likecount}}</span>个人赞过></span>
+							<span class="con_imgs_div"><img src="../img/Charity_img1.jpg{{v.likeUserImg}}"/></span> {{/each}}
+						</div>
+
+						<span class="replyLike" likecount='{{likecount}}'><span id="con_num">{{likecount}}</span>个人赞过></span>
 					</div>
 					<div class="floatR"><i></i><span id="con_source">{{likecount}}</span></div>
 				</div>
 			</div>
 
 		</script>
-		
-		
+
 		<script>
 			function GetQueryString(name) {
 				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -73,16 +70,16 @@
 			var replyId = GetQueryString("replyId");
 			console.log(replyId);
 			var name = GetQueryString("name");
-			var userID=GetQueryString("userID");
-			
-			function reply(id,replyId,name,userID,commentId){
-				window.location.href = "reply.html?id=" + id+"&replyId="+replyId+"&name="+name+"&userID="+userID+"&userID="+10005+"&commentId="+commentId;
+			var userID = GetQueryString("userID");
+
+			function reply(id, replyId, name, userID, commentId, commentName) {
+				window.location.href = "reply.html?id=" + id + "&replyId=" + replyId + "&name=" + name + "&userID=" + userID + "&userID=" + 10005 + "&commentId=" + commentId + "&commentName=" + commentName;
 			}
-			
-			function replylist(replyId){
-				window.location.href = "newsZan.html?replyId="+replyId;
+
+			function replylist(replyId,likecount) {
+				window.location.href = "newsZan.html?replyId=" + replyId+'&likecount='+likecount;
 			}
-			
+
 			var CommentUrl = "http://47.93.192.128:5001/News/GetNewsReplyList";
 			//默认加载
 			$.ajax({
@@ -95,9 +92,13 @@
 				success: function(data) {
 					data = eval('(' + data + ')');
 					console.log(data);
-					var data=data.Data.Data[name];
-					var str=template("reply",data);
+					var data = data.Data.Data[name];
+					var str = template("reply", data);
 					$(".commentsMain").html(str);
+					$(".replyLike").click(function(){
+						var likecount=$(this).attr("likecount")
+						replylist(replyId,likecount);
+					})
 				},
 				error: function() {
 
@@ -121,60 +122,58 @@
 					var li;
 					if(typeof(data.Data.Data) != "undefined") {
 						for(var i = 0; i < data.Data.Data.length; i++) {
-							if(data.Data.Data[i].id==replyId){
+							if(data.Data.Data[i].id == replyId) {
 								var con_tilte = data.Data.Data[i].nickname;
 								var con_con = data.Data.Data[i].content;
 								$("#con_tilte").html(con_tilte)
 								$("#con_con").html(con_con)
 								var con_pub = data.Data.Data[i].date;
 								var con_source = data.Data.Data[i].likeCount;
-								var con_img=data.Data.Data[i].pic;
+								var con_img = data.Data.Data[i].pic;
 								$("#con_pub").html(con_pub)
 								$("#con_source").html(con_source)
 								var con_num = data.Data.Data[i].likeUserList.length
 								$("#con_num").html(con_num)
 								var img = document.createElement('img');
-								img.setAttribute('src',con_img)
+								img.setAttribute('src', con_img)
 								document.querySelector("#con_img").appendChild(img)
-								
-								for(var r=0;r<data.Data.Data[i].likeUserList.length;r++){
-									document.querySelector("#con_imgs").innerHTML+='<img src="'+data.Data.Data[i].likeUserList[r].likeUserImg+'">'
+
+								for(var r = 0; r < data.Data.Data[i].likeUserList.length; r++) {
+									document.querySelector("#con_imgs").innerHTML += '<img src="' + data.Data.Data[i].likeUserList[r].likeUserImg + '">'
 								}
 							}
-							
+
 							li = document.createElement('li');
-							li.id=data.Data.Data[i].id;
-							li.innerHTML = '<div class="floatL"><img src="'+
-							data.Data.Data[i].pic+
-							'" alt="" /></div><div class="floatR"><p class="MainpName MainActive"><span class="">'+
-							data.Data.Data[i].nickname+
-							'</span><span class="floatR"><i></i>'+
-							data.Data.Data[i].likeCount+
-							'</span></p><p class="MainpComment">'+
-							data.Data.Data[i].content+
-							'</p><p class="MainpTime"><span>'+
-							data.Data.Data[i].date+
-							'</span><span class="commontsReply"> 回复</span></p></div>'
+							li.id = data.Data.Data[i].id;
+							li.innerHTML = '<div class="floatL"><img src="' +
+								data.Data.Data[i].pic +
+								'" alt="" /></div><div class="floatR"><p class="MainpName MainActive"><span class="commentName">' +
+								data.Data.Data[i].nickname +
+								'</span><span class="floatR"><i></i>' +
+								data.Data.Data[i].likeCount +
+								'</span></p><p class="MainpComment">' +
+								data.Data.Data[i].content +
+								'</p><p class="MainpTime"><span>' +
+								data.Data.Data[i].date +
+								'</span><span class="commontsReply"> 回复</span></p></div>'
 							fragment.appendChild(li);
 						}
 					}
-					
-					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
-					$(".commontsReply").click(function(){
-						var commentId=$(this).parent().parent().parent().attr("id");
-						reply(id,replyId,name,userID,commentId)
+
+					document.querySelector("#List").appendChild(fragment);
+					//输出到#item1mobile的页面内容
+					$(".commontsReply").click(function() {
+						var commentId = $(this).parent().parent().parent().attr("id");
+						var commentName = $(this).parent().parent().children(":first").children(":first").text();
+						console.log(commentName);
+						reply(id, replyId, name, userID, commentId, commentName)
 					});
-					
-					
+
 				},
 				error: function() {
 
 				}
 			});
-
-			
-
-			
 		</script>
 	</body>
 
