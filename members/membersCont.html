@@ -52,7 +52,18 @@
 				<h2 class="mui-h4"><i></i>培训详情</h2>
 				<p class="mui-text-justify">{{content}}</p>
 				<ul class="imgList">
+					
+					{{each pic}}
+					
+					{{if pic.length==0}}
+						<li style="display: none;"><img src="{{pic}}"/></li>
+					{{/if}}
+					
 					<li><img src="{{pic}}"/></li>
+					{{/each}}
+					<li><img src="../img/Charity_img1.jpg"/></li>
+					<li><img src="../img/Charity_img1.jpg"/></li>
+					<li><img src="../img/Charity_img1.jpg"/></li>
 				</ul>
 			</div>
 			<button class="mui-btn mui-btn-primary mui-btn-block">已举办过的活动</button>
