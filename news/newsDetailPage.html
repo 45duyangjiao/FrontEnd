@@ -70,8 +70,8 @@
 				}
 			});
 			
-			function reply(id,replyId){
-				window.location.href = "reply.html?id=" + id+"&replyId="+replyId;
+			function reply(id,replyId,name){
+				window.location.href = "reply.html?id=" + id+"&replyId="+replyId+"&name="+name;
 			}
 			
 			var CommentUrl = "http://47.93.192.128:5001/News/GetNewsReplyList";
@@ -93,6 +93,7 @@
 							li = document.createElement('li');
 							li.className = 'clearfix';
 							li.id=data.Data.Data[i].id;
+						
 							li.innerHTML = '<div class="floatL avatar"><img src="'+
 							data.Data.Data[i].userImg+
 							'" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL">'+
@@ -103,7 +104,7 @@
 							data.Data.Data[i].content+
 							'</p><p class="pTime"><span>'+
 							data.Data.Data[i].commentTime+
-							'</span><span class="commontsReply">回复</span></p></div></a>'
+							'</span><span class="commontsReply" name='+i+'>回复</span></p></div></a>'
 							fragment.appendChild(li);
 
 						}
@@ -113,7 +114,8 @@
 					document.querySelector("#List").appendChild(fragment);//输出到#item1mobile的页面内容
 					$(".commontsReply").click(function(){
 						var replyId=$(this).parent().parent().parent().attr("id");
-						reply(id,replyId)
+						var name=$(this).attr("name");
+						reply(id,replyId,name)
 					});
 				
 				},

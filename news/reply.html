@@ -22,19 +22,7 @@
 			<div class="mui-scroll">
 				<div class="replyPage">
 					<div class="commentsMain">
-						<div class="floatL" id="con_img"></div>
-						<div class="floatR" style="width: 86%;">
-							<p id="con_tilte" class="MainpName MainActive"></p>
-							<p id="con_con" class="MainpComment"> </p>
-							<p id="con_pub" class="MainpTime"> </p>
-							<div class="MainpZan clearfix">
-								<div class="floatL">
-									<span id="con_imgs"></span>
-									<span onclick="replylist(replyId)"><span id="con_num"></span>个人赞过></span>
-								</div>
-								<div class="floatR"><i></i><span id="con_source"></span></div>
-							</div>
-						</div>
+						
 					</div>
 					<div id="view"></div>
 					<div class="allComments">
@@ -47,7 +35,26 @@
 			</div>
 		</div>
 		</div>
+		
+		<script src="../js/artTemplate.js"></script>
+		<script type="text/html" id="reply">
+			<div class="floatL" id="con_img"><img src="{{userImg}}" alt="" /></div>
+			<div class="floatR" style="width: 86%;">
+				<p id="con_tilte" class="MainpName MainActive">{{userName}}</p>
+				<p id="con_con" class="MainpComment">{{content}}</p>
+				<p id="con_pub" class="MainpTime">{{commentTime}}评论</p>
+				<div class="MainpZan clearfix">
+					<div class="floatL">
+						<span id="con_imgs"></span>
+						<span onclick="replylist(replyId)"><span id="con_num"></span>个人赞过></span>
+					</div>
+					<div class="floatR"><i></i><span id="con_source">{{likecount}}</span></div>
+				</div>
+			</div>
 
+		</script>
+		
+		
 		<script>
 			function GetQueryString(name) {
 				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -57,6 +64,7 @@
 			}
 			var id = GetQueryString("id");
 			var replyId = GetQueryString("replyId");
+			var name = GetQueryString("name");
 			
 			function reply(id,replyId){
 				window.location.href = "reply.html?id=" + id+"&replyId="+replyId;
@@ -65,7 +73,27 @@
 			function replylist(replyId){
 				window.location.href = "newsZan.html?replyId="+replyId;
 			}
+			
+			var CommentUrl = "http://47.93.192.128:5001/News/GetNewsReplyList";
+			//默认加载
+			$.ajax({
+				type: "post",
+				url: CommentUrl,
+				data: {
+					articleId: id
+				},
+				datatype: "json",
+				success: function(data) {
+					data = eval('(' + data + ')');
+					console.log(data);
+					var data=data.Data.Data[name];
+					var str=template("reply",data);
+					$(".commentsMain").html(str);
+				},
+				error: function() {
 
+				}
+			});
 
 			var DetailUrl = "http://47.93.192.128:5001/News/GetNewsReplyList";
 			//默认加载
@@ -77,8 +105,9 @@
 				},
 				datatype: "json",
 				success: function(data) {
-					console.log(data);
+					
 					data = eval('(' + data + ')');
+					console.log(data);
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
 					if(typeof(data.Data.Data) != "undefined") {
