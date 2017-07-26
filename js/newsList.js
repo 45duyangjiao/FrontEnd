@@ -54,7 +54,7 @@ $(document).ready(function() {
 							$(".mediaId").click(function() {
 								let id = $(this).attr('id'); // 获取id
 								let viewCount = $(this).attr('viewCount');
-								window.location.href = "newsDetailPage.html?id=" + id + "&viewCount=" + viewCount;
+								window.location.href = "newsDetailPage.html?id=" + id + "&viewCount=" + viewCount+"&userID="+10005;
 							})
 						},
 						error: function(XMLHttpRequest, textStatus, errorThrown) {

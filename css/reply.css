@@ -122,3 +122,21 @@
 	height:0.26rem;
 	margin-right:0.15rem;
 }
+
+
+
+#con_imgs{
+	width: 75px;
+    height: 0.42rem;
+    overflow: hidden;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    display: inline-block;
+}
+.con_imgs_div{
+	width:0.42rem;
+	height:0.42rem;
+	border-radius: 100%;
+	display: inline-block;
+	overflow: hidden;
+}
