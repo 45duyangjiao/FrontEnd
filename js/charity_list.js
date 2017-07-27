@@ -1,5 +1,6 @@
 // 公益接口
 $(document).ready(function() {
+       
 		function GetQueryString(name) {
 				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
 				var r = window.location.search.substr(1).match(reg);
