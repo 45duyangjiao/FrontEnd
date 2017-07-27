@@ -15,8 +15,33 @@ $(document).ready(function() {
 			dataType: 'json',
 			type: 'post',
 			success: function(data) {
-				console.log(data);
+				console.log(data)
+				var imgList = data.Data.Data.imgnewslist
 				var str = template("charityList", {activition: data.Data})
+                var fragment = document.createDocumentFragment(); //创建一个代码片段
+				var a;
+                for(i=0;i<imgList.length;i++){
+                	a = document.createElement('a');
+//					li.className = 'mxhLi';
+                	a.innerHTML  = '<img src='+imgList[i].img+'>'
+                	 
+                	fragment.appendChild(a);
+                }
+				document.querySelector("#imgList").appendChild(fragment);
+				var disP = false;
+				mui('#imgList').on('tap','a',function(){
+					if(!disP){
+						$(this).find('img').addClass('changeBig');
+                        document.getElementById('bgBlack').style.display = 'block';
+                        disP = true;
+                        
+					}else{
+						$(this).find('img').removeClass('changeBig');
+                        document.getElementById('bgBlack').style.display = 'none';
+                        disP = false;
+					}
+					
+				});
 				$(".charityList").html(str);
 				$(".mui-table-view-cell").click(function () {
 			        let id=$(this).attr('id');// 获取id
