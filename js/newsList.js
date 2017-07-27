@@ -48,7 +48,13 @@ $(document).ready(function() {
 							//这个模板生成的字符串整个放到外面大容器里
 							var htmlStr = template("newsList", {
 								list: data.Data.Data
-							})
+							});
+							console.log(typeid);
+							
+							if(typeid==5){
+								console.log($("#BaiduMap"))
+								$("#BaiduMap").addClass("BaiduMapActive");
+							}
 							$("#" + typeid).html(htmlStr);
 							group.children(":first").addClass("mui-active")
 							$(".mediaId").click(function() {
@@ -56,7 +62,8 @@ $(document).ready(function() {
 								let viewCount = $(this).attr('viewCount');
 								let commentCount=$(this).attr("commentCount");
 								window.location.href = "newsDetailPage.html?id=" + id + "&viewCount=" + viewCount+"&userID="+10005+"&commentCount="+commentCount;
-							})
+							});
+							
 						},
 						error: function(XMLHttpRequest, textStatus, errorThrown) {
 //							alert(textStatus);
@@ -92,9 +99,12 @@ $(document).ready(function() {
 			success: function(data) {
 				console.log(data);
 				//这个模板生成的字符串整个放到外面大容器里
+				data.Data.typeid = typeid
+				console.log(data.Data)
 				var htmlStr = template("newsList", {
-					list: data.Data.Data
+					list: data.Data
 				})
+				console.log(typeid);
 				$("#" + typeid).html(htmlStr);
 				group.children(":first").addClass("mui-active")
 				$(".mediaId").click(function() {

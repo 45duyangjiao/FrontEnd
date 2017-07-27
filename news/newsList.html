@@ -55,8 +55,11 @@
 		<script type="text/html" id="newsList">
 			<div class="mui-scroll-wrapper">
 				<div class="mui-scroll">
+					{{if list.typeid == '5'}}
+					<div id="BaiduMap" class="BaiduMap"><span class="areamap">点击选择城市 <i></i></span></div>
+					{{/if}}	
 					<ul class="mui-table-view">
-						{{each list v i}}
+						{{each list.Data v i}}
 						<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" viewCount="{{v.viewCount}}" commentCount={{v.commentCount}}>
 							{{if v.pics.length == 0}}
 							<div class="mui-table-img" style="display: none;"></div>

@@ -202,6 +202,13 @@ html,body{
 .BaiduMap{
 	height:0.58rem;
 	text-align:center;
+	background: #FFFFFF;
+}
+
+.BaiduMapActive{
+	display: block;
+	height:0.58rem;
+	text-align:center;
 }
 .BaiduMap .areamap{
 	font-size:0.24rem;
