@@ -21,12 +21,12 @@ $(document).ready(function() {
 
 			var htmlList = '';
 			var value = data.Data.Data;
-			htmlList += '<div class="dg_banner"><img src="../img/daoguan_banner.jpg" alt="" /></div>' +
+			htmlList += '<div class="dg_banner"><img src="../images/daoguan_banner.jpg" alt="" /></div>' +
 				'<div class="dg_head"><h2>' + value.title + "</h2>" +
 				'<h3><span class="dh_Star" num='+value.star+'></span>协会认证 &nbsp;&nbsp;&nbsp;&nbsp;CTA06</h3>' +
 				'<p><i class="mui-icon iconfont icon-shijian"></i><span>&nbsp;&nbsp;' + value.BusinessHours + '</span></p>' +
 				'<div class="dh_head_Certification">' +
-				'<a href=""><i><img src="../img/daoguan_icon_Certification.png" alt="" /></i><p>' + value.IsCertification + '</p></a>' +
+				'<a href=""><i><img src="../images/daoguan_icon_Certification.png" alt="" /></i><p>' + value.IsCertification + '</p></a>' +
 				'</div></div>' +
 				'<div class="dg_function mt15">' +
 				'<ul class="mui-table-view">' +

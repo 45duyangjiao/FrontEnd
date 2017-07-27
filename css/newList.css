@@ -113,7 +113,7 @@ html,body{
 	display: inline-block;
 	width:0.4rem;
 	height:0.4rem;
-	background:url(../img/newAdd.png) no-repeat center center;
+	background:url(../images/newAdd.png) no-repeat center center;
 	background-size:100% 100%;
 	
 }
@@ -173,7 +173,7 @@ html,body{
 	display:inline-block;
 	width:0.3rem;
 	height:0.23rem;
-	background: url(../img/look.png) no-repeat center center;
+	background: url(../images/look.png) no-repeat center center;
 	background-size: 100% 100%;
 }
 .muipurelyTitle{
@@ -219,6 +219,6 @@ html,body{
 	width:0.14rem;
 	height:0.2rem;
 	display: inline-block;
-	background: url(../img/map.png) no-repeat center center;
+	background: url(../images/map.png) no-repeat center center;
 	background-size:100% 100%;
 }

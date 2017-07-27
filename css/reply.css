@@ -75,7 +75,7 @@
 	display:inline-block;
 	width:0.26rem;
 	height:0.26rem;
-	background:url(../img/good.png) no-repeat center center;
+	background:url(../images/good.png) no-repeat center center;
 	background-size:100% 100%;
 	margin-right:0.18rem;
 }
@@ -115,7 +115,7 @@
 	line-height:0.3rem;
 }
 .MainpName .floatR i{
-	background: url(../img/goods.png) no-repeat center center;
+	background: url(../images/goods.png) no-repeat center center;
 	background-size:100% 100%;
 	display: inline-block;
 	width:0.26rem;
