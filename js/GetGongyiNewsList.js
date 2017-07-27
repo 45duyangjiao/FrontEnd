@@ -13,7 +13,8 @@ $(document).ready(function() {
 			$(".GetGongyiNewsList").html(str);
 		    $(".activationRecordLi").click(function () {
 		        let id=$(this).attr('id');// 获取id
-		        window.location.href = "newsContent.html?id=" + id;
+		        let commentCount=$(this).attr("commentCount")
+		        window.location.href = "newsContent.html?id=" + id+"&commentCount="+commentCount;
 		    })
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
