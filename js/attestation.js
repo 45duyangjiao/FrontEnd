@@ -42,8 +42,6 @@ $(document).ready(function() {
       document.getElementById('attestationSelectButton').addEventListener("click", function(){
         searchAttestationResult();
      });
-//	$(".attestationSelectButton").click(function() {
-//		searchAttestationResult();
-//	})
+
 
 })
