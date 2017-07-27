@@ -98,9 +98,7 @@
 							data.Data.Data[i].userImg+
 							'" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL">'+
 							data.Data.Data[i].userName+
-							'</span><span class="floatR" ><i></i>'+
-							data.Data.Data[i].likecount+
-							'</span></p><p class="pComments">'+
+							'</span><span class="floatR"><i class="zan"></i><a class="count">'+data.Data.Data[i].likecount+'</a></span></p><p class="pComments">'+
 							data.Data.Data[i].content+
 							'</p><p class="pTime"><span>'+
 							data.Data.Data[i].commentTime+
@@ -118,8 +116,28 @@
 						reply(id,replyId,name,userID)
 					});
 					
-					$(".floatR").click(function(){
-						console.log("zan")
+					
+					$(".zan").click(function(){
+						$(this).addClass("active")
+						var commentId=$(this).parent().parent().parent().parent().attr("id");
+						console.log(commentId)
+						$.ajax({
+							type:"post",
+							url:"http://47.93.192.128:5001/ThumbsUp/Thumbs_Up",
+							async:true,
+							dataType:"json",
+							data:{
+								commentId:commentId,
+								userId:userID
+							},
+							success:function(){
+							var count=parseInt($(".count").html())+1;
+							console.log($(".zan").next())
+					
+							},
+							error:function(){}
+							
+						});
 					})
 				
 				},

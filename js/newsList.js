@@ -111,7 +111,7 @@ $(document).ready(function() {
 					let id = $(this).attr('id'); // 获取id
 					let viewCount = $(this).attr('viewCount');
 					let commentCount=$(this).attr("commentCount");
-					window.location.href = "newsDetailPage.html?id=" + id + "&commentCount="+commentCount;
+					window.location.href = "newsDetailPage.html?id=" + id + "&userID="+10005 +"&commentCount="+commentCount;
 				});
 
 				if(typeid==5){

@@ -83,7 +83,7 @@ img{
 	font-size:0.24rem;
 	color:#3385ff;
 }
-.pName .floatR i{
+.pName .floatR .zan{
 	display:inline-block;
 	width:0.26rem;
 	height:0.26rem;
@@ -91,6 +91,17 @@ img{
 	background-size:100% 100%;
 	margin-right:0.18rem;
 }
+
+.pName .floatR .active{
+	display:inline-block;
+	width:0.26rem;
+	height:0.26rem;
+	background:url(../images/goods.png) no-repeat center center;
+	background-size:100% 100%;
+	margin-right:0.18rem;
+}
+
+
 .pComments{
 	width:100%;
 	overflow:hidden;
