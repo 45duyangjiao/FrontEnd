@@ -115,7 +115,7 @@ $(document).ready(function() {
 				});
 
 				if(typeid==5){
-					var cityname="area";
+					var area="area";
 					$(".BaiduMap").click(function(){
 						window.location.href="segue://type="+area;
 					})
