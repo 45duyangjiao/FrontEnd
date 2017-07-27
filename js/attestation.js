@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	function searchAttestationResult() {
-		var attestationInputVal = $("#attestationInput").val().replace(/ /g, ""); //获取身份证号或者会员编号
+		var attestationInputVal = document.getElementById('attestationInput').value.replace(/ /g, ""); //获取身份证号或者会员编号
 		localStorage.setItem("memberNo", attestationInputVal);
 		var IdLen = attestationInputVal.length;
 		if (attestationInputVal == "") {
@@ -39,9 +39,11 @@ $(document).ready(function() {
 			});
 		}
 	}
-
-	$(".attestationSelectButton").click(function() {
-		searchAttestationResult();
-	})
+      document.getElementById('attestationSelectButton').addEventListener("click", function(){
+        searchAttestationResult();
+     });
+//	$(".attestationSelectButton").click(function() {
+//		searchAttestationResult();
+//	})
 
 })
