@@ -57,9 +57,7 @@ $(document).ready(function() {
 								data.Data.Data[i].userImg +
 								'" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL">' +
 								data.Data.Data[i].userName +
-								'</span><span class="floatR" ><i></i>' +
-								data.Data.Data[i].likecount +
-								'</span></p><p class="pComments">' +
+								'</span><span class="floatR" ><i class="zan"></i><a class="count" style="color:#333">'+data.Data.Data[i].likecount+'</a></span></p><p class="pComments">' +
 								data.Data.Data[i].content +
 								'</p><p class="pTime"><span>' +
 								data.Data.Data[i].commentTime +
@@ -75,7 +73,59 @@ $(document).ready(function() {
 						var name = $(this).attr("name");
 						reply(id, replyId, name, userID)
 					});
-
+					
+					$(".zan").click(function(){
+						$(this).addClass("active")
+						var Acitve=$(this);
+						var commentId=Acitve.parent().parent().parent().parent().attr("id");
+						$.ajax({
+							type:"post",
+							url:"http://47.93.192.128:5001/ThumbsUp/isThumbsUp",
+							async:true,
+							dataType:"json",
+							data:{
+								commentId:commentId,
+								userId:userID
+							},
+							success:function(data){
+								console.log(data)
+							var IsThumbsUp=data.Data.Data.IsThumbsUp;
+							if(IsThumbsUp==true){
+								$.ajax({
+									type:"post",
+									url:"http://47.93.192.128:5001/ThumbsUp/Thumbs_Down",
+									async:true,
+									data:{
+										commentId:commentId,
+										userId:userID
+									},
+									success:function(){
+										Acitve.siblings()[0].innerHTML = Number(Acitve.siblings()[0].innerHTML)- 1
+										Acitve.removeClass("active")
+									},
+								});
+							}else if(IsThumbsUp==false){
+								$.ajax({
+									type:"post",
+									url:"http://47.93.192.128:5001/ThumbsUp/Thumbs_Up",
+									async:true,
+									data:{
+										commentId:commentId,
+										userId:userID
+									},
+									success:function(){
+										Acitve.siblings()[0].innerHTML = Number(Acitve.siblings()[0].innerHTML)+ 1
+										
+									},
+								});
+							}
+					
+							},
+							error:function(){}
+							
+						});
+					})
+				
 				},
 				error: function() {
 

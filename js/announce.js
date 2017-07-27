@@ -8,7 +8,7 @@ var id = GetQueryString("id");
 var userID=GetQueryString("userID");
 
 function texts(id,viewCount,userID) {
-	window.location.href = "announceContent.html?id=" + id+"&viewCount="+viewCount+"&userID="+userID;
+	window.location.href = "announceContent.html?id=" + id+"&viewCount="+viewCount+"&userID="+10005;
 }
 
 var NavUrl = "http://47.93.192.128:5001/Notice/NoticeNavBar";
