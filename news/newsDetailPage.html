@@ -88,7 +88,6 @@
 					data = eval('(' + data + ')');
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
-					console.log(data)
 					if(typeof(data.Data.Data) != "undefined") {
 						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
 							li = document.createElement('li');
@@ -98,7 +97,7 @@
 							data.Data.Data[i].userImg+
 							'" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL">'+
 							data.Data.Data[i].userName+
-							'</span><span class="floatR"><i class="zan"></i><a class="count">'+data.Data.Data[i].likecount+'</a></span></p><p class="pComments">'+
+							'</span><span class="floatR"><i class="zan"></i><a class="count" style="color:#333">'+data.Data.Data[i].likecount+'</a></span></p><p class="pComments">'+
 							data.Data.Data[i].content+
 							'</p><p class="pTime"><span>'+
 							data.Data.Data[i].commentTime+
@@ -119,20 +118,48 @@
 					
 					$(".zan").click(function(){
 						$(this).addClass("active")
-						var commentId=$(this).parent().parent().parent().parent().attr("id");
-						console.log(commentId)
+						var Acitve=$(this);
+						var commentId=Acitve.parent().parent().parent().parent().attr("id");
 						$.ajax({
 							type:"post",
-							url:"http://47.93.192.128:5001/ThumbsUp/Thumbs_Up",
+							url:"http://47.93.192.128:5001/ThumbsUp/isThumbsUp",
 							async:true,
 							dataType:"json",
 							data:{
 								commentId:commentId,
 								userId:userID
 							},
-							success:function(){
-							var count=parseInt($(".count").html())+1;
-							console.log($(".zan").next())
+							success:function(data){
+							var IsThumbsUp=data.Data.Data.IsThumbsUp;
+							if(IsThumbsUp==true){
+								$.ajax({
+									type:"post",
+									url:"http://47.93.192.128:5001/ThumbsUp/Thumbs_Down",
+									async:true,
+									data:{
+										commentId:commentId,
+										userId:userID
+									},
+									success:function(){
+										Acitve.siblings()[0].innerHTML = Number(Acitve.siblings()[0].innerHTML)- 1
+										Acitve.removeClass("active")
+									},
+								});
+							}else if(IsThumbsUp==false){
+								$.ajax({
+									type:"post",
+									url:"http://47.93.192.128:5001/ThumbsUp/Thumbs_Up",
+									async:true,
+									data:{
+										commentId:commentId,
+										userId:userID
+									},
+									success:function(){
+										Acitve.siblings()[0].innerHTML = Number(Acitve.siblings()[0].innerHTML)+ 1
+										
+									},
+								});
+							}
 					
 							},
 							error:function(){}
