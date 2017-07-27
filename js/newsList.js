@@ -46,8 +46,9 @@ $(document).ready(function() {
 						success: function(data) {
 							console.log(data);
 							//这个模板生成的字符串整个放到外面大容器里
+							data.Data.typeid = typeid
 							var htmlStr = template("newsList", {
-								list: data.Data.Data
+								list: data.Data
 							});
 							console.log(typeid);
 							
