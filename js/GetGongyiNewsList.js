@@ -8,13 +8,12 @@ $(document).ready(function() {
 			pageindex: 1
 		},
 		success: function(data) {
-//			console.log(data);
+			console.log(data);
 			var str = template("GetGongyiNewsList", {activition: data.Data.Data})
 			$(".GetGongyiNewsList").html(str);
 		    $(".activationRecordLi").click(function () {
 		        let id=$(this).attr('id');// 获取id
-		        let viewCount=$(this).attr('viewCount');
-		        window.location.href = "newsContent.html?id=" + id+"&viewCount="+viewCount;
+		        window.location.href = "newsContent.html?id=" + id;
 		    })
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
