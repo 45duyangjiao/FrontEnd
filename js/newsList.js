@@ -115,9 +115,9 @@ $(document).ready(function() {
 				});
 
 				if(typeid==5){
-					var cityname="cityname";
+					var cityname="area";
 					$(".BaiduMap").click(function(){
-						window.location.href="segue://type="+cityname;
+						window.location.href="segue://type="+area;
 					})
 				}
 			},
