@@ -114,7 +114,17 @@ $(document).ready(function() {
 					let commentCount=$(this).attr("commentCount");
 					console.log(id)
 					window.location.href = "newsDetailPage.html?id=" + id + "&commentCount="+commentCount;
-				})
+				});
+				
+				function cityname(cityname){
+					window.location.href="segue//type="+cityname;
+				}
+				var cityname="cityname";
+				if(typeid==5){
+					$(".BaiduMap").click(function(){
+						cityname(cityname);
+					})
+				}
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 //				alert(textStatus);

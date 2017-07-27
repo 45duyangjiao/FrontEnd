@@ -75,8 +75,8 @@
 //			function reply(id, replyId, name, userID, commentId, commentName) {
 //				window.location.href = "reply.html?id=" + id + "&replyId=" + replyId + "&name=" + name + "&userID=" + userID + "&userID=" + 10005 + "&commentId=" + commentId + "&commentName=" + commentName;
 //			}
-			function replySub(commentId, commentName){
-				window.location.href ="segue://commentId=" + commentId + "&commentName=" + commentName;
+			function replySub(commentId, commentName,replay){
+				window.location.href ="segue://commentId=" + commentId + "&commentName=" + commentName+"&type="+replay
 			}
 
 			function replylist(replyId,likecount) {
@@ -170,7 +170,8 @@
 						var commentName = $(this).parent().parent().children(":first").children(":first").text();
 						console.log(commentName);
 //						reply(id, replyId, name, userID, commentId, commentName);
-						replySub(commentId, commentName)
+						var replay="replay";
+						replySub(commentId, commentName,replay)
 					});
 
 				},
