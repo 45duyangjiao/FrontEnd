@@ -28,6 +28,7 @@ $(document).ready(function() {
 			if(sign=0x10320001){
 				var str = template("NOMsg", data)
 				$(".identifyResult").html(str);
+				console.log("暂无信息")
 			}
 			var data = data.baseInfor;
 			var str = template("identifyResult", data)
