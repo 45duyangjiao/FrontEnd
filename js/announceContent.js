@@ -32,7 +32,7 @@ $(document).ready(function() {
 			$(".announceDetailMainbody").html(strr);
 
 			function reply(id, replyId, name, userID) {
-				window.location.href = "../news/reply.html?id=" + id + "&replyId=" + replyId + "&name=" + name + "&userID=" + userID + "&userID=" + 10005;
+				window.location.href = "../news/reply.html?id=" + id + "&replyId=" + replyId + "&name=" + name + "&userID=" + 10005;
 			};
 			var CommentUrl = "http://47.93.192.128:5001/News/GetNewsReplyList";
 			//默认加载

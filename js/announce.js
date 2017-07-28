@@ -7,8 +7,8 @@ function GetQueryString(name) {
 var id = GetQueryString("id");
 var userID=GetQueryString("userID");
 
-function texts(id,viewCount,userID) {
-	window.location.href = "announceContent.html?id=" + id+"&viewCount="+viewCount+"&userID="+10005;
+function texts(id,commentCount,userID) {
+	window.location.href = "announceContent.html?id=" + id+"&commentCount="+commentCount+"&userID="+10005;
 }
 
 var NavUrl = "http://47.93.192.128:5001/Notice/NoticeNavBar";
@@ -53,9 +53,8 @@ function innerList(typeid) {
 			document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
 			$(".announceLi").click(function(){
 				var id=$(this).attr("id");
-				var viewCount=$(this).attr("commentCount");
-				console.log(viewCount);
-				texts(id,viewCount,userID)
+				var commentCount=$(this).attr("commentCount");
+				texts(id,commentCount,userID)
 			})
 		},
 		error: function() {
