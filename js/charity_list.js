@@ -46,9 +46,9 @@ $(document).ready(function() {
 				$(".charityList").html(str);
 				$(".mui-table-view-cell").click(function () {
 			        let id=$(this).attr('id');// 获取id
-			        window.location.href = "newsContent.html?id=" + id+"&commentCount="+commentCount+"&userID="+10005;
 			        let commentCount=$(this).attr('commentCount');
 			        window.location.href = "newsContent.html?id=" + id+"&commentCount="+commentCount+"&userID="+10005;
+
 			   });
 			   
 			   $(".goIos").click(function(){
