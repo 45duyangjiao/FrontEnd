@@ -68,8 +68,8 @@
 			}
 			var id = GetQueryString("id");
 			var GAME="game";
-			function btnOpen(id,type) {
-				window.location.href = "segue://id=" + id+"&type="+GAME;
+			function btnOpen(id,type,Title) {
+				window.location.href = "segue://id=" + id+"&type="+GAME+"&Title="+Title;
 			}
 
 			var DetailUrl = "http://47.93.192.128:5001/Match/MatchDetail";
@@ -97,7 +97,7 @@
 					$("#con_six>span").html(con_six)
 					$("#con_weight>span").html(con_weight)
 					$(".mui-btn-block").click(function(){
-						btnOpen(id,'+type+')
+						btnOpen(id,'+type+',con_h2)
 					})
 				},
 				error: function() {
