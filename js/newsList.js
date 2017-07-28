@@ -6,8 +6,8 @@ $(document).ready(function() {
 		return null;
 	}
     
-    var testUrl =window.location.search;
-	    testUrl = testUrl.slice(1,testUrl.length).split('&')[0];
+    var testUrl = window.location.search;
+	    testUrl = testUrl.slice(1,testUrl.length);
 		testUrlLength = testUrl.length;
 		keyId = testUrl.slice(7,testUrlLength);
 	
@@ -18,7 +18,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		type: keyId,
 		data: {
-			UserId: 10035
+			UserId: keyId
 		},
 		success: function(data) {
 			var dataNav = data.Data.Data;
