@@ -57,8 +57,24 @@
 			key=decodeURIComponent(key.substr(key.lastIndexOf("=")).slice(1));
 			
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
-			function texts(id,key) {
-				window.location.href = "searchContent.html?id=" + id+"&key="+key;
+			function texts(id,typeName) {
+				
+				if(typeName == "名人堂"){
+					window.location.href = "searchContent.html?id=" + id
+				}else if(typeName == "赛事"){
+					window.location.href = "searchContentS.html?id=" + id
+				}else if(typeName == "培训"){
+					window.location.href = "searchContentS.html?id=" + id
+				}else if(typeName == "新闻"){
+					window.location.href = "searchContentNews.html?id=" + id
+				}else if(typeName == "公益"){
+					window.location.href = "searchContentNews.html?id=" + id
+				}else if(typeName == "公告"){
+					window.location.href = "searchContentNews.html?id=" + id
+				}else{
+					window.location.href = "searchContentNews.html?id=" + id
+				}
+				
 			}
 			
 			//默认加载
@@ -66,23 +82,31 @@
 				type: "post",
 				url: searchUrl,
 				data: {
-					key:"的"
+					key:key
 				},
 				datatype: "json",
 				success: function(data) {
 					
 					
 					data = eval('(' + data + ')');
-					console.log(data)
+					//模板类型
+					
+					//var typeNameArr = data.Data.query;
+//					var typeName = typeNameArr.map(function(item,index){
+//						return typeName = item.typeName;
+//						
+//					})
+				
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
+					console.log(data)
 					if(typeof(data.Data.query) != "undefined") {
 					for(var i = 0; i < data.Data.query.length; i++) { //循环输出data中的数据
 							li = document.createElement('li');
 							li.className = 'mxhLi';
 							
 							if(data.Data.query[i].pic.length > 0) {
-								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+encodeURIComponent(key)+'\')"><div class="muipurelyTitle">' +
+								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+data.Data.query[i].typeName+'\')"><div class="muipurelyTitle">' +
 									data.Data.query[i].Title +
 									'</div><div class="muipurelyImg" id="purelyImg"><img src="' +
 									data.Data.query[i].pic + '"><img src="' + data.Data.query[i].pic[1] + '"><img src="' + data.Data.query[i].pic[2] +
@@ -90,7 +114,7 @@
 									data.Data.query[i].createTime +
 									'</span></p></div></div>'
 							} else if(data.Data.query[i].pic.length == 0) {
-								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+encodeURIComponent(key)+'\')"><div class="mui-table-Img"><img src="' +
+								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+typeName+'\')"><div class="mui-table-Img"><img src="' +
 									data.Data.query[i].pic +
 									'" /></div><div class="mui-table-text"><p class="mui-table-Tile">' +
 									data.Data.query[i].Title +
@@ -98,7 +122,7 @@
 									data.Data.query[i].createTime +
 									'</span></p></div></div>'
 							} else {
-								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+encodeURIComponent(key)+'\')"><div class="muipurelyTitle">' +
+								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+typeName+'\')"><div class="muipurelyTitle">' +
 									data.Data.query[i].Title +
 									'</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
 									data.Data.query[i].createTime +
