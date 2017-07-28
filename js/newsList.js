@@ -7,15 +7,14 @@ $(document).ready(function() {
 	}
 
 	var userID = GetQueryString("userID");
-	var cityname = GetQueryString("userID");
 	var group = $(".mui-slider-group");
-	
+	var cityname = GetQueryString("userID");
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
 		dataType: 'json',
 		type: 'post',
 		data: {
-			UserId: userID
+			UserId: 10002
 		},
 		success: function(data) {
 			var dataNav = data.Data.Data;
@@ -41,8 +40,7 @@ $(document).ready(function() {
 							typeid: typeid, //number	否	栏目类型id	1
 							proid: "", //number	否	省id	3
 							cityid: "", //number	否	城市id	5
-							areaid: "" ,
-							cityname:cityname
+							areaid: "" //number	否	区域id
 						},
 						success: function(data) {
 							console.log(data);
@@ -62,7 +60,7 @@ $(document).ready(function() {
 							$(".mediaId").click(function() {
 								let id = $(this).attr('id'); // 获取id
 								let commentCount=$(this).attr("commentCount");
-								window.location.href = "newsDetailPage.html?id=" + id + "&userID="+userID+"&commentCount="+commentCount;
+								window.location.href = "newsDetailPage.html?id=" + id + "&userID="+10005+"&commentCount="+commentCount;
 							});
 							
 						},
@@ -95,8 +93,7 @@ $(document).ready(function() {
 				typeid: typeid, //number	否	栏目类型id	1
 				proid: "", //number	否	省id	3
 				cityid: "", //number	否	城市id	5
-				areaid: "",//number	否	区域id
-				cityname:cityname
+				areaid: "" //number	否	区域id
 			},
 			success: function(data) {
 				console.log(data);
@@ -113,7 +110,7 @@ $(document).ready(function() {
 					let id = $(this).attr('id'); // 获取id
 					let viewCount = $(this).attr('viewCount');
 					let commentCount=$(this).attr("commentCount");
-					window.location.href = "newsDetailPage.html?id=" + id + "&userID="+userID +"&commentCount="+commentCount;
+					window.location.href = "newsDetailPage.html?id=" + id + "&userID="+10005 +"&commentCount="+commentCount;
 				});
 
 				if(typeid==5){
@@ -130,7 +127,7 @@ $(document).ready(function() {
 	});
 
 	$(".navAdd").click(function() {
-		window.location.href = "newsarea.html?userID=" + userID;
+		window.location.href = "newsarea.html?userID=" + 10002;
 	})
 
 });
