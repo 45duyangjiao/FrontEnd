@@ -5,20 +5,16 @@ $(document).ready(function() {
 		if(r != null) return unescape(r[2]);
 		return null;
 	}
-    
-    var testUrl = window.location.search;
-	    testUrl = testUrl.slice(1,testUrl.length);
-		testUrlLength = testUrl.length;
-		keyId = testUrl.slice(7,testUrlLength);
-	
+
+	var userID = GetQueryString("userID");
 	var group = $(".mui-slider-group");
-	
+	var cityname = GetQueryString("userID");
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
 		dataType: 'json',
-		type: keyId,
+		type: 'post',
 		data: {
-			UserId: keyId
+			UserId: 10035
 		},
 		success: function(data) {
 			var dataNav = data.Data.Data;
