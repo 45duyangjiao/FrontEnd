@@ -24,14 +24,18 @@ $(document).ready(function() {
 			idcard:idcard,
 		},
 		success: function(data) {
-			console.log(data)
-			var sign =data.sign;
-			console.log(sign);
-			if(sign=0x10320001){
-				var str = template("NOMsg", data)
-				$(".NOMsg").html(str);
-				console.log("暂无信息")
-			}
+//			console.log(data)
+//			var sign =data.sign;
+//			console.log(sign);
+//			if(sign=0x10320001){
+//				var str = template("NOMsg", data)
+//				$(".NOMsg").html(str);
+//				console.log("暂无信息");
+//				var data = data.baseInfor;
+//				var str = template("identifyResult", data)
+//				$(".identifyResult").html(str);
+//				$(".identifyResult").css("display","none")
+//			}
 			if(sign=0x10320000){
 				var data = data.baseInfor;
 				var str = template("identifyResult", data)
