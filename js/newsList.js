@@ -14,7 +14,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		type: 'post',
 		data: {
-			UserId: 10002
+			UserId: 10035
 		},
 		success: function(data) {
 			var dataNav = data.Data.Data;
@@ -60,7 +60,7 @@ $(document).ready(function() {
 							$(".mediaId").click(function() {
 								let id = $(this).attr('id'); // 获取id
 								let commentCount=$(this).attr("commentCount");
-								window.location.href = "newsDetailPage.html?id=" + id + "&userID="+10005+"&commentCount="+commentCount;
+								window.location.href = "newsDetailPage.html?id=" + id + "&userID="+10035+"&commentCount="+commentCount;
 							});
 							
 						},
@@ -110,7 +110,7 @@ $(document).ready(function() {
 					let id = $(this).attr('id'); // 获取id
 					let viewCount = $(this).attr('viewCount');
 					let commentCount=$(this).attr("commentCount");
-					window.location.href = "newsDetailPage.html?id=" + id + "&userID="+10005 +"&commentCount="+commentCount;
+					window.location.href = "newsDetailPage.html?id=" + id + "&userID="+10035 +"&commentCount="+commentCount;
 				});
 
 				if(typeid==5){
@@ -127,7 +127,7 @@ $(document).ready(function() {
 	});
 
 	$(".navAdd").click(function() {
-		window.location.href = "newsarea.html?userID=" + 10002;
+		window.location.href = "newsarea.html?userID=" + 10035;
 	})
 
 });
