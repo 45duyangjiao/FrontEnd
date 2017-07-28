@@ -7,6 +7,11 @@ function GetQueryString(name) {
 }
 
 var memberNo = GetQueryString("memberNo");
+if(memberNo.length<=12){
+	var memberNo = memberNo;
+} else {
+	var idcard = memberNo;
+}
 console.log(memberNo);
 $(document).ready(function() {
 	var url = 'http://www.chntkd.org.cn/webinterface/APP_interface/json/membershipInformation.ashx';
@@ -16,13 +21,18 @@ $(document).ready(function() {
 		type: 'post',
 		data: {
 			memberNo: memberNo,
-			idcard:"",
+			idcard:idcard,
 		},
 		success: function(data) {
-			console.log(data)
+			var sign =data.sign;
+			if(sign=0x10320001){
+				var str = template("NOMsg", data)
+				$(".identifyResult").html(str);
+			}
 			var data = data.baseInfor;
 			var str = template("identifyResult", data)
 			$(".identifyResult").html(str);
+			
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
 			alert(XMLHttpRequest.status);

@@ -64,7 +64,7 @@ html,body{
 	display: inline-block;
 	width:0.3rem;
 	height:0.3rem;
-	background:url(../img/help.png) no-repeat center center;
+	background:url(../images/help.png) no-repeat center center;
 	background-size:100% 100%;
 	position: absolute;
 	left: -0.4rem;
