@@ -69,7 +69,14 @@ $(document).ready(function() {
 				
 				$(e.target).removeClass('pu').addClass('zhu')
 				e.target.remove()
-				$('.myChannelmodule').append(e.target)
+				var textT = $('#textL').text().replace(/x/g,'').replace(/\s+/g,""); 
+				var eTarget = e.target.childNodes[0].data.replace(/\s+/g,"")
+			
+				if(textT.indexOf(eTarget)>-1){
+					    $('.myChannelmodule').append('')
+				}else{
+						$('.myChannelmodule').append(e.target)
+				}			
 				var channelId = $(e.target).attr("id");
 				if($(".supDelate").css("display") == "none") {
 					$(".supDelate").show();
