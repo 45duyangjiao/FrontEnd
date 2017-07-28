@@ -26,6 +26,7 @@ $(document).ready(function() {
 		success: function(data) {
 			console.log(data)
 			var sign =data.sign;
+			console.log(sign);
 			if(sign=0x10320001){
 				var str = template("NOMsg", data)
 				$(".NOMsg").html(str);
