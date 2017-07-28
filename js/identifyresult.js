@@ -24,15 +24,18 @@ $(document).ready(function() {
 			idcard:idcard,
 		},
 		success: function(data) {
+			console.log(data)
 			var sign =data.sign;
 			if(sign=0x10320001){
 				var str = template("NOMsg", data)
 				$(".identifyResult").html(str);
 				console.log("暂无信息")
-			}
-			var data = data.baseInfor;
+			}else if(){
+				var data = data.baseInfor;
 			var str = template("identifyResult", data)
 			$(".identifyResult").html(str);
+			}
+			
 			
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
