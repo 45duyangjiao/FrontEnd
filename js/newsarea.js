@@ -56,8 +56,9 @@ $(document).ready(function() {
 				channel: data.Data.Data
 			});
 			$(".dynamicallyAdd").html(str);
-
+            //点击添加更多频道
 			$(".compileChannel .pu").bind("click", function(e) {
+				
 				$(e.target).removeClass('pu').addClass('zhu')
 				e.target.remove()
 				$('.myChannelmodule').append(e.target)
@@ -101,14 +102,17 @@ $(document).ready(function() {
 	});
 
 	// 编辑频道
+	
 	$('.floatR').click(function() {
 		if($(".supDelate").css("display") == "none") {
 			$(".supDelate").show();
 			$('.floatR').html("完成");
-
+            
 		} else {
 			$(".supDelate").hide();
 			$('.floatR').html("编辑")
+			window.history.go(-1)
+            
 		}
 
 	})
