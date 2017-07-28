@@ -15,7 +15,8 @@ $(document).ready(function() {
 	var userID = GetQueryString("userID");
 
 	var url = 'http://47.93.192.128:5001/News/GetMyChannelList';
-	$.ajax({
+	function listAjax(){
+		$.ajax({
 		url: url,
 		dataType: 'json',
 		type: 'post',
@@ -47,9 +48,11 @@ $(document).ready(function() {
 			})
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			alert(XMLHttpRequest.status);
+//			alert(XMLHttpRequest.status);
 		}
-	});
+	   });
+	   }
+	listAjax()
 
 	var urll = 'http://47.93.192.128:5001/News/GetMoreNewsType';
 	$.ajax({
@@ -109,17 +112,19 @@ $(document).ready(function() {
 	// 编辑频道
 	
 	$('.floatR').click(function() {
+		//点击编辑
 		if($(".supDelate").css("display") == "none") {
 			$(".supDelate").show();
 			$('.floatR').html("完成");
-            
+			  
 		} else {
+		//点击完成
 			$(".supDelate").hide();
 			$('.floatR').html("编辑")
-			window.history.go(-1)
+            window.location.href = "http://47.93.192.128:5001/FrontEnd/news/newsList.html"
             
 		}
-
+  
 	})
 
 });
