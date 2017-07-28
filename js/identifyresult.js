@@ -30,11 +30,12 @@ $(document).ready(function() {
 				var str = template("NOMsg", data)
 				$(".identifyResult").html(str);
 				console.log("暂无信息")
-			}else if(){
-				var data = data.baseInfor;
-			var str = template("identifyResult", data)
-			$(".identifyResult").html(str);
 			}
+//			else if(sign=0x10320000){
+//				var data = data.baseInfor;
+//				var str = template("identifyResult", data)
+//				$(".identifyResult").html(str);
+//			}
 			
 			
 		},
