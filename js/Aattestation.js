@@ -22,7 +22,7 @@ $(document).ready(function() {
 				url: "http://www.chntkd.org.cn/webinterface/APP_interface/json/membershipInformation.ashx",
 				type: "POST",
 				data: {
-					memberNo: memberNo, //会员编号
+					memberNo: "CTA01", //会员编号
 					idcard: idcard // 身份证号
 				},
 				dataType: "json",
