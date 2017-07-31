@@ -20,7 +20,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		type: 'post',
 		data: {
-			memberNo: "CTA01",
+			memberNo: memberNo,
 			idcard:""
 		},
 		success: function(data) {
