@@ -41,11 +41,13 @@
 		
 		<!-- 我的频频道，删除，添加-->
 		<script type="text/html" id="myChannel">
+			<div id="textL">
 			{{each myChannel as value i}}
-				<li class="floatL channelOriginal zhu" id='{{value.channelid}}'>{{value.title}}
+				<li class="floatL channelOriginal zhu textL" id='{{value.channelid}}'>{{value.title}}
 					<sup class="supDelate">x</sup>
 				</li>
 			{{/each}}
+			</div>
 		</script>
 		
 		<!--循环ul模板嵌套并嵌套li循环-->

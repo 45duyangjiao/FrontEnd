@@ -1,4 +1,4 @@
-// 公益接口
+
 $(document).ready(function() {
        
 		function GetQueryString(name) {
@@ -33,12 +33,12 @@ $(document).ready(function() {
 				mui('#imgList').on('tap','a',function(){
 					if(!disP){
 						$(this).find('img').addClass('changeBig');
-                        document.getElementById('bgBlack').style.display = 'block';
+                        //document.getElementById('bgBlack').style.display = 'block';
                         disP = true;
                         
 					}else{
 						$(this).find('img').removeClass('changeBig');
-                        document.getElementById('bgBlack').style.display = 'none';
+                        //document.getElementById('bgBlack').style.display = 'none';
                         disP = false;
 					}
 					
@@ -65,4 +65,3 @@ $(document).ready(function() {
 		
 		
 	});
-				

@@ -174,17 +174,20 @@
 					data = eval('(' + data + ')');
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
+					console.log("找")
+					console.log(data.Data.Data)
+					console.log("找")
 					if(typeof(data.Data.Data) != "undefined") {
 						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
 							li = document.createElement('li');
 							li.className = 'mui-table-view-cell mui-media';
-							li.innerHTML = '<div class="overflow"><img class="mui-pull-left" src="' +
+							li.innerHTML = '<div><img class="mui-pull-left" src="' +
 									data.Data.Data[i].pic +
 									'"><div onclick="texts(' + data.Data.Data[i].id + ')" class="saishi_text mui-media-body"><h2 class="">' +
 									data.Data.Data[i].Title +
 									'</h2><div class="mui-text-justify">内容简介：' +
 									data.Data.Data[i].tag +
-									'</div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
+									'</div></div><div style="clear:both"></div></div><div class="saishi_time"><p class="peixun_p">比赛时间：' +
 									data.Data.Data[i].MatchDate +
 									'</p><button onclick="texts(' + data.Data.Data[i].id + ')" class="mui-btn-blue border-radius">快速报名</button></div>'
 							fragment.appendChild(li);

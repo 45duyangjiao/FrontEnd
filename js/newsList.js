@@ -38,11 +38,9 @@ $(document).ready(function() {
 						data: {
 							pageindex: "", //number	否	页数，不填默认第一页	1
 							typeid: typeid, //number	否	栏目类型id	1
-							proid: "", //number	否	省id	3
-							cityid: "", //number	否	城市id	5
-							areaid: "", //number	否	区域id
-							cityname:"",
-							userid:""
+							proid:"", //number	否	省id	3
+							cityid:"", //number	否	城市id	5
+							areaid:"" //number	否	区域id
 						},
 						success: function(data) {
 							console.log(data);
@@ -51,7 +49,7 @@ $(document).ready(function() {
 							var htmlStr = template("newsList", {
 								list: data.Data
 							});
-							console.log(typeid);
+							console.log(data.Data);
 							
 							if(typeid==5){
 								console.log($("#BaiduMap"))
@@ -93,11 +91,9 @@ $(document).ready(function() {
 			data: {
 				pageindex: "", //number	否	页数，不填默认第一页	1
 				typeid: typeid, //number	否	栏目类型id	1
-				proid: "", //number	否	省id	3
-				cityid: "", //number	否	城市id	5
-				areaid: "", //number	否	区域id
-				cityname:"",
-				userid:""
+				proid:"", //number	否	省id	3
+				cityid:"", //number	否	城市id	5
+				areaid:"" //number	否	区域id
 			},
 			success: function(data) {
 				console.log(data);
