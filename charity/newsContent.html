@@ -95,27 +95,25 @@
 				datatype: "json",
 				success: function(data) {
 					data = eval('(' + data + ')');
-					console.log(data);
+					console.log(data)
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
-					console.log(data)
 					if(typeof(data.Data.Data) != "undefined") {
 						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
 							li = document.createElement('li');
 							li.className = 'clearfix';
-							li.id=data.Data.Data[i].id;
+							li.id=data.Data.Data[i].id;		
 							li.innerHTML = '<div class="floatL avatar"><img src="'+
 							data.Data.Data[i].userImg+
 							'" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL">'+
 							data.Data.Data[i].userName+
-							'</span><span class="floatR" ><i></i>'+
-							data.Data.Data[i].likecount+
-							'</span></p><p class="pComments">'+
+							'</span><span class="floatR"><i class="zan"></i><a class="count" style="color:#333">'+data.Data.Data[i].likecount+'</a></span></p><p class="pComments">'+
 							data.Data.Data[i].content+
 							'</p><p class="pTime"><span>'+
 							data.Data.Data[i].commentTime+
-							'</span><span class="commontsReply" name='+i+'>  回复</span></p></div></a>'
+							'</span><span class="commontsReply" name='+i+'>回复</span></p></div></a>'
 							fragment.appendChild(li);
+
 						}
 					}
 					document.querySelector(".List").appendChild(fragment); //输出到#item1mobile的页面内容
@@ -124,6 +122,57 @@
 						var name=$(this).attr("name");
 						reply(id,replyId,name,userID)
 					});
+					$(".zan").click(function(){
+						$(this).addClass("active")
+						var Acitve=$(this);
+						var commentId=Acitve.parent().parent().parent().parent().attr("id");
+						$.ajax({
+							type:"post",
+							url:"http://47.93.192.128:5001/ThumbsUp/isThumbsUp",
+							async:true,
+							dataType:"json",
+							data:{
+								commentId:commentId,
+								userId:userID
+							},
+							success:function(data){
+							var IsThumbsUp=data.Data.Data.IsThumbsUp;
+							if(IsThumbsUp==true){
+								$.ajax({
+									type:"post",
+									url:"http://47.93.192.128:5001/ThumbsUp/Thumbs_Down",
+									async:true,
+									data:{
+										commentId:commentId,
+										userId:userID
+									},
+									success:function(){
+										Acitve.siblings()[0].innerHTML = Number(Acitve.siblings()[0].innerHTML)- 1
+										Acitve.removeClass("active")
+									},
+								});
+							}else if(IsThumbsUp==false){
+								$.ajax({
+									type:"post",
+									url:"http://47.93.192.128:5001/ThumbsUp/Thumbs_Up",
+									async:true,
+									data:{
+										commentId:commentId,
+										userId:userID
+									},
+									success:function(){
+										Acitve.siblings()[0].innerHTML = Number(Acitve.siblings()[0].innerHTML)+ 1
+										
+									},
+								});
+							}
+					
+							},
+							error:function(){}
+							
+						});
+					})
+				
 				},
 				error: function() {
 

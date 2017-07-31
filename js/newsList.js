@@ -40,7 +40,9 @@ $(document).ready(function() {
 							typeid: typeid, //number	否	栏目类型id	1
 							proid: "", //number	否	省id	3
 							cityid: "", //number	否	城市id	5
-							areaid: "" //number	否	区域id
+							areaid: "", //number	否	区域id
+							cityname:"",
+							userid:""
 						},
 						success: function(data) {
 							console.log(data);
@@ -93,7 +95,9 @@ $(document).ready(function() {
 				typeid: typeid, //number	否	栏目类型id	1
 				proid: "", //number	否	省id	3
 				cityid: "", //number	否	城市id	5
-				areaid: "" //number	否	区域id
+				areaid: "", //number	否	区域id
+				cityname:"",
+				userid:""
 			},
 			success: function(data) {
 				console.log(data);
