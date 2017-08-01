@@ -35,8 +35,12 @@ $(document).ready(function() {
 						var faceP = baseInfor.facephoto;
 						var imgFacephoto = document.createElement("img");
 						    faceP = faceP.slice(10,faceP.length)
-						    faceP = "http://www.chntkd.org.cn/"+faceP
-						    imgFacephoto.setAttribute("src", faceP);
+						    facePic = "http://www.chntkd.org.cn/"+faceP
+						    if(!faceP == ''){
+						    	 imgFacephoto.setAttribute("src", facePic);
+						    }else{
+						    	 imgFacephoto.setAttribute("src", "../images/111.png");
+						    }
 						document.getElementById('faceP').appendChild(imgFacephoto);
 						  var divDom = '<h5 class="certList">资格证信息</h5>'
 						for(i=0;i<certInfor.length;i++){
