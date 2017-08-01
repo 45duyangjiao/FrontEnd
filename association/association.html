@@ -1,0 +1,38 @@
+<!doctype html>
+<html >
+
+	<head>
+		<meta charset="UTF-8">
+		<title>认证查询</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/common.css" rel="stylesheet" />
+		<script src="../js/flexable.js"></script>
+		<script src="../js/jquery.js"></script>
+	</head>
+	<body>
+		
+		<div id="association"></div>
+		<script src="../js/mui.min.js"></script>
+		<script>
+			mui.init()
+			var url = "http://47.93.192.128:5001/Home/AboutUs";
+			$.ajax({
+				type: "post",
+				url: url,
+				data: {
+					
+				},
+				datatype: "json",
+				success: function(data) {
+					data = eval('(' + data + ')');
+					document.getElementById('association').innerHTML = data.Data.Data
+					
+				},
+				error: function(e) {
+                    alert(e)
+				}
+			});
+		</script>
+	</body>
+</html>
