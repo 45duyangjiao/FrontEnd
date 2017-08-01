@@ -7,11 +7,6 @@ function GetQueryString(name) {
 }
 
 var memberNo = GetQueryString("memberNo");
-if(memberNo){
-	memberNo = memberNo;
-} else {
-    memberNo = "";
-}
 
 $(document).ready(function() {
 	var url = 'http://www.chntkd.org.cn/webinterface/APP_interface/json/membership.ashx';

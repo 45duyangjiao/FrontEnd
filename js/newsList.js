@@ -60,7 +60,7 @@ $(document).ready(function() {
 							$(".mediaId").click(function() {
 								let id = $(this).attr('id'); // 获取id
 								let commentCount=$(this).attr("commentCount");
-								window.location.href = "newsDetailPage.html?id=" + id + "&userID="+10035+"&commentCount="+commentCount;
+								window.location.href = "newsDetailPage.html?id=" + id + "&userID="+id+"&commentCount="+commentCount;
 							});
 							
 						},
