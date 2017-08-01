@@ -9,6 +9,7 @@ $(document).ready(function() {
 	var userID = GetQueryString("userID");
 	var group = $(".mui-slider-group");
 	var cityname = GetQueryString("userID");
+	console.log()
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
 		dataType: 'json',
@@ -18,7 +19,7 @@ $(document).ready(function() {
 		},
 		success: function(data) {
 			var dataNav = data.Data.Data;
-			console.log(dataNav);			//渲染新闻导航栏
+			console.log(dataNav); //渲染新闻导航栏
 			var str = template("newsNav", {
 				list: dataNav
 			})
@@ -38,9 +39,11 @@ $(document).ready(function() {
 						data: {
 							pageindex: "", //number	否	页数，不填默认第一页	1
 							typeid: typeid, //number	否	栏目类型id	1
-							proid:"", //number	否	省id	3
-							cityid:"", //number	否	城市id	5
-							areaid:"" //number	否	区域id
+							proid: "", //number	否	省id	3
+							cityid: "", //number	否	城市id	5
+							areaid: "", //number	否	区域id
+							cityname: "",
+							userid: ""
 						},
 						success: function(data) {
 							console.log(data);
@@ -50,22 +53,85 @@ $(document).ready(function() {
 								list: data.Data
 							});
 							console.log(data.Data);
-							
-							if(typeid==5){
-								console.log($("#BaiduMap"))
+
+							if(typeid == 5) {
 								$("#BaiduMap").addClass("BaiduMapActive");
+								//开始
+								var _getParam = function(obj, param) {
+									return obj[param] || '';
+								};
+								var cityPicker = new mui.PopPicker({
+									layer: 2
+								});
+								cityPicker.setData(cityData);
+								var showCityPickerButton = document.getElementById('showCityPicker');
+								var cityResult = document.getElementById('cityResult');
+								showCityPickerButton.addEventListener('click', function(event) {
+									cityPicker.show(function(items) {
+										cityResult.innerText = items[1].text;
+										var cityname = items[1].text;
+										localStorage.setItem("cityname", cityname)
+										var cityname = localStorage.getItem("cityname");
+										if(cityname !== null) {
+											var typeid = localStorage.getItem("typeid");
+											console.log(typeid, cityname)
+											$.ajax({
+												type: "post",
+												url: "http://47.93.192.128:5001/News/NewsList",
+												async: true,
+												dataType: 'json',
+												data: {
+													pageindex: "", //number	否	页数，不填默认第一页	1
+													typeid: typeid, //number	否	栏目类型id	1
+													proid: "", //number	否	省id	3
+													cityid: "", //number	否	城市id	5
+													areaid: "", //number	否	区域id
+													cityname: cityname,
+													userid: ""
+												},
+												success: function(data) {
+													console.log(data);
+													//这个模板生成的字符串整个放到外面大容器里
+													typeid = "5";
+													data.Data.typeid = typeid;
+													data.Data.cityname = cityname;
+													console.log(data.Data)
+													var htmlStr = template("newsList", {
+														list: data.Data
+													})
+													console.log(typeid);
+													$("#" + typeid).html(htmlStr);
+													group.children(":first").addClass("mui-active");
+													$("#cityResult").innerText = cityname;
+													$(".mediaId").click(function() {
+														let id = $(this).attr('id'); // 获取id
+														let viewCount = $(this).attr('viewCount');
+														let commentCount = $(this).attr("commentCount");
+														window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
+													});
+												}
+											});
+
+										}
+
+									});
+
+								});
+
+								//结束
 							}
 							$("#" + typeid).html(htmlStr);
-							group.children(":first").addClass("mui-active")
+							group.children(":first").addClass("mui-active");
+							$("#cityResult").innerText = cityname;
 							$(".mediaId").click(function() {
 								let id = $(this).attr('id'); // 获取id
-								let commentCount=$(this).attr("commentCount");
-								window.location.href = "newsDetailPage.html?id=" + id + "&userID="+10035+"&commentCount="+commentCount;
+								let commentCount = $(this).attr("commentCount");
+								window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
 							});
-							
+
 						},
 						error: function(XMLHttpRequest, textStatus, errorThrown) {
-//							alert(textStatus);
+							//							alert(textStatus);
 						}
 					});
 				} else {
@@ -83,7 +149,6 @@ $(document).ready(function() {
 	document.getElementById('slider').addEventListener('slide', function(e) {
 		var slide = group.children().eq(e.detail.slideNumber);
 		var typeid = slide.attr("id");
-		console.log(typeid)
 		$.ajax({
 			url: "http://47.93.192.128:5001/News/NewsList",
 			dataType: 'json',
@@ -91,37 +156,98 @@ $(document).ready(function() {
 			data: {
 				pageindex: "", //number	否	页数，不填默认第一页	1
 				typeid: typeid, //number	否	栏目类型id	1
-				proid:"", //number	否	省id	3
-				cityid:"", //number	否	城市id	5
-				areaid:"" //number	否	区域id
+				proid: "", //number	否	省id	3
+				cityid: "", //number	否	城市id	5
+				areaid: "", //number	否	区域id
+				cityname: "",
+				userid: ""
 			},
 			success: function(data) {
-				console.log(data);
+
 				//这个模板生成的字符串整个放到外面大容器里
 				data.Data.typeid = typeid
-				console.log(data.Data)
+
 				var htmlStr = template("newsList", {
 					list: data.Data
 				})
-				console.log(typeid);
+
 				$("#" + typeid).html(htmlStr);
 				group.children(":first").addClass("mui-active")
 				$(".mediaId").click(function() {
 					let id = $(this).attr('id'); // 获取id
 					let viewCount = $(this).attr('viewCount');
-					let commentCount=$(this).attr("commentCount");
-					window.location.href = "newsDetailPage.html?id=" + id + "&userID="+10035 +"&commentCount="+commentCount;
+					let commentCount = $(this).attr("commentCount");
+					window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
 				});
+				if(typeid == 5) {
+					//开始
+					var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					var cityPicker = new mui.PopPicker({
+						layer: 2
+					});
+					cityPicker.setData(cityData);
+					var showCityPickerButton = document.getElementById('showCityPicker');
+					var cityResult = document.getElementById('cityResult');
+					showCityPickerButton.addEventListener('click', function(event) {
+						cityPicker.show(function(items) {
+							cityResult.innerText = items[1].text;
+							var cityname = items[1].text;
+							localStorage.setItem("cityname", cityname)
+							var cityname = localStorage.getItem("cityname");
+							if(cityname !== null) {
+								var typeid = localStorage.getItem("typeid");
+								console.log(typeid, cityname)
+								$.ajax({
+									type: "post",
+									url: "http://47.93.192.128:5001/News/NewsList",
+									async: true,
+									dataType: 'json',
+									data: {
+										pageindex: "", //number	否	页数，不填默认第一页	1
+										typeid: typeid, //number	否	栏目类型id	1
+										proid: "", //number	否	省id	3
+										cityid: "", //number	否	城市id	5
+										areaid: "", //number	否	区域id
+										cityname: cityname,
+										userid: ""
+									},
+									success: function(data) {
+										console.log(data);
+										//这个模板生成的字符串整个放到外面大容器里
+										typeid = "5";
+										data.Data.typeid = typeid;
+										data.Data.cityname = cityname;
+										console.log(data.Data)
+										var htmlStr = template("newsList", {
+											list: data.Data
+										})
+										console.log(typeid);
+										$("#" + typeid).html(htmlStr);
+										group.children(":first").addClass("mui-active");
+										$("#cityResult").innerText = cityname;
+										$(".mediaId").click(function() {
+											let id = $(this).attr('id'); // 获取id
+											let viewCount = $(this).attr('viewCount');
+											let commentCount = $(this).attr("commentCount");
+											window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
+										});
+									}
+								});
 
-				if(typeid==5){
-					var area="area";
-					$(".BaiduMap").click(function(){
-						window.location.href="segue://type="+area;
-					})
+							}
+
+						});
+
+					});
+
+					//结束
 				}
+
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-//				alert(textStatus);
+				//				alert(textStatus);
 			}
 		});
 	});
