@@ -21,7 +21,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		type: 'post',
 		data: {
-			UserId: userID
+			UserId: 10035
 		},
 		success: function(data) {
 			var str = template("myChannel", {
@@ -88,7 +88,7 @@ $(document).ready(function() {
 					async: true,
 					dataType: 'json',
 					data: {
-						userId: userID,
+						userId: 10035,
 						channelId: channelId
 					},
 					success: function(data) {
