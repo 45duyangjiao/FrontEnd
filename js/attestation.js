@@ -17,8 +17,8 @@ $(document).ready(function() {
 				url: "http://www.chntkd.org.cn/webinterface/APP_interface/json/membershipInformation.ashx",
 				type: "POST",
 				data: {
-					memberNo: "CTA01", //会员编号
-	                idcard:""
+					memberNo: memberNo, //会员编号
+	                idcard:idcard
 				},
 				dataType: "json",
 				success: function(data) {

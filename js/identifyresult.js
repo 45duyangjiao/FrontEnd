@@ -7,7 +7,7 @@ function GetQueryString(name) {
 }
 
 var memberNo = GetQueryString("memberNo");
-
+var idcard = GetQueryString("idcard");
 $(document).ready(function() {
 	var url = 'http://www.chntkd.org.cn/webinterface/APP_interface/json/membership.ashx';
 	$.ajax({
@@ -16,7 +16,7 @@ $(document).ready(function() {
 		type: 'post',
 		data: {
 			memberNo: memberNo,
-			idcard:""
+			idcard:idcard
 		},
 		success: function(data) {
 
