@@ -44,7 +44,7 @@
 			var id = GetQueryString("id");
 			var userID=GetQueryString("userID");
 			var viewCount = GetQueryString("viewCount");
-
+            console.log(id)
 			var DetailUrl = "http://47.93.192.128:5001/News/NewsInfo";
 			//默认加载
 			$.ajax({
@@ -66,8 +66,8 @@
 					$("#con_pub").html(con_pub)
 					$("#con_source").html(con_source)
 				},
-				error: function() {
-
+				error: function(e) {
+                    alert(e)
 				}
 			});
 			

@@ -18,7 +18,7 @@ $(document).ready(function() {
 				type: "POST",
 				data: {
 					memberNo: memberNo, //会员编号
-					idcard: idcard // 身份证号
+	                idcard:idcard
 				},
 				dataType: "json",
 				success: function(data) {
