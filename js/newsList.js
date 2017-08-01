@@ -18,7 +18,7 @@ $(document).ready(function() {
 		},
 		success: function(data) {
 			var dataNav = data.Data.Data;
-			console.log(dataNav);			//渲染新闻导航栏
+					//渲染新闻导航栏
 			var str = template("newsNav", {
 				list: dataNav
 			})
@@ -43,24 +43,25 @@ $(document).ready(function() {
 							areaid:"" //number	否	区域id
 						},
 						success: function(data) {
-							console.log(data);
+							
 							//这个模板生成的字符串整个放到外面大容器里
 							data.Data.typeid = typeid
 							var htmlStr = template("newsList", {
 								list: data.Data
 							});
-							console.log(data.Data);
+							
 							
 							if(typeid==5){
-								console.log($("#BaiduMap"))
+								
 								$("#BaiduMap").addClass("BaiduMapActive");
 							}
 							$("#" + typeid).html(htmlStr);
 							group.children(":first").addClass("mui-active")
 							$(".mediaId").click(function() {
-								let id = $(this).attr('id'); // 获取id
-								let commentCount=$(this).attr("commentCount");
-								window.location.href = "newsDetailPage.html?id=" + id + "&userID="+id+"&commentCount="+commentCount;
+								var id = $(this).attr('id'); // 获取id
+								
+								var commentCount=$(this).attr("commentCount");
+								window.location.href = "newsDetailPage.html?id=" + id + "&userID="+10035+"&commentCount="+commentCount;
 							});
 							
 						},
@@ -83,7 +84,7 @@ $(document).ready(function() {
 	document.getElementById('slider').addEventListener('slide', function(e) {
 		var slide = group.children().eq(e.detail.slideNumber);
 		var typeid = slide.attr("id");
-		console.log(typeid)
+		
 		$.ajax({
 			url: "http://47.93.192.128:5001/News/NewsList",
 			dataType: 'json',
@@ -96,14 +97,14 @@ $(document).ready(function() {
 				areaid:"" //number	否	区域id
 			},
 			success: function(data) {
-				console.log(data);
+				
 				//这个模板生成的字符串整个放到外面大容器里
 				data.Data.typeid = typeid
-				console.log(data.Data)
+				
 				var htmlStr = template("newsList", {
 					list: data.Data
 				})
-				console.log(typeid);
+				
 				$("#" + typeid).html(htmlStr);
 				group.children(":first").addClass("mui-active")
 				$(".mediaId").click(function() {
