@@ -1,0 +1,13 @@
+diff a/css/training.css b/css/training.css	(rejected hunks)
+@@ -210,6 +210,11 @@
+   line-height: 0.4rem;
+   font-size: 0.28rem;
+ }
++
++.content{
++	
++}
++
+ .saishi_time {
+   margin: 5px 0 10px;
+   overflow: hidden;
