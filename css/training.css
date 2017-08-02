@@ -7,6 +7,7 @@ textarea {
 }
 .mui-segmented-control.mui-scroll-wrapper .mui-control-item {
   width: 33%;
+  height: 38px;
 }
 .mui-table-view-cell:after {
   left: 0;
@@ -209,10 +210,6 @@ img {
   height: 0.8rem;
   line-height: 0.4rem;
   font-size: 0.28rem;
-}
-
-.content{
-	
 }
 
 .saishi_time {
