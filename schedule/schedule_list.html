@@ -185,7 +185,7 @@
 								}
 							li = document.createElement('li');
 							li.className = 'mui-table-view-cell mui-media';
-							li.innerHTML = '<div><img class="mui-pull-left" src="' +
+							li.innerHTML = '<div><img onerror="imgerror(this)" class="mui-pull-left" src="' +
 									data.Data.Data[i].pic +
 									'"><div onclick="texts(' + data.Data.Data[i].id + ')" class="saishi_text mui-media-body"><h2 class="">' +
 									data.Data.Data[i].Title +
@@ -206,7 +206,12 @@
 
 				}
 			});
-
+            function imgerror(img){
+            	console.log(img)
+            	img.style.display = 'none'
+                img.onerror=null;   //控制不要一直跳动
+                img.nextSibling.style.width = "100%"
+            }
 			//加载列表的方法
 			function innerList(typeid) {
 
@@ -233,7 +238,7 @@
 								}
 								li = document.createElement('li');
 								li.className = 'mui-table-view-cell mui-media';
-								li.innerHTML = '<div class="overflow"><img class="mui-pull-left" src="' +
+								li.innerHTML = '<div class="overflow"><img onerror="imgerror(this)" class="mui-pull-left" src="' +
 									data.Data.Data[i].pic +
 									'"><div onclick="texts(' + data.Data.Data[i].id + ')" class="saishi_text mui-media-body"><h2 class="">' +
 									data.Data.Data[i].Title +
