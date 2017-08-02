@@ -11,7 +11,6 @@ $(document).ready(function() {
 		if(r != null) return unescape(r[2]);
 		return null;
 	}
-
 	var userID = GetQueryString("userID");
 
 	var url = 'http://47.93.192.128:5001/News/GetMyChannelList';
@@ -60,11 +59,31 @@ $(document).ready(function() {
 		dataType: 'json',
 		type: 'post',
 		success: function(data) {
+			var textChannel = data.Data.Data;
+			console.log(textChannel)
+			var topText = $('#textL').text().replace(/x/g,'').replace(/\s+/g,"")
+			var outArr = [];
+			textChannel.map(function(item,index){
+				var innerArr = [];
+				item.Son.map(function(every,i){
+					if(topText.indexOf(every.Title)>-1){
+//						  console.log(every)
+						}else{
+						    innerArr.push(every)
+						}
+				})
+                item.Son = innerArr;
+                outArr.push(item)
+				
+			})
+			console.log(outArr)
 			var str = template("channel", {
-				channel: data.Data.Data
+				channel: outArr
 			});
+			
 			$(".dynamicallyAdd").html(str);
             //点击添加更多频道
+            
 			$(".compileChannel .pu").bind("click", function(e) {
 				
 				$(e.target).removeClass('pu').addClass('zhu')
@@ -76,7 +95,9 @@ $(document).ready(function() {
 					    $('.myChannelmodule').append('')
 				}else{
 						$('.myChannelmodule').append(e.target)
-				}			
+				}
+
+				
 				var channelId = $(e.target).attr("id");
 				if($(".supDelate").css("display") == "none") {
 					$(".supDelate").show();
@@ -97,7 +118,21 @@ $(document).ready(function() {
 
 				});
 			})
-
+//			var topText;
+//			function removetheSame(){
+//				topText = $('#textL').text().replace(/x/g,'').replace(/\s+/g,"")
+//	            $('.dynamicallyAdd ul li').map(function(index,item){
+//	            	console.log(item)
+//						if(topText.indexOf(item.innerText)>-1){
+//						    item.style.display = 'none'
+//						    
+//						}else{
+//								console.log('无')
+//						}
+//						
+//				})
+//			}
+//          removetheSame()  
 			$(".myChannelmodule .zhu").bind("click", function(e) {
 				//							e.target.remove()
 				//							alert(e.target.id)
@@ -111,7 +146,7 @@ $(document).ready(function() {
 
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			alert(XMLHttpRequest.status);
+//			alert(XMLHttpRequest.status);
 
 		}
 	});
@@ -133,5 +168,6 @@ $(document).ready(function() {
 		}
   
 	})
+	
 
 });

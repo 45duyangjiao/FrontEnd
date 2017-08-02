@@ -104,6 +104,7 @@ $(document).ready(function() {
 													group.children(":first").addClass("mui-active");
 													$("#cityResult").innerText = cityname;
 													$(".mediaId").click(function() {
+														
 														let id = $(this).attr('id'); // 获取id
 														let viewCount = $(this).attr('viewCount');
 														let commentCount = $(this).attr("commentCount");
@@ -124,6 +125,7 @@ $(document).ready(function() {
 							group.children(":first").addClass("mui-active");
 							$("#cityResult").innerText = cityname;
 							$(".mediaId").click(function() {
+								
 								let id = $(this).attr('id'); // 获取id
 								let commentCount = $(this).attr("commentCount");
 								window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
@@ -142,7 +144,7 @@ $(document).ready(function() {
 
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			alert(XMLHttpRequest.status);
+//			alert(XMLHttpRequest.status);
 		}
 	});
 
@@ -253,6 +255,7 @@ $(document).ready(function() {
 	});
 
 	$(".navAdd").click(function() {
+		
 		window.location.href = "newsarea.html?userID=" + 10035;
 	})
 
