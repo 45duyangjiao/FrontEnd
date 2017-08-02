@@ -12,8 +12,7 @@
 		<link href="../css/newsArea.css" rel="stylesheet" />
 		<link href="../css/mui.picker.css" rel="stylesheet" />
 		<link href="../css/mui.poppicker.css" rel="stylesheet" />
-		<title>新闻列表页</title>		
-				overflow: auto;
+		<title>新闻列表页</title>	
 	</head>
 
 	<body class="mui-fullscreen">
@@ -24,9 +23,9 @@
 				</div>
 			</div>
 		</div>
-
+		
 		<!--新闻列表-->
-		<div class="mui-content mui-page" id="newsCont">
+		<div class="mui-content" id="newsCont">
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div style="width:90%;float:left;background:#fff;">
 					<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
@@ -113,7 +112,14 @@
 		<script src="../js/mui.picker.js"></script>
 		<script src="../js/mui.poppicker.js"></script>
 		
-		
+		<script type="text/javascript">
+			mui.init();
+			//初始化单页view
+			var viewApi = mui('#app').view({
+				defaultPage: '#newsCont'
+			});
+
+		</script>
 
 	</body>
 
