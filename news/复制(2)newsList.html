@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/common.css" rel="stylesheet" />
+		<link href="../css/newList.css" rel="stylesheet" />
+		<link href="../css/newsArea.css" rel="stylesheet" />
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<title>新闻列表页</title>	
+	</head>
+
+	<body class="mui-fullscreen">
+		
+		<!--新闻列表-->
+		<div class="mui-content" id="newsCont">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div style="width:90%;float:left;background:#fff;">
+					<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+						<div class="mui-scroll newsNav newsNavSub">
+							<a class="mui-control-item"></a>
+						</div>
+					</div>
+				</div>
+		
+				<div class="navAdd" style="width: 10%;float: right;"><a></a></div>
+				<div style="clear: both;"></div>
+				<div class="mui-slider-group">
+					<div class="mui-slider-item mui-control-content"></div>
+				</div>
+			</div>
+		</div>
+		
+		<!--新闻导航模板-->
+		<script type="text/html" id="newsNav">
+			{{each list v}}
+			<a class="mui-control-item" href="#{{v.typeid}}">
+				{{v.title}}
+			</a>
+			{{/each}}
+			
+		</script>
+		<!-- 这个模板是为了以后整个界面切换的，ID是为了绑定切换的，才写的模板 -->
+		<script type="text/html" id="newsList">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll" style="overflow: auto;">
+					{{if list.typeid == '5'}}
+					<div id="BaiduMap" class="BaiduMap">
+						<span id='showCityPicker' class="areamap">点击选择城市 <i></i></span>
+						<span id='cityResult' class="ui-alert">{{list.cityname}}</span>
+					</div>
+					{{/if}}	
+					<ul class="mui-table-view">
+						{{each list.Data v i}}
+						<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}"  commentCount={{v.commentCount}}>
+							{{if v.pics.length == 0}}
+							<div class="mui-table-img" style="display: none;"></div>
+							{{/if}} {{if v.pics.length == 1}}
+							<div class="mui-table-img onePic"><img src="{{v.pics[0]}}" class="mui-media-object mui-pull-left" /></div>
+							{{/if}}
+							<div class="mui-table-text mui-media-body">
+								<p class="mui-table-title muipurelyTitle">{{v.title}}</p>
+								{{if v.pics.length >= 3}}
+								<div class="mui-table-pics muipurelyImg" id="purelyImg">
+									{{include "newsListPics" v}}
+								</div>
+								{{/if}}
+								<div class="muipurelytext">
+									<p class="mui-table-look muipurelylook clearfix">
+										<span class="lookLeft">{{v.publishDate}}{{v.source}}</span>
+										<span class="lookRight"><i class="look" style="margin-right: 8px;"></i>{{v.viewCount}}</span>
+									</p>
+								</div>
+							</div>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+		</script>
+
+		<script type="text/html" id="newsListPics">
+			{{each pics v i}}
+				<img src="{{v}}" attr='{{v}}'>
+			{{/each}}
+		</script>
+		<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/flexable.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script src="../js/artTemplate.js"></script>
+		<script src="../js/AnewsList.js"></script>
+		<script src="../js/template-web.js"></script>
+		<script src="../js/mui.view.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/mui.picker.js"></script>
+		<script src="../js/mui.poppicker.js"></script>
+		
+		
+
+	</body>
+
+</html>

@@ -117,7 +117,9 @@
 			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
 				transition: none;
 			}
-
+			.content{
+				 white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+			}
 		</style>
 	
 	</head>
@@ -191,6 +193,7 @@
 				datatype: "json",
 				success: function(data) {
 					data = eval('(' + data + ')');
+					console.log(data)
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
 					for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
@@ -200,9 +203,9 @@
 									data.Data.Data[i].ThumbImg +
 									'"><div onclick="texts(' + data.Data.Data[i].id + ')" class="saishi_text mui-media-body"><h2 class="">' +
 									data.Data.Data[i].Title +
-									'</h2><div class="mui-text-justify">内容简介：' +
-									data.Data.Data[i].BodyMsg +
-									'</div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
+									'</h2><div class="mui-text-justify"><div>内容简介：</div><div class="content">'+
+									data.Data.Data[i].ShortMsg +
+									'</div></div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
 									data.Data.Data[i].TrainTime +
 									'</p><button onclick="texts(' + data.Data.Data[i].id + ')" class="mui-btn-blue border-radius">快速报名</button></div>'
 						fragment.appendChild(li);
@@ -241,9 +244,9 @@
 									data.Data.Data[i].ThumbImg +
 									'"><div onclick="texts(' + data.Data.Data[i].id + ')" class="saishi_text mui-media-body"><h2 class="">' +
 									data.Data.Data[i].Title +
-									'</h2><div class="mui-text-justify">内容简介：' +
-									data.Data.Data[i].BodyMsg +
-									'</div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
+									'</h2><div class="mui-text-justify"><div>内容简介：</div><div class="content">'+
+									data.Data.Data[i].ShortMsg +
+									'</div></div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
 									data.Data.Data[i].TrainTime +
 									'</p><button onclick="texts(' + data.Data.Data[i].id + ')" class="mui-btn-blue border-radius">快速报名</button></div>'
 								fragment.appendChild(li);
