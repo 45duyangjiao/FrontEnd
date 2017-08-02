@@ -19,7 +19,7 @@ $(document).ready(function() {
 		},
 		success: function(data) {
 			var dataNav = data.Data.Data;
-			console.log(dataNav); //渲染新闻导航栏
+			
 			var str = template("newsNav", {
 				list: dataNav
 			})
@@ -54,6 +54,7 @@ $(document).ready(function() {
 							console.log(data.Data);
 
 							if(typeid == 5) {
+								
 								$("#BaiduMap").addClass("BaiduMapActive");
 								//开始
 								var _getParam = function(obj, param) {
@@ -66,6 +67,7 @@ $(document).ready(function() {
 								var showCityPickerButton = document.getElementById('showCityPicker');
 								var cityResult = document.getElementById('cityResult');
 								showCityPickerButton.addEventListener('click', function(event) {
+								    
 									cityPicker.show(function(items) {
 										cityResult.innerText = items[1].text;
 										var cityname = items[1].text;
@@ -91,7 +93,7 @@ $(document).ready(function() {
 												success: function(data) {
 													console.log(data);
 													//这个模板生成的字符串整个放到外面大容器里
-													typeid = "5";
+													typeid = 5;
 													data.Data.typeid = typeid;
 													data.Data.cityname = cityname;
 													console.log(data.Data)
@@ -164,7 +166,6 @@ $(document).ready(function() {
 				userid: ""
 			},
 			success: function(data) {
-
 				//这个模板生成的字符串整个放到外面大容器里
 				data.Data.typeid = typeid
 
@@ -192,6 +193,7 @@ $(document).ready(function() {
 					var showCityPickerButton = document.getElementById('showCityPicker');
 					var cityResult = document.getElementById('cityResult');
 					showCityPickerButton.addEventListener('click', function(event) {
+						
 						cityPicker.show(function(items) {
 							cityResult.innerText = items[1].text;
 							var cityname = items[1].text;
@@ -217,7 +219,7 @@ $(document).ready(function() {
 									success: function(data) {
 										console.log(data);
 										//这个模板生成的字符串整个放到外面大容器里
-										typeid = "5";
+										typeid = 5;
 										data.Data.typeid = typeid;
 										data.Data.cityname = cityname;
 										console.log(data.Data)
