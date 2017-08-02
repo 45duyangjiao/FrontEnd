@@ -90,10 +90,16 @@
 			</div>
 		</div>
 		</script>
-
+        <script>
+        	function imgerror(img){
+				img.src="../images/111.png";
+                img.onerror=null;   //控制不要一直跳动
+			}
+        </script>
 		<script type="text/html" id="newsListPics">
+			
 			{{each pics v i}}
-				<img src="{{v}}" attr='{{v}}'>
+				<img src="{{v}}" attr='{{v}}' onerror="imgerror(this)">
 			{{/each}}
 		</script>
 		<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
