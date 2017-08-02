@@ -24,7 +24,6 @@ $(document).ready(function() {
 				list: dataNav
 			})
 			$(".newsNav").html(str).children(":first").addClass("mui-active");
-
 			//根据新闻导航渲染对应页签
 			var firstDiv = group.children(":first");
 			for(var i = 0, len = dataNav.length; i < len; i++) {

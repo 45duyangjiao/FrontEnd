@@ -1,3 +1,4 @@
+
 // 我的频道
 $(document).ready(function() {
 	mui.init({
@@ -5,6 +6,7 @@ $(document).ready(function() {
 	   swipe: false, 
 	  }
 	});
+
 	function GetQueryString(name) {
 		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
 		var r = window.location.search.substr(1).match(reg);
@@ -47,7 +49,6 @@ $(document).ready(function() {
 			})
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-//			alert(XMLHttpRequest.status);
 		}
 	   });
 	   }
@@ -158,7 +159,6 @@ $(document).ready(function() {
 		if($(".supDelate").css("display") == "none") {
 			$(".supDelate").show();
 			$('.floatR').html("完成");
-			  
 		} else {
 		//点击完成
 			$(".supDelate").hide();
