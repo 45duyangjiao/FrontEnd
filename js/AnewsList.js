@@ -5,11 +5,11 @@ $(document).ready(function() {
 		if(r != null) return unescape(r[2]);
 		return null;
 	}
-
+     
 	var userID = GetQueryString("userID");
 	var group = $(".mui-slider-group");
 	var cityname = GetQueryString("userID");
-	console.log()
+	
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
 		dataType: 'json',
