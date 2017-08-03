@@ -8,7 +8,7 @@ $(document).ready(function() {
      
 //	var userID = GetQueryString("userID");
 	var group = $(".mui-slider-group");
-//  var cityname = GetQueryString("userID");
+  var cityname = GetQueryString("userID");
 	
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
@@ -147,41 +147,50 @@ $(document).ready(function() {
 		},
 		
 	});
-
-	document.getElementById('slider').addEventListener('slide', function(e) {
-		var slide = group.children().eq(e.detail.slideNumber);
-		var typeid = slide.attr("id");
-		$.ajax({
+    function ajaxModel(typeid,slide){
+    	$.ajax({
+			type: "post",
 			url: "http://47.93.192.128:5001/News/NewsList",
+			async: true,
 			dataType: 'json',
-			type: 'post',
 			data: {
 				pageindex: "", //number	否	页数，不填默认第一页	1
 				typeid: typeid, //number	否	栏目类型id	1
 				proid: "", //number	否	省id	3
 				cityid: "", //number	否	城市id	5
 				areaid: "", //number	否	区域id
-				cityname: "",
-				userid: 10035
+				cityname: cityname,
+				userid:10035
 			},
 			success: function(data) {
+				
 				//这个模板生成的字符串整个放到外面大容器里
-				data.Data.typeid = typeid
-
+				typeid = 5;
+				data.Data.typeid = typeid;
+				data.Data.cityname = cityname;
+				
 				var htmlStr = template("newsList", {
 					list: data.Data
 				})
-
+				
 				$("#" + typeid).html(htmlStr);
-				group.children(":first").addClass("mui-active")
+				group.children(":first").addClass("mui-active");
+				$("#cityResult").innerText = cityname;
 				$(".mediaId").click(function() {
 					let id = $(this).attr('id'); // 获取id
 					let viewCount = $(this).attr('viewCount');
 					let commentCount = $(this).attr("commentCount");
 					window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
 				});
-				if(typeid == 5) {
-					alert('jiba')
+				showCityM(typeid)
+			}
+		});
+		
+    }
+    
+    
+    function showCityM(typeid){
+    	 if(typeid == 5) {
 					//开始
 					var _getParam = function(obj, param) {
 						return obj[param] || '';
@@ -192,8 +201,9 @@ $(document).ready(function() {
 					cityPicker.setData(cityData);
 					var showCityPickerButton = document.getElementById('showCityPicker');
 					var cityResult = document.getElementById('cityResult');
+					console.log(showCityPickerButton)
 					showCityPickerButton.addEventListener('click', function(event) {
-						
+//						alert('daye')
 						cityPicker.show(function(items) {
 							cityResult.innerText = items[1].text;
 							var cityname = items[1].text;
@@ -201,43 +211,7 @@ $(document).ready(function() {
 							var cityname = localStorage.getItem("cityname");
 							if(cityname !== null) {
 								var typeid = localStorage.getItem("typeid");
-								
-								$.ajax({
-									type: "post",
-									url: "http://47.93.192.128:5001/News/NewsList",
-									async: true,
-									dataType: 'json',
-									data: {
-										pageindex: "", //number	否	页数，不填默认第一页	1
-										typeid: typeid, //number	否	栏目类型id	1
-										proid: "", //number	否	省id	3
-										cityid: "", //number	否	城市id	5
-										areaid: "", //number	否	区域id
-										cityname: cityname,
-										userid:10035
-									},
-									success: function(data) {
-										
-										//这个模板生成的字符串整个放到外面大容器里
-										typeid = 5;
-										data.Data.typeid = typeid;
-										data.Data.cityname = cityname;
-										
-										var htmlStr = template("newsList", {
-											list: data.Data
-										})
-										
-										$("#" + typeid).html(htmlStr);
-										group.children(":first").addClass("mui-active");
-										$("#cityResult").innerText = cityname;
-										$(".mediaId").click(function() {
-											let id = $(this).attr('id'); // 获取id
-											let viewCount = $(this).attr('viewCount');
-											let commentCount = $(this).attr("commentCount");
-											window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
-										});
-									}
-								});
+								ajaxModel();
 
 							}
 
@@ -247,10 +221,14 @@ $(document).ready(function() {
 
 					//结束
 				}
-
-			},
-			
-		});
+    }
+   
+	document.getElementById('slider').addEventListener('slide', function(e) {
+		var slide = group.children().eq(e.detail.slideNumber);
+		var typeid = slide.attr("id");
+		ajaxModel(typeid,slide);
+		
+		
 	});
 
 	$(".navAdd").click(function() {
