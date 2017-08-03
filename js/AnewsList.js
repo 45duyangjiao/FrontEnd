@@ -42,7 +42,7 @@ $(document).ready(function() {
 							cityid: "", //number	否	城市id	5
 							areaid: "", //number	否	区域id
 							cityname: "",
-							userid: ""
+							userid: 10035
 						},
 						success: function(data) {
 							
@@ -88,7 +88,7 @@ $(document).ready(function() {
 													cityid: "", //number	否	城市id	5
 													areaid: "", //number	否	区域id
 													cityname: cityname,
-													userid: ""
+													userid: 10035
 												},
 												success: function(data) {
 													
@@ -162,7 +162,7 @@ $(document).ready(function() {
 				cityid: "", //number	否	城市id	5
 				areaid: "", //number	否	区域id
 				cityname: "",
-				userid: ""
+				userid: 10035
 			},
 			success: function(data) {
 				//这个模板生成的字符串整个放到外面大容器里
@@ -213,7 +213,7 @@ $(document).ready(function() {
 										cityid: "", //number	否	城市id	5
 										areaid: "", //number	否	区域id
 										cityname: cityname,
-										userid: ""
+										userid:10035
 									},
 									success: function(data) {
 										
