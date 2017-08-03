@@ -61,6 +61,7 @@ $(document).ready(function() {
 						  
 						    
 					} else {
+						document.getElementById('loadingdiv').style.display = "none"
 						$(".identifyResult").html('<div style="text-align:center;margin-top:100px;color:#777">暂时没会员信息!</div>');
 					}	
 			
