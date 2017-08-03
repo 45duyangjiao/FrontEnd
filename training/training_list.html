@@ -14,6 +14,7 @@
 		<link href="../css/mui.poppicker.css" rel="stylesheet" />
 		<script src="../js/jquery-1.9.1.min.js"></script>
 		<script src="../js/flexable.js"></script>
+		<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
 		<style>
 			.mui-bar~.mui-content .mui-fullscreen {
 				top: 44px;
@@ -202,7 +203,9 @@
 							for(var i = data.Data.Data.length - 1; i >= 0; i--) { //循环输出data中的数据
 								a = document.createElement('a');
 								a.className = 'mui-control-item';
-								a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
+//								a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
+								a.setAttribute("id",data.Data.Data[i].Id);
+								a.setAttribute("onclick","innerList(" + data.Data.Data[i].Id + ")")
 								a.innerHTML = data.Data.Data[i].Title;
 								fragment.appendChild(a);
 
@@ -211,21 +214,20 @@
 
 						document.querySelector("#cur").appendChild(fragment); //输出到#item1mobile的页面内容
 						$("#cur>a:first-child").addClass("mui-active");
-						$("#cur>a:first-child").attr("id","trainOne");
 						$("#cur>a").bind("click", function() {
 							$("#cur>a").removeClass("mui-active");
 							$(this).addClass("mui-active")
 						});
 						
-						$("#trainOne").click(function(){
+						$("#22").click(function(){
 							$(".checkDI").show();
 						});
-						$(".mui-control-item").click(function(){
+						$("#23").click(function(){
 							$(".checkDI").hide();
-							$("#trainOne").click(function(){
-								$(".checkDI").show();
-							});
-						})
+						});
+						$("#24").click(function(){
+							$(".checkDI").hide();
+						});
 						
 					},
 					error: function() {
@@ -272,7 +274,7 @@
 
 					$('#List li').remove();
 					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
-
+					
 				},
 				error: function() {
 
@@ -315,6 +317,7 @@
 						$('#List li').remove();
 						document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
 
+
 					},
 					error: function() {
 
@@ -343,29 +346,35 @@
 			
 			
 		</script>
+		
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/mui.picker.js"></script>
 		<script src="../js/mui.poppicker.js"></script>
 		<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
 		<script>
-		
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+
 					var _getParam = function(obj, param) {
 						return obj[param] || '';
 					};
 					//					
 					//级联示例
-					var cityPicker = new mui.PopPicker({
+					var cityPicker = new $.PopPicker({
 						layer: 1
 					});
 					cityPicker.setData(cityData);
-					var showCityPickerButton = document.getElementById('showCityPicker');
-					var cityResult = document.getElementById('cityResult');
+					var showCityPickerButton = doc.getElementById('showCityPicker');
+					var cityResult = doc.getElementById('cityResult');
 					showCityPickerButton.addEventListener('tap', function(event) {
 						cityPicker.show(function(items) {
 							cityResult.innerText = items[1].text;
 						});
 					}, false);
 
+				});
+			})(mui, document);
 		</script>
 		
 	</body>
