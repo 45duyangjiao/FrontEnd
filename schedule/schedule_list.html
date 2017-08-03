@@ -152,6 +152,7 @@
 			function texts(id) {
 				window.location.href = "scheduleContent.html?id=" + id;
 			}
+			
 			(function() {
 				var t = setTimeout(function() {
 					$("#time2").slideUp();
@@ -231,6 +232,7 @@
 						var li;
 						var timeTe = "";
 						if(typeof(data.Data.Data) != "undefined") {
+							
 							for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
 								 
 								if(data.Data.Data[i].MatchDate == null){
@@ -239,6 +241,10 @@
 									timeTe = data.Data.Data[i].MatchDate
 								}
 								li = document.createElement('li');
+								var localTion;
+								if(i == 0){
+									localTion = "地区"
+								}
 								li.className = 'mui-table-view-cell mui-media';
 								if(data.Data.Data[i].pic == ""){
 									li.innerHTML = '<div class="overflow"><div onclick="texts(' + data.Data.Data[i].id + ')" style="width:100%" class="saishi_text mui-media-body"><h2 class="">' +
@@ -250,7 +256,8 @@
 									'</p></div>'
 								}else{
 									
-									li.innerHTML = '<div class="overflow"><img class="mui-pull-left" src="' +
+									li.innerHTML = '<div style="text-align:center;margin-bottom:10px;color:#888">'+localTion+'</div>'+
+									'<div class="overflow"><img class="mui-pull-left" src="' +
 									data.Data.Data[i].pic +
 									'"><div onclick="texts(' + data.Data.Data[i].id + ')" class="saishi_text mui-media-body"><h2 class="">' +
 									data.Data.Data[i].Title +
@@ -278,7 +285,7 @@
 				});
 			}
 			//加载导航的方法
-			
+			innerList(1006)
 			function innerNav() {
 
 				$.ajax({
