@@ -10,6 +10,11 @@ var memberNo = GetQueryString("memberNo");
 var idcard = GetQueryString("idcard");
 $(document).ready(function() {
 	var url = 'http://www.chntkd.org.cn/webinterface/APP_interface/json/membership.ashx';
+	document.getElementById('loadingdiv').style.display = "block";
+	document.getElementById('loadingP').style.width = "40px"
+	document.getElementById('loadingdiv').style.margin = "0 auto"
+	document.getElementById('loadingdiv').style.marginTop = "50%"
+	document.getElementById('loadingdiv').style.textAlign = "center"
 	$.ajax({
 		url: url,
 		dataType: 'json',
@@ -19,13 +24,14 @@ $(document).ready(function() {
 			idcard:idcard
 		},
 		success: function(data) {
-
+            console.log(data)
 //			if(sign=0x10320000){
 //				var data = data.baseInfor;
 //				var str = template("identifyResult", data)
 //				$(".identifyResult").html(str);
 //			}
 			if (data.sign == 0x10320000) {
+				        document.getElementById('loadingdiv').style.display = "none"
 				        var baseInfor = data.baseInfor;
 				        var certInfor = data.certInfor;
 						var str = template("identifyResult", baseInfor)
