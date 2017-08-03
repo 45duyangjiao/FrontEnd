@@ -370,10 +370,9 @@
 					showCityPickerButton.addEventListener('click', function(event) {
 						cityPicker.show(function(items) {
 							cityResult.innerText = items[0].text;
-							//返回 false 可以阻止选择框的关闭
-							//return false;
+						
 						});
-					}, false);
+					});
 					
 				});
 			})(mui, document);
