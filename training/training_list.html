@@ -355,24 +355,26 @@
 			(function($, doc) {
 				$.init();
 				$.ready(function() {
-
+					
 					var _getParam = function(obj, param) {
 						return obj[param] || '';
 					};
-					//					
+					
 					//级联示例
 					var cityPicker = new $.PopPicker({
-						layer: 1
+						layer:1
 					});
 					cityPicker.setData(cityData);
 					var showCityPickerButton = doc.getElementById('showCityPicker');
 					var cityResult = doc.getElementById('cityResult');
-					showCityPickerButton.addEventListener('tap', function(event) {
+					showCityPickerButton.addEventListener('click', function(event) {
 						cityPicker.show(function(items) {
-							cityResult.innerText = items[1].text;
+							cityResult.innerText = items[0].text;
+							//返回 false 可以阻止选择框的关闭
+							//return false;
 						});
 					}, false);
-
+					
 				});
 			})(mui, document);
 		</script>
