@@ -8,7 +8,7 @@ $(document).ready(function() {
      
 //	var userID = GetQueryString("userID");
 	var group = $(".mui-slider-group");
-  var cityname = GetQueryString("userID");
+  //var cityname = GetQueryString("userID");
 	
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
@@ -159,7 +159,7 @@ $(document).ready(function() {
 				proid: "", //number	否	省id	3
 				cityid: "", //number	否	城市id	5
 				areaid: "", //number	否	区域id
-				cityname: cityname,
+				cityname: "",
 				userid:10035
 			},
 			success: function(data) {
@@ -167,7 +167,7 @@ $(document).ready(function() {
 				//这个模板生成的字符串整个放到外面大容器里
 				typeid = 5;
 				data.Data.typeid = typeid;
-				data.Data.cityname = cityname;
+//				data.Data.cityname = cityname;
 				
 				var htmlStr = template("newsList", {
 					list: data.Data
@@ -175,7 +175,7 @@ $(document).ready(function() {
 				
 				$("#" + typeid).html(htmlStr);
 				group.children(":first").addClass("mui-active");
-				$("#cityResult").innerText = cityname;
+//				$("#cityResult").innerText = cityname;
 				$(".mediaId").click(function() {
 					let id = $(this).attr('id'); // 获取id
 					let viewCount = $(this).attr('viewCount');

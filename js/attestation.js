@@ -29,6 +29,7 @@ $(document).ready(function() {
 						var memberNo = data.baseInfor.userNo;
 						window.location.href = "identifyresult.html?memberNo=" + memberNo
 					} else {
+						window.location.href = "identifyresult.html?memberNo=" + memberNo
 						mui.toast('没有会员信息', {
 							duration: '1000',
 							type: 'div'
