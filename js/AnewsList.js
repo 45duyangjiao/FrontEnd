@@ -136,9 +136,7 @@ $(document).ready(function() {
 							});
 
 						},
-						error: function(XMLHttpRequest, textStatus, errorThrown) {
-
-						}
+						
 					});
 				} else {
 					firstDiv.clone().attr("id", id).appendTo(group);
@@ -147,9 +145,7 @@ $(document).ready(function() {
 			}
 
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
-
-		}
+		
 	});
 
 	document.getElementById('slider').addEventListener('slide', function(e) {
@@ -252,9 +248,7 @@ $(document).ready(function() {
 				}
 
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-
-			}
+			
 		});
 	});
 
