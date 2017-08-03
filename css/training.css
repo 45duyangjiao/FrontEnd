@@ -200,16 +200,18 @@ img {
   -webkit-box-orient: vertical;
 }
 .saishi_text > h2 {
-  font-size:0.29rem;
-  height: 18px;
-  line-height: 18px;
-  font-weight: bold;
-  margin-top: 1px;
+      font-size: 0.29rem;
+    height: 18px;
+    line-height: 18px;
+    font-weight: normal;
+    color: black;
+    margin-top: 1px;
 }
 .saishi_text > .mui-text-justify {
-  height: 0.8rem;
-  line-height: 0.4rem;
-  font-size: 0.28rem;
+     height: 0.8rem;
+    color: #616161;
+    line-height: 0.4rem;
+    font-size: 0.27rem;
 }
 
 .saishi_time {
@@ -219,7 +221,7 @@ img {
 .saishi_time .peixun_p {
   width: auto;
   line-height: 35px;
-  font-size: 0.25rem;
+  font-size: 0.24rem;
   float: left;
 }
 .saishi_time > button {
