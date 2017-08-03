@@ -6,9 +6,9 @@ $(document).ready(function() {
 		return null;
 	}
      
-	var userID = GetQueryString("userID");
+//	var userID = GetQueryString("userID");
 	var group = $(".mui-slider-group");
-	var cityname = GetQueryString("userID");
+//	var cityname = GetQueryString("userID");
 	
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
