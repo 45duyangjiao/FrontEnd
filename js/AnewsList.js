@@ -8,7 +8,7 @@ $(document).ready(function() {
      
 //	var userID = GetQueryString("userID");
 	var group = $(".mui-slider-group");
-//	var cityname = GetQueryString("userID");
+//  var cityname = GetQueryString("userID");
 	
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
@@ -127,7 +127,7 @@ $(document).ready(function() {
 							}
 							$("#" + typeid).html(htmlStr);
 							group.children(":first").addClass("mui-active");
-							$("#cityResult").innerText = cityname;
+//							$("#cityResult").innerText = cityname;
 							$(".mediaId").click(function() {
 								
 								let id = $(this).attr('id'); // 获取id
@@ -181,6 +181,7 @@ $(document).ready(function() {
 					window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
 				});
 				if(typeid == 5) {
+					alert('jiba')
 					//开始
 					var _getParam = function(obj, param) {
 						return obj[param] || '';
