@@ -55,10 +55,7 @@ $(document).ready(function() {
 						  
 						    
 					} else {
-						mui.toast('没有会员信息', {
-							duration: '1000',
-							type: 'div'
-						})
+						$(".identifyResult").html('<div style="text-align:center;margin-top:100px;color:#777">暂时没会员信息!</div>');
 					}	
 			
 		},
