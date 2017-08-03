@@ -45,13 +45,13 @@ $(document).ready(function() {
 							userid: ""
 						},
 						success: function(data) {
-							console.log(data);
+							
 							//这个模板生成的字符串整个放到外面大容器里
 							data.Data.typeid = typeid
 							var htmlStr = template("newsList", {
 								list: data.Data
 							});
-							console.log(data.Data);
+							
 
 							if(typeid == 5) {
 								
@@ -75,7 +75,7 @@ $(document).ready(function() {
 										var cityname = localStorage.getItem("cityname");
 										if(cityname !== null) {
 											var typeid = localStorage.getItem("typeid");
-											console.log(typeid, cityname)
+											
 											$.ajax({
 												type: "post",
 												url: "http://47.93.192.128:5001/News/NewsList",
@@ -91,16 +91,16 @@ $(document).ready(function() {
 													userid: ""
 												},
 												success: function(data) {
-													console.log(data);
+													
 													//这个模板生成的字符串整个放到外面大容器里
 													typeid = 5;
 													data.Data.typeid = typeid;
 													data.Data.cityname = cityname;
-													console.log(data.Data)
+													
 													var htmlStr = template("newsList", {
 														list: data.Data
 													})
-													console.log(typeid);
+													
 													$("#" + typeid).html(htmlStr);
 													group.children(":first").addClass("mui-active");
 													$("#cityResult").innerText = cityname;
@@ -134,7 +134,7 @@ $(document).ready(function() {
 
 						},
 						error: function(XMLHttpRequest, textStatus, errorThrown) {
-							//							alert(textStatus);
+
 						}
 					});
 				} else {
@@ -145,7 +145,7 @@ $(document).ready(function() {
 
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-//			alert(XMLHttpRequest.status);
+
 		}
 	});
 
@@ -201,7 +201,7 @@ $(document).ready(function() {
 							var cityname = localStorage.getItem("cityname");
 							if(cityname !== null) {
 								var typeid = localStorage.getItem("typeid");
-								console.log(typeid, cityname)
+								
 								$.ajax({
 									type: "post",
 									url: "http://47.93.192.128:5001/News/NewsList",
@@ -217,16 +217,16 @@ $(document).ready(function() {
 										userid: ""
 									},
 									success: function(data) {
-										console.log(data);
+										
 										//这个模板生成的字符串整个放到外面大容器里
 										typeid = 5;
 										data.Data.typeid = typeid;
 										data.Data.cityname = cityname;
-										console.log(data.Data)
+										
 										var htmlStr = template("newsList", {
 											list: data.Data
 										})
-										console.log(typeid);
+										
 										$("#" + typeid).html(htmlStr);
 										group.children(":first").addClass("mui-active");
 										$("#cityResult").innerText = cityname;
@@ -250,7 +250,7 @@ $(document).ready(function() {
 
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				//				alert(textStatus);
+
 			}
 		});
 	});
