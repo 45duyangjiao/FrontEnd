@@ -240,7 +240,6 @@
 			}
 
 			
-			
 			//默认加载
 			$.ajax({
 				
@@ -355,27 +354,32 @@
 					
 					//级联示例
 					var cityPicker = new mui.PopPicker({
-						layer:1
+						layer:2
 					});
 					cityPicker.setData(cityData);
 					var showCityPickerButton = document.getElementById('showCityPicker');
 					var cityResult = document.getElementById('cityResult');
 					showCityPickerButton.addEventListener('click', function(event) {
 						cityPicker.show(function(items) {
-							cityResult.innerText = items[0].text;
-							var city=items[0].text;
+							cityResult.innerText = items[0].text+items[1].text;
+							var ProvinceName=items[0].text;
+							var AreaName=items[1].text;
+							console.log(ProvinceName,AreaName);
 							localStorage.setItem("city",city);
 							var city=localStorage.getItem("city");
-							var cityUrl="http://47.93.192.128:5001/Train/AreaTrainList";
+							var cityUrl="http://47.93.192.128:5001/News/AreaChange";
 									$.ajax({
 										type: "post",
 										url: cityUrl,
 										data: {
-											city:city
+											ProvinceName:ProvinceName,
+											TypeId:22,
+											AreaName:AreaName
 										},
 										datatype: "json",
 										success: function(data) {
 											data = eval('(' + data + ')');
+											console.log(data)
 											var fragment = document.createDocumentFragment(); //创建一个代码片段
 											var li;
 											if(typeof(data.Data.Data) != "undefined") {
