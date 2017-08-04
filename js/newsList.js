@@ -6,7 +6,7 @@ $(document).ready(function(event){
 		return null;
 	}
      
-	var userID = GetQueryString("userID");
+	var userID = GetQueryString("userID");      
 	var group = $(".mui-slider-group");
 	var userID=userID.toString();
 	$.ajax({
@@ -17,10 +17,20 @@ $(document).ready(function(event){
 			UserId: userID
 		},
 		success: function(data) {
+
 			var dataNav = data.Data.Data;
 			if(userID==0){
 				var dataNav = data.Data.Data.reverse();
 			}
+
+//			var dataNav;
+//		    if(data.Data.Success){
+//		    	 dataNav= data.Data.Data;	
+//		    }else{
+//		    	
+//		    }
+					
+
 			var str = template("newsNav", {
 				list: dataNav
 			})
