@@ -8,7 +8,10 @@ $(document).ready(function(event){
      
 	var userID = GetQueryString("userID");      
 	var group = $(".mui-slider-group");
-	var userID=userID.toString();
+	if(userID!==null){
+		var userID=userID.toString();
+	}
+	
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
 		dataType: 'json',
@@ -17,7 +20,6 @@ $(document).ready(function(event){
 			UserId: userID
 		},
 		success: function(data) {
-
 			var dataNav = data.Data.Data;
 			if(userID==0){
 				var dataNav = data.Data.Data.reverse();
