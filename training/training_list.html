@@ -204,13 +204,14 @@
 						var a;
 						if(typeof(data.Data.Data) != "undefined") { //这里是判断是不是有数据的 如果没数据直接不用循环 否则 undefined len属性
 							for(var i = data.Data.Data.length - 1; i >= 0; i--) { //循环输出data中的数据
-								a = document.createElement('a');
-								a.className = 'mui-control-item';
+								span = document.createElement('span');
+								span.className = 'mui-control-item';
 //								a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
-								a.setAttribute("id",data.Data.Data[i].Id);
-								a.setAttribute("onclick","innerList(" + data.Data.Data[i].Id + ")")
-								a.innerHTML = data.Data.Data[i].Title;
-								fragment.appendChild(a);
+								span.setAttribute("id",data.Data.Data[i].Id);
+								span.setAttribute("onclick","innerList(" + data.Data.Data[i].Id + ")")
+								span.innerHTML = data.Data.Data[i].Title;
+								fragment.appendChild(span);
+								
 
 							}
 						}
