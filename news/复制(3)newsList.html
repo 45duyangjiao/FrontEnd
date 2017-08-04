@@ -102,47 +102,6 @@
 				<img src="{{v}}" attr='{{v}}' onerror="imgerror(this)">
 			{{/each}}
 		</script>
-		
-		<script type="text/html" id="newsAddress">
-			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll" style="overflow: auto;">
-					{{if list.typeid == '5'}}
-					<div id="BaiduMap" class="BaiduMap">
-						<span id='showCityPicker' class="areamap">点击选择城市 <i></i></span>
-						<span id='cityResult' class="ui-alert">{{list.cityname}}</span>
-					</div>
-					{{/if}}	
-					
-						<ul class="mui-table-view">
-							{{each list.Data v }}
-							<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}">
-								<a href="javascript:;">
-									<img class="mui-media-object mui-pull-left" src="{{v.pic}}">
-									<div class="mui-media-body">
-										{{v.Title}}
-										<div class='mui-ellipsis' id="guolv">{{(v.content).replace(/<\/?[^>]*>/g,"")}}</div>
-									</div>
-									
-									<div class="muipurelytext">
-										<p class="mui-table-look muipurelylook clearfix">
-											<span class="lookLeft">{{(v.CreatedTime).slice(0,10)}}</span>
-											<span class="lookRight"><i class="look" style="margin-right: 8px;"></i>{{v.ViewsCount}}</span>
-										</p>
-									</div>
-								</a>
-							</li>
-							
-							{{/each}}
-						</ul>
-				</div>
-			</div>
-				</div>
-			</div>
-		</div>
-		</script>
-		
-		
-		
 		<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/flexable.js"></script>
 		<script src="../js/mui.min.js"></script>
@@ -150,7 +109,7 @@
 		<script src="../js/mui.pullToRefresh.material.js"></script>
 		<script src="../js/jquery.js"></script>
 		<script src="../js/artTemplate.js"></script>
-		<script src="../js/AAnewsList.js"></script>
+		<script src="../js/AnewsList.js"></script>
 		<script src="../js/template-web.js"></script>
 		<script src="../js/mui.view.js"></script>
 		<script src="../js/common.js"></script>
