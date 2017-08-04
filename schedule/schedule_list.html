@@ -8,10 +8,17 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link rel="stylesheet" href="../css/mui.min.css">
+		
 		<link rel="stylesheet" href="../css/training.css" />
-		<script src="../js/jquery-1.9.1.min.js"></script>
-		<script src="../js/flexable.js"></script>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/common.css" rel="stylesheet" />
+		<link href="../css/newList.css" rel="stylesheet" />
+		<link href="../css/newsArea.css" rel="stylesheet" />
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		
+		
+
 		<style>
 			.mui-bar~.mui-content .mui-fullscreen {
 				top: 44px;
@@ -117,6 +124,16 @@
 			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
 				transition: none;
 			}
+			#sliderSegmentedControl .mui-control-item{
+				width: 33.33%!important;
+			}
+			#locaData{
+				text-align: left!important;
+				padding: 0px 12px;
+			}
+			#locaData img{
+				width: 100%;
+			}
 			
 		</style>
 
@@ -130,7 +147,11 @@
 
 					</div>
 					<!--<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>-->
-					<div id="time2" class="current-position">地区<i></i></div>
+					<!--<div id="locationW" class="current-position">地区<i></i></div>-->
+					<div id="firsrTypeDisplay">
+						<div onClick=locationW()  style="text-align:center;margin-bottom:10px;color:#888;background: #e6e6e6;">请选择城市<span id="cityResult" class="ui-alert"></span></div>
+						<div id="locaData"></div>
+				    </div>
 				</div>
 
 				<div class="mui-slider-group">
@@ -147,19 +168,39 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		
+		
+		<!-- 这个模板是为了以后整个界面切换的，ID是为了绑定切换的，才写的模板 -->
+		<!--<script type="text/html" id="newsList">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll" style="overflow: auto;">
+					<ul class="mui-table-view">
+						{{each list v i}}
+						<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}"  commentCount={{v.commentCount}}>
+							<div>这是每个item</div>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+				</div>
+			</div>
+		</div>
+		</script>-->
+		<script src="../js/jquery-1.9.1.min.js"></script>
+		<script src="../js/artTemplate.js"></script>
+        <script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../js/flexable.js"></script>
+		<script src="../js/mui.min.js"></script>
 
+		<script src="../js/mui.picker.js"></script>
+		<script src="../js/mui.poppicker.js"></script>
 		<script>
 			function texts(id) {
 				window.location.href = "scheduleContent.html?id=" + id;
 			}
-			
-			(function() {
-				var t = setTimeout(function() {
-					$("#time2").slideUp();
-					clearInterval(t)
-				}, 2000)
-			})()
-
 			var NavUrl = "http://47.93.192.128:5001/Match/MatchNavBar";
 			var ListUrl = "http://47.93.192.128:5001/Match/MatchList";
 			//默认加载
@@ -207,17 +248,18 @@
 
 				}
 			});
-//          function imgerror(img){
-//          	
-//            	img.style.display = 'none';
-//            	img.width = "0"
-//              img.onerror=null;   //控制不要一直跳动
-//              img.nextSibling.style.width = "100%";
-//              img.nextSibling.style.float = 'left'
-//          }
-			//加载列表的方法
-			function innerList(typeid) {
 
+			//加载列表的方法
+			innerList(17)
+			function innerList(typeid) {
+				window.typeid = typeid;
+                if(typeid ==17){
+                	document.getElementById('firsrTypeDisplay').style.display = 'block';
+                	document.getElementById('List').style.marginTop = "40px"
+                }else{
+                	document.getElementById('firsrTypeDisplay').style.display = 'none'
+                	document.getElementById('List').style.marginTop = "0px"
+                }
 				$.ajax({
 					type: "post",
 					url: ListUrl,
@@ -242,9 +284,9 @@
 								}
 								li = document.createElement('li');
 								var localTion;
-								if(i == 0){
-									localTion = "地区"
-								}
+//								if(i == 0){
+//									localTion = "点击选择城市"
+//								}
 								li.className = 'mui-table-view-cell mui-media';
 								if(data.Data.Data[i].pic == ""){
 									li.innerHTML = '<div class="overflow"><div onclick="texts(' + data.Data.Data[i].id + ')" style="width:100%" class="saishi_text mui-media-body"><h2 class="">' +
@@ -256,7 +298,7 @@
 									'</p></div>'
 								}else{
 									
-									li.innerHTML = '<div style="text-align:center;margin-bottom:10px;color:#888">'+localTion+'</div>'+
+									li.innerHTML =
 									'<div class="overflow"><img class="mui-pull-left" src="' +
 									data.Data.Data[i].pic +
 									'"><div onclick="texts(' + data.Data.Data[i].id + ')" class="saishi_text mui-media-body"><h2 class="">' +
@@ -283,9 +325,10 @@
 
 					}
 				});
+				
 			}
 			//加载导航的方法
-			
+			var cityname;
 			function innerNav() {
 
 				$.ajax({
@@ -300,7 +343,8 @@
 							for(var i = data.Data.Data.length - 1; i >= 0; i--) { //循环输出data中的数据
 								a = document.createElement('a');
 								a.className = 'mui-control-item';
-								a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
+//								a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
+                                a.setAttribute("onclick", "innerList(" + data.Data.Data[i].Id + ")");      
 								a.innerHTML = data.Data.Data[i].Title;
 								fragment.appendChild(a);
 
@@ -338,6 +382,80 @@
 				var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
 				html.style.fontSize = oWidth / pwidth * prem + "px";
 			}
+								//开始
+			var _getParam = function(obj, param) {
+				        return obj[param] || '';
+			       };
+			var cityResult = document.getElementById('cityResult');
+			var cityPicker = new mui.PopPicker({
+				layer: 2
+			});
+								cityPicker.setData(cityData);
+			function locationW(){				
+					cityPicker.show(function(items) {
+									cityResult.innerText = items[1].text;
+									cityname = items[1].text;
+									provice = items[0].text;
+									localStorage.setItem("cityname", cityname)
+									cityname = localStorage.getItem("cityname");
+									if(cityname !== null) {
+									var typeid = localStorage.getItem("typeid");
+									$.ajax({
+									type: "post",
+									url: "http://47.93.192.128:5001/News/AreaChange",
+									async: true,
+									dataType: 'json',
+									data: {
+										AreaName: cityname,
+										TypeId: window.typeid,
+										ProvinceName:provice
+									},
+									success: function(data) {
+										
+										console.log(data.Data.Data);
+										var locaText = data.Data.Data;
+										var li ='';
+										for(i=0;i<locaText.length;i++){
+											var sourceW;
+											if(locaText[i].source ==null){
+												sourceW = ""
+											}else{
+												sourceW = locaText[i].source
+											}
+											li +='<div><div class="mui-row"><div class="mui-col-xs-4 mui-col-sm-3">'+
+											 '<img src="http://47.93.192.128:5001'+locaText[i].pic+'">'+
+											'</div><div style="margin-top: -10px;padding-left: 10px;" class="mui-col-xs-8 mui-col-sm-9">'+
+											  locaText[i].Title+
+											'</div></div><div>'+
+											'<span>'+locaText[i].CreatedTime.slice(0,10)+
+											'</span><span>'+sourceW+	
+											'</span><span style="float:right"><i class="look" style="margin-right: 8px;"></i>'+locaText[i].ViewsCount+
+											'</span>'+
+											'</div></div>'
+										}
+										document.getElementById('locaData').innerHTML = li
+										//这个模板生成的字符串整个放到外面大容器里
+//										typeid = "5";
+//										data.Data.typeid = typeid;
+//										data.Data.cityname = cityname;
+																																					
+//										group.children(":first").addClass("mui-active");
+										$("#cityResult").innerText = cityname;
+										$(".mediaId").click(function() {
+											let id = $(this).attr('id'); // 获取id
+											let viewCount = $(this).attr('viewCount');
+											let commentCount = $(this).attr("commentCount");
+											window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
+										});
+									}
+								});
+				
+										}
+
+									});
+
+			}
+
 		</script>
 	</body>
 

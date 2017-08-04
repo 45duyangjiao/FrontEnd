@@ -207,6 +207,7 @@ $(document).ready(function() {
 						cityPicker.show(function(items) {
 							cityResult.innerText = items[1].text;
 							var cityname = items[1].text;
+							console.log(items)
 							localStorage.setItem("cityname", cityname)
 							var cityname = localStorage.getItem("cityname");
 							if(cityname !== null) {
