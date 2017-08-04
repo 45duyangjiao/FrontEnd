@@ -208,15 +208,32 @@
 								span.className = 'mui-control-item';
 //								a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
 								span.setAttribute("id",data.Data.Data[i].Id);
-								span.setAttribute("onclick","innerList(" + data.Data.Data[i].Id + ")")
+//								span.setAttribute("onclick","innerList(" + data.Data.Data[i].Id + ")")
 								span.innerHTML = data.Data.Data[i].Title;
+								$("#23").click(function(){
+									innerList(23)
+								});
+								
+								$("#24").click(function(){
+									innerList(24)
+								});
 								fragment.appendChild(span);
 								
+							
 
 							}
 						}
 
 						document.querySelector("#cur").appendChild(fragment); //输出到#item1mobile的页面内容
+						
+						$("#23").click(function(){
+							innerList(23)
+						});
+						
+						$("#24").click(function(){
+							innerList(24)
+						});
+						
 						$("#cur>a:first-child").addClass("mui-active");
 						$("#cur>a").bind("click", function() {
 							$("#cur>a").removeClass("mui-active");
@@ -297,8 +314,8 @@
 					datatype: "json",
 					success: function(data) {
 						data = eval('(' + data + ')');
-						console.log("赵成贤")
-						console.log(data.Data.Data)
+//						console.log("赵成贤")
+//						console.log(data.Data.Data)
 						var fragment = document.createDocumentFragment(); //创建一个代码片段
 						var li;
 						if(typeof(data.Data.Data) != "undefined") {
@@ -332,6 +349,7 @@
 
 						$('#List li').remove();
 						document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
+						
 
 
 					},
