@@ -373,7 +373,7 @@
 										url: cityUrl,
 										data: {
 											ProvinceName:ProvinceName,
-											TypeId:22,
+											TypeId:17,
 											AreaName:AreaName
 										},
 										datatype: "json",
@@ -387,11 +387,11 @@
 													li = document.createElement('li');
 													li.className = 'mui-table-view-cell mui-media';
 													li.innerHTML = '<div class="overflow"><img class="mui-pull-left" src="' +
-														data.Data.Data[i].ThumbImg +
+														data.Data.Data[i].pic +
 														'"><div onclick="texts(' + data.Data.Data[i].id + ')" class="saishi_text mui-media-body"><h2 class="">' +
 														data.Data.Data[i].Title +
 														'</h2><div class="mui-text-justify"><div>内容简介：</div><div class="content">'+
-														data.Data.Data[i].ShortMsg +
+														data.Data.Data[i].content +
 														'</div></div></div></div><div class="saishi_time"><p class="peixun_p">培训时间：' +
 														data.Data.Data[i].TrainTime +
 														'</p><button onclick="texts(' + data.Data.Data[i].id + ')" class="mui-btn-blue border-radius">快速报名</button></div>'
