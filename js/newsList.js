@@ -231,7 +231,7 @@ $(document).ready(function() {
 			dataType: 'json',
 			data: {
 				AreaName:AreaName,
-				TypeId:typeid,	
+				TypeId:5,	
 				ProvinceName:ProvinceName,
 			},
 			success: function(data) {
