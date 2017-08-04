@@ -8,7 +8,7 @@
      
 	var userID = GetQueryString("userID");
 	var group = $(".mui-slider-group");
-	var userID=10035;
+//	var userID=10035;
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
 		dataType: 'json',
