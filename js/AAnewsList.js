@@ -243,10 +243,7 @@ $(document).ready(function() {
 					list: data.Data
 				})
 				$("#" + typeid).html(htmlStr);
-				
-				
-
-				
+		
 				group.children(":first").addClass("mui-active");
 				$("#cityResult").innerText = localStorage.getItem("cityname");
 				$(".mediaId").click(function() {
