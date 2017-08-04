@@ -1,4 +1,4 @@
-$(document).ready(function() {
+
 	function GetQueryString(name) {
 		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
 		var r = window.location.search.substr(1).match(reg);
@@ -8,7 +8,6 @@ $(document).ready(function() {
      
 	var userID = GetQueryString("userID");      
 	var group = $(".mui-slider-group");
-//	var userID=10035;
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
 		dataType: 'json',
@@ -17,6 +16,7 @@ $(document).ready(function() {
 			UserId: userID
 		},
 		success: function(data) {
+<<<<<<< HEAD
 			var dataNav;
 		    if(data.Data.Success){
 		    	 dataNav= data.Data.Data;	
@@ -24,6 +24,10 @@ $(document).ready(function() {
 		    	
 		    }
 					
+=======
+			var dataNav = data.Data.Data.reverse();
+			
+>>>>>>> c4fed091752a808f426b3e1d3817349471d7e78b
 			var str = template("newsNav", {
 				list: dataNav
 			})
@@ -70,7 +74,7 @@ $(document).ready(function() {
 								cityPicker.setData(cityData);
 								var showCityPickerButton = document.getElementById('showCityPicker');
 								var cityResult = document.getElementById('cityResult');
-								showCityPickerButton.addEventListener('click', function(event) {
+								showCityPickerButton.addEventListener('tap', function(event) {
 									cityPicker.show(function(items) {
 										cityResult.innerText = items[1].text;
 										var cityname = items[1].text;
@@ -280,4 +284,3 @@ $(document).ready(function() {
 		window.location.href = "newsarea.html?userID=" + userID;
 	})
 
-});
