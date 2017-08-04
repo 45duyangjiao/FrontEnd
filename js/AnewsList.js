@@ -100,10 +100,7 @@ $(document).ready(function() {
 													var htmlStr = template("newsList", {
 														list: data.Data
 													})
-													
-													
-													
-													
+
 													$("#" + typeid).html(htmlStr);
 													group.children(":first").addClass("mui-active");
 													$("#cityResult").innerText = cityname;
@@ -168,14 +165,13 @@ $(document).ready(function() {
 				typeid = 5;
 				data.Data.typeid = typeid;
 //				data.Data.cityname = cityname;
-				
 				var htmlStr = template("newsList", {
 					list: data.Data
 				})
 				
 				$("#" + typeid).html(htmlStr);
 				group.children(":first").addClass("mui-active");
-//				$("#cityResult").innerText = cityname;
+				$("#cityResult").innerText = localStorage.getItem("cityname");
 				$(".mediaId").click(function() {
 					let id = $(this).attr('id'); // 获取id
 					let viewCount = $(this).attr('viewCount');
@@ -203,11 +199,9 @@ $(document).ready(function() {
 					var cityResult = document.getElementById('cityResult');
 					console.log(showCityPickerButton)
 					showCityPickerButton.addEventListener('click', function(event) {
-//						alert('daye')
 						cityPicker.show(function(items) {
 							cityResult.innerText = items[1].text;
 							var cityname = items[1].text;
-							console.log(items)
 							localStorage.setItem("cityname", cityname)
 							var cityname = localStorage.getItem("cityname");
 							if(cityname !== null) {
