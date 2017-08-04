@@ -13,6 +13,7 @@ $(document).ready(function(event){
 		var userID=userID.toString();
 	}
 	
+
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
 		dataType: 'json',
@@ -21,6 +22,7 @@ $(document).ready(function(event){
 			UserId: userID
 		},
 		success: function(data) {
+			console.log(data)
 			var dataNav = data.Data.Data;
 			if(userID==0){
 				var dataNav = data.Data.Data.reverse();
@@ -30,9 +32,23 @@ $(document).ready(function(event){
 //		    if(data.Data.Success){
 //		    	 dataNav= data.Data.Data;	
 //		    }else{
-//		    	
+//		    	$.ajax({
+//		    		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
+//					dataType: 'json',
+//					type: 'post',
+//					data: {
+//						UserId: 0
+//					},
+//					success: function(data) {
+//						dataNav= data.Data.Data;
+//						localStorage.setItem("dataNav",dataNav)
+//					}
+//					
+//		    	});
+//		    	var dataNav=localStorage.getItem("dataNav");
+//		    	console.log(dataNav)
 //		    }
-					
+//					
 
 			var str = template("newsNav", {
 				list: dataNav
@@ -157,6 +173,8 @@ $(document).ready(function(event){
 		},
 		
 	});
+	
+	
     function ajaxModel(typeid,slide){
     	$.ajax({
 			type: "post",
