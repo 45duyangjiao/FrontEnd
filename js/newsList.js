@@ -6,16 +6,15 @@ $(document).ready(function() {
 		return null;
 	}
      
-//	var userID = GetQueryString("userID");
+	var userID = GetQueryString("userID");
 	var group = $(".mui-slider-group");
-  //var cityname = GetQueryString("userID");
-	
+//	var userID=10035;
 	$.ajax({
 		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
 		dataType: 'json',
 		type: 'post',
 		data: {
-			UserId: 10035
+			UserId: userID
 		},
 		success: function(data) {
 			var dataNav = data.Data.Data;
@@ -42,7 +41,7 @@ $(document).ready(function() {
 							cityid: "", //number	否	城市id	5
 							areaid: "", //number	否	区域id
 							cityname: "",
-							userid: 10035
+							userid: userID
 						},
 						success: function(data) {
 							
@@ -87,7 +86,7 @@ $(document).ready(function() {
 													cityid: "", //number	否	城市id	5
 													areaid: "", //number	否	区域id
 													cityname: cityname,
-													userid: 10035
+													userid: userID
 												},
 												success: function(data) {
 													
@@ -108,7 +107,7 @@ $(document).ready(function() {
 														let id = $(this).attr('id'); // 获取id
 														let viewCount = $(this).attr('viewCount');
 														let commentCount = $(this).attr("commentCount");
-														window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
+														window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
 													});
 												}
 											});
@@ -128,7 +127,7 @@ $(document).ready(function() {
 								
 								let id = $(this).attr('id'); // 获取id
 								let commentCount = $(this).attr("commentCount");
-								window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
+								window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
 							});
 
 						},
@@ -156,7 +155,7 @@ $(document).ready(function() {
 				cityid: "", //number	否	城市id	5
 				areaid: "", //number	否	区域id
 				cityname: "",
-				userid:10035
+				userid:userID
 			},
 			success: function(data) {
 				
@@ -175,7 +174,7 @@ $(document).ready(function() {
 					let id = $(this).attr('id'); // 获取id
 					let viewCount = $(this).attr('viewCount');
 					let commentCount = $(this).attr("commentCount");
-					window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
+					window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
 				});
 				showCityM(typeid)
 			}
@@ -250,7 +249,7 @@ $(document).ready(function() {
 					let id = $(this).attr('id'); // 获取id
 					let viewCount = $(this).attr('viewCount');
 					let commentCount = $(this).attr("commentCount");
-					window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + 10035 + "&commentCount=" + commentCount;
+					window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
 				});
 				showCityM(typeid)
 			}
@@ -273,7 +272,7 @@ $(document).ready(function() {
 
 	$(".navAdd").click(function() {
 		
-		window.location.href = "newsarea.html?userID=" + 10035;
+		window.location.href = "newsarea.html?userID=" + userID;
 	})
 
 });
