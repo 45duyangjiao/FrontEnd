@@ -14,14 +14,9 @@ $(document).ready(function() {
 		dataType: 'json',
 		type: 'post',
 		data: {
-//			UserId: user_Id,
 			UserId: user_Id
 		},
 		success: function(data) {
-			console.log("赵成");
-			console.log(data);
-			console.log("赵成");
-			exit;
 			var str = template("protocol-temp", {activition: data.Data.Data.result})
 			$(".activationRecord").html(str);
 			$(".activationRecordLi").click(function () {

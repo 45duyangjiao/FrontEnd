@@ -8,7 +8,7 @@ $(document).ready(function(event){
      
 	var userID = GetQueryString("userID");      
 	var group = $(".mui-slider-group");
-	var userID =10035;
+//	var userID =10035;
 	if(userID!==null){
 		var userID=userID.toString();
 	}
