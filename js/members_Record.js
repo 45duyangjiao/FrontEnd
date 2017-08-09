@@ -31,7 +31,7 @@ $(document).ready(function() {
 //		        console.log(id);
 		        localStorage.setItem("daoId",id)
 		
-		        window.location.href = "membersCont.html?id=" + id;
+		        window.location= "membersCont.html?id=" + id;
 		    })
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
