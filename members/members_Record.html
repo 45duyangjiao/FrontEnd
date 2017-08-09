@@ -81,11 +81,11 @@
 				li.className = 'mui-table-view-cell mui-media';	
 			
 				li.innerHTML ='<img class="mui-media-object mui-pull-left" src="'+activition[i].pic+'">'+
-				     '<div class="mui-media-body" onclick="goDatail(' +activition[i].Id + ')">'+
+				     '<a class="mui-media-body" onclick="goDatail(' +activition[i].Id + ')">'+
 				     '<h4 class="mui-ellipsis">'+activition[i].title+
 				     '</h4>'+
 				     '<p class="mui-ellipsis">'+activition[i].activity_time+'至'+activition[i].activity_Endtime+
-				     '</p></div>'				     
+				     '</p></a>'				     
 				   
 				   fragment.appendChild(li);
 			}
