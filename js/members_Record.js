@@ -26,17 +26,25 @@ $(document).ready(function() {
 			console.log(data);
 			var str = template("memberRecord", {activition: data.Data.Data})
 			$(".mui-table-view-member").html(str);
-			$(".mui-table-view-cell").click(function () {
-		        let id=$(this).attr('id');// 获取id
+			
+			$(".mui-table-view-cell")[0].addEventListener('tap',function(){
+					let id=$(this).attr('id');// 获取id{}
+					mui.openWindow({
+		        	id:"membersCont",
+		        	url:'membersCont.html'
+		        })
+				
+			})
+		        
 //		        console.log(id);
-		        localStorage.setItem("daoId",id)
+		        //localStorage.setItem("daoId",id)
 		        //mui.openWindow({
 		       // 	id:"membersCont.html",
 		       // 	url:'membersCont.html'
 		        //})
 		      //  window.location.href= "membersCont.html?id=" + id;
 		      //  reutrn false; 
-		    })
+		   
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
 			alert(XMLHttpRequest.status);
