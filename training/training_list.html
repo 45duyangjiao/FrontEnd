@@ -139,10 +139,10 @@
 					
 					
 				</div>
-				<div class="current-position checkDI" style="display:block">
+				<!--<div class="current-position checkDI" style="display:block">
 					<span id='showCityPicker'>选择地区</span>
 					<span id='cityResult' class="ui-alert"></span>
-				</div>
+				</div>-->
 				<div class="mui-slider-group">
 					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
 						<div id="scroll1" class="mui-scroll-wrapper">
@@ -227,7 +227,7 @@
 						}
 
 						document.querySelector("#cur").appendChild(fragment); //输出到#item1mobile的页面内容
-						$("#cur span:first-child").addClass("mui-active");
+						$("#cur >span:first-child").addClass("mui-active");
 						$("#23").click(function(){
 							innerList(23)
 						});
