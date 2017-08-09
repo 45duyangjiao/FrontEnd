@@ -50,7 +50,7 @@
 			function goDatail(id){
 				alert(window.location.href)
 				//window.location.href= "membersCont.html?id=" + id;
-			    var cehi= window.location.href = "membersCont.html?id=" + id;
+			    var cehi= window.location.href = "membersCont.html?id=" + id+'&v='+Math.random();
 				alert(cehi)
 				//return false;
 				
@@ -81,11 +81,11 @@
 				li.className = 'mui-table-view-cell mui-media';	
 			
 				li.innerHTML ='<img class="mui-media-object mui-pull-left" src="'+activition[i].pic+'">'+
-				     '<a class="mui-media-body" onclick="goDatail(' +activition[i].Id + ')">'+
+				     '<div class="mui-media-body" onclick="goDatail(' +activition[i].Id + ')">'+
 				     '<h4 class="mui-ellipsis">'+activition[i].title+
 				     '</h4>'+
 				     '<p class="mui-ellipsis">'+activition[i].activity_time+'至'+activition[i].activity_Endtime+
-				     '</p></a>'				     
+				     '</p></div>'				     
 				   
 				   fragment.appendChild(li);
 			}
