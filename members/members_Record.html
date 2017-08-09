@@ -46,8 +46,7 @@
 		    }
 		
 		    var user_Id = GetQueryString("user_Id");
-		
-			function goDatail(id){
+		    function goDatail(id){
 				alert('ceshi')
 				mui.openWindow({
 					url:'http://www.shen-td.com/',
@@ -56,8 +55,12 @@
 				alert('ni')
 				
 			}  
-
-	
+		mui.ready(function () {
+		
+		
+			
+      
+	  
 	var url = 'http://47.93.192.128:5001/Daoguan/Activity_Record';
 	$.ajax({
 		url: url,
@@ -115,7 +118,7 @@
 			
 		}
 	});
-	
+	})
 	</script>
 	</body>
 </html>
