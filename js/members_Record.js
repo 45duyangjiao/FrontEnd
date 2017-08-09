@@ -6,10 +6,10 @@ function GetQueryString(name) {
 }
 
 var user_Id = GetQueryString("user_Id");
-console.log(user_Id);
-function goDatail(id){
-	window.location.href= "membersCont.html?id=" + id;
-}
+
+//function goDatail(id){
+//	window.location.href= "membersCont.html?id=" + id;
+//}
 $(document).ready(function() {
 	       
 	var url = 'http://47.93.192.128:5001/Daoguan/Activity_Record';
@@ -35,11 +35,11 @@ $(document).ready(function() {
 				li.className = 'mui-table-view-cell mui-media';	
 			
 				li.innerHTML ='<img class="mui-media-object mui-pull-left" src="'+activition[i].pic+'">'+
-				     '<div class="mui-media-body" onclick="goDatail(' +activition[i].Id + ')">'+
+				     '<a class="mui-media-body" href="membersCont.html?id='+activition[i].Id+'">'+
 				     '<h4 class="mui-ellipsis">'+activition[i].title+
 				     '</h4>'+
 				     '<p class="mui-ellipsis">活动时间：'+activition[i].activity_time+'至'+activition[i].activity_Endtime+
-				     '</p></div>'				     
+				     '</p></a>'				     
 				   document.getElementById('daoList').appendChild(li)  
 			}
 			
