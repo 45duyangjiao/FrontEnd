@@ -9,8 +9,8 @@ $(document).ready(function() {
 	var id = GetQueryString("id");
 	var userID = GetQueryString("userID");
 	var viewCount = GetQueryString("viewCount");
-
-	var url = 'http://47.93.192.128:5001/Notice/Notice_Detail';
+	var urlPath="http://47.93.192.128:5001/";
+	var url = urlPath+"Notice/Notice_Detail';
 	$.ajax({
 		url: url,
 		data: {
@@ -34,7 +34,9 @@ $(document).ready(function() {
 			function reply(id, replyId, name, userID) {
 				window.location.href = "../news/reply.html?id=" + id + "&replyId=" + replyId + "&name=" + name + "&userID=" + 10005;
 			};
-			var CommentUrl = "http://47.93.192.128:5001/News/GetNewsReplyList";
+			
+			
+			var CommentUrl = urlPath+"News/GetNewsReplyList";
 			//默认加载
 			$.ajax({
 				type: "post",
@@ -80,7 +82,7 @@ $(document).ready(function() {
 						var commentId=Acitve.parent().parent().parent().parent().attr("id");
 						$.ajax({
 							type:"post",
-							url:"http://47.93.192.128:5001/ThumbsUp/isThumbsUp",
+							url:urlPath+"ThumbsUp/isThumbsUp",
 							async:true,
 							dataType:"json",
 							data:{
@@ -93,7 +95,7 @@ $(document).ready(function() {
 							if(IsThumbsUp==true){
 								$.ajax({
 									type:"post",
-									url:"http://47.93.192.128:5001/ThumbsUp/Thumbs_Down",
+									url:urlPath+"ThumbsUp/Thumbs_Down",
 									async:true,
 									data:{
 										commentId:commentId,
@@ -107,7 +109,7 @@ $(document).ready(function() {
 							}else if(IsThumbsUp==false){
 								$.ajax({
 									type:"post",
-									url:"http://47.93.192.128:5001/ThumbsUp/Thumbs_Up",
+									url:urlPath+"ThumbsUp/Thumbs_Up",
 									async:true,
 									data:{
 										commentId:commentId,
@@ -138,7 +140,7 @@ $(document).ready(function() {
 		}
 	});
 
-	var DetailUrl = "http://47.93.192.128:5001/News/NewsInfo";
+	var DetailUrl = urlPath+"News/NewsInfo";
 	//默认加载
 	$.ajax({
 		type: "post",

@@ -14,8 +14,8 @@ $(document).ready(function() {
 		return null;
 	}
 	var userID = GetQueryString("userID");
-
-	var url = 'http://47.93.192.128:5001/News/GetMyChannelList';
+	var urlPath="ttp://47.93.192.128:5001/";
+	var url = urlPath+"News/GetMyChannelList";
 	function listAjax(){
 		$.ajax({
 		url: url,
@@ -34,7 +34,7 @@ $(document).ready(function() {
 				var myChannelId = $(e.target).parent().attr("id");
 				$.ajax({
 					type: "post",
-					url: "http://47.93.192.128:5001/News/DelMyChannel",
+					url: urlPath+"News/DelMyChannel",
 					async: true,
 					dataType: 'json',
 					data: {
@@ -106,7 +106,7 @@ $(document).ready(function() {
 				}
 				$.ajax({
 					type: "post",
-					url: "http://47.93.192.128:5001/News/AddMyChannel",
+					url: urlPath+"News/AddMyChannel",
 					async: true,
 					dataType: 'json',
 					data: {
@@ -163,7 +163,7 @@ $(document).ready(function() {
 		//点击完成
 			$(".supDelate").hide();
 			$('.floatR').html("编辑")
-            window.location.href = "http://47.93.192.128:5001/FrontEnd/news/newsList.html"
+            window.location.href = urlPath+"FrontEnd/news/newsList.html"
             
 		}
   

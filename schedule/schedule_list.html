@@ -201,8 +201,9 @@
 			function texts(id) {
 				window.location.href = "scheduleContent.html?id=" + id;
 			}
-			var NavUrl = "http://47.93.192.128:5001/Match/MatchNavBar";
-			var ListUrl = "http://47.93.192.128:5001/Match/MatchList";
+			var urlPath="http://47.93.192.128:5001/";
+			var NavUrl = urlPath+"Match/MatchNavBar";
+			var ListUrl = urlPath+"Match/MatchList";
 			//默认加载
 			$.ajax({
 				type: "post",
@@ -403,7 +404,7 @@
 									var typeid = localStorage.getItem("typeid");
 									$.ajax({
 									type: "post",
-									url: "http://47.93.192.128:5001/News/AreaChange",
+									url: urlPath+"News/AreaChange",
 									async: true,
 									dataType: 'json',
 									data: {

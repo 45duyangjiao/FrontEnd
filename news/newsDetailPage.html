@@ -45,7 +45,8 @@
 			var userID=GetQueryString("userID");
 			var viewCount = GetQueryString("viewCount");
             console.log(id)
-			var DetailUrl = "http://47.93.192.128:5001/News/NewsInfo";
+            var urlPath="http://47.93.192.128:5001/";
+			var DetailUrl = urlPath+"News/NewsInfo";
 			//默认加载
 			$.ajax({
 				type: "post",
@@ -75,7 +76,7 @@
 				window.location.href = "reply.html?id=" + id+"&replyId="+replyId+"&name="+name+"&userID="+userID+"&userID="+10005;
 			}
 			
-			var CommentUrl = "http://47.93.192.128:5001/News/GetNewsReplyList";
+			var CommentUrl = urlPath+"News/GetNewsReplyList";
 			//默认加载
 			$.ajax({
 				type: "post",
@@ -123,7 +124,7 @@
 						var commentId=Acitve.parent().parent().parent().parent().attr("id");
 						$.ajax({
 							type:"post",
-							url:"http://47.93.192.128:5001/ThumbsUp/isThumbsUp",
+							url:urlPath+"ThumbsUp/isThumbsUp",
 							async:true,
 							dataType:"json",
 							data:{
@@ -135,7 +136,7 @@
 							if(IsThumbsUp==true){
 								$.ajax({
 									type:"post",
-									url:"http://47.93.192.128:5001/ThumbsUp/Thumbs_Down",
+									url:urlPath+"ThumbsUp/Thumbs_Down",
 									async:true,
 									data:{
 										commentId:commentId,
@@ -149,7 +150,7 @@
 							}else if(IsThumbsUp==false){
 								$.ajax({
 									type:"post",
-									url:"http://47.93.192.128:5001/ThumbsUp/Thumbs_Up",
+									url:urlPath+"ThumbsUp/Thumbs_Up",
 									async:true,
 									data:{
 										commentId:commentId,

@@ -186,9 +186,9 @@
 					clearInterval(t)
 				}, 2000)
 			})()
-
-			var NavUrl = "http://47.93.192.128:5001/Train/TrainNavBar";
-			var ListUrl = "http://47.93.192.128:5001/Train/TrainList";
+			var urlPath="http://47.93.192.128:5001/";
+			var NavUrl = urlPath+"Train/TrainNavBar";
+			var ListUrl = urlPath+"Train/TrainList";
 			
 			
 			//加载导航的方法
@@ -398,7 +398,7 @@
 							
 							localStorage.setItem("city",city);
 							var city=localStorage.getItem("city");
-							var cityUrl="http://47.93.192.128:5001/News/AreaChange";
+							var cityUrl=urlPath+"News/AreaChange";
 									$.ajax({
 										type: "post",
 										url: cityUrl,
