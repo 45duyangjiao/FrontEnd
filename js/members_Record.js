@@ -8,7 +8,7 @@ function GetQueryString(name) {
 var user_Id = GetQueryString("user_Id");
 
 function goDatail(id){
-	window.location.href= "membersCont.html?id=" + id;
+	window.location.href= "../members/membersCont.html?id=" + id;
 	alert('5555')
 }
 $(document).ready(function() {
