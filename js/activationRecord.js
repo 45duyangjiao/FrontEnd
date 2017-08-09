@@ -7,6 +7,7 @@ function GetQueryString(name) {
 
 var user_Id = GetQueryString("user_Id");
 console.log(user_Id);
+alert('tttts')
 $(document).ready(function() {
 	var url = 'http://47.93.192.128:5001/Center/ActivictyRecord';
 	$.ajax({
