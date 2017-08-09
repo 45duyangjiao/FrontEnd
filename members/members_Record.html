@@ -27,8 +27,11 @@
 		    var user_Id = GetQueryString("user_Id");
 		
 			function goDatail(id){
-				window.location.href= "membersCont.html?id=" + id;
-				alert('5555')
+//				window.location.href= "membersCont.html?id=" + id;
+				mui.openWindow({
+					url:'membersCont.html',
+					id:'membersCont'
+				})
 			}  
 		</script>
 		<style>
