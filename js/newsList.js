@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(event){
 	function GetQueryString(name) {
 		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -8,14 +10,13 @@ $(document).ready(function(event){
      
 	var userID = GetQueryString("userID");      
 	var group = $(".mui-slider-group");
-//	var userID =10035;
+//	var userID =0;
 	if(userID!==null){
 		var userID=userID.toString();
 	}
-	
-
+	var urlPath='http://47.93.192.128:5001/';
 	$.ajax({
-		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
+		url: urlPath+"News/GetMyChannelList",
 		dataType: 'json',
 		type: 'post',
 		data: {
@@ -23,32 +24,19 @@ $(document).ready(function(event){
 		},
 		success: function(data) {
 			console.log(data)
-			var dataNav = data.Data.Data;
-			if(userID==0){
-				var dataNav = data.Data.Data.reverse();
-			}
+			var dataNav = data.Data.Data.reverse();
+			
+//			if(userID==0){
+//				var dataNav = data.Data.Data.reverse();
+//			}
 
 //			var dataNav;
 //		    if(data.Data.Success){
 //		    	 dataNav= data.Data.Data;	
 //		    }else{
-//		    	$.ajax({
-//		    		url: 'http://47.93.192.128:5001/News/GetMyChannelList',
-//					dataType: 'json',
-//					type: 'post',
-//					data: {
-//						UserId: 0
-//					},
-//					success: function(data) {
-//						dataNav= data.Data.Data;
-//						localStorage.setItem("dataNav",dataNav)
-//					}
-//					
-//		    	});
-//		    	var dataNav=localStorage.getItem("dataNav");
-//		    	console.log(dataNav)
+//		    	userid();
 //		    }
-//					
+					
 
 			var str = template("newsNav", {
 				list: dataNav
@@ -62,7 +50,7 @@ $(document).ready(function(event){
 					firstDiv.attr("id", id);
 					var typeid = firstDiv.attr("id");
 					$.ajax({
-						url: "http://47.93.192.128:5001/News/NewsList",
+						url: urlPath+"News/NewsList",
 						dataType: 'json',
 						type: 'post',
 						data: {
@@ -107,7 +95,7 @@ $(document).ready(function(event){
 											
 											$.ajax({
 												type: "post",
-												url: "http://47.93.192.128:5001/News/NewsList",
+												url: urlPath+"News/NewsList",
 												async: true,
 												dataType: 'json',
 												data: {
@@ -171,14 +159,17 @@ $(document).ready(function(event){
 			}
 
 		},
-		
+		error:function(){
+			console.log("暂无数据")
+		}
 	});
-	
+
+
 	
     function ajaxModel(typeid,slide){
     	$.ajax({
 			type: "post",
-			url: "http://47.93.192.128:5001/News/NewsList",
+			url: urlPath+"News/NewsList",
 			async: true,
 			dataType: 'json',
 			data: {
@@ -258,7 +249,7 @@ $(document).ready(function(event){
     function addressTab(typeid,AreaName,ProvinceName){
     	$.ajax({
 			type: "post",
-			url: "http://47.93.192.128:5001/News/AreaChange",
+			url: urlPath+"News/AreaChange",
 			async: true,
 			dataType: 'json',
 			data: {

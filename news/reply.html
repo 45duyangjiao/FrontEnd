@@ -82,8 +82,8 @@
 			function replylist(replyId,likecount) {
 				window.location.href = "newsZan.html?replyId=" + replyId+'&likecount='+likecount;
 			}
-
-			var CommentUrl = "http://47.93.192.128:5001/News/GetNewsReplyList";
+			var urlPath="http://47.93.192.128:5001/";
+			var CommentUrl = urlPath+"News/GetNewsReplyList";
 			//默认加载
 			$.ajax({
 				type: "post",
@@ -108,7 +108,7 @@
 				}
 			});
 
-			var DetailUrl = "http://47.93.192.128:5001/News/ReplyDetail";
+			var DetailUrl = urlPath+"News/ReplyDetail";
 			//默认加载
 			$.ajax({
 				type: "post",
