@@ -14,7 +14,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		type: 'post',
 		data:{
-			active_Id:4,
+			active_Id:id,
 		},
 		success: function(data) {
 			console.log(data)
