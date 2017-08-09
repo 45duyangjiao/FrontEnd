@@ -37,6 +37,7 @@
 		
 		
 	<script>
+		mui.init()
 		function GetQueryString(name) {
 				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
 				var r = window.location.search.substr(1).match(reg);
@@ -51,7 +52,7 @@
 				window.location.href= "membersCont.html?id=" + id;
 				
 			}  
-$(document).ready(function() {
+
 	
 	var url = 'http://47.93.192.128:5001/Daoguan/Activity_Record';
 	$.ajax({
@@ -110,8 +111,7 @@ $(document).ready(function() {
 			
 		}
 	});
-});
-		
+	
 	</script>
 	</body>
 </html>
