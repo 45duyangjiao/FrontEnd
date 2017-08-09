@@ -37,7 +37,9 @@
 		
 		
 	<script>
-		//mui.init()
+		function goDatail(id){				
+			    window.location.href = "membersCont.html?id=" + id;			
+			}  
 		function GetQueryString(name) {
 				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
 				var r = window.location.search.substr(1).match(reg);
@@ -47,14 +49,7 @@
 		
 		    var user_Id = GetQueryString("user_Id");
 		
-			function goDatail(id){
-				alert(window.location.href)
-				//window.location.href= "membersCont.html?id=" + id;
-			    var cehi= window.location.href = "membersCont.html?id=" + id;
-				alert(cehi)
-				//return false;
-				
-			}  
+			
 
 	window.onload = function() {
 	var url = 'http://47.93.192.128:5001/Daoguan/Activity_Record';
