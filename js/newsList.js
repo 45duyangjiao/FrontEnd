@@ -26,9 +26,9 @@ $(document).ready(function(event){
 			console.log(data)
 			var dataNav = data.Data.Data.reverse();
 			
-//			if(userID==0){
-//				var dataNav = data.Data.Data.reverse();
-//			}
+			if(userID !==0){
+				var dataNav = data.Data.Data;
+			}
 
 //			var dataNav;
 //		    if(data.Data.Success){
@@ -281,11 +281,7 @@ $(document).ready(function(event){
 		
     }
    
-   
-   
-   
-   
-   
+
 	document.getElementById('slider').addEventListener('slide', function(e) {
 		var slide = group.children().eq(e.detail.slideNumber);
 		var typeid = slide.attr("id");
