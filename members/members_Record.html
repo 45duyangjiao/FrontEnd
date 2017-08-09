@@ -46,6 +46,15 @@
 		<script src="../js/members_Record.js"></script>
 		<script src="../js/artTemplate.js"></script>
 		
-		
+		<script>
+			mui(".mui-table-view-cell")[0].addEventListener('tap',function(){
+					let id=$(this).attr('id');// 获取id{}
+					mui.openWindow({
+		        	id:"membersCont",
+		        	url:'membersCont.html'
+		        })
+				
+			})
+		</script>
 	</body>
 </html>

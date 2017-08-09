@@ -27,14 +27,7 @@ $(document).ready(function() {
 			var str = template("memberRecord", {activition: data.Data.Data})
 			$(".mui-table-view-member").html(str);
 			
-			mui(".mui-table-view-cell")[0].addEventListener('tap',function(){
-					let id=$(this).attr('id');// 获取id{}
-					mui.openWindow({
-		        	id:"membersCont",
-		        	url:'membersCont.html'
-		        })
-				
-			})
+			
 		        
 //		        console.log(id);
 		        //localStorage.setItem("daoId",id)
