@@ -72,6 +72,7 @@ $(document).ready(function() {
 			var activition = data.Data.Data;
 //			var str = template("memberRecord", {activition: data.Data.Data})
 //			$(".mui-table-view-member").html(str);
+            var fragment = document.createDocumentFragment(); //创建一个代码片段
             var li ;
 			for(i = 0; i < activition.length; i++) {
 				li = document.createElement('li');
@@ -83,9 +84,10 @@ $(document).ready(function() {
 				     '</h4>'+
 				     '<p class="mui-ellipsis">活动时间：'+activition[i].activity_time+'至'+activition[i].activity_Endtime+
 				     '</p></div>'				     
-				   document.getElementById('daoList').appendChild(li)  
+				   
+				   fragment.appendChild(li);
 			}
-			
+			document.getElementById('daoList').appendChild(fragment)  
 //			mui(".mui-table-view-cell")[0].addEventListener('tap',function(){
 //					let id=$(this).attr('id');// 获取id{}
 //					mui.openWindow({
