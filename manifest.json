@@ -227,6 +227,7 @@
 				"training/training_signup.html",
 				"pullrefresh_with_tab.html",
 				"members/members_Record.html",
+				"members/membersCont.html",
 				"daoguan/daoguan.html",
 				"js/announceDetail.js",
 				"js/announce.js",
