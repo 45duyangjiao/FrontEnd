@@ -9,7 +9,7 @@ var user_Id = GetQueryString("user_Id");
 console.log(user_Id);
 
 $(document).ready(function() {
-	        alert('t');
+	        mui.toast('nihao')
 	var url = 'http://47.93.192.128:5001/Daoguan/Activity_Record';
 	$.ajax({
 		url: url,
