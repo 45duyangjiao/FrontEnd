@@ -34,8 +34,8 @@ $(document).ready(function() {
 		       // 	id:"membersCont.html",
 		       // 	url:'membersCont.html'
 		        //})
-		        window.location.href= "membersCont.html?id=" + id;
-		        reutrn false; 
+		      //  window.location.href= "membersCont.html?id=" + id;
+		      //  reutrn false; 
 		    })
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
