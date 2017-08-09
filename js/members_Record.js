@@ -30,8 +30,12 @@ $(document).ready(function() {
 		        let id=$(this).attr('id');// 获取id
 //		        console.log(id);
 		        localStorage.setItem("daoId",id)
-		
-		        window.location= "membersCont.html?id=" + id;
+		        //mui.openWindow({
+		       // 	id:"membersCont.html",
+		       // 	url:'membersCont.html'
+		        //})
+		        window.location.href= "membersCont.html?id=" + id;
+		        reutrn false; 
 		    })
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
