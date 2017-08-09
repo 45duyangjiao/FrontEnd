@@ -19,7 +19,7 @@ $(document).ready(function() {
 		success: function(data) {
 			var str = template("protocol-temp", {activition: data.Data.Data.result})
 			$(".activationRecord").html(str);
-			$(".activationRecordLi").onclick(function () {
+			$(".activationRecordLi").click(function () {
 		        let id=$(this).attr('id');// 获取id
 		        localStorage.setItem("ActivityId",id)
 		        window.location.href = "training_con.html?id=" + id;
