@@ -7,7 +7,9 @@ function GetQueryString(name) {
 
 var user_Id = GetQueryString("user_Id");
 console.log(user_Id);
-
+function goDatail(id){
+	window.location.href= "membersCont.html?id=" + id;
+}
 $(document).ready(function() {
 	        mui.toast('nihao')
 	var url = 'http://47.93.192.128:5001/Daoguan/Activity_Record';
@@ -23,18 +25,33 @@ $(document).ready(function() {
 			time_end:""
 		},
 		success: function(data) {
-			console.log(data);
-			var str = template("memberRecord", {activition: data.Data.Data})
-			$(".mui-table-view-member").html(str);
 			
-			mui(".mui-table-view-cell")[0].addEventListener('tap',function(){
-					let id=$(this).attr('id');// 获取id{}
-					mui.openWindow({
-		        	id:"membersCont",
-		        	url:'membersCont.html'
-		        })
+			var activition = data.Data.Data;
+//			var str = template("memberRecord", {activition: data.Data.Data})
+//			$(".mui-table-view-member").html(str);
+            var li ;
+			for(i = 0; i < activition.length; i++) {
+				li = document.createElement('li');
+				li.className = 'mui-table-view-cell mui-media';	
+				li.setAttribute('id',activition[i].Id);
 				
-			})
+				li.innerHTML ='<img class="mui-media-object mui-pull-left" src="'+activition[i].pic+'">'+
+				     '<div class="mui-media-body" onclick="goDatail(' +activition[i].id + ')">'+
+				     '<h4 class="mui-ellipsis">'+activition[i].title+
+				     '</h4>'+
+				     '<p class="mui-ellipsis">活动时间：'+activition[i].activity_time+'至'+activition[i].activity_Endtime+
+				     '</p></div>'				     
+				   document.getElementById('daoList').appendChild(li)  
+			}
+			
+//			mui(".mui-table-view-cell")[0].addEventListener('tap',function(){
+//					let id=$(this).attr('id');// 获取id{}
+//					mui.openWindow({
+//		        	id:"membersCont",
+//		        	url:'membersCont.html'
+//		        })
+//				
+//			})
 		        
 //		        console.log(id);
 		        //localStorage.setItem("daoId",id)
