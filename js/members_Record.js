@@ -33,10 +33,9 @@ $(document).ready(function() {
 			for(i = 0; i < activition.length; i++) {
 				li = document.createElement('li');
 				li.className = 'mui-table-view-cell mui-media';	
-				li.setAttribute('id',activition[i].Id);
-				
+			
 				li.innerHTML ='<img class="mui-media-object mui-pull-left" src="'+activition[i].pic+'">'+
-				     '<div class="mui-media-body" onclick="goDatail(' +activition[i].id + ')">'+
+				     '<div class="mui-media-body" onclick="goDatail(' +activition[i].Id + ')">'+
 				     '<h4 class="mui-ellipsis">'+activition[i].title+
 				     '</h4>'+
 				     '<p class="mui-ellipsis">活动时间：'+activition[i].activity_time+'至'+activition[i].activity_Endtime+
