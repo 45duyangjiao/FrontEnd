@@ -25,12 +25,15 @@ $(document).ready(function() {
 			console.log(data);
 			var str = template("memberRecord", {activition: data.Data.Data})
 			$(".mui-table-view-member").html(str);
-			$(".mui-table-view-cell").click(function () {
-		        let id=$(this).attr('id');// 获取id
-//		        console.log(id);
-		        localStorage.setItem("daoId",id)
-		        window.location.href = "membersCont.html?id=" + id;
-		    })
+
+			mui(".mui-table-view-cell").each(function(index,item){
+				item.addEventListener('tap',function(){
+					 let id=$(this).attr('id');// 获取id
+					 localStorage.setItem("daoId",id)
+			         window.location.href = "membersCont.html?id=" + id;
+				})
+				
+			})
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
 			alert(XMLHttpRequest.status);
