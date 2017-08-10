@@ -182,30 +182,7 @@
 						}
 					});
 				}
-				
-				function city(typeid,cityname,provice){
-					$.ajax({
-						type:"post",
-						url:urlPath + "News/AreaChange",
-						async:true,
-						dataType:"json",
-						data:{
-							AreaName: cityname,
-							TypeId: typeid,
-							ProvinceName: provice
-						},
-						success:function(data){
-							console.log(data)
-							var cont=data.Data.Data;
-							console.log(cont);
-							var str=template("Navcont",{cont:cont});
-							$(".diqu").html(str);
-						}
-					});
-				}
-				
-				
-				
+
 				document.getElementById('slider').addEventListener('slide', function(e) {
 					if(e.detail.slideNumber==0){
 						var tyid=group.children().eq(e.detail.slideNumber).attr("name")
@@ -237,10 +214,6 @@
 					showCityPickerButton.addEventListener('tap', function(event) {
 						cityPicker.show(function(items) {
 							cityResult.innerText = items[0].text+items[1].text;
-							var cityname=items[1].text;
-							var provice=items[0].text;
-							var typeid=17;
-							city(typeid,cityname,provice);
 						});
 					}, false);
 					
