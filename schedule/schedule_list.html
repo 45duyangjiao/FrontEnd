@@ -215,7 +215,7 @@
 				datatype: "json",
 				success: function(data) {
 					data = eval('(' + data + ')');
-					console.log(data)
+//					console.log(data)
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
 					var timeTe = "";
@@ -274,7 +274,7 @@
 					datatype: "json",
 					success: function(data) {
 						data = eval('(' + data + ')');
-						console.log(data);
+//						console.log(data);
 						var fragment = document.createDocumentFragment(); //创建一个代码片段
 						var li;
 						var timeTe = "";
@@ -417,7 +417,7 @@
 									},
 									success: function(data) {
 										document.getElementById('List').style.display = "none"
-										console.log(data.Data.Data);
+//										console.log(data.Data.Data);
 										var locaText = data.Data.Data;
 										var li ='';
 										for(i=0;i<locaText.length;i++){
