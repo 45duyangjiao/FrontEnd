@@ -148,17 +148,17 @@
 					</div>
 					<!--<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>-->
 					<!--<div id="locationW" class="current-position">地区<i></i></div>-->
-					<div id="firsrTypeDisplay">
-						<div onClick=locationW()  style="text-align:center;margin-bottom:10px;color:#888;background: #e6e6e6;">请选择城市<span id="cityResult" class="ui-alert"></span></div>
-						<div id="locaData"></div>
-				    </div>
+					
 				</div>
-
-				<div class="mui-slider-group">
+				<div id="firsrTypeDisplay">
+					<div onClick=locationW()  style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;">请选择城市<span id="cityResult" class="ui-alert"></span></div>
+					<div id="locaData"></div>
+			    </div>
+				<div class="mui-slider-group" id="group">
 					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul class="mui-table-view" id="List">
+								<ul class="mui-table-view" id="List" style="margin-top: 0px !important;">
 
 								</ul>
 							</div>
@@ -215,6 +215,7 @@
 				datatype: "json",
 				success: function(data) {
 					data = eval('(' + data + ')');
+					console.log(data)
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
 					var timeTe = "";
@@ -256,11 +257,12 @@
 				window.typeid = typeid;
                 if(typeid ==17){
                 	document.getElementById('firsrTypeDisplay').style.display = 'block';
-                	document.getElementById('List').style.marginTop = "40px"
+                	document.getElementById("group").style.top="80px"
                 }else{
                 	document.getElementById('firsrTypeDisplay').style.display = 'none'
                 	document.getElementById('List').style.marginTop = "0px";
-                	document.getElementById('List').style.display = "block"
+                	document.getElementById('List').style.display = "block";
+                	document.getElementById("group").style.top="40px"
                 }
 				$.ajax({
 					type: "post",
@@ -272,6 +274,7 @@
 					datatype: "json",
 					success: function(data) {
 						data = eval('(' + data + ')');
+						console.log(data);
 						var fragment = document.createDocumentFragment(); //创建一个代码片段
 						var li;
 						var timeTe = "";
@@ -320,7 +323,7 @@
 						}
 
 						$('#List li').remove();
-						document.querySelector("#item1mobile").appendChild(fragment); //输出到#item1mobile的页面内容
+						document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
 
 					},
 					error: function() {
