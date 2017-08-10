@@ -2,465 +2,224 @@
 <html>
 
 	<head>
-		<meta charset="utf-8">
-		<title>赛事列表页</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-		
-		<link rel="stylesheet" href="../css/training.css" />
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
-		<link href="../css/common.css" rel="stylesheet" />
-		<!--<link href="../css/newList.css" rel="stylesheet" />-->
-		<!--<link href="../css/newsArea.css" rel="stylesheet" />-->
 		<link href="../css/mui.picker.css" rel="stylesheet" />
 		<link href="../css/mui.poppicker.css" rel="stylesheet" />
-		
-		
-
 		<style>
-			.mui-bar~.mui-content .mui-fullscreen {
-				top: 44px;
-				height: auto;
+			.mui-control-content {
+				background-color: white;
+				min-height: 635px;
 			}
-			
-			.mui-pull-top-tips {
-				position: absolute;
-				top: -20px;
-				left: 50%;
-				margin-left: -25px;
-				width: 40px;
-				height: 40px;
-				border-radius: 100%;
-				z-index: 1;
+			.mui-control-content .mui-loading {
+				margin-top: 50px;
 			}
-			
-			.mui-bar~.mui-pull-top-tips {
-				top: 24px;
+			li{
+				list-style: none;
 			}
-			
-			.mui-pull-top-wrapper {
-				width: 42px;
-				height: 42px;
-				display: block;
-				text-align: center;
-				background-color: #efeff4;
-				border: 1px solid #ddd;
-				border-radius: 25px;
-				background-clip: padding-box;
-				box-shadow: 0 4px 10px #bbb;
-				overflow: hidden;
-			}
-			
-			.mui-pull-top-tips.mui-transitioning {
-				-webkit-transition-duration: 200ms;
-				transition-duration: 200ms;
-			}
-			
-			.mui-pull-top-tips .mui-pull-loading {
-				/*-webkit-backface-visibility: hidden;
-				-webkit-transition-duration: 400ms;
-				transition-duration: 400ms;*/
-				margin: 0;
-			}
-			
-			.mui-pull-top-wrapper .mui-icon,
-			.mui-pull-top-wrapper .mui-spinner {
-				margin-top: 7px;
-			}
-			
-			.mui-pull-top-wrapper .mui-icon.mui-reverse {
-				/*-webkit-transform: rotate(180deg) translateZ(0);*/
-			}
-			
-			.mui-pull-bottom-tips {
-				text-align: center;
-				background-color: #efeff4;
-				font-size: 15px;
-				line-height: 40px;
-				color: #777;
-			}
-			
-			.mui-pull-top-canvas {
-				overflow: hidden;
-				background-color: #fafafa;
-				border-radius: 40px;
-				box-shadow: 0 4px 10px #bbb;
-				width: 40px;
-				height: 40px;
-				margin: 0 auto;
-			}
-			
-			.mui-pull-top-canvas canvas {
-				width: 40px;
-			}
-			
-			.mui-slider-indicator.mui-segmented-control {
-				background-color: #fff;
-			}
-			
-			.mui-slider .mui-slider-group .mui-slider-item img {
-				width: 32%;
-			}
-			
-			.mui-table-view-cell {
-				padding: 11px 12px;
-			}
-			
-			.mui-table-view-cell>a:not(.mui-btn) {
-				white-space: inherit
-			}
-			
-			.mui-slider .mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
-				border-bottom: 2px solid #007aff;
-			}
-			
-			.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
-				display: block;
-				float: left;
-			}
-			
-			.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
-				transition: none;
-			}
-			#sliderSegmentedControl .mui-control-item{
-				width: 33.33%!important;
-			}
-			#locaData{
-				text-align: left!important;
-				padding: 0px 12px;
-			}
-			#locaData img{
-				width: 100%;
-			}
-			
 		</style>
-
 	</head>
-
 	<body>
-		<div class="mui-content">
-			<div id="slider" class="mui-slider mui-fullscreen">
-				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div id="cur" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 
-					</div>
-					<!--<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>-->
-					<!--<div id="locationW" class="current-position">地区<i></i></div>-->
-					
+			<div id="slider" class="mui-slider">
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<!--<a class="mui-control-item" href="#item1mobile">
+						待办公文
+					</a>
+							<a class="mui-control-item" href="#item2mobile">
+						已办公文
+					</a>
+							<a class="mui-control-item" href="#item3mobile">
+						全部公文
+					</a>-->
 				</div>
-				<div id="firsrTypeDisplay">
-					<div onClick=locationW()  style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;">请选择城市<span id="cityResult" class="ui-alert"></span></div>
-					<div id="locaData"></div>
-			    </div>
-				<div class="mui-slider-group" id="group">
-					<div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
-						<div id="scroll1" class="mui-scroll-wrapper" style="position: absolute;overflow: auto;">
+				
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+				<div class="mui-slider-group">
+					<div id="17" class="mui-slider-item mui-control-content mui-active">
+						<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
+						<div id="scroll1" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
-								<ul class="mui-table-view" id="List" style="margin-top: 0px !important;">
-
+								
+								<ul class="mui-table-view diqu">
+									
 								</ul>
 							</div>
 						</div>
 					</div>
+					<div id="18" class="mui-slider-item mui-control-content">
+						<div id="scroll2" class="mui-scroll-wrapper guojia">
+							
+						</div>
 
+					</div>
+					
+					<div id="19" class="mui-slider-item mui-control-content">
+						<div id="scroll3" class="mui-scroll-wrapper guoji">
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
 		
 		
 		
+		<script type="text/html" id="saiNav">
+			{{each list as v }}
+			<a class="mui-control-item" href="#{{v.Id}}" name="{{v.Id}}">{{v.Title}}</a>
+			{{/each}}
+		</script>
 		
-		<!-- 这个模板是为了以后整个界面切换的，ID是为了绑定切换的，才写的模板 -->
-		<!--<script type="text/html" id="newsList">
-			<div class="mui-scroll-wrapper">
-				<div class="mui-scroll" style="overflow: auto;">
-					<ul class="mui-table-view">
-						{{each list v i}}
-						<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}"  commentCount={{v.commentCount}}>
-							<div>这是每个item</div>
-						</li>
-						{{/each}}
-					</ul>
-				</div>
-			</div>
-				</div>
-			</div>
-		</div>
-		</script>-->
-		<script src="../js/jquery-1.9.1.min.js"></script>
+		<script type="text/html" id="Navcont">
+			{{each cont as v }}
+			<li class="mui-table-view-cell mui-media">
+				<a>
+					<img class="mui-media-object mui-pull-left" src="{{v.pic}}">
+					<div class="mui-media-body">
+						<h4 class="mui-ellipsis" style="width: 80%;overflow: hidden;">{{v.Title}}</h4>
+						<p class="mui-ellipsis">{{v.tag}}</p>
+					</div>
+					<div>比赛时间：{{v.MatchDate}}</div>
+				</a>
+			</li>
+			{{/each}}
+		</script>
+		
 		<script src="../js/artTemplate.js"></script>
-        <script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../js/flexable.js"></script>
 		<script src="../js/mui.min.js"></script>
-
+		<script src="../js/jquery.js"></script>
+		<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/mui.picker.js"></script>
 		<script src="../js/mui.poppicker.js"></script>
+
 		<script>
-			function texts(id) {
-				window.location.href = "scheduleContent.html?id=" + id;
-			}
-			var urlPath="http://47.93.192.128:5001/";
-			var NavUrl = urlPath+"Match/MatchNavBar";
-			var ListUrl = urlPath+"Match/MatchList";
-			//默认加载
-			$.ajax({
-				type: "post",
-				url: ListUrl,
-				data: {
-					MatchNavBarId: 17,
-					pageindex: 1
-				},
-				datatype: "json",
-				success: function(data) {
-					data = eval('(' + data + ')');
-//					console.log(data)
-					var fragment = document.createDocumentFragment(); //创建一个代码片段
-					var li;
-					var timeTe = "";
-					
-					if(typeof(data.Data.Data) != "undefined") {
-						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
-							if(data.Data.Data[i].MatchDate == null){
-									timeTe =""
-								}else{
-									timeTe = data.Data.Data[i].MatchDate
-								}
-							li = document.createElement('li');
-							li.className = 'mui-table-view-cell mui-media';
-							li.innerHTML = '<div><img onerror="imgerror(this)" class="mui-pull-left" src="' +
-									data.Data.Data[i].pic +
-									'"><div onclick="texts(' + data.Data.Data[i].id + ')" class="saishi_text mui-media-body"><h2 class="">' +
-									data.Data.Data[i].Title +
-									'</h2><div class="mui-text-justify">内容简介：' +
-									data.Data.Data[i].tag +
-									'</div></div><div style="clear:both"></div></div><div class="saishi_time"><p class="peixun_p">比赛时间：' +
-									timeTe +
-									'</p></div>'
-							fragment.appendChild(li);
-						}
-					}
-
-					$('#List li').remove();
-					document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
-
-				},
-				error: function() {
-
-				}
-			});
-
-			//加载列表的方法
-			innerList(17)
-			function innerList(typeid) {
-				window.typeid = typeid;
-                if(typeid ==17){
-                	document.getElementById('firsrTypeDisplay').style.display = 'block';
-                	document.getElementById("group").style.top="80px"
-                }else{
-                	document.getElementById('firsrTypeDisplay').style.display = 'none'
-                	document.getElementById('List').style.marginTop = "0px";
-                	document.getElementById('List').style.display = "block";
-                	document.getElementById("group").style.top="40px"
-                }
+				mui.init({
+					swipeBack: false
+				});
+			
+				$('.mui-scroll-wrapper').scroll({
+					indicators: true //是否显示滚动条
+				});
+				var urlPath="http://47.93.192.128:5001/";
+				var NavUrl = urlPath+"Match/MatchNavBar";
+				var ListUrl = urlPath+"Match/MatchList";
+				var group=$("#sliderSegmentedControl");
 				$.ajax({
-					type: "post",
-					url: ListUrl,
+					type:"post",
+					url:NavUrl,
+					async:true,
+					dataType:"json",
+					success:function(data){
+						var list=data.Data.Data.reverse();
+						console.log(list);
+						var str=template("saiNav",{list:list});
+						$('#sliderSegmentedControl').html(str);
+					}
+				});
+				
+				
+				
+				
+				
+				saiAjax(17);
+				function saiAjax(tyid){
+					$.ajax({
+					type:"post",
+					url:ListUrl,
+					async:true,
+					dataType:"json",
 					data: {
-						MatchNavBarId: typeid,
+						MatchNavBarId: tyid,
 						pageindex: 1
 					},
-					datatype: "json",
-					success: function(data) {
-						data = eval('(' + data + ')');
-//						console.log(data);
-						var fragment = document.createDocumentFragment(); //创建一个代码片段
-						var li;
-						var timeTe = "";
-						if(typeof(data.Data.Data) != "undefined") {
-							
-							for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
-								 
-								if(data.Data.Data[i].MatchDate == null){
-									timeTe =""
-								}else{
-									timeTe = data.Data.Data[i].MatchDate
-								}
-								li = document.createElement('li');
-								var localTion;
-//								if(i == 0){
-//									localTion = "点击选择城市"
-//								}
-								li.className = 'mui-table-view-cell mui-media';
-								if(data.Data.Data[i].pic == ""){
-									li.innerHTML = '<div class="overflow"><div onclick="texts(' + data.Data.Data[i].id + ')" style="width:100%" class="saishi_text mui-media-body"><h2 class="">' +
-									data.Data.Data[i].Title +
-									'</h2><div class="mui-text-justify">内容简介：' +
-									data.Data.Data[i].tag +
-									'</div></div></div><div class="saishi_time"><p class="peixun_p">比赛时间：' +
-									timeTe +
-									'</p></div>'
-								}else{
-									
-									li.innerHTML =
-									'<div class="overflow"><img class="mui-pull-left" src="' +
-									data.Data.Data[i].pic +
-									'"><div onclick="texts(' + data.Data.Data[i].id + ')" class="saishi_text mui-media-body"><h2 class="">' +
-									data.Data.Data[i].Title +
-									'</h2><div class="mui-text-justify">内容简介：' +
-									data.Data.Data[i].tag +
-									'</div></div></div><div class="saishi_time"><p class="peixun_p">比赛时间：' +
-									timeTe +
-									'</p></div>'
-								}
-								
-								
-									
-//									<button onclick="texts(' + data.Data.Data[i].id + ')" class="mui-btn-blue border-radius">快速报名</button>
-								fragment.appendChild(li);
-							}
-						}
-
-						$('#List li').remove();
-						document.querySelector("#List").appendChild(fragment); //输出到#item1mobile的页面内容
-
-					},
-					error: function() {
+					success:function(data){
+						console.log(data)
+						var cont=data.Data.Data;
+						console.log(cont);
+						var str=template("Navcont",{cont:cont});
+						$(".diqu").html(str);
 
 					}
-				});
-				
-			}
-			//加载导航的方法
-			var cityname;
-			function innerNav() {
-
-				$.ajax({
-					type: "post",
-					url: NavUrl,
-					datatype: "json",
-					success: function(data) {
-						data = eval('(' + data + ')');
-						var fragment = document.createDocumentFragment(); //创建一个代码片段
-						var a;
-						if(typeof(data.Data.Data) != "undefined") { //这里是判断是不是有数据的 如果没数据直接不用循环 否则 undefined len属性
-							for(var i = data.Data.Data.length - 1; i >= 0; i--) { //循环输出data中的数据
-								span = document.createElement('span');
-								span.className = 'mui-control-item';
-//								a.href = "javascript:innerList(" + data.Data.Data[i].Id + ");";
-                                span.setAttribute("onclick", "innerList(" + data.Data.Data[i].Id + ")");      
-								span.innerHTML = data.Data.Data[i].Title;
-								fragment.appendChild(span);
-
-							}
+					});
+				}
+				function guojia(tyid){
+					$.ajax({
+						type:"post",
+						url:ListUrl,
+						async:true,
+						dataType:"json",
+						data: {
+							MatchNavBarId: tyid,
+							pageindex: 1
+						},
+						success:function(data){
+							console.log(data)
+							var cont=data.Data.Data;
+							console.log(cont);
+							var str=template("Navcont",{cont:cont});
+							$(".guojia").html(str);
 						}
-
-						document.querySelector("#cur").appendChild(fragment); //输出到#item1mobile的页面内容
-						$("#cur>span:first-child").addClass("mui-active")
-						$("#cur>a").bind("click", function() {
-							$("#cur>a").removeClass("mui-active");
-							$(this).addClass("mui-active")
-						})
-						//						innerList(parseInt(data.Data.Data[0].Id));
-
-					},
-					error: function() {
-
-					}
-				});
-			}
-
-			//页面价在后执行   加载导航的方法
-			window.onload = function() {
-				getRem(750, 100)
-				innerNav();
-
-			}
-			window.onresize = function() {
-				getRem(750, 100)
-			};
-
-			function getRem(pwidth, prem) {
-				var html = document.getElementsByTagName("html")[0];
-
-				var oWidth = document.body.clientWidth || document.documentElement.clientWidth;
-				html.style.fontSize = oWidth / pwidth * prem + "px";
-			}
-								//开始
-			var _getParam = function(obj, param) {
-				        return obj[param] || '';
-			       };
-			var cityResult = document.getElementById('cityResult');
-			var cityPicker = new mui.PopPicker({
-				layer: 2
-			});
-								cityPicker.setData(cityData);
-			function locationW(){				
-					cityPicker.show(function(items) {
-									cityResult.innerText = items[1].text;
-									cityname = items[1].text;
-									provice = items[0].text;
-									localStorage.setItem("cityname", cityname)
-									cityname = localStorage.getItem("cityname");
-									if(cityname !== null) {
-									var typeid = localStorage.getItem("typeid");
-									$.ajax({
-									type: "post",
-									url: urlPath+"News/AreaChange",
-									async: true,
-									dataType: 'json',
-									data: {
-										AreaName: cityname,
-										TypeId: window.typeid,
-										ProvinceName:provice
-									},
-									success: function(data) {
-										document.getElementById('List').style.display = "none"
-//										console.log(data.Data.Data);
-										var locaText = data.Data.Data;
-										var li ='';
-										for(i=0;i<locaText.length;i++){
-											var sourceW;
-											if(locaText[i].source ==null){
-												sourceW = ""
-											}else{
-												sourceW = locaText[i].source
-											}
-											li +='<div><div class="mui-row goDetail" ViewsCount = "'+locaText[i].ViewsCount+'"id="'+locaText[i].id+'" ><div class="mui-col-xs-4 mui-col-sm-3">'+
-											 '<img src="http://47.93.192.128:5001'+locaText[i].pic+'">'+
-											'</div><div style="margin-top: -10px;padding-left: 10px;" class="mui-col-xs-8 mui-col-sm-9">'+
-											  locaText[i].Title+
-											'</div></div><div>'+
-											'<span>'+locaText[i].CreatedTime.slice(0,10)+
-											'</span><span>'+sourceW+	
-											'</span><span style="float:right"><i class="look" style="margin-right: 8px;"></i>'+locaText[i].ViewsCount+
-											'</span>'+
-											'</div></div>'
-										}
-										document.getElementById('locaData').innerHTML = li;
-										mui('.goDetail').each(function(item,index){
-											this.addEventListener('tap',function(){
-												let id = this.getAttribute('id'); // 获取id
-												let viewCount = this.getAttribute('ViewsCount');  
-   											    let commentCount = $(this).attr("commentCount");
-												window.location.href = "scheduleContent.html?id=" + id ;
-											})
-										})
-										
-										$("#cityResult").innerText = cityname;
-										
-										
-									}
-								});
+					});
+				}
 				
-										}
+				function guoji(tyid){
+					$.ajax({
+						type:"post",
+						url:ListUrl,
+						async:true,
+						dataType:"json",
+						data: {
+							MatchNavBarId: tyid,
+							pageindex: 1
+						},
+						success:function(data){
+							console.log(data)
+							var cont=data.Data.Data;
+							console.log(cont);
+							var str=template("Navcont",{cont:cont});
+							$(".guoji").html(str);
+						}
+					});
+				}
 
-									});
-
-			}
-
+				document.getElementById('slider').addEventListener('slide', function(e) {
+					if(e.detail.slideNumber==0){
+						var tyid=group.children().eq(e.detail.slideNumber).attr("name")
+						saiAjax(tyid);
+					}
+					if(e.detail.slideNumber==1){
+						var tyid=group.children().eq(e.detail.slideNumber).attr("name")
+						guojia(tyid);
+					}
+					if(e.detail.slideNumber==2){
+						var tyid=group.children().eq(e.detail.slideNumber).attr("name")
+						guoji(tyid);
+					}
+					
+				
+				});
+				
+				var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					//					
+					//级联示例
+					var cityPicker = new mui.PopPicker({
+						layer: 2
+					});
+					cityPicker.setData(cityData);
+					var showCityPickerButton = document.getElementById('showCityPicker');
+					var cityResult = document.getElementById('cityResult');
+					showCityPickerButton.addEventListener('tap', function(event) {
+						cityPicker.show(function(items) {
+							cityResult.innerText = items[0].text+items[1].text;
+						});
+					}, false);
+			
 		</script>
+	
+		
 	</body>
 
 </html>
