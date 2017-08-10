@@ -74,7 +74,7 @@
 		<script type="text/html" id="Navcont">
 			{{each cont as v }}
 			<li class="mui-table-view-cell mui-media">
-				<a>
+				<a onclick="content({{v.id}})">
 					<img class="mui-media-object mui-pull-left" src="{{v.pic}}">
 					<div class="mui-media-body">
 						<h4 class="mui-ellipsis" style="width: 80%;overflow: hidden;">{{v.Title}}</h4>
@@ -216,6 +216,11 @@
 							cityResult.innerText = items[0].text+items[1].text;
 						});
 					}, false);
+					
+					function content(id){
+						window.location.href = "scheduleContent.html?id=" + id;
+					}
+					
 			
 		</script>
 	
