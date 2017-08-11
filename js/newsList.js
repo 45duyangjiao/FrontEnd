@@ -7,7 +7,7 @@ $(document).ready(function() {
 	}
 
 	var userID = GetQueryString("userID");
-
+	console.log(userID)
 	var group = $(".mui-slider-group");
 
 	$.ajax({
