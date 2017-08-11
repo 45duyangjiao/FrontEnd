@@ -9,12 +9,16 @@
 	}
      
 	var userID = GetQueryString("userID");      
-	var group = $(".mui-slider-group");
 //	var userID =10014;
     console.log(userID);
 	if(userID!==null){
 		var userID=userID.toString();
 	}
+	
+	if(userID==null){
+		var userID =0;
+	}
+	var group = $(".mui-slider-group");
 	var urlPath='http://47.93.192.128:5001/';
 	$.ajax({
 		url: urlPath+"News/GetMyChannelList",
