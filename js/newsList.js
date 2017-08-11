@@ -1,5 +1,4 @@
-
-
+$(document).ready(function(){
 
 	function GetQueryString(name) {
 		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -18,6 +17,8 @@
 	if(userID==null){
 		var userID =0;
 	}
+	
+	console.log(userID);
 	var group = $(".mui-slider-group");
 	var urlPath='http://47.93.192.128:5001/';
 	$.ajax({
@@ -300,3 +301,5 @@
 		window.location.href = "newsarea.html?userID=" + userID;
 	})
 
+	
+})
