@@ -86,6 +86,27 @@
 			{{/each}}
 		</script>
 		
+		<script type="text/html" id="NavcontA">
+			{{each cont as v }}
+			
+			<li class="mui-table-view-cell mui-media">
+				<a onclick="content({{v.id}})">
+					{{if v.pic.length !==0}}
+					<img class="mui-media-object mui-pull-left" src="{{v.pic}}" alt="" style="padding: 5px;">
+					{{/if}}
+					
+					<div class="mui-media-body">
+						<h4 class="mui-ellipsis" style="width: 80%;overflow: hidden;">{{v.Title}}</h4>
+						<p class="mui-ellipsis">{{(v.content).replace(/<\/?[^>]*>/g,"")}}</p>
+					</div>
+					<div>培训时间：{{v.TrainTime}} <button onclick="content({{v.id}})" class="mui-btn-blue border-radius mui-pull-right">快速报名</button></div>
+				</a>
+			</li>
+
+			{{/each}}
+		</script>
+		
+		
 		<script src="../js/artTemplate.js"></script>
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery.js"></script>
@@ -198,7 +219,7 @@
 							console.log(data)
 							var cont=data.Data.Data;
 							console.log(cont);
-							var str=template("Navcont",{cont:cont});
+							var str=template("NavcontA",{cont:cont});
 							$(".diqu").html(str);
 						}
 					});

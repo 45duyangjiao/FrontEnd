@@ -72,8 +72,8 @@
 			function btnOpen(id,type) {
 				window.location.href = "segue://id=" + id+"&type="+TRAIN;
 			}
-
-			var DetailUrl = "http://47.93.192.128:5001/Train/TrainDetail";
+			var urlPath="http://47.93.192.128:5001/";
+			var DetailUrl = urlPath+"Train/TrainDetail";
 			//默认加载
 			$.ajax({
 				type: "post",
