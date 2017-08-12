@@ -3,9 +3,11 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>新闻列表</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
 		<style>
 			.mui-control-content {
 				background-color: white;
@@ -165,8 +167,16 @@
 
 		<script type="text/html" id="newCont">
 			<ul class="mui-table-view">
-				{{each list as v i}} {{if v.pics.length
-				<=2 }} <li class="mui-table-view-cell mui-media" id="{{v.id}}" commentCount={{v.commentCount}}>
+				{{each list.Data as v i}}
+					{{if list.typeid !==5}}
+					<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: none;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
+					{{/if}}
+				
+					{{if list.typeid==5}}
+					<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
+					{{/if}}	
+				{{if v.pics.length<=2 }} 
+					<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentCount}}>
 					<a class="">
 						{{if v.pics.length == 0}}
 						<img class="mui-media-object mui-pull-left" style="display:none" src="../images/Charity_img1.jpg"> {{/if}} {{if v.pics.length >=1}}
@@ -181,7 +191,7 @@
 					</a>
 					</li>
 					{{/if}} {{if v.pics.length >= 3}}
-					<li class="mui-table-view-cell mui-media">
+					<li class="mui-table-view-cell mui-media mediaId">
 						<div class="mui-media-body">
 							<h4 class="mui-ellipsis">{{v.title}}</h4>
 							<ul class="mui-table-view mui-grid-view mui-grid-9 imgList">
@@ -210,10 +220,33 @@
 			{{/each}}
 				
 		</script>-->
+		
+		<script type="text/html" id="NavcontA">
+			<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
+			{{each cont as v }}
+			<li class="mui-table-view-cell mui-media">
+				<a onclick="content({{v.id}})">
+					{{if v.pic.length !==0}}
+					<img class="mui-media-object mui-pull-left" src="{{v.pic}}" alt="" style="padding: 5px;">
+					{{/if}}
+					
+					<div class="mui-media-body">
+						<h4 class="mui-ellipsis" style="width: 80%;overflow: hidden;">{{v.Title}}</h4>
+						<p class="mui-ellipsis">{{(v.content).replace(/<\/?[^>]*>/g,"")}}</p>
+					</div>
+					<div>培训时间：{{v.TrainTime}} <button onclick="content({{v.id}})" class="mui-btn-blue border-radius mui-pull-right">快速报名</button></div>
+				</a>
+			</li>
+
+			{{/each}}
+		</script>
 
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery.js"></script>
 		<script src="../js/artTemplate.js"></script>
+		<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/mui.picker.js"></script>
+		<script src="../js/mui.poppicker.js"></script>
 		<script>
 			$(document).ready(function() {
 				function GetQueryString(name) {
@@ -277,24 +310,86 @@
 						success: function(data) {
 							console.log(data)
 							if(data.Data.Success==true){
-								data.Data.Data.typeid = typeid;
-								var list = data.Data.Data;
+								data.Data.typeid = typeid;
+								var list = data.Data;
 								console.log(list)
 								var str = template("newCont", {
 									list: list
 								});
-								
-								$("#" + typeid).html(str);
-							}
-							
-							
-							
 
+								$("#" + typeid).html(str);
+								diqu();
+								
+								$(".mediaId").click(function() {									
+									let id = $(this).attr('id'); // 获取id
+									let viewCount = $(this).attr('viewCount');
+									let commentCount = $(this).attr("commentCount");
+									console.log(id,userID,commentCount);
+									window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
+								});
+								
+							}
+						
 						}
 
 					});
 				}
 
+				
+				function city(typeid,cityname,provice){
+					$.ajax({
+						type:"post",
+						url:urlPath + "News/AreaChange",
+						async:true,
+						dataType:"json",
+						data:{
+							AreaName: cityname,
+							TypeId: typeid,
+							ProvinceName: provice
+						},
+						success:function(data){
+							console.log(data)
+							var cont=data.Data.Data;
+							console.log(cont);
+							var str=template("NavcontA",{cont:cont});
+							$("#"+typeid).html(str);
+							diqu(event);
+						}
+					});
+				}
+				
+				
+				
+				
+				
+				
+				function diqu(){
+					var _getParam = function(obj, param) {
+						return obj[param] || '';
+					};
+					//					
+					//级联示例
+					var cityPicker = new mui.PopPicker({
+						layer: 2
+					});
+					cityPicker.setData(cityData);
+					var showCityPickerButton = document.getElementById('showCityPicker');
+					var cityResult = document.getElementById('cityResult');
+					showCityPickerButton.addEventListener('tap', function(event) {
+						cityPicker.show(function(items) {
+							cityResult.innerText = items[0].text+items[1].text;
+							var cityname=items[1].text;
+							var provice=items[0].text;
+							var typeid=5;
+							console.log(typeid,cityname,provice)
+							city(typeid,cityname,provice);
+						});
+					}, false);
+						
+					
+				}
+				
+		
 				document.getElementById('slider').addEventListener('slide', function(e) {
 					var slide = group.children().eq(e.detail.slideNumber);
 					var typeid = slide.attr("id");
@@ -302,12 +397,20 @@
 					newCont(typeid);
 					
 				});
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 			})
 		</script>
 
-		<script type="text/javascript">
-			mui.init()
-		</script>
 	</body>
 
 </html>
