@@ -15,8 +15,7 @@
 	</head>
 
 	<body>
-		<div class="mui-content">
-
+		
 			<div class="mui-scroll-wrapper" id="protocol">
 				<div class="mui-scroll" style="padding:0 10px;">
 					<div class="newsDetailPage">
@@ -31,8 +30,7 @@
 					
 				</div>
 			</div>
-	</div>	
-		
+
 		<script>
 			function GetQueryString(name) {
 				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -96,9 +94,9 @@
 							li.id=data.Data.Data[i].id;		
 							li.innerHTML = '<div class="floatL avatar"><img src="'+
 							data.Data.Data[i].userImg+
-							'" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL mui-pull-left">'+
+							'" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL">'+
 							data.Data.Data[i].userName+
-							'</span><span class="floatR mui-pull-right"><i class="zan"></i><a class="count" style="color:#333">'+data.Data.Data[i].likecount+'</a></span></p><p class="pComments">'+
+							'</span><span class="floatR"><i class="zan"></i><a class="count" style="color:#333">'+data.Data.Data[i].likecount+'</a></span></p><p class="pComments">'+
 							data.Data.Data[i].content+
 							'</p><p class="pTime"><span>'+
 							data.Data.Data[i].commentTime+

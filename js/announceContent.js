@@ -10,7 +10,7 @@ $(document).ready(function() {
 	var userID = GetQueryString("userID");
 	var viewCount = GetQueryString("viewCount");
 	var urlPath="http://47.93.192.128:5001/";
-	var url = urlPath+"Notice/Notice_Detail';
+	var url = urlPath+"Notice/Notice_Detail";
 	$.ajax({
 		url: url,
 		data: {
