@@ -7,7 +7,7 @@ img{
 	display: -webkit-flex;
 	flex-direction: column;*/
 }
-.newsDetailTile{
+/*.newsDetailTile{
 	font-size:0.34rem;
 	color:#333;
 	line-height:0.5rem;
@@ -44,10 +44,10 @@ img{
 	font-size:0.28rem;
 	color:#333;
 	text-indent: 2em;
-}
+}*/
 .newsDetailComments{
-	flex:1;
-	-webkit-flex:1;
+	/*flex:1;
+	-webkit-flex:1;*/
 	border:1px solid #dddddd;
 	border-bottom:0;
 	padding:0 0.3rem;
