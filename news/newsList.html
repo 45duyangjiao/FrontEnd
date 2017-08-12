@@ -320,13 +320,13 @@
 								$("#" + typeid).html(str);
 //								diqu();
 								
-								$(".mediaId").click(function() {									
-									let id = $(this).attr('id'); // 获取id
-									let viewCount = $(this).attr('viewCount');
-									let commentCount = $(this).attr("commentCount");
-									console.log(id,userID,commentCount);
-									window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
-								});
+//								$(".mediaId").click(function() {									
+//									let id = $(this).attr('id'); // 获取id
+//									let viewCount = $(this).attr('viewCount');
+//									let commentCount = $(this).attr("commentCount");
+//									console.log(id,userID,commentCount);
+//									window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
+//								});
 								
 							}
 						
@@ -336,27 +336,27 @@
 				}
 
 				
-				function city(typeid,cityname,provice){
-					$.ajax({
-						type:"post",
-						url:urlPath + "News/AreaChange",
-						async:true,
-						dataType:"json",
-						data:{
-							AreaName: cityname,
-							TypeId: typeid,
-							ProvinceName: provice
-						},
-						success:function(data){
-							console.log(data)
-							var cont=data.Data.Data;
-							console.log(cont);
-							var str=template("NavcontA",{cont:cont});
-							$("#"+typeid).html(str);
-//							diqu(event);
-						}
-					});
-				}
+//				function city(typeid,cityname,provice){
+//					$.ajax({
+//						type:"post",
+//						url:urlPath + "News/AreaChange",
+//						async:true,
+//						dataType:"json",
+//						data:{
+//							AreaName: cityname,
+//							TypeId: typeid,
+//							ProvinceName: provice
+//						},
+//						success:function(data){
+//							console.log(data)
+//							var cont=data.Data.Data;
+//							console.log(cont);
+//							var str=template("NavcontA",{cont:cont});
+//							$("#"+typeid).html(str);
+////							diqu(event);
+//						}
+//					});
+//				}
 				
 				
 				
