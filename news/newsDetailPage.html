@@ -18,14 +18,14 @@
 		<div class="mui-scroll-wrapper" id="protocol">
 			<div class="mui-scroll" style="padding:0 10px;">
 				<div class="newsDetailPage">
-					<div >
+					
 						<div id="con_tilte" class="newsDetailTile"></div>
 							<div class="clearfix newsDetailFrom">
 								<span id="con_pub" class="floatL newsDetailTime"></span>
 								<span id="con_source" class="floatR newsDetailTime"></span>
 							</div>
 						<div id="con_con" class="newsImgBox"></div>
-					</div>
+					
 					<ul class="newsDetailComments" id="List">
 						
 					</ul>
@@ -57,7 +57,7 @@
 				datatype: "json",
 				success: function(data) {
 					data = eval('(' + data + ')');
-					
+					console.log(data)
 					var con_tilte=data.Data.Data.tilte;
 					var con_con=data.Data.Data.content;
 					$("#con_tilte").html(con_tilte)
