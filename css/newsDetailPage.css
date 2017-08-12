@@ -3,9 +3,9 @@ img{
 	display: block;
 }
 .newsDetailPage{
-	display: flex;
+	/*display: flex;
 	display: -webkit-flex;
-	flex-direction: column;
+	flex-direction: column;*/
 }
 .newsDetailTile{
 	font-size:0.34rem;
