@@ -27,7 +27,7 @@
 			}
 			
 			#sliderSegmentedControl {
-				display: flex;
+				position: relative;
 			}
 			
 			#NavList {
@@ -35,20 +35,27 @@
 			}
 			
 			.navAdd {
+				position: absolute;
+				top: 0;
+				right: 0;
 				width: 9%;
-			}
-			
-			.navAdd a {
-				display: inline-block;
-				/*margin: 0 auto;*/
-				/*margin-top: 5px;*/
-				/*width: 80%;
-				height: 80%;*/
-				/*background: url(../images/newAdd.png) no-repeat center center;*/
 				text-align: center;
 				font-size:28px;
 				color: white;
+				/*background: url(../images/newAdd.png) no-repeat center center;*/
 			}
+			
+			/*.navAdd a {
+				display: inline-block;
+				margin: 0 auto;
+				margin-top: 5px;
+				width: 80%;
+				height: 80%;
+				background: url(../images/newAdd.png) no-repeat center center;
+				text-align: center;
+				font-size:28px;
+				color: white;
+			}*/
 			
 			
 			.mui-segmented-control.mui-scroll-wrapper .mui-control-item.nav {
@@ -92,9 +99,10 @@
 				<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" id="NavList">
 					<div class="mui-scroll Nav">
 					</div>
+					
 				</div>
-				<div class="navAdd mui-control-item" style="width: 9%;float: right;">
-					<a>＋</a>
+				<div class="navAdd mui-control-item" style="width: 9%;">＋
+					<!--<a>＋</a>-->
 				</div>
 				<!--<a class="mui-control-item" href="#22">
 						待办公文
