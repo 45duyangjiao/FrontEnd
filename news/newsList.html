@@ -168,9 +168,9 @@
 		<script type="text/html" id="newCont">
 			<ul class="mui-table-view">
 				{{each list.Data as v i}}
-					<!--{{if list.typeid !==5}}
+					{{if list.typeid !==5}}
 					<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: none;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
-					{{/if}}-->
+					{{/if}}
 				
 					{{if list.typeid==5}}
 					<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
@@ -318,7 +318,7 @@
 								});
 
 								$("#" + typeid).html(str);
-								diqu();
+//								diqu();
 								
 								$(".mediaId").click(function() {									
 									let id = $(this).attr('id'); // 获取id
@@ -353,7 +353,7 @@
 							console.log(cont);
 							var str=template("NavcontA",{cont:cont});
 							$("#"+typeid).html(str);
-							diqu(event);
+//							diqu(event);
 						}
 					});
 				}
@@ -363,31 +363,31 @@
 				
 				
 				
-				function diqu(){
-					var _getParam = function(obj, param) {
-						return obj[param] || '';
-					};
-					//					
-					//级联示例
-					var cityPicker = new mui.PopPicker({
-						layer: 2
-					});
-					cityPicker.setData(cityData);
-					var showCityPickerButton = document.getElementById('showCityPicker');
-					var cityResult = document.getElementById('cityResult');
-					showCityPickerButton.addEventListener('tap', function(event) {
-						cityPicker.show(function(items) {
-							cityResult.innerText = items[0].text+items[1].text;
-							var cityname=items[1].text;
-							var provice=items[0].text;
-							var typeid=5;
-							console.log(typeid,cityname,provice)
-							city(typeid,cityname,provice);
-						});
-					}, false);
-						
-					
-				}
+//				function diqu(){
+//					var _getParam = function(obj, param) {
+//						return obj[param] || '';
+//					};
+//					//					
+//					//级联示例
+//					var cityPicker = new mui.PopPicker({
+//						layer: 2
+//					});
+//					cityPicker.setData(cityData);
+//					var showCityPickerButton = document.getElementById('showCityPicker');
+//					var cityResult = document.getElementById('cityResult');
+//					showCityPickerButton.addEventListener('tap', function(event) {
+//						cityPicker.show(function(items) {
+//							cityResult.innerText = items[0].text+items[1].text;
+//							var cityname=items[1].text;
+//							var provice=items[0].text;
+//							var typeid=5;
+//							console.log(typeid,cityname,provice)
+//							city(typeid,cityname,provice);
+//						});
+//					}, false);
+//						
+//					
+//				}
 				
 		
 				document.getElementById('slider').addEventListener('slide', function(e) {
