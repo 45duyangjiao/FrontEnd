@@ -321,9 +321,9 @@
 //								diqu();
 								
 								$(".mediaId").click(function() {									
-									let id = $(this).attr('id'); // 获取id
-									let viewCount = $(this).attr('viewCount');
-									let commentCount = $(this).attr("commentCount");
+									var  id = $(this).attr('id'); // 获取id
+									var  viewCount = $(this).attr('viewCount');
+									var  commentCount = $(this).attr("commentCount");
 									console.log(id,userID,commentCount);
 									window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
 								});
