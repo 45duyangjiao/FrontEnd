@@ -1,185 +1,297 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>公益页</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link rel="stylesheet" href="../css/mui.min.css">
-		<link rel="stylesheet" href="../css/training.css" />
-		<link rel="stylesheet" href="../css/iconfont.css" />
-		<style>
-			.changeBig{
-				position: absolute;
-			    width: 100%;
-			    top: 27%;
-			    margin: 0 auto;
-			    left: 0;
-			    z-index: 9999;
+	<head>
+		<meta charset="UTF-8">
+		<title>公益</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<!--App自定义的css-->
+		<style type="text/css">
+			html,body,.mui-content{
+				height: 100%;
+				background: white;
 			}
-			.displayB{
+			.mui-preview-image.mui-fullscreen {
+				position: fixed;
+				z-index: 20;
+				background-color: #000;
+			}
+			.mui-preview-header,
+			.mui-preview-footer {
+				position: absolute;
+				width: 100%;
+				left: 0;
+				z-index: 10;
+			}
+			.mui-preview-header {
+				height: 44px;
+				top: 0;
+			}
+			.mui-preview-footer {
+				height: 50px;
+				bottom: 0px;
+			}
+			.mui-preview-header .mui-preview-indicator {
+				display: block;
+				line-height: 25px;
+				color: #fff;
+				text-align: center;
+				margin: 15px auto 4;
+				width: 70px;
+				background-color: rgba(0, 0, 0, 0.4);
+				border-radius: 12px;
+				font-size: 16px;
+			}
+			.mui-preview-image {
+				display: none;
+				-webkit-animation-duration: 0.5s;
+				animation-duration: 0.5s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+			}
+			.mui-preview-image.mui-preview-in {
+				-webkit-animation-name: fadeIn;
+				animation-name: fadeIn;
+			}
+			.mui-preview-image.mui-preview-out {
+				background: none;
+				-webkit-animation-name: fadeOut;
+				animation-name: fadeOut;
+			}
+			.mui-preview-image.mui-preview-out .mui-preview-header,
+			.mui-preview-image.mui-preview-out .mui-preview-footer {
+				display: none;
+			}
+			.mui-zoom-scroller {
+				position: absolute;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-align: center;
+				-webkit-align-items: center;
+				align-items: center;
+				-webkit-box-pack: center;
+				-webkit-justify-content: center;
+				justify-content: center;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				-webkit-backface-visibility: hidden;
+			}
+			.mui-zoom {
+				-webkit-transform-style: preserve-3d;
+				transform-style: preserve-3d;
+			}
+			.mui-slider .mui-slider-group .mui-slider-item img {
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: 100%;
+			}
+			.mui-android-4-1 .mui-slider .mui-slider-group .mui-slider-item img {
+				width: 100%;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-slider-group .mui-slider-item {
+				display: inline-table;
+			}
+			.mui-android-4-1 .mui-slider.mui-preview-image .mui-zoom-scroller img {
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.mui-preview-loading {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 0;
+				display: none;
+			}
+			.mui-preview-loading.mui-active {
 				display: block;
 			}
+			.mui-preview-loading .mui-spinner-white {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -25px;
+				margin-top: -25px;
+				height: 50px;
+				width: 50px;
+			}
+			.mui-preview-image img.mui-transitioning {
+				-webkit-transition: -webkit-transform 0.5s ease, opacity 0.5s ease;
+				transition: transform 0.5s ease, opacity 0.5s ease;
+			}
+			@-webkit-keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@keyframes fadeIn {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@-webkit-keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			@keyframes fadeOut {
+				0% {
+					opacity: 1;
+				}
+				100% {
+					opacity: 0;
+				}
+			}
+			p img {
+				max-width: 100%;
+				height: auto;
+			}
+			
+			
+			
+			.imgList{
+				height: 80px;
+				display: flex;
+			}
+			
+			.imgList img{
+				flex: 1;
+			}
+			
+			.mui-table-view-cell{
+				display: flex;
+			}
+			
+			.mui-table-view-cell .floatL{
+				flex: 1;
+			}
 		</style>
+		
 	</head>
 
 	<body>
-		<!--<div id = "bgBlack" style="display:none;width:100%;height: 950px;background: #000;position: absolute;top:0;z-index: 999;"></div>
-		<div id="slidert" class="mui-slider" >
-			<div class="mui-slider-group mui-slider-loop">
-				<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-				<!--<div class="mui-slider-item mui-slider-item-duplicate">
-					<a href="#">
-						<img src="http://47.93.192.128:5001/ImgUpload/20170717/20170717171036286079.jpg">
-					</a>
-				</div>-->
-				<!-- 第一张 -->
-				<!--<div class="mui-slider-item">
-					<a href="#">
-						<img src="http://47.93.192.128:5001/ImgUpload/20170717/20170717171036286079.jpg">
-					</a>
-				</div>-->
-				<!-- 第二张 -->
-				<!--<div class="mui-slider-item">
-					<a href="#">
-						<img src="http://47.93.192.128:5001/ImgUpload/20170717/20170717171036286079.jpg">
-					</a>
-				</div>-->
+		<div class="mui-content content"></div>
+		
+		<script type="text/html" id="charity">
+			{{if list.img==""}}
+			<div class="mui-card-header mui-card-media" style="height:50vw;background-image:url(../images/Charity_banner.jpg)" id="{{list.id}}"></div>
+			{{/if}}
+			{{if list.img !==""}}
+			<div class="mui-card-header mui-card-media" style="height:50vw;background-image:url({{list.img}})" id="{{list.id}}"></div>
+			{{/if}}	
+				<div class="mui-card-footer" style="border-left: 4px solid #007aff;padding: 10px 15px;min-height: 0px;line-height: 40px;">
+					<a class="mui-card-link">支教新闻</a>
+					<a class="mui-card-link more" href="GetGongyiNewsList.html">更多&gt;&gt;</a>
+				</div>
 				
-			<!--</div>
-			<div class="mui-slider-indicator">
-				<div class="mui-indicator mui-active"></div>
-				<div class="mui-indicator"></div>
-				<div class="mui-indicator"></div>
-				<div class="mui-indicator"></div>
-			</div>
-		</div>-->
-		<div class="charityList"></div>
-		
-		<script type="text/html" id="charityList">
-			
-			
-			
-			{{ if activition.Data.img==""}}
-			
-			<div id="{{activition.Data.id}}">
-				<img src="../images/Charity_banner.jpg"/>
-			</div>
-			{{/if}}
-			
-			
-			{{ if activition.Data.img!==""}}
-
-			<div id="{{activition.Data.id}}">
-				<img src="{{activition.Data.img}}"/>
-			</div>
-			{{/if}}
-			
-			
-			<div class="charity_tit">
-				<h2>支教新闻</h2>
-				<a href="GetGongyiNewsList.html">更多></a>
-			</div>
-			{{each activition as value}}
-				{{include 'newslist' value}}
-			{{/each}}
-			
-			<div class="charity_tit">
-				<h2>最新图文</h2>
-				<a class="goIos">更多></a>
-			</div>
-			
-		</script>
-		
-		<script type="text/html" id="newslist">
-			<div class="charity_list">
 				<ul class="mui-table-view">
-					{{each newslist as value i}}
-					 <li class="mui-table-view-cell" id="{{value.newsid}}" commentCount="{{value.commentCount}}">
-					 	<a><p>{{value.newstitle}}</p><span>{{value.createtime}}</span></a>
-					 </li>
+					{{each list.newslist as v}}
+					 <li class="mui-table-view-cell" id="{{v.newsid}}" commentCount="{{v.commentCount}}"><span class="floatL mui-ellipsis">{{v.newstitle}}法规和法国恢复的规划东风浩荡</span><span class="floatR" style="float: right;">{{v.createtime}}</span></li>
 					 {{/each}}
-		 		</ul>
+					 
+				</ul>
+				
+				
+				
+				<div class="mui-card-footer" style="border-left: 4px solid #007aff;padding: 10px 15px;min-height: 0px;line-height: 40px;">
+					<a class="mui-card-link">最新图文</a>
+					<a class="mui-card-link goIos">更多&gt;&gt;</a>
+				</div>
+				
+				
+				<ul class="mui-table-view mui-grid-view mui-grid-9">
+		           		{{each list.imgnewslist as v}}
+						<img class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="{{v.imgnewsid}}" src="{{v.img}}" data-preview-src="" data-preview-group="1"/>
+						{{/each}}
+					
+		        </ul>
+				
+				
 			</div>
+			
 		</script>
 		
-	    <div id="imgList" class="charity_list_img"></div>
-
+		
+		
+		
+		
+		
+		
+		
 		<script src="../js/mui.min.js"></script>
-		<script src="../js/flexable.js"></script>
-		<!--<script src="../js/zepto_1.1.3.js"></script>-->
-		<script src="../js/common.js"></script>
-		<!--<script src="../js/charity_list.js"></script>-->
-		<script src="../js/artTemplate.js"></script>
-		<script type="text/javascript" src="../js/jquery.js">
+		<script src="../js/mui.zoom.js"></script>
+		<script src="../js/mui.previewimage.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/artTemplate.js" ></script>
+		<script>
+			mui.init()
+			mui.previewImage();
 			
-		</script>
-		<script type="text/javascript" charset="utf-8">
-//		mui.init( {
-//				swipeBack: true //启用右滑关闭功能
-//			}
-//			
-//			);
-//			var slidert=mui("#slidert");
-			$(document).ready(function() {
+			$(document).ready(function(){
 				function GetQueryString(name) {
-					var reg=new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-					var r=window.location.search.substr(1).match(reg);
-					if(r !=null) return unescape(r[2]);
-					return null;
-				}
-				var id=GetQueryString("id");
-				var userID=GetQueryString("userID");
-			
-				var url='http://47.93.192.128:5001/News/GongyiList';
-					$.ajax({
-					url: url,
-					dataType: 'json',
-					type: 'post',
-					success: function(data) {
-						console.log(data) ;
-						
-						var imgList = data.Data.Data.imgnewslist;
-						var str = template("charityList", {activition: data.Data}) ;
-						var fragment = document.createDocumentFragment(); //创建一个代码片段
-						var a;
-						for(i = 0; i < imgList.length; i++) {
-							a = document.createElement('a');
-							//	li.className = 'mxhLi';
-							a.innerHTML = '<img src=' + imgList[i].img + '>'
-							fragment.appendChild(a);
-						}
-						document.querySelector("#imgList").appendChild(fragment);
-//						var disP = false;
-//						mui('#imgList').on('tap', 'a', function() {
-//							if(!disP) {
-//								$(this).find('img').addClass('changeBig');
-//								document.getElementById('bgBlack').style.display = 'block';
-//								disP = true;
-//							} else {
-//								$(this).find('img').removeClass('changeBig');
-//								document.getElementById('bgBlack').style.display = 'none';
-//								disP = false;
-//							}
-//						});
-						$(".charityList").html(str);
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+			var id = GetQueryString("id");
+			var userID=GetQueryString("userID");
+			var urlPath="http://47.93.192.128:5001/";
+			var url =  urlPath+"News/GongyiList";
+				$.ajax({
+					type:"post",
+					url:url,
+					async:true,
+					dataType:"json",
+					success:function(data){
+						console.log(data)
+						var list=data.Data.Data;
+						console.log(list)
+						var str=template("charity",{list:list});
+						$(".mui-content").html(str);
 						$(".mui-table-view-cell").click(function() {
 							let id = $(this).attr('id'); // 获取id
 							let commentCount = $(this).attr('commentCount');
 							window.location.href = "newsContent.html?id=" + id + "&commentCount=" + commentCount + "&userID=" + 10005;
 						});
+						
+						$(".more").click(function() {
+							window.location.href = "GetGongyiNewsList.html";
+						});
+						
 						$(".goIos").click(function() {
 							window.location.href = "segue://id=1019&type=NEWSPIC";
 						})
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						alert(XMLHttpRequest.status);
 					}
-					});
-					
-					});
+				});
+				
+				
+				
+				
+				
+			})
+			
+			
+			
 		</script>
+		
 	</body>
+
 </html>
