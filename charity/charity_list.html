@@ -152,18 +152,18 @@
 							fragment.appendChild(a);
 						}
 						document.querySelector("#imgList").appendChild(fragment);
-						var disP = false;
-						mui('#imgList').on('tap', 'a', function() {
-							if(!disP) {
-								$(this).find('img').addClass('changeBig');
-								document.getElementById('bgBlack').style.display = 'block';
-								disP = true;
-							} else {
-								$(this).find('img').removeClass('changeBig');
-								document.getElementById('bgBlack').style.display = 'none';
-								disP = false;
-							}
-						});
+//						var disP = false;
+//						mui('#imgList').on('tap', 'a', function() {
+//							if(!disP) {
+//								$(this).find('img').addClass('changeBig');
+//								document.getElementById('bgBlack').style.display = 'block';
+//								disP = true;
+//							} else {
+//								$(this).find('img').removeClass('changeBig');
+//								document.getElementById('bgBlack').style.display = 'none';
+//								disP = false;
+//							}
+//						});
 						$(".charityList").html(str);
 						$(".mui-table-view-cell").click(function() {
 							let id = $(this).attr('id'); // 获取id
