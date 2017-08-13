@@ -26,40 +26,58 @@
 	</head>
 
 	<body>
-		<div id = "bgBlack" style="display:none;width:100%;height: 950px;background: #000;position: absolute;top:0;z-index: 999;"></div>
+		<!--<div id = "bgBlack" style="display:none;width:100%;height: 950px;background: #000;position: absolute;top:0;z-index: 999;"></div>
 		<div id="slidert" class="mui-slider" >
 			<div class="mui-slider-group mui-slider-loop">
 				<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-				<div class="mui-slider-item mui-slider-item-duplicate">
+				<!--<div class="mui-slider-item mui-slider-item-duplicate">
 					<a href="#">
 						<img src="http://47.93.192.128:5001/ImgUpload/20170717/20170717171036286079.jpg">
 					</a>
-				</div>
+				</div>-->
 				<!-- 第一张 -->
-				<div class="mui-slider-item">
+				<!--<div class="mui-slider-item">
 					<a href="#">
 						<img src="http://47.93.192.128:5001/ImgUpload/20170717/20170717171036286079.jpg">
 					</a>
-				</div>
+				</div>-->
 				<!-- 第二张 -->
-				<div class="mui-slider-item">
+				<!--<div class="mui-slider-item">
 					<a href="#">
 						<img src="http://47.93.192.128:5001/ImgUpload/20170717/20170717171036286079.jpg">
 					</a>
-				</div>
+				</div>-->
 				
-			</div>
+			<!--</div>
 			<div class="mui-slider-indicator">
 				<div class="mui-indicator mui-active"></div>
 				<div class="mui-indicator"></div>
 				<div class="mui-indicator"></div>
 				<div class="mui-indicator"></div>
 			</div>
-		</div>
+		</div>-->
 		<div class="charityList"></div>
 		
 		<script type="text/html" id="charityList">
+			
+			
+			
+			{{ if activition.Data.img==""}}
+			
+			<div id="{{activition.Data.id}}">
+				<img src="../images/Charity_banner.jpg"/>
+			</div>
+			{{/if}}
+			
+			
+			{{ if activition.Data.img!==""}}
 
+			<div id="{{activition.Data.id}}">
+				<img src="{{activition.Data.img}}"/>
+			</div>
+			{{/if}}
+			
+			
 			<div class="charity_tit">
 				<h2>支教新闻</h2>
 				<a href="GetGongyiNewsList.html">更多></a>
@@ -91,17 +109,20 @@
 
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/flexable.js"></script>
-		<script src="../js/zepto_1.1.3.js"></script>
+		<!--<script src="../js/zepto_1.1.3.js"></script>-->
 		<script src="../js/common.js"></script>
-		<script src="../js/charity_list.js"></script>
+		<!--<script src="../js/charity_list.js"></script>-->
 		<script src="../js/artTemplate.js"></script>
-		<script type="text/javascript" charset="utf-8">
-		mui.init( {
-				swipeBack: true //启用右滑关闭功能
-			}
+		<script type="text/javascript" src="../js/jquery.js">
 			
-			);
-			var slidert=mui("#slidert");
+		</script>
+		<script type="text/javascript" charset="utf-8">
+//		mui.init( {
+//				swipeBack: true //启用右滑关闭功能
+//			}
+//			
+//			);
+//			var slidert=mui("#slidert");
 			$(document).ready(function() {
 				function GetQueryString(name) {
 					var reg=new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -111,6 +132,7 @@
 				}
 				var id=GetQueryString("id");
 				var userID=GetQueryString("userID");
+			
 				var url='http://47.93.192.128:5001/News/GongyiList';
 					$.ajax({
 					url: url,
@@ -118,6 +140,7 @@
 					type: 'post',
 					success: function(data) {
 						console.log(data) ;
+						
 						var imgList = data.Data.Data.imgnewslist;
 						var str = template("charityList", {activition: data.Data}) ;
 						var fragment = document.createDocumentFragment(); //创建一个代码片段
