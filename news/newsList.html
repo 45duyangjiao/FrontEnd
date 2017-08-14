@@ -44,10 +44,12 @@
 				height: 40px;
 				text-align: center;
 				font-size:28px;
-				color: white;
+				color: #6D6D72;
 				background: #efeff3;
 				z-index: 2;
-				border-bottom: ;
+				text-align: center;
+    			line-height: 34px;
+    			
 				/*background: url(../images/newAdd.png) no-repeat center center;*/
 			}
 			
@@ -109,8 +111,8 @@
 					</div>
 					
 				</div>
-				<div class="navAdd mui-control-item" style="width: 9%; height: 34px">＋
-					<!--<a>＋</a>-->
+				<div class="navAdd" style="width: 9%; height: 34px">＋
+					<!--<a href="newsarea.html"></a>-->
 				</div>
 				<!--<a class="mui-control-item" href="#22">
 						待办公文
@@ -412,9 +414,10 @@
 					
 				});
 				
-				
-				
-				
+				$(".navAdd").click(function(){
+					window.location.href="newsarea.html"
+				})
+
 				
 				
 				
