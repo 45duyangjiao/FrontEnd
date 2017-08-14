@@ -203,7 +203,7 @@
 				</div>
 				
 				<ul class="mui-table-view">
-					{{each list.newslist as v}}
+					{{each list.newslist  v}}
 					 <li class="mui-table-view-cell" id="{{v.newsid}}" commentCount="{{v.commentCount}}"><span class="floatL mui-ellipsis">{{v.newstitle}}法规和法国恢复的规划东风浩荡</span><span class="floatR" style="float: right;">{{v.createtime}}</span></li>
 					 {{/each}}
 					 
@@ -218,7 +218,7 @@
 				
 				
 				<ul class="mui-table-view mui-grid-view mui-grid-9">
-		           		{{each list.imgnewslist as v}}
+		           		{{each list.imgnewslist  v}}
 						<img class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="{{v.imgnewsid}}" src="{{v.img}}" data-preview-src="" data-preview-group="1"/>
 						{{/each}}
 					
@@ -240,7 +240,8 @@
 		<script src="../js/mui.zoom.js"></script>
 		<script src="../js/mui.previewimage.js"></script>
 		<script src="../js/jquery.js"></script>
-		<script type="text/javascript" src="../js/artTemplate.js" ></script>
+		<!--<script type="text/javascript" src="../js/artTemplate.js" ></script>-->
+		<script type="text/javascript" src="../js/template-web.js"></script>
 		<script>
 			mui.init()
 			mui.previewImage();
