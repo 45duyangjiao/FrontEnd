@@ -12,8 +12,8 @@ $(document).ready(function() {
 			var str = template("GetGongyiNewsList", {activition: data.Data.Data})
 			$(".GetGongyiNewsList").html(str);
 		    $(".activationRecordLi").click(function () {
-		        let id=$(this).attr('id');// 获取id
-		        let commentCount=$(this).attr("commentCount")
+		        var id=$(this).attr('id');// 获取id
+		        var commentCount=$(this).attr("commentCount")
 		        window.location.href = "newsContent.html?id=" + id+"&commentCount="+commentCount;
 		    })
 		},
