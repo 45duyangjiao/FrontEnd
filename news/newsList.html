@@ -98,7 +98,12 @@
 			#showCityPicker{
 				display: none;
 			}
+			.tittle{
+				font: 16px;
+				font-weight: bold;
+				color: #333333;
 			
+			}
 		</style>
 	</head>
 
@@ -193,7 +198,7 @@
 						<img class="mui-media-object mui-pull-left" style="display:none" src="../images/Charity_img1.jpg"> {{/if}} {{if v.pics.length >=1}}
 						<img class="mui-media-object mui-pull-left" src="{{v.pics[0]}}"> {{/if}}
 						<div class="mui-media-body">
-							<h4 class="mui-ellipsis">{{v.title}}</h4>
+							<h5 class="mui-ellipsis tittle">{{v.title}}</h5>
 							<div>
 								<div class="mui-pull-left">{{v.publishDate}}{{v.source}}</div>
 								<div class="mui-pull-right view"><i></i>{{v.viewCount}}</div>
@@ -204,7 +209,7 @@
 					{{/if}} {{if v.pics.length >= 3}}
 					<li class="mui-table-view-cell mui-media mediaId">
 						<div class="mui-media-body">
-							<h4 class="mui-ellipsis">{{v.title}}</h4>
+							<h5 class="mui-ellipsis tittle">{{v.title}}</h5>
 							<ul class="mui-table-view mui-grid-view mui-grid-9 imgList">
 								{{each v.pics as v i}}
 								<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">

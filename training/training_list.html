@@ -23,6 +23,13 @@
 			.content{
 				 white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 			}
+			
+			.tittle{
+				font: 16px;
+				font-weight: bold;
+				color: #333333;
+			
+			}
 		</style>
 	</head>
 	<body>
@@ -84,7 +91,7 @@
 					{{/if}}
 					
 					<div class="mui-media-body">
-						<h4 class="mui-ellipsis" style="width: 80%;overflow: hidden;">{{v.Title}}</h4>
+						<h5 class="mui-ellipsis tittle" style="width: 80%;overflow: hidden;">{{v.Title}}</h5>
 						<p class="mui-ellipsis">{{v.ShortMsg}}</p>
 					</div>
 					<div>培训时间：{{v.TrainTime}} <button onclick="content({{v.id}})" class="mui-btn-blue border-radius mui-pull-right">快速报名</button></div>
@@ -106,7 +113,7 @@
 					{{/if}}
 					
 					<div class="mui-media-body">
-						<h4 class="mui-ellipsis" style="width: 80%;overflow: hidden;">{{v.Title}}</h4>
+						<h5 class="mui-ellipsis tittle" style="width: 80%;overflow: hidden;">{{v.Title}}</h5>
 						<p class="mui-ellipsis">{{(v.content).replace(/<\/?[^>]*>/g,"")}}</p>
 					</div>
 					<div>培训时间：{{v.TrainTime}} <button onclick="content({{v.id}})" class="mui-btn-blue border-radius mui-pull-right">快速报名</button></div>
