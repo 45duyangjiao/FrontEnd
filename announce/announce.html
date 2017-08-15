@@ -99,7 +99,7 @@
 				dataType:"json",
 				success:function(data){
 					var nav=data.Data.Data.reverse();
-					console.log(nav)
+					//console.log(nav)
 					var str=template("Nav",{nav:nav});
 					$("#sliderSegmentedControl").html(str).children(":first").addClass("mui-active");
 					var firstDiv=group.children(":first");
@@ -131,13 +131,13 @@
 						},
 					success:function(data){
 						var navCont=data.Data.Data;
-						console.log(navCont)
+						//console.log(navCont)
 						var str=template("navCont", {navCont:navCont})
 						$("#"+typeid).html(str);
 						$(".content").click(function(){
 							var id=$(this).attr("id");
 							var commentCount=$(this).attr("commentCount");
-							console.log(id)
+							//console.log(id)
 							texts(id,commentCount,userID);
 						})
 						
