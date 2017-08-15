@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>公告列表</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<!--App自定义的css-->
+		<!--<link rel="stylesheet" type="text/css" href="../css/app.css" />-->
+		
+	</head>
+
+	<body>
+
+		<style>
+			html,body{
+				height: 100%;
+			}
+			.mui-control-content {
+				background-color: white;
+				/*min-height: 215px;*/
+			}
+			.mui-control-content .mui-loading {
+				margin-top: 50px;
+			}
+		</style>
+	
+		<div class="mui-content" style="background: white;">
+			<div id="slider" class="mui-slider" >
+				<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted"></div>
+				<!--<div id="sliderProgressBar" class="mui-slider-progress-bar"></div>-->
+				<div class="mui-slider-group">
+					<div class="mui-slider-item mui-control-content mui-active"></div>
+				</div>
+			</div>
+
+		</div>
+		
+		<script type="text/html" id="Nav">
+			{{each nav v}}
+				<a class="mui-control-item navActive" href="#{{v.Id}}">
+					{{v.Title}}
+				</a>
+			{{/each}}
+		</script>
+		
+		<script type="text/html" id="navCont">
+			<ul class="mui-table-view">
+			{{each navCont v}}
+				<li class="mui-table-view-cell mui-media content" id="{{v.Id}}" commentCount="{{v.commentCount}}">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="{{v.pic}}" style="overflow: hidden;">
+						<div class="mui-media-body">
+							<h5 class="tittle mui-ellipsis">{{v.Title}}</h5>
+							<p class="mui-pull-right">{{(v.CreatedTime).slice(0,10)}}</p>
+						</div>
+					</a>
+				</li>
+			{{/each}}
+			</ul>
+		</script>
+		
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script src="../js/template-web.js"></script>
+		<script>
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+			var id = GetQueryString("id");
+			var userID=GetQueryString("userID");
+			
+			mui.init({
+				swipeBack: false
+			});
+
+			$('.mui-scroll-wrapper').scroll({
+				indicators: true //是否显示滚动条
+			});
+
+			var urlPath="http://47.93.192.128:5001/";
+			var NavUrl = urlPath+"Notice/NoticeNavBar";
+			var ListUrl = urlPath+"Notice/Notice_List";
+			
+			var group=$(".mui-slider-group");
+			$.ajax({
+				type:"post",
+				url:NavUrl,
+				async:true,
+				dataType:"json",
+				success:function(data){
+					var nav=data.Data.Data.reverse();
+					console.log(nav)
+					var str=template("Nav",{nav:nav});
+					$("#sliderSegmentedControl").html(str).children(":first").addClass("mui-active");
+					var firstDiv=group.children(":first");
+					for( var i=0,len=nav.length; i<len; i++ ){
+						var id = nav[i].Id;
+						if(i==0){
+							firstDiv.attr("id", id);
+							var typeid=firstDiv.attr("id");
+							navCont(typeid);
+						}else {
+							firstDiv.clone().attr("id", id).appendTo(group);
+						}
+					}
+					
+				}
+				
+			});
+			
+			
+			function navCont(typeid){
+				$.ajax({
+					type:"post",
+					url:ListUrl,
+					async:true,
+					dataType:"json",
+					data: {
+							type_id: typeid,
+							pageindex: 1
+						},
+					success:function(data){
+						var navCont=data.Data.Data;
+						console.log(navCont)
+						var str=template("navCont", {navCont:navCont})
+						$("#"+typeid).html(str);
+						$(".content").click(function(){
+							var id=$(this).attr("id");
+							var commentCount=$(this).attr("commentCount");
+							console.log(id)
+							texts(id,commentCount,userID);
+						})
+						
+					}
+				});
+			}
+			
+			
+			
+			function texts(id,commentCount,userID) {
+				window.location.href = "announceContent.html?id=" + id+"&commentCount="+commentCount+"&userID="+10005;
+			}
+			
+			document.getElementById('slider').addEventListener('slide', function(e) {
+				var typeid=group.children().eq(e.detail.slideNumber).attr("id");
+				navCont(typeid)
+				
+			});
+			
+		
+		</script>
+
+	</body>
+
+</html>
