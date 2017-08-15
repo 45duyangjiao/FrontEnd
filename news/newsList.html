@@ -241,19 +241,18 @@
 		</script>-->
 		
 		<script type="text/html" id="NavcontA">
-			<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
+			<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: block;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
 			{{each cont as v }}
-			<li class="mui-table-view-cell mui-media">
-				<a onclick="content({{v.id}})">
-					{{if v.pic.length !==0}}
-					<img class="mui-media-object mui-pull-left" src="{{v.pic}}" alt="" style="padding: 5px;">
-					{{/if}}
-					
+			
+			<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentcount}}>
+				<a>
 					<div class="mui-media-body">
-						<h4 class="mui-ellipsis" style="width: 80%;overflow: hidden;">{{v.Title}}</h4>
-						<p class="mui-ellipsis">{{(v.content).replace(/<\/?[^>]*>/g,"")}}</p>
+						<div class="mui-ellipsis tittle">{{v.Title}}</div>
+						<div class="muiCont">
+							<div class="mui-pull-left">{{(v.CreatedTime).slice(0,10)}}{{v.source}}</div>
+							<div class="mui-pull-right view"><i></i>{{v.ViewsCount}}</div>
+						</div>
 					</div>
-					<div>培训时间：{{v.TrainTime}} <button onclick="content({{v.id}})" class="mui-btn-blue border-radius mui-pull-right">快速报名</button></div>
 				</a>
 			</li>
 
@@ -337,7 +336,7 @@
 								});
 
 								$("#" + typeid).html(str);
-								if(typeid==5){
+								if(typeid==5 ){
 									diqu();
 								}
 
@@ -369,29 +368,32 @@
 							ProvinceName: provice
 						},
 						success:function(data){
-							console.log(data)
 							var cont=data.Data.Data;
-							console.log(cont);
+							console.log(cont,typeid);
 							var str=template("NavcontA",{cont:cont});
 							$("#"+typeid).html(str);
 							if(typeid==5){
 								diqu();
 							}
+							
+							$(".mediaId").click(function() {									
+									var  id = $(this).attr('id'); // 获取id
+									var  viewCount = $(this).attr('viewCount');
+									var  commentCount = $(this).attr("commentCount");
+									console.log(id,userID,commentCount);
+									window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
+								});
 						}
 					});
 				}
-				
-				
-				
-				
-				
+
 				
 				function diqu(){
 					//开始
 					var _getParam = function(obj, param) {
 						return obj[param] || '';
 					};
-					//					
+				
 					//级联示例
 					var cityPicker = new mui.PopPicker({
 						layer: 2
@@ -404,7 +406,7 @@
 							cityResult.innerText = items[0].text+items[1].text;
 							var cityname=items[1].text;
 							var provice=items[0].text;
-							var typeid=17;
+							var typeid=5;
 							console.log(typeid,cityname,provice)
 							city(typeid,cityname,provice);
 						});
