@@ -239,6 +239,9 @@
 		
 		<script type="text/html" id="NavcontA">
 			
+		
+			<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: block;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
+		
 			{{each cont as v }}
 			<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentcount}}>
 				<a>
@@ -368,11 +371,13 @@
 							data.Data.typeid=typeid;
 							console.log(cont,typeid);
 							var str=template("NavcontA",{cont:cont});
-							$(".diquCont").html(str);
-							if(typeid==5){
-								diqu();
-							}
-							
+							$("#"+5).html(str);
+							diqu();
+							var cityname=localStorage.getItem("cityname");
+							var provice=localStorage.getItem("provice");
+							console.log(cityname,provice)
+							var cityResult = document.getElementById('cityResult');
+							cityResult.innerText = provice+cityname;
 							$(".mediaId").click(function() {									
 									var  id = $(this).attr('id'); // 获取id
 									var  viewCount = $(this).attr('viewCount');
@@ -404,6 +409,8 @@
 							var cityname=items[1].text;
 							var provice=items[0].text;
 							var typeid=5;
+							localStorage.setItem("cityname",cityname);
+							localStorage.setItem("provice",provice);
 							console.log(typeid,cityname,provice)
 							city(typeid,cityname,provice);
 						});
