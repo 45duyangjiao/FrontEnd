@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>认证查询</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style type="text/css">
+			html,body{
+				height: 100%;
+				background: white;
+			}
+			.mui-content{
+				height: 0px;
+			}
+			.contCenter{
+				text-align: center;
+				height: 60px;
+				line-height: 60px;
+				margin-top: 10px;
+			}
+			
+			.mui-search{
+				width: 90%;
+				margin: 0 auto;
+			}
+			.mui-btn-primary{
+				height: 30px;
+				line-height:30px;
+				text-align: center;
+				border-radius: 5px;
+				width: 90%;
+				margin: 15px auto;
+			}
+			
+			.help{
+				text-align: center;
+				font-size: 12px;
+				margin: 10px auto;
+				color: #C0C0C0;
+			}
+			.help div i{
+				display: inline-block;
+				width: 12px;
+				height: 12px;
+				background: url(../images/help.png) no-repeat center;
+				border-radius: 100%;
+				background-size: 100% 100%;
+				margin-right: 5px;
+			}
+			.contTittle{
+				font-size: 12px;
+			}
+			
+			.content{
+				width: 90%;
+				margin: 0 auto;
+			}
+			.contSub{
+				text-indent: 24px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="contCenter">
+				身份证号/会员编号
+			</div>
+			<div class="mui-input-row mui-search">
+			    <input type="search" class="mui-input-clear" id="attestationInput" placeholder="请输入身份证号或会员编号">
+			</div>
+			
+			<div class="mui-btn-primary" id="attestationSelectButton">
+				查询
+			</div>
+			
+			<div class="help">
+				<div><i></i>认证查询帮助</div>
+			</div>
+			<div class="content">
+				<div class="contTittle">中国跆协个人会员级位信息认证查询帮助说明:</div>
+				<p class="contSub">在级位证书编号栏中输入要查询的会员级位证书编号,级位证书编号为经中国跆拳道协会颁发的有效证书.为保障个人会员的信息安全,请在查询时,要求姓名和级位证书编号必须填写正确,点击查询即可确认中国跆拳道协会个人会员级位信息.</p>
+			</div>
+		  	
+
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script type="text/javascript" src="../js/attestation.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+	</body>
+
+</html>
