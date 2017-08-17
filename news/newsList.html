@@ -251,7 +251,7 @@
 		<script type="text/html" id="NavcontA">
 			
 		
-			<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: block;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
+			<!--<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: block;">选择城市:<span id='cityResult' class="ui-alert"></span></div>-->
 		
 			{{each cont as v }}
 			<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentcount}}>
@@ -366,41 +366,41 @@
 				}
 
 				
-//				function city(typeid,cityname,provice){
-//					$.ajax({
-//						type:"post",
-//						url:urlPath + "News/AreaChange",
-//						async:true,
-//						dataType:"json",
-//						data:{
-//							AreaName: cityname,
-//							TypeId: typeid,
-//							ProvinceName: provice
-//						},
-//						success:function(data){
-//							var cont=data.Data.Data;
-//							data.Data.typeid=typeid;
-//							console.log(cont,typeid);
-//							var str=template("NavcontA",{cont:cont});
-//							$("#"+5).html(str);
-//							if(typeid==5 ){
-//								diqu();
-//							}
-//							var cityname=localStorage.getItem("cityname");
-//							var provice=localStorage.getItem("provice");
-//							console.log(cityname,provice)
-//							var cityResult = document.getElementById('cityResult');
-//							cityResult.innerText = provice+cityname;
-//							$(".mediaId").click(function() {									
-//									var  id = $(this).attr('id'); // 获取id
-//									var  viewCount = $(this).attr('viewCount');
-//									var  commentCount = $(this).attr("commentCount");
-//									console.log(id,userID,commentCount);
-//									window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
-//								});
-//						}
-//					});
-//				}
+				function city(typeid,cityname,provice){
+					$.ajax({
+						type:"post",
+						url:urlPath + "News/AreaChange",
+						async:true,
+						dataType:"json",
+						data:{
+							AreaName: cityname,
+							TypeId: typeid,
+							ProvinceName: provice
+						},
+						success:function(data){
+							var cont=data.Data.Data;
+							data.Data.typeid=typeid;
+							console.log(cont,typeid);
+							var str=template("NavcontA",{cont:cont});
+							$(".diquCont").html(str);
+							if(typeid==5 ){
+								diqu();
+							}
+							var cityname=localStorage.getItem("cityname");
+							var provice=localStorage.getItem("provice");
+							console.log(cityname,provice)
+							var cityResult = document.getElementById('cityResult');
+							cityResult.innerText = provice+cityname;
+							$(".mediaId").click(function() {									
+									var  id = $(this).attr('id'); // 获取id
+									var  viewCount = $(this).attr('viewCount');
+									var  commentCount = $(this).attr("commentCount");
+									console.log(id,userID,commentCount);
+									window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
+								});
+						}
+					});
+				}
 
 				
 				function diqu(){
@@ -425,7 +425,7 @@
 							localStorage.setItem("cityname",cityname);
 							localStorage.setItem("provice",provice);
 							console.log(typeid,cityname,provice)
-//							city(typeid,cityname,provice);
+							city(typeid,cityname,provice);
 						});
 					}, false);
 						
