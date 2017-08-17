@@ -68,6 +68,7 @@
 						self.hide();
 					}
 				}
+				self.hide();
 			}, false);
 			self.mask[0].addEventListener('tap', function() {
 				self.hide();
