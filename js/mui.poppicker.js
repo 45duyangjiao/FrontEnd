@@ -64,11 +64,10 @@
 			self.ok.addEventListener('tap', function(event) {
 				if (self.callback) {
 					var rs = self.callback(self.getSelectedItems());
-					if (rs !== false) {
+//					if (rs !== false) {
 						self.hide();
-					}
+//					}
 				}
-				self.hide();
 			}, false);
 			self.mask[0].addEventListener('tap', function() {
 				self.hide();
