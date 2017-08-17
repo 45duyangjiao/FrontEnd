@@ -1,31 +1,64 @@
 {
-  "index.html": {
-    "resources": [
-      "js/attestation.js",
-      "js/zepto_1.1.3.js",
-      "js/mui.min.js",
-      "css/common.css",
-      "css/attestation.css",
-      "css/mui.min.css",
-      "js/flexable.js",
-      "img/help.png"
-    ],
-    "refer": [
-      "result.html"
-    ]
-  },
-  "result.html": {
-    "resources": [
-      "img/back.png",
-      "img/memberBg.png",
-      "js/jquery-1.9.1.min.js",
-      "img/member.png",
-      "js/identifyresult.js",
-      "css/identifyresult.css",
-      "js/mui.min.js",
-      "css/common.css",
-      "css/mui.min.css",
-      "js/flexable.js"
-    ]
-  }
+	"index.html": {
+		"resources": [
+			"js/attestation.js",
+			"js/zepto_1.1.3.js",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/attestation.css",
+			"css/mui.min.css",
+			"js/flexable.js",
+			"img/help.png",
+			"images/help.png",
+			"js/jquery.js",
+			"news/newsList.html"
+		],
+		"refer": [
+			"result.html",
+			"news/newsList.html"
+		]
+	},
+	"result.html": {
+		"resources": [
+			"img/back.png",
+			"img/memberBg.png",
+			"js/jquery-1.9.1.min.js",
+			"img/member.png",
+			"js/identifyresult.js",
+			"css/identifyresult.css",
+			"js/mui.min.js",
+			"css/common.css",
+			"css/mui.min.css",
+			"js/flexable.js"
+		]
+	},
+	"news/newsList.html": {
+		"resources": [
+			"js/mui.picker.js",
+			"images/Charity_img1.jpg",
+			"js/mui.poppicker.js",
+			"fonts/mui.ttf",
+			"images/look.png",
+			"js/artTemplate.js",
+			"js/city.data.js",
+			"css/mui.poppicker.css",
+			"css/mui.picker.css",
+			"index.html",
+			"news/newsDetailPage.html",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"index.html",
+			"news/newsDetailPage.html"
+		]
+	},
+	"news/newsDetailPage.html": {
+		"resources": [
+			"js/jquery-1.9.1.min.js",
+			"css/newsDetailPage.css",
+			"css/common.css",
+			"css/mui.min.css",
+			"js/flexable.js"
+		]
+	}
 }
