@@ -55,6 +55,18 @@
 			.newsDetailTile{
 				text-align: center;
 			}
+			
+			.contImg img ,.imgnum img{
+				padding: 5px;
+			}
+			
+			.mui-table-view.mui-grid-view{
+				white-space: "";
+			}
+			
+			.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+				max-height: 80px;
+			}
 		</style>
 	</head>
 
@@ -80,7 +92,11 @@
 								<span id="con_pub" class="floatL newsDetailTime"></span>
 								<span id="con_source" class="floatR newsDetailTime"></span>
 							</div>
+							<div class="contImg"></div>
 						<div id="con_con" class="newsImgBox"></div>
+						<div class="imgnum">
+							
+						</div>
 						<div class="newsDetailComments" id="List"></div>
 					</div>				
 					
@@ -120,7 +136,23 @@
 					var con_pub=data.Data.Data.publishDate;
 					var con_source=data.Data.Data.source;
 					$("#con_pub").html(con_pub)
-					$("#con_source").html(con_source)
+					$("#con_source").html(con_source);
+					var imgList=data.Data.Data.pics;
+					console.log(imgList);
+					var img=document.createElement("img");
+						img.setAttribute("src",imgList[0])	
+					document.querySelector(".contImg").appendChild(img);
+					var fragment=document.createDocumentFragment();
+					
+					if(imgList.length>1){
+						for (var i=1 ,len=imgList.length; i<len; i++) {
+							var img=document.createElement("img");
+								img.setAttribute("src",imgList[i]);
+							fragment.appendChild(img);	
+						}
+						document.querySelector(".imgnum").appendChild(fragment);
+					}
+					
 				},
 				error: function(e) {
                     alert(e)
