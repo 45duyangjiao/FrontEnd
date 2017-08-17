@@ -251,9 +251,9 @@
 		<script type="text/html" id="NavcontA">
 			
 		
-			<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: block;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
+			<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: block;">选择城市:<span id='cityResult' class="ui-alert">{{cont.provice}}{{cont.cityname}}</span></div>
 		
-			{{each cont as v }}
+			{{each cont.Data as v }}
 			<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentcount}}>
 				<a>
 					<div class="mui-media-body">
@@ -378,8 +378,10 @@
 							ProvinceName: provice
 						},
 						success:function(data){
-							var cont=data.Data.Data;
+							var cont=data.Data;
 							data.Data.typeid=typeid;
+							data.Data.cityname=cityname;
+							data.Data.provice=provice;
 							console.log(cont,typeid);
 							var str=template("NavcontA",{cont:cont});
 							$("#"+5).html(str);
