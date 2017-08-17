@@ -167,7 +167,7 @@
 					async:true,
 					dataType:"json",
 					data: {
-						MatchNavBarId: tyid,
+						typeId: tyid,
 						pageindex: 1
 					},
 					success:function(data){
@@ -187,7 +187,7 @@
 						async:true,
 						dataType:"json",
 						data: {
-							MatchNavBarId: tyid,
+							typeId: tyid,
 							pageindex: 1
 						},
 						success:function(data){
@@ -207,7 +207,7 @@
 						async:true,
 						dataType:"json",
 						data: {
-							MatchNavBarId: tyid,
+							typeId: tyid,
 							pageindex: 1
 						},
 						success:function(data){
@@ -244,14 +244,17 @@
 				document.getElementById('slider').addEventListener('slide', function(e) {
 					if(e.detail.slideNumber==0){
 						var tyid=group.children().eq(e.detail.slideNumber).attr("name")
+						console.log(tyid)
 						saiAjax(tyid);
 					}
 					if(e.detail.slideNumber==1){
 						var tyid=group.children().eq(e.detail.slideNumber).attr("name")
+						console.log(tyid)
 						guojia(tyid);
 					}
 					if(e.detail.slideNumber==2){
 						var tyid=group.children().eq(e.detail.slideNumber).attr("name")
+						console.log(tyid)
 						guoji(tyid);
 					}
 					
