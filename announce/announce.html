@@ -28,6 +28,10 @@
 			.mui-control-content .mui-loading {
 				margin-top: 50px;
 			}
+			
+			.imgLL{
+				display: none;
+			}
 		</style>
 	
 		<div class="mui-content" style="background: white;">
@@ -54,7 +58,9 @@
 			{{each navCont v}}
 				<li class="mui-table-view-cell mui-media content" id="{{v.Id}}" commentCount="{{v.commentCount}}">
 					<a href="javascript:;">
-						<img class="mui-media-object mui-pull-left" src="{{v.pic}}" style="overflow: hidden;">
+						{{if v.pic !==null}}
+						<img class="mui-media-object mui-pull-left" id="imgLL" src="{{v.pic}}" style="overflow: hidden; display: block;">
+						{{/if}}
 						<div class="mui-media-body">
 							<h5 class="tittle mui-ellipsis">{{v.Title}}</h5>
 							<p class="mui-pull-right">{{(v.CreatedTime).slice(0,10)}}</p>
@@ -131,7 +137,7 @@
 						},
 					success:function(data){
 						var navCont=data.Data.Data;
-						//console.log(navCont)
+						console.log(navCont)
 						var str=template("navCont", {navCont:navCont})
 						$("#"+typeid).html(str);
 						$(".content").click(function(){
