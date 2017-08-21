@@ -22,7 +22,7 @@ $(document).ready(function() {
 		dataType: 'json',
 		type: 'post',
 		data: {
-			UserId: 10035
+			UserId: userID
 		},
 		success: function(data) {
 			var str = template("myChannel", {
