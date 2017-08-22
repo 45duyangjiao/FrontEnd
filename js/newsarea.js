@@ -62,6 +62,8 @@ $(document).ready(function() {
 		success: function(data) {
 			var textChannel = data.Data.Data;
 			console.log(textChannel)
+			var len=$('#textL').children().length;
+			console.log(len);
 			var topText = $('#textL').text().replace(/x/g,'').replace(/\s+/g,"")
 			var outArr = [];
 			textChannel.map(function(item,index){
@@ -110,7 +112,7 @@ $(document).ready(function() {
 					async: true,
 					dataType: 'json',
 					data: {
-						userId: 10035,
+						userId: userID,
 						channelId: channelId
 					},
 					success: function(data) {
