@@ -66,22 +66,26 @@ $(document).ready(function() {
 			console.log(textChannel)
 			var len=$('#textL').children().length;
 			console.log(len);
-			var topText = $('#textL').text().replace(/x/g,'').replace(/\s+/g,"")
-			var outArr = [];
-			textChannel.map(function(item,index){
-				var innerArr = [];
-				item.Son.map(function(every,i){
-					if(topText.indexOf(every.Title)>-1){
-//						  console.log(every)
-						}else{
-						    innerArr.push(every)
-						}
+			if(len!==0){
+				var topText = $('#textL').text().replace(/x/g,'').replace(/\s+/g,"")
+				var outArr = [];
+				textChannel.map(function(item,index){
+					var innerArr = [];
+					item.Son.map(function(every,i){
+						if(topText.indexOf(every.Title)>-1){
+	//						  console.log(every)
+							}else{
+							    innerArr.push(every)
+							}
+					})
+	                item.Son = innerArr;
+	                outArr.push(item)
+					
 				})
-                item.Son = innerArr;
-                outArr.push(item)
-				
-			})
-			console.log(outArr)
+				console.log(outArr)
+			}
+			
+			
 			var str = template("channel", {
 				channel: outArr
 			});
