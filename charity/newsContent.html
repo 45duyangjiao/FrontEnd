@@ -136,6 +136,7 @@
 								userId:userID
 							},
 							success:function(data){
+								console.log(data)
 							var IsThumbsUp=data.Data.Data.IsThumbsUp;
 							if(IsThumbsUp==true){
 								$.ajax({
