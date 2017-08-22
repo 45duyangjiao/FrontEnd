@@ -14,6 +14,7 @@ $(document).ready(function() {
 		return null;
 	}
 	var userID = GetQueryString("userID");
+	console.log(userID)
 	var urlPath="http://47.93.192.128:5001/";
 	var url = urlPath+"News/GetMyChannelList";
 	function listAjax(){
