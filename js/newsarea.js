@@ -25,6 +25,7 @@ $(document).ready(function() {
 			UserId: userID
 		},
 		success: function(data) {
+			console.log(data);
 			var str = template("myChannel", {
 				myChannel: data.Data.Data
 			})
