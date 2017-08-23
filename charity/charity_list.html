@@ -218,7 +218,7 @@
 				
 				<ul class="mui-table-view mui-grid-view mui-grid-9">
 		           		{{each list.imgnewslist as v}}
-						<img class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3" id="{{v.imgnewsid}}" src="{{v.img}}" data-preview-src="" data-preview-group="1"/>
+						<img class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4" id="{{v.imgnewsid}}" src="{{v.img}}" data-preview-src="" data-preview-group="1" style="height: 75px;"/>
 						{{/each}}
 					
 		        </ul>
@@ -255,7 +255,6 @@
 			}
 			var id = GetQueryString("id");
 			var userID=GetQueryString("userID");
-			console.log(userID)
 			var urlPath="http://47.93.192.128:5001/";
 			var url =  urlPath+"News/GongyiList";
 				$.ajax({
