@@ -270,7 +270,19 @@
 					</div>
 				</a>
 			</li>
-
+			
+			<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentcount}}>
+				<a>
+					<div class="mui-media-body">
+						<div class="mui-ellipsis tittle">{{v.Title}}</div>
+						<div class="muiCont">
+							<div class="mui-pull-left">{{(v.CreatedTime).slice(0,10)}}{{v.source}}</div>
+							<div class="mui-pull-right view"><i></i>{{v.ViewsCount}}</div>
+						</div>
+					</div>
+				</a>
+			</li>
+			
 			{{/each}}
 		</script>
 
@@ -291,7 +303,7 @@
 
 				var userID = GetQueryString("userID");
 				console.log(userID)
-//				var userID = 10035;
+				var userID = 10035;
 
 				var urlPath = "http://47.93.192.128:5001/";
 				var group = $(".newsCont");

@@ -85,7 +85,7 @@
 			{{each cont as v }}
 			
 			<li class="mui-table-view-cell mui-media">
-				<a onclick="content({{v.id}})">
+				<a onclick="content({{v.id}})" id="{{v.id}}">
 					{{if v.ThumbImg.length !==0}}
 					<img class="mui-media-object mui-pull-left" src="{{v.ThumbImg}}" style="padding: 5px;">
 					{{/if}}
@@ -107,7 +107,7 @@
 			{{each cont as v }}
 			
 			<li class="mui-table-view-cell mui-media">
-				<a onclick="content({{v.id}})">
+				<a onclick="content({{v.id}})" id="{{v.id}}">
 					{{if v.pic.length !==0}}
 					<img class="mui-media-object mui-pull-left" src="{{v.pic}}" alt="" style="padding: 5px;">
 					{{/if}}
