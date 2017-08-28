@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
+			}
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
+			}
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				
+				margin: 0;
+			}
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
+			}
+			
+			.mui-scroll .saiNav{
+				width: 100% !important;
+				
+			}
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
+				padding: 0 30px;
+			}
+			
+			#sliderSegmentedControl{
+				width: 100% !important;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll saiNav" style="width: 100%;">
+						
+					</div>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+				<div class="mui-slider-group" style="background: white;">
+					<div class="mui-slider-item mui-control-content" style="background: white;"></div>
+				</div>
+			</div>
+		</div>
+		<script type="text/html" id="saiNav">
+			{{each list as v }}
+			<a class="mui-control-item mui-col-sm-4 mui-col-xs-4" href="#{{v.Id}}" name="{{v.Id}}">{{v.Title}}</a>
+			{{/each}}
+		</script>
+		
+		<script type="text/html" id="Navcont">
+			{{ if cont.typeid==17}}
+			<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px; display: block;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
+			{{/if}}
+			<div id="scroll{{cont.typeid}}" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						{{each cont.Data as v }}
+						<li class="mui-table-view-cell mui-media">
+							<a onclick="content({{v.id}})">
+								{{if v.pic !==""}}
+								<img class="mui-media-object mui-pull-left" src="{{v.pic}}">{{/if}}
+								<div class="mui-media-body">
+									<h5 class="mui-ellipsis tittle" style="width: 80%;overflow: hidden;">{{v.Title}}</h5>
+									<p class="mui-ellipsis">{{v.tag}}</p>
+								</div>
+								<div>比赛时间：{{v.MatchDate}}</div>
+							</a>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+
+		</script>
+		
+		<script type="text/html" id="NavcontA">
+			
+			<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: block;">
+				选择城市:<span id='cityResult' class="ui-alert">{{cont.provice}}{{cont.cityname}}</span></div>
+			
+			<div id="scroll1" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						{{each cont.Data as v }}
+						<li class="mui-table-view-cell mui-media mediaId contID" commentCount={{v.commentcount}} id="{{v.id}}">
+							<a>
+								<div class="mui-media-body">
+									<div class="mui-ellipsis tittle">{{v.Title}}</div>
+									<div class="muiCont">
+										<div class="mui-pull-left">{{(v.CreatedTime).slice(0,10)}}{{v.source}}</div>
+										<div class="mui-pull-right view"><button onclick="content({{v.id}})" class="mui-btn-blue border-radius mui-pull-right">快速报名</button></div>
+									</div>
+								</div>
+							</a>
+						</li>
+			
+						{{/each}}
+			
+					</ul>
+				</div>
+			</div>
+		</script>
+		
+		<script type="text/html" id="pullRefresh">
+			 {{each cont.Data as v }}
+				<li class="mui-table-view-cell mui-media contID" id="{{v.id}}">
+					<a>
+						{{if v.ThumbImg.length !==0}}
+						<img class="mui-media-object mui-pull-left" src="{{v.ThumbImg}}" style="padding: 5px;"> {{/if}}
+						<div class="mui-media-body">
+							<h5 class="mui-ellipsis tittle" style="width: 80%;overflow: hidden;">{{v.Title}}</h5>
+							<p class="mui-ellipsis">{{v.ShortMsg}}</p>
+						</div>
+						<div>培训时间：{{v.TrainTime}} <button  class="mui-btn-blue border-radius mui-pull-right">快速报名</button></div>
+					</a>
+				</li>
+			{{/each}}
+		</script>
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script src='../js/artTemplate.js'></script>
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
+		<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/mui.picker.js"></script>
+		<script src="../js/mui.poppicker.js"></script>
+		<script>
+			mui.init();
+			var urlPath="http://47.93.192.128:5001/";
+			var NavUrl = urlPath+"Match/MatchNavBar";
+			var ListUrl = urlPath+"Match/MatchList"
+			var group = $(".saiNav");
+			var contGroup = $(".mui-slider-group");
+			
+			$.ajax({
+					type: "post",
+					url: NavUrl,
+					async: true,
+					dataType: "json",
+					success: function(data) {
+						var list = data.Data.Data.reverse();
+						console.log(list);
+						var str = template("saiNav", {
+							list: list
+						});
+						$('.saiNav').html(str);
+						var firstDiv = contGroup.children(":first");
+						var len = list.length;
+						for(var i = 0; i < len; i++) {
+							var id = list[i].Id;
+							if(i == 0) {
+								firstDiv.attr("id", id);
+								var typeid = firstDiv.attr("id");
+								contAjax(typeid)
+							} else {
+								firstDiv.clone().attr("id", id).appendTo(contGroup);
+							}
+						}
+					}
+				});
+			
+			
+			function contAjax(typeid) {
+					$.ajax({
+					type:"post",
+					url:ListUrl,
+					async:true,
+					dataType:"json",
+					data: {
+						MatchNavBarId: typeid,
+						pageindex: 1
+					},
+					success:function(data){
+						console.log(data)
+						data.Data.typeid = typeid;
+						var cont=data.Data;
+						console.log(cont);
+						var str=template("Navcont",{cont:cont});
+						$("#"+typeid).html(str);
+						if(typeid==17){
+							address(typeid)
+						}
+					}
+					});
+			}
+			
+			
+			
+			function pullRefresh(typeid){
+					
+					//阻尼系数
+					var deceleration = mui.os.ios?0.003:0.0009;
+					mui('.mui-scroll-wrapper').scroll({
+						bounce: false,
+						indicators: true, //是否显示滚动条
+						deceleration:deceleration
+					});
+					mui.ready(function() {
+						//循环初始化所有下拉刷新，上拉加载。
+						mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+							mui(pullRefreshEl).pullToRefresh({
+								down: {
+									callback: function() {
+										var self = this;
+										setTimeout(function() {
+											var ul = self.element.querySelector('.mui-table-view');
+//											ul.insertBefore(createFragment(ul,index,5,true,typeid), ul.firstChild);
+											var pageindex=2;
+											add(ul,typeid,pageindex)
+											self.endPullDownToRefresh();
+										}, 1000);
+									}
+								},
+//								up: {
+//									callback: function() {
+//										var self = this;
+//										setTimeout(function() {
+//											var ul = self.element.querySelector('.mui-table-view');
+//											ul.appendChild(createFragment(ul, index, 5));
+//											self.endPullUpToRefresh();
+//										}, 1000);
+//									}
+//								}
+							});
+						});
+						
+						function add(ul,typeid,pageindex){
+								$.ajax({
+								type:"post",
+								url:ListUrl,
+								async:true,
+								dataType:"json",
+								data: {
+									typeId: typeid,
+									pageindex:pageindex
+								},
+								success: function(data) {
+									console.log(data)
+									if(data.Data.Success==true){
+										data.Data.typeid = typeid;
+									var cont = data.Data.Data;
+									console.log(cont);
+									var fragment = document.createDocumentFragment();
+									var li;
+									for ( var i=0 ; i<cont.length; i++) {
+										li=document.createElement("li");
+										li.className="mui-table-view-cell mui-media contID";
+										li.setAttribute("id",cont[i].id);
+										if(cont[i].ThumbImg.length !==0){
+											li.innerHTML='<a><img class="mui-media-object mui-pull-left" src="'+cont[i].ThumbImg+
+										'" style="padding: 5px;"><div class="mui-media-body"><h5 class="mui-ellipsis tittle" style="width: 80%;overflow: hidden;">'+cont[i].Title+
+										'</h5><p class="mui-ellipsis">'+cont[i].ShortMsg+
+										'</p></div><div>培训时间：'+cont[i].TrainTime+
+										'<button  class="mui-btn-blue border-radius mui-pull-right">快速报名</button></div></a>'
+										}else if(cont[i].ThumbImg.length ==0){
+											li.innerHTML='<a><div class="mui-media-body"><h5 class="mui-ellipsis tittle" style="width: 80%;overflow: hidden;">'+cont[i].Title+
+										'</h5><p class="mui-ellipsis">'+cont[i].ShortMsg+
+										'</p></div><div>培训时间：'+cont[i].TrainTime+
+										'<button  class="mui-btn-blue border-radius mui-pull-right">快速报名</button></div></a>'
+										}
+									 fragment.appendChild(li);
+									 pageindex++;
+									 console.log(pageindex)
+								}
+
+									ul.insertBefore(fragment,ul.firstChild);
+									if(typeid==22){
+										address(typeid)
+									}
+		
+									$(".contID").click(function(){
+										var id=$(this).attr("id")
+										window.location.href = "trainingContent.html?id=" + id;
+									})
+									}
+									else if(data.Data.Success==false){
+										mui.toast('没有更多了', {
+											duration: '500',
+											type: 'div'
+										})
+									}
+								}
+							});
+
+							}
+						
+					
+					});
+								
+				}
+
+			
+			document.getElementById('slider').addEventListener('slide', function(e) {
+					var typeid = group.children().eq(e.detail.slideNumber).attr("name")
+					contAjax(typeid)
+				});
+			
+			function address(typeid){
+					var _getParam = function(obj, param) {
+					return obj[param] || '';
+				};
+				//					
+				//级联示例
+				var cityPicker = new mui.PopPicker({
+					layer: 2
+				});
+				cityPicker.setData(cityData);
+				var showCityPickerButton = document.getElementById('showCityPicker');
+				var cityResult = document.getElementById('cityResult');
+				showCityPickerButton.addEventListener('tap',
+				function(event) {
+					cityPicker.show(function(items) {
+						cityResult.innerText = items[0].text + items[1].text;
+						var cityname = items[1].text;
+						var provice = items[0].text;
+						city(typeid, cityname, provice);
+					});
+				}, false);
+				}
+			
+			function city(typeid, cityname, provice) {
+					$.ajax({
+						type: "post",
+						url: urlPath + "News/AreaChange",
+						async: true,
+						dataType: "json",
+						data: {
+							AreaName: cityname,
+							TypeId: typeid,
+							ProvinceName: provice
+						},
+						success: function(data) {
+							data.Data.typeid=typeid;
+							data.Data.cityname=cityname;
+							data.Data.provice=provice;
+							var cont = data.Data;
+							console.log(cont);
+							var str = template("NavcontA", {
+								cont: cont
+							});
+							$("#"+typeid).html(str);
+							address(typeid);
+							
+							$(".contID").click(function(){
+								var id=$(this).attr("id")
+								window.location.href = "trainingContent.html?id=" + id;
+							})
+						
+						}
+					});
+				}
+			
+			
+		</script>
+	</body>
+
+</html>
