@@ -86,8 +86,12 @@
 				background-color: #efeff4;
 			}
 			
-			.mui-segmented-control.mui-scroll-wrapper .mui-control-item{
-				padding: 0 40px !important;
+			.mui-scroll .saiNav{
+				width: 100% !important;
+				
+			}
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
+				padding: 0 30px;
 			}
 			
 			#sliderSegmentedControl{
@@ -102,7 +106,7 @@
 		<div class="mui-content">
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-scroll saiNav">
+					<div class="mui-scroll saiNav" style="width: 100%;">
 						
 					</div>
 				</div>
@@ -114,7 +118,7 @@
 		</div>
 		<script type="text/html" id="saiNav">
 			{{each list as v }}
-			<a class="mui-control-item" href="#{{v.Id}}" name="{{v.Id}}">{{v.Title}}</a>
+			<a class="mui-control-item mui-col-sm-4 mui-col-xs-4" href="#{{v.Id}}" name="{{v.Id}}">{{v.Title}}</a>
 			{{/each}}
 		</script>
 		
