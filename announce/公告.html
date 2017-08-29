@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>公告</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link href="../css/mui.picker.css" rel="stylesheet" />
+		<link href="../css/mui.poppicker.css" rel="stylesheet" />
+		<style>
+			html,
+			body {
+				background-color: #efeff4;
+			}
+			
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
+			}
+			
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
+			}
+			
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
+				overflow: hidden;
+			}
+			
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				margin: 0;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
+			}
+			
+			.saiNav {
+				display: flex;
+			}
+			
+			.saiNav a {
+				flex: 1;
+				padding: 0px 0px !important;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll saiNav" style="width: 100%;">
+
+					</div>
+				</div>
+
+				<div class="mui-slider-group" style="background: white;">
+					<div class="mui-slider-item mui-control-content" style="background: white;"></div>
+				</div>
+			</div>
+		</div>
+		<script type="text/html" id="saiNav">
+			{{each list as v }}
+			<a class="mui-control-item" href="#{{v.Id}}" name="{{v.Id}}">{{v.Title}}</a>
+			{{/each}}
+		</script>
+
+		<script type="text/html" id="navCont">
+			<div id="scroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view">
+						{{each navCont as v}}
+							<li class="mui-table-view-cell mui-media content" id="{{v.Id}}" commentCount="{{v.commentCount}}">
+								<a>
+									{{if v.pic !==null}}
+									<img class="mui-media-object mui-pull-left" id="imgLL" src="{{v.pic}}" style="overflow: hidden; display: block;">
+									{{/if}}
+									<div class="mui-media-body">
+										<h5 class="tittle mui-ellipsis">{{v.Title}}</h5>
+										<p class="mui-pull-right">{{(v.CreatedTime).slice(0,10)}}</p>
+									</div>
+								</a>
+							</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
+
+		</script>
+
+
+		<script type="text/html" id="pullRefresh">
+			{{each cont.Data as v }}
+			<li class="mui-table-view-cell mui-media contID" id="{{v.id}}">
+				<a>
+					{{if v.ThumbImg.length !==0}}
+					<img class="mui-media-object mui-pull-left" src="{{v.ThumbImg}}" style="padding: 5px;"> {{/if}}
+					<div class="mui-media-body">
+						<h5 class="mui-ellipsis tittle" style="width: 80%;overflow: hidden;">{{v.Title}}</h5>
+						<p class="mui-ellipsis">{{v.ShortMsg}}</p>
+					</div>
+					<div>培训时间：{{v.TrainTime}} <button class="mui-btn-blue border-radius mui-pull-right">快速报名</button></div>
+				</a>
+			</li>
+			{{/each}}
+		</script>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/jquery.js"></script>
+		<script src='../js/artTemplate.js'></script>
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
+	
+		<script>
+			mui.init();
+
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+			var id = GetQueryString("id");
+			var userID = GetQueryString("userID");
+
+			var urlPath = "http://47.93.192.128:5001/";
+			var NavUrl = urlPath + "Notice/NoticeNavBar";
+			var ListUrl = urlPath + "Notice/Notice_List";
+			var group = $(".saiNav");
+			var contGroup = $(".mui-slider-group");
+			$.ajax({
+				type: "post",
+				url: NavUrl,
+				async: true,
+				dataType: "json",
+				success: function(data) {
+					var list = data.Data.Data.reverse();
+					console.log(list);
+					var str = template("saiNav", {
+						list: list
+					});
+					$('.saiNav').html(str);
+					var firstDiv = contGroup.children(":first");
+					var len = list.length;
+					for(var i = 0; i < len; i++) {
+						var id = list[i].Id;
+						if(i == 0) {
+							firstDiv.attr("id", id);
+							var typeid = firstDiv.attr("id");
+							console.log(typeid)
+							navCont(typeid)
+						} else {
+							firstDiv.clone().attr("id", id).appendTo(contGroup);
+						}
+					}
+				}
+			});
+
+			function navCont(typeid) {
+				$.ajax({
+					type: "post",
+					url: ListUrl,
+					async: true,
+					dataType: "json",
+					data: {
+						type_id: typeid,
+						pageindex: 1
+					},
+					success: function(data) {
+						var navCont = data.Data.Data;
+						console.log(navCont)
+						var str = template("navCont", {
+							navCont: navCont
+						})
+						$("#" + typeid).html(str);
+						$(".content").on("tap",function() {
+							var id = $(this).attr("id");
+							var commentCount = $(this).attr("commentCount");
+							texts(id, commentCount, userID);
+						})
+						pullRefresh(typeid);
+					}
+				});
+			}
+
+			document.getElementById('slider').addEventListener('slide', function(e) {
+				if(e.detail.slideNumber == 0) {
+					var tyid = group.children().eq(e.detail.slideNumber).attr("name")
+					navCont(typeid)
+				}
+				var typeid = group.children().eq(e.detail.slideNumber).attr("name")
+				navCont(typeid)
+
+			});
+
+		
+			function pullRefresh(typeid) {
+
+				//阻尼系数
+				var deceleration = mui.os.ios ? 0.003 : 0.0009;
+				mui('.mui-scroll-wrapper').scroll({
+					bounce: false,
+					indicators: true, //是否显示滚动条
+					deceleration: deceleration
+				});
+				mui.ready(function() {
+					//循环初始化所有下拉刷新，上拉加载。
+					mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+						mui(pullRefreshEl).pullToRefresh({
+							down: {
+								callback: function() {
+									var self = this;
+									setTimeout(function() {
+										var ul = self.element.querySelector('.mui-table-view');
+										var pageindex = 2;
+										add(ul, typeid, pageindex)
+										self.endPullDownToRefresh();
+									}, 1000);
+								}
+							}
+
+						});
+					});
+
+					function add(ul, typeid, pageindex) {
+						$.ajax({
+							type: "post",
+							url: ListUrl,
+							async: true,
+							dataType: "json",
+							data: {
+								type_id: typeid,
+								pageindex: pageindex
+							},
+							success: function(data) {
+								console.log(data)
+								if(data.Data.Success == true) {
+									data.Data.typeid = typeid;
+									var cont = data.Data.Data;
+									console.log(cont);
+									var fragment = document.createDocumentFragment();
+									var li;
+									for(var i = 0; i < cont.length; i++) {
+										li = document.createElement("li");
+										li.className = "mui-table-view-cell mui-media content";
+										li.setAttribute("id", cont[i].id);
+										li.setAttribute("commentCount", cont[i].commentCount);
+										if(cont[i].pic !==null) {
+											li.innerHTML = '<a><img class="mui-media-object mui-pull-left" id="imgLL" src="'+cont[i].pic+
+											'" style="overflow: hidden; display: block;"><div class="mui-media-body"><h5 class="tittle mui-ellipsis">'+cont[i].Title+
+											'</h5><p class="mui-pull-right">'+(cont[i].CreatedTime).slice(0,10)+'</p></div></a>'
+										} else if(cont[i].pic ==null) {
+											li.innerHTML = '<a><div class="mui-media-body"><h5 class="tittle mui-ellipsis">'+cont[i].Title+
+											'</h5><p class="mui-pull-right">'+(cont[i].CreatedTime).slice(0,10)+'</p></div></a>'
+										}
+										fragment.appendChild(li);
+										pageindex++;
+										console.log(pageindex)
+									}
+
+									ul.insertBefore(fragment, ul.firstChild);
+									
+									$(".content").on("tap",function() {
+										var id = $(this).attr("id");
+										var commentCount = $(this).attr("commentCount");
+										texts(id, commentCount, userID);
+									})
+									
+								} else if(data.Data.Success == false) {
+									mui.toast('没有更多了', {
+										duration: '500',
+										type: 'div'
+									})
+								}
+							}
+						});
+
+					}
+
+				});
+
+			}
+		
+			function texts(id,commentCount,userID) {
+				window.location.href = "announceContent.html?id=" + id+"&commentCount="+commentCount+"&userID="+10005;
+			}
+		</script>
+	</body>
+
+</html>
