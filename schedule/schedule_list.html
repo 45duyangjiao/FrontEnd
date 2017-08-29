@@ -266,13 +266,14 @@
 						if(typeid == 17) {
 							address(typeid)
 						}
-						pullRefresh(typeid,pageindex);
-						
+
 						$(".contID").click(function() {
 							var id = $(this).attr("id")
 							console.log(id)
 							window.location.href = "scheduleContent.html?id=" + id;
 						})
+						
+						pullRefresh(typeid,pageindex);
 
 					}
 				});
