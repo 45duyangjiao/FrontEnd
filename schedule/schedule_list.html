@@ -141,7 +141,7 @@
 					<ul class="mui-table-view">
 						{{each cont.Data as v }}
 						<li class="mui-table-view-cell mui-media contID" id="{{v.id}}">
-							<a onclick="content({{v.id}})">
+							<a>
 								{{if v.pic !==""}}
 								<img class="mui-media-object mui-pull-left" src="{{v.pic}}">{{/if}}
 								<div class="mui-media-body">
@@ -268,11 +268,11 @@
 						}
 						pullRefresh(typeid,pageindex);
 						
-//						$(".contID").click(function() {
-//							var id = $(this).attr("id")
-//							console.log(id)
-////							window.location.href = "scheduleContent.html?id=" + id;
-//						})
+						$(".contID").click(function() {
+							var id = $(this).attr("id")
+							console.log(id)
+							window.location.href = "scheduleContent.html?id=" + id;
+						})
 
 					}
 				});
@@ -362,10 +362,10 @@
 										address(typeid)
 									}
 
-//									$(".contID").click(function() {
-//										var id = $(this).attr("id")
-//										window.location.href = "scheduleContent.html?id=" + id;
-//									})
+									$(".contID").click(function() {
+										var id = $(this).attr("id")
+										window.location.href = "scheduleContent.html?id=" + id;
+									})
 								} else if(data.Data.Success == false) {
 									mui.toast('没有更多了', {
 										duration: '500',
@@ -442,15 +442,15 @@
 			}
 			
 			
-//			$(".contID").click(function() {
-//				var id = $(this).attr("id")
-//				console.log(id)
-//				window.location.href = "scheduleContent.html?id=" + id;
-//			})
-			
-			function content(id){
+			$(".contID").click(function() {
+				var id = $(this).attr("id")
+				console.log(id)
 				window.location.href = "scheduleContent.html?id=" + id;
-			}
+			})
+			
+//			function content(id){
+//				window.location.href = "scheduleContent.html?id=" + id;
+//			}
 		</script>
 	</body>
 
