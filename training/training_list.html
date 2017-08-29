@@ -261,7 +261,7 @@
 								window.location.href = "trainingContent.html?id=" + id;
 							})
 							//下拉刷新开始
-							pullRefresh(typeid)
+//							pullRefresh(typeid)
 							//下拉刷新结束
 							
 							
@@ -269,6 +269,71 @@
 					});
 				}
 			
+			
+			
+			document.getElementById('slider').addEventListener('slide', function(e) {
+					if(e.detail.slideNumber==0){
+						var tyid=group.children().eq(e.detail.slideNumber).attr("name")
+						contAjax(typeid)
+					}
+					var typeid = group.children().eq(e.detail.slideNumber).attr("name")
+					contAjax(typeid)
+				});
+			
+			function address(typeid){
+					var _getParam = function(obj, param) {
+					return obj[param] || '';
+				};
+				//					
+				//级联示例
+				var cityPicker = new mui.PopPicker({
+					layer: 2
+				});
+				cityPicker.setData(cityData);
+				var showCityPickerButton = document.getElementById('showCityPicker');
+				var cityResult = document.getElementById('cityResult');
+				showCityPickerButton.addEventListener('tap',
+				function(event) {
+					cityPicker.show(function(items) {
+						cityResult.innerText = items[0].text + items[1].text;
+						var cityname = items[1].text;
+						var provice = items[0].text;
+						city(typeid, cityname, provice);
+					});
+				}, false);
+				}
+			
+			function city(typeid, cityname, provice) {
+					$.ajax({
+						type: "post",
+						url: urlPath + "News/AreaChange",
+						async: true,
+						dataType: "json",
+						data: {
+							AreaName: cityname,
+							TypeId: typeid,
+							ProvinceName: provice
+						},
+						success: function(data) {
+							data.Data.typeid=typeid;
+							data.Data.cityname=cityname;
+							data.Data.provice=provice;
+							var cont = data.Data;
+							console.log(cont);
+							var str = template("NavcontA", {
+								cont: cont
+							});
+							$("#"+typeid).html(str);
+							address(typeid);
+							
+							$(".contID").click(function(){
+								var id=$(this).attr("id")
+								window.location.href = "trainingContent.html?id=" + id;
+							})
+						
+						}
+					});
+				}
 			
 			
 				function pullRefresh(typeid){
@@ -295,17 +360,8 @@
 											self.endPullDownToRefresh();
 										}, 1000);
 									}
-								},
-//								up: {
-//									callback: function() {
-//										var self = this;
-//										setTimeout(function() {
-//											var ul = self.element.querySelector('.mui-table-view');
-//											ul.appendChild(createFragment(ul, index, 5));
-//											self.endPullUpToRefresh();
-//										}, 1000);
-//									}
-//								}
+								}
+
 							});
 						});
 						
@@ -374,71 +430,6 @@
 								
 				}
 
-			
-			document.getElementById('slider').addEventListener('slide', function(e) {
-					if(e.detail.slideNumber==0){
-						var tyid=group.children().eq(e.detail.slideNumber).attr("name")
-						contAjax(typeid)
-					}
-					var typeid = group.children().eq(e.detail.slideNumber).attr("name")
-					contAjax(typeid)
-				});
-			
-			function address(typeid){
-					var _getParam = function(obj, param) {
-					return obj[param] || '';
-				};
-				//					
-				//级联示例
-				var cityPicker = new mui.PopPicker({
-					layer: 2
-				});
-				cityPicker.setData(cityData);
-				var showCityPickerButton = document.getElementById('showCityPicker');
-				var cityResult = document.getElementById('cityResult');
-				showCityPickerButton.addEventListener('tap',
-				function(event) {
-					cityPicker.show(function(items) {
-						cityResult.innerText = items[0].text + items[1].text;
-						var cityname = items[1].text;
-						var provice = items[0].text;
-						city(typeid, cityname, provice);
-					});
-				}, false);
-				}
-			
-			function city(typeid, cityname, provice) {
-					$.ajax({
-						type: "post",
-						url: urlPath + "News/AreaChange",
-						async: true,
-						dataType: "json",
-						data: {
-							AreaName: cityname,
-							TypeId: typeid,
-							ProvinceName: provice
-						},
-						success: function(data) {
-							data.Data.typeid=typeid;
-							data.Data.cityname=cityname;
-							data.Data.provice=provice;
-							var cont = data.Data;
-							console.log(cont);
-							var str = template("NavcontA", {
-								cont: cont
-							});
-							$("#"+typeid).html(str);
-							address(typeid);
-							
-							$(".contID").click(function(){
-								var id=$(this).attr("id")
-								window.location.href = "trainingContent.html?id=" + id;
-							})
-						
-						}
-					});
-				}
-			
 			
 		</script>
 	</body>
