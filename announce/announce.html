@@ -190,6 +190,7 @@
 			var ListUrl = urlPath + "Notice/Notice_List";
 			var group = $(".saiNav");
 			var contGroup = $(".mui-slider-group");
+			var pageindex = 1;
 			$.ajax({
 				type: "post",
 				url: NavUrl,
@@ -210,7 +211,7 @@
 							firstDiv.attr("id", id);
 							var typeid = firstDiv.attr("id");
 							console.log(typeid)
-							navCont(typeid)
+							navCont(typeid,pageindex)
 						} else {
 							firstDiv.clone().attr("id", id).appendTo(contGroup);
 						}
@@ -226,7 +227,7 @@
 					dataType: "json",
 					data: {
 						type_id: typeid,
-						pageindex: 1
+						pageindex: pageindex
 					},
 					success: function(data) {
 						var navCont = data.Data.Data;
@@ -240,7 +241,7 @@
 							var commentCount = $(this).attr("commentCount");
 							texts(id, commentCount, userID);
 						})
-						pullRefresh(typeid);
+						pullRefresh(typeid,pageindex);
 					}
 				});
 			}
@@ -256,7 +257,7 @@
 			});
 
 		
-			function pullRefresh(typeid) {
+			function pullRefresh(typeid,pageindex) {
 
 				//阻尼系数
 				var deceleration = mui.os.ios ? 0.003 : 0.0009;
@@ -273,8 +274,8 @@
 								callback: function() {
 									var self = this;
 									setTimeout(function() {
+										++pageindex;
 										var ul = self.element.querySelector('.mui-table-view');
-										var pageindex = 2;
 										add(ul, typeid, pageindex)
 										self.endPullDownToRefresh();
 									}, 1000);
@@ -285,6 +286,7 @@
 					});
 
 					function add(ul, typeid, pageindex) {
+						console.log(typeid, pageindex)
 						$.ajax({
 							type: "post",
 							url: ListUrl,
@@ -316,8 +318,7 @@
 											'</h5><p class="mui-pull-right">'+(cont[i].CreatedTime).slice(0,10)+'</p></div></a>'
 										}
 										fragment.appendChild(li);
-										pageindex++;
-										console.log(pageindex)
+									
 									}
 
 									ul.insertBefore(fragment, ul.firstChild);
