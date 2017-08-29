@@ -252,7 +252,7 @@
 					},
 					success: function(data) {
 						console.log(data)
-						if(data.Data.Success==true){
+						if(data.Data.Success == true) {
 							data.Data.typeid = typeid;
 							var cont = data.Data;
 							var str = template("Navcont", {
@@ -262,24 +262,22 @@
 							if(typeid == 17) {
 								address(typeid)
 							}
-	
-							$(".contID").click(function() {
+
+							$(".contID").on("tap", function() {
 								var id = $(this).attr("id")
-								console.log(id)
 								window.location.href = "scheduleContent.html?id=" + id;
 							})
-							
-							pullRefresh(typeid,pageindex);
+
+							pullRefresh(typeid, pageindex);
 						}
-						
+
 					}
 				});
 			}
-			
 
 			document.getElementById('slider').addEventListener('slide', function(e) {
-				if(e.detail.slideNumber==0){
-					var tyid=group.children().eq(e.detail.slideNumber).attr("name")
+				if(e.detail.slideNumber == 0) {
+					var tyid = group.children().eq(e.detail.slideNumber).attr("name")
 					saiAjax(tyid);
 				}
 				var typeid = group.children().eq(e.detail.slideNumber).attr("name")
@@ -332,7 +330,7 @@
 						$("#" + typeid).html(str);
 						address(typeid);
 
-						$(".contID").click(function() {
+						$(".contID").on("tap", function() {
 							var id = $(this).attr("id")
 							window.location.href = "scheduleContent.html?id=" + id;
 						})
@@ -340,17 +338,9 @@
 					}
 				});
 			}
-			
-			
-			$(".contID").click(function() {
-				var id = $(this).attr("id")
-				console.log(id)
-				window.location.href = "scheduleContent.html?id=" + id;
-			})
-			
-			
-			function pullRefresh(typeid,pageindex) {
-				
+
+			function pullRefresh(typeid, pageindex) {
+
 				//阻尼系数
 				var deceleration = mui.os.ios ? 0.003 : 0.0009;
 				mui('.mui-scroll-wrapper').scroll({
@@ -375,12 +365,12 @@
 									}, 1000);
 								}
 							}
-							
+
 						});
 					});
 
 					function add(ul, typeid, pageindex) {
-						console.log(typeid,pageindex)
+						console.log(typeid, pageindex)
 						$.ajax({
 							type: "post",
 							url: ListUrl,
@@ -422,7 +412,7 @@
 										address(typeid)
 									}
 
-									$(".contID").click(function() {
+									$(".contID").on("tap", function() {
 										var id = $(this).attr("id")
 										window.location.href = "scheduleContent.html?id=" + id;
 									})
@@ -440,9 +430,6 @@
 				});
 
 			}
-
-			
-			
 		</script>
 	</body>
 
