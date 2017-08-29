@@ -204,6 +204,7 @@
 					});
 					$('.saiNav').html(str);
 					var firstDiv = contGroup.children(":first");
+					group.children(":first-child").addClass("mui-active")
 					var len = list.length;
 					for(var i = 0; i < len; i++) {
 						var id = list[i].Id;
@@ -216,6 +217,7 @@
 							firstDiv.clone().attr("id", id).appendTo(contGroup);
 						}
 					}
+					
 				}
 			});
 
