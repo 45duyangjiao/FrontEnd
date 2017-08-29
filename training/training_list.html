@@ -331,16 +331,16 @@
 						});
 						$("#" + typeid).html(str);
 						address(typeid);
-						$(".contID").click(function() {
+						$(".contID").on("tap", function() {
 							var id = $(this).attr("id")
 							window.location.href = "trainingContent.html?id=" + id;
 						})
-
+						pullRefresh(typeid);
 					}
 				});
 			}
 
-			function pullRefresh (typeid) {
+			function pullRefresh(typeid) {
 
 				//阻尼系数
 				var deceleration = mui.os.ios ? 0.003 : 0.0009;
@@ -413,7 +413,7 @@
 										address(typeid)
 									}
 
-									$(".contID").click(function() {
+									$(".contID").on("tap", function() {
 										var id = $(this).attr("id")
 										window.location.href = "trainingContent.html?id=" + id;
 									})
