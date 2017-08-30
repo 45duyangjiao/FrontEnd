@@ -105,6 +105,12 @@
 			#sliderSegmentedControl {
 				width: 100% !important;
 			}
+			.saiNav{
+				display: flex;
+			}
+			.saiNav a{
+				flex: 1;
+			}
 		</style>
 	</head>
 
@@ -117,7 +123,6 @@
 
 					</div>
 				</div>
-				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
 				<div class="mui-slider-group" style="background: white;">
 					<div class="mui-slider-item mui-control-content" style="background: white;"></div>
 				</div>
@@ -211,6 +216,7 @@
 			var NavUrl = urlPath + "Match/MatchNavBar";
 			var ListUrl = urlPath + "Match/MatchList"
 			var group = $(".saiNav");
+			
 			var contGroup = $(".mui-slider-group");
 			var pageindex = 1;
 			$.ajax({
@@ -225,6 +231,7 @@
 						list: list
 					});
 					$('.saiNav').html(str);
+					group.children(":first-child").addClass("mui-active");
 					var firstDiv = contGroup.children(":first");
 					var len = list.length;
 					for(var i = 0; i < len; i++) {
@@ -334,7 +341,13 @@
 							var id = $(this).attr("id")
 							window.location.href = "scheduleContent.html?id=" + id;
 						})
-						pullRefresh(typeid, pageindex)
+						pullRefresh(typeid, pageindex);
+						if(data.Data.Success ==true && data.Data.Data.length ==0){
+							mui.toast('暂无数据', {
+								duration: '500',
+								type: 'div'
+							})
+						}
 					}
 				});
 			}

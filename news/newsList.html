@@ -316,7 +316,6 @@
 			}
 
 			var userID = GetQueryString("userID");
-			console.log(userID)
 			var userID = 10035;
 
 			var urlPath = "http://47.93.192.128:5001/";
@@ -376,7 +375,7 @@
 						if(data.Data.Success == true) {
 							data.Data.typeid = typeid;
 							var list = data.Data;
-							//							console.log(list)
+							console.log(list)
 							var str = template("newCont", {
 								list: list
 							});
@@ -393,16 +392,29 @@
 								console.log(id, userID, commentCount);
 								window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
 							});
-
 							pullRefresh(typeid, pageindex)
 
 						}
+						else if(data.Data.Success ==false){
+							mui.toast('暂无数据', {
+								duration: '500',
+								type: 'div'
+							})
+						}
+						
 
 					}
 
 				});
 			}
+			
+			document.getElementById('slider').addEventListener('slide', function(e) {
+				var typeid = groupNav.children().eq(e.detail.slideNumber).attr("name")
+				console.log(typeid, pageindex)
+				newCont(typeid, pageindex)
 
+			});
+			
 			function diqu() {
 				//开始
 				var _getParam = function(obj, param) {
@@ -441,7 +453,8 @@
 						ProvinceName: provice
 					},
 					success: function(data) {
-						var cont = data.Data;
+						if(data.Data.Success ==true){
+							var cont = data.Data;
 						data.Data.typeid = typeid;
 						data.Data.cityname = cityname;
 						data.Data.provice = provice;
@@ -462,16 +475,19 @@
 						});
 						pullRefresh(typeid, pageindex)
 
+						}
+						if(data.Data.Success ==true && data.Data.Data.length ==0){
+							mui.toast('暂无数据', {
+								duration: '500',
+								type: 'div'
+							})
+						}
+						
 					}
 				});
 			}
 
-			document.getElementById('slider').addEventListener('slide', function(e) {
-				var typeid = groupNav.children().eq(e.detail.slideNumber).attr("name")
-				console.log(typeid, pageindex)
-				newCont(typeid, pageindex)
-
-			});
+			
 
 			function pullRefresh(typeid, pageindex) {
 

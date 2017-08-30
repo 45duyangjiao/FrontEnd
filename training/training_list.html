@@ -106,6 +106,13 @@
 			#sliderSegmentedControl {
 				width: 100% !important;
 			}
+			
+			.saiNav{
+				display: flex;
+			}
+			.saiNav a{
+				flex: 1;
+			}
 		</style>
 	</head>
 
@@ -114,11 +121,10 @@
 		<div class="mui-content">
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-scroll saiNav" style="width: 100%;">
+					<div class="mui-scroll saiNav" style="width: 100%;" onload="load()" id="target">
 
 					</div>
 				</div>
-				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
 				<div class="mui-slider-group" style="background: white;">
 					<div class="mui-slider-item mui-control-content" style="background: white;"></div>
 				</div>
@@ -126,7 +132,7 @@
 		</div>
 		<script type="text/html" id="saiNav">
 			{{each list as v }}
-			<a class="mui-control-item mui-col-sm-4 mui-col-xs-4" href="#{{v.Id}}" name="{{v.Id}}">{{v.Title}}</a>
+			<a class="mui-control-item" href="#{{v.Id}}" name="{{v.Id}}">{{v.Title}}</a>
 			{{/each}}
 		</script>
 
@@ -209,13 +215,14 @@
 		<script src="../js/mui.picker.js"></script>
 		<script src="../js/mui.poppicker.js"></script>
 		<script>
+			
 			mui.init();
 			var urlPath = "http://47.93.192.128:5001/";
 			var NavUrl = urlPath + "Train/TrainNavBar";
 			var ListUrl = urlPath + "Train/TrainList";
 			var group = $(".saiNav");
 			var contGroup = $(".mui-slider-group");
-
+			var pageindex=1;
 			$.ajax({
 				type: "post",
 				url: NavUrl,
@@ -228,6 +235,11 @@
 						list: list
 					});
 					$('.saiNav').html(str);
+					group.children(":first-child").addClass("mui-active");
+					function load() {
+							document.getElementById("target").children(":first-child").click();
+							console.log("nia")
+						}
 					var firstDiv = contGroup.children(":first");
 					var len = list.length;
 					for(var i = 0; i < len; i++) {
@@ -235,15 +247,15 @@
 						if(i == 0) {
 							firstDiv.attr("id", id);
 							var typeid = firstDiv.attr("id");
-							contAjax(typeid)
+							contAjax(typeid,pageindex)
 						} else {
 							firstDiv.clone().attr("id", id).appendTo(contGroup);
 						}
 					}
 				}
 			});
-
-			function contAjax(typeid) {
+			
+			function contAjax(typeid,pageindex) {
 				$.ajax({
 					type: "post",
 					url: ListUrl,
@@ -251,7 +263,7 @@
 					dataType: "json",
 					data: {
 						typeId: typeid,
-						pageindex: 1
+						pageindex: pageindex
 					},
 					success: function(data) {
 						console.log(data)
@@ -265,25 +277,20 @@
 						if(typeid == 22) {
 							address(typeid)
 						}
-
+						
 						$(".contID").on("tap", function() {
 							var id = $(this).attr("id")
 							window.location.href = "trainingContent.html?id=" + id;
 						})
 						//下拉刷新开始
-						pullRefresh(typeid)
+						pullRefresh(typeid,pageindex)
 						//下拉刷新结束
 					}
 				});
 			}
 			document.getElementById('slider').addEventListener('slide', function(e) {
-				if(e.detail.slideNumber == 0) {
-					var tyid = group.children().eq(e.detail.slideNumber).attr("name")
-					contAjax(typeid)
-				}
-				var typeid = group.children().eq(e.detail.slideNumber).attr("name")
-				contAjax(typeid)
-
+				var typeid = group.children().eq(e.detail.slideNumber).attr("name");
+				contAjax(typeid,pageindex)
 			});
 
 			function address(typeid) {
@@ -335,13 +342,21 @@
 							var id = $(this).attr("id")
 							window.location.href = "trainingContent.html?id=" + id;
 						})
-						pullRefresh(typeid);
+						var pageindex=1;
+						pullRefresh(typeid,pageindex);
+						
+						if(data.Data.Success ==true && data.Data.Data.length ==0){
+							mui.toast('暂无数据', {
+								duration: '500',
+								type: 'div'
+							})
+						}
 					}
 				});
 			}
 
-			function pullRefresh(typeid) {
-
+			function pullRefresh(typeid,pageindex) {
+				console.log(typeid,pageindex)
 				//阻尼系数
 				var deceleration = mui.os.ios ? 0.003 : 0.0009;
 				mui('.mui-scroll-wrapper').scroll({
@@ -357,9 +372,9 @@
 								callback: function() {
 									var self = this;
 									setTimeout(function() {
+										++pageindex;
 										var ul = self.element.querySelector('.mui-table-view');
-										//											ul.insertBefore(createFragment(ul,index,5,true,typeid), ul.firstChild);
-										var pageindex = 2;
+										
 										add(ul, typeid, pageindex)
 										self.endPullDownToRefresh();
 									}, 1000);
@@ -370,6 +385,7 @@
 					});
 
 					function add(ul, typeid, pageindex) {
+						console.log(pageindex)
 						$.ajax({
 							type: "post",
 							url: ListUrl,
@@ -404,8 +420,6 @@
 												'<button  class="mui-btn-blue border-radius mui-pull-right">快速报名</button></div></a>'
 										}
 										fragment.appendChild(li);
-										pageindex++;
-										console.log(pageindex)
 									}
 
 									ul.insertBefore(fragment, ul.firstChild);
