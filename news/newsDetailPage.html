@@ -139,9 +139,12 @@
 					$("#con_source").html(con_source);
 					var imgList=data.Data.Data.pics;
 					console.log(imgList);
-					var img=document.createElement("img");
+					if(imgList.length>=1){
+						var img=document.createElement("img");
 						img.setAttribute("src",imgList[0])	
 					document.querySelector(".contImg").appendChild(img);
+					}
+					
 					var fragment=document.createDocumentFragment();
 					
 					if(imgList.length>1){
@@ -193,31 +196,6 @@
 							'</p><p class="pTime"><span>'+
 							data.Data.Data[i].commentTime+
 							'</span><span class="commontsReply" name='+i+'>回复</span></p></div></a>'
-
-//							ul=document.createElement("ul");
-//							ul.className="mui-table-view";
-//							ul.id=data.Data.Data[i].id;
-//							ul.innerHTML='<li class="mui-table-view-cell mui-media"><img class="mui-media-object mui-pull-left" src="'+
-//							data.Data.Data[i].userImg+
-//							'"><div class="mui-media-body"><div><span class="floatL">'+
-//							data.Data.Data[i].userName+
-//							'</span><span class="floatR"><i class="zan"></i><a class="count" style="color:#333">'+
-//							data.Data.Data[i].likecount+'</a></span></div></div><div class="mui-ellipsis">'+
-//							data.Data.Data[i].content+
-//							'</div><div>'+data.Data.Data[i].commentTime+
-//							'<span class="commontsReply" name='+i+'>回复</span></div></li>'
-
-//		<ul class="mui-table-view">
-//			<li class="mui-table-view-cell mui-media">
-//				<img class="mui-media-object mui-pull-left" src="../images/Charity_img1.jpg">
-//				<div class="mui-media-body">
-//					<div><span class="floatL">nihao</span><span class="floatR"><i class="zan"></i>333</span></div>
-//				</div>
-//				<div class="mui-ellipsis">时代锋灰更丰富付付付付付付付付付付付付付付付付付付付付付付付色的方价格合</div>
-//				<div>3453463456345<span class="commontsReply" name='+i+'>回复</span></div>
-//			</li>
-//		</ul>
-							
 							fragment.appendChild(li);
 
 						}
