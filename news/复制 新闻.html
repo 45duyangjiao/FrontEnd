@@ -99,13 +99,9 @@
 				padding: 0px 10px;
 			}
 			
-			
-			
 			#sliderSegmentedControl {
 				position: relative;
 			}
-			
-			
 			
 			.navAdd {
 				position: absolute;
@@ -114,17 +110,13 @@
 				width: 9%;
 				height: 40px;
 				text-align: center;
-				font-size:28px;
+				font-size: 28px;
 				color: #6D6D72;
 				background: #efeff3;
 				z-index: 2;
 				text-align: center;
-    			line-height: 34px;
-    			
+				line-height: 34px;
 			}
-			
-			
-			
 			
 			.view i {
 				display: inline-block;
@@ -135,35 +127,28 @@
 				margin-right: 5px;
 			}
 			
-			
-			
 			.view {
 				font-size: 11px;
 				color: #CCCCCC;
 				padding-left: 5px;
 			}
 			
-			#showCityPicker{
+			#showCityPicker {
 				display: none;
 			}
-			.tittle{
+			
+			.tittle {
 				font-size: 16px;
 				color: #333333;
-			
 			}
 			
-			.muiCont{
+			.muiCont {
 				color: #999999;
 			}
 			
-			.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+			.mui-grid-view.mui-grid-9 .mui-table-view-cell {
 				max-height: 80px;
 			}
-			
-			
-			
-			
-			
 		</style>
 	</head>
 
@@ -199,21 +184,18 @@
 					<ul class="mui-table-view diquCont">
 
 						{{each list.Data as v i}} {{if v.pics.length
-						<=2 }} <li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentCount}}>
+						<=2 }}<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentCount}}>
 							<a class="">
 								{{if v.pics.length == 0}}
-								<img class="mui-media-object mui-pull-left" style="display:none" src="../images/Charity_img1.jpg"> {{/if}} {{if v.pics.length >=1}}
-								<img class="mui-media-object mui-pull-left" src="{{v.thumbImg}}"> {{/if}} {{if v.thumbImg!=""}}
-								<img class="mui-media-object mui-pull-left" src="{{v.thumbImg}}"> {{/if}}
-									{{if v.thumbImg=""}}
-					<img class="mui-media-object mui-pull-left" src="{{v.thumbImg}}" style="display:none"> {{/if}}
-								<div class="mui-media-body">
-									<div class="mui-ellipsis tittle">{{v.title}}</div>
-									<div class="muiCont">
-										<div class="mui-pull-left">{{v.publishDate}}{{v.source}}</div>
-										<div class="mui-pull-right view"><i></i>{{v.viewCount}}</div>
+								<img class="mui-media-object mui-pull-left" style="display:none" src="../images/Charity_img1.jpg"> {{/if}} {{if v.pics.length >=1 && v.pics.length
+								<=2}} <img class="mui-media-object mui-pull-left" src="{{v.pics[0]}}"> {{/if}}
+									<div class="mui-media-body">
+										<div class="mui-ellipsis tittle">{{v.title}}</div>
+										<div class="muiCont">
+											<div class="mui-pull-left">{{v.publishDate}}{{v.source}}</div>
+											<div class="mui-pull-right view"><i></i>{{v.viewCount}}</div>
+										</div>
 									</div>
-								</div>
 							</a>
 							</li>
 							{{/if}} {{if v.pics.length >= 3}}
@@ -222,14 +204,14 @@
 									<div class="mui-ellipsis tittle">{{v.title}}</div>
 									<ul class="mui-table-view mui-grid-view mui-grid-9 imgList">
 
-										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 											<span class="mui-icon"><img class="" src="{{v.pics[0]}}"></span>
 										</li>
-										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 											<span class="mui-icon"><img class="" src="{{v.pics[1]}}"></span>
 										</li>
 
-										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 											<span class="mui-icon"><img class="" src="{{v.pics[2]}}"></span>
 										</li>
 
@@ -251,18 +233,15 @@
 			<=2 }} <li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentCount}}>
 				<a class="">
 					{{if v.pics.length == 0}}
-					<img class="mui-media-object mui-pull-left" style="display:none" src="../images/Charity_img1.jpg"> {{/if}} {{if v.pics.length >=1}}
-					<img class="mui-media-object mui-pull-left" src="{{v.thumbImg}}"> {{/if}} {{if v.thumbImg!=""}}
-					<img class="mui-media-object mui-pull-left" src="{{v.thumbImg}}"> {{/if}}
-						{{if v.thumbImg=""}}
-					<img class="mui-media-object mui-pull-left" src="{{v.thumbImg}}" style="display:none"> {{/if}}
-					<div class="mui-media-body">
-						<div class="mui-ellipsis tittle">{{v.title}}</div>
-						<div class="muiCont">
-							<div class="mui-pull-left">{{v.publishDate}}{{v.source}}</div>
-							<div class="mui-pull-right view"><i></i>{{v.viewCount}}</div>
+					<img class="mui-media-object mui-pull-left" style="display:none" src="../images/Charity_img1.jpg"> {{/if}} {{if v.pics.length >=1 && v.pics.length
+					<=2}} <img class="mui-media-object mui-pull-left" src="{{v.pics[0]}}"> {{/if}}
+						<div class="mui-media-body">
+							<div class="mui-ellipsis tittle">{{v.title}}</div>
+							<div class="muiCont">
+								<div class="mui-pull-left">{{v.publishDate}}{{v.source}}</div>
+								<div class="mui-pull-right view"><i></i>{{v.viewCount}}</div>
+							</div>
 						</div>
-					</div>
 				</a>
 				</li>
 				{{/if}} {{if v.pics.length >= 3}}
@@ -271,14 +250,14 @@
 						<div class="mui-ellipsis tittle">{{v.title}}</div>
 						<ul class="mui-table-view mui-grid-view mui-grid-9 imgList">
 
-							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 								<span class="mui-icon"><img class="" src="{{v.pics[0]}}"></span>
 							</li>
-							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 								<span class="mui-icon"><img class="" src="{{v.pics[1]}}"></span>
 							</li>
 
-							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
 								<span class="mui-icon"><img class="" src="{{v.pics[2]}}"></span>
 							</li>
 
@@ -291,6 +270,30 @@
 				</li>
 
 				{{/if}} {{/each}}
+		</script>
+
+		<script type="text/html" id="NavcontA">
+
+			<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: block;">选择城市:<span id='cityResult' class="ui-alert">{{cont.provice}}{{cont.cityname}}</span></div>
+			<div id="scroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view diquCont">
+						{{each cont.Data as v }}
+						<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentcount}}>
+							<a>
+								<div class="mui-media-body">
+									<div class="mui-ellipsis tittle">{{v.Title}}</div>
+									<div class="muiCont">
+										<div class="mui-pull-left">{{(v.CreatedTime).slice(0,10)}}{{v.source}}</div>
+										<div class="mui-pull-right view"><i></i>{{v.ViewsCount}}</div>
+									</div>
+								</div>
+							</a>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
 		</script>
 
 		<script src="../js/mui.min.js"></script>
@@ -317,6 +320,8 @@
 			var userID = 10035;
 
 			var urlPath = "http://47.93.192.128:5001/";
+			var NavList = urlPath + "News/GetMyChannelList";
+			var ListUrl = urlPath + "News/NewsList";
 			var groupNav = $(".Nav");
 			var group = $(".mui-slider-group");
 			var pageindex = 1;
@@ -371,7 +376,7 @@
 						if(data.Data.Success == true) {
 							data.Data.typeid = typeid;
 							var list = data.Data;
-							console.log(list)
+							//							console.log(list)
 							var str = template("newCont", {
 								list: list
 							});
@@ -424,6 +429,43 @@
 				//结束
 			}
 
+			function city(typeid, cityname, provice) {
+				$.ajax({
+					type: "post",
+					url: urlPath + "News/AreaChange",
+					async: true,
+					dataType: "json",
+					data: {
+						AreaName: cityname,
+						TypeId: typeid,
+						ProvinceName: provice
+					},
+					success: function(data) {
+						var cont = data.Data;
+						data.Data.typeid = typeid;
+						data.Data.cityname = cityname;
+						data.Data.provice = provice;
+						console.log(cont, typeid);
+						var str = template("NavcontA", {
+							cont: cont
+						});
+						$("#" + 5).html(str);
+						if(typeid == 5) {
+							diqu();
+						}
+						$(".mediaId").click(function() {
+							var id = $(this).attr('id'); // 获取id
+							var viewCount = $(this).attr('viewCount');
+							var commentCount = $(this).attr("commentCount");
+							console.log(id, userID, commentCount);
+							window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
+						});
+						pullRefresh(typeid, pageindex)
+
+					}
+				});
+			}
+
 			document.getElementById('slider').addEventListener('slide', function(e) {
 				var typeid = groupNav.children().eq(e.detail.slideNumber).attr("name")
 				console.log(typeid, pageindex)
@@ -474,29 +516,14 @@
 								console.log(data)
 								if(data.Data.Success == true) {
 									data.Data.typeid = typeid;
-									var cont = data.Data.Data;
-									console.log(cont);
+									var list = data.Data;
+									console.log(list);
 									var fragment = document.createDocumentFragment();
-									var li;
-									for(var i = 0; i < cont.length; i++) {
-										li = document.createElement("li");
-										li.className = "mui-table-view-cell mui-media content";
-										li.setAttribute("id", cont[i].id);
-										li.setAttribute("commentCount", cont[i].commentCount);
-										//										if(cont[i].pic !== null) {
-										//											li.innerHTML = '<a><img class="mui-media-object mui-pull-left" id="imgLL" src="' + cont[i].pic +
-										//												'" style="overflow: hidden; display: block;"><div class="mui-media-body"><h5 class="tittle mui-ellipsis">' + cont[i].Title +
-										//												'</h5><p class="mui-pull-right">' + (cont[i].CreatedTime).slice(0, 10) + '</p></div></a>'
-										//										} else if(cont[i].pic == null) {
-										//											li.innerHTML = '<a><div class="mui-media-body"><h5 class="tittle mui-ellipsis">' + cont[i].Title +
-										//												'</h5><p class="mui-pull-right">' + (cont[i].CreatedTime).slice(0, 10) + '</p></div></a>'
-										//										}
-										fragment.appendChild(li);
-
-									}
-
+									var str = template("str", {
+										list: list
+									});
+									fragment.html = str
 									ul.insertBefore(fragment, ul.firstChild);
-
 									$(".content").on("tap", function() {
 										var id = $(this).attr("id");
 										var commentCount = $(this).attr("commentCount");
@@ -517,6 +544,10 @@
 				});
 
 			}
+
+			$(".navAdd").click(function() {
+				window.location.href = "newsarea.html?userID=" + userID;
+			})
 		</script>
 	</body>
 
