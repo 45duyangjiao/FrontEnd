@@ -1,39 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 	<head>
-		<meta charset="UTF-8">
-		<title>新闻列表</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="../css/mui.min.css" rel="stylesheet" />
+		<meta charset="utf-8">
+		<title>新闻</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
 		<link href="../css/mui.picker.css" rel="stylesheet" />
 		<link href="../css/mui.poppicker.css" rel="stylesheet" />
 		<style>
-			.mui-control-content {
-				background-color: white;
-				min-height: 635px;
+			html,
+			body {
+				background-color: #efeff4;
 			}
 			
-			.mui-control-content .mui-loading {
-				margin-top: 50px;
+			.mui-bar~.mui-content .mui-fullscreen {
+				top: 44px;
+				height: auto;
 			}
 			
-			li {
-				list-style: none;
+			.mui-pull-top-tips {
+				position: absolute;
+				top: -20px;
+				left: 50%;
+				margin-left: -25px;
+				width: 40px;
+				height: 40px;
+				border-radius: 100%;
+				z-index: 1;
 			}
 			
-			.content {
-				white-space: nowrap;
+			.mui-bar~.mui-pull-top-tips {
+				top: 24px;
+			}
+			
+			.mui-pull-top-wrapper {
+				width: 42px;
+				height: 42px;
+				display: block;
+				text-align: center;
+				background-color: #efeff4;
+				border: 1px solid #ddd;
+				border-radius: 25px;
+				background-clip: padding-box;
+				box-shadow: 0 4px 10px #bbb;
 				overflow: hidden;
-				text-overflow: ellipsis;
+			}
+			
+			.mui-pull-top-tips.mui-transitioning {
+				-webkit-transition-duration: 200ms;
+				transition-duration: 200ms;
+			}
+			
+			.mui-pull-top-tips .mui-pull-loading {
+				/*-webkit-backface-visibility: hidden;
+				-webkit-transition-duration: 400ms;
+				transition-duration: 400ms;*/
+				margin: 0;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon,
+			.mui-pull-top-wrapper .mui-spinner {
+				margin-top: 7px;
+			}
+			
+			.mui-pull-top-wrapper .mui-icon.mui-reverse {
+				/*-webkit-transform: rotate(180deg) translateZ(0);*/
+			}
+			
+			.mui-pull-bottom-tips {
+				text-align: center;
+				background-color: #efeff4;
+				font-size: 15px;
+				line-height: 40px;
+				color: #777;
+			}
+			
+			.mui-pull-top-canvas {
+				overflow: hidden;
+				background-color: #fafafa;
+				border-radius: 40px;
+				box-shadow: 0 4px 10px #bbb;
+				width: 40px;
+				height: 40px;
+				margin: 0 auto;
+			}
+			
+			.mui-pull-top-canvas canvas {
+				width: 40px;
+			}
+			
+			.mui-slider-indicator.mui-segmented-control {
+				background-color: #efeff4;
+			}
+			
+			.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
+				padding: 0px 10px;
 			}
 			
 			#sliderSegmentedControl {
 				position: relative;
-			}
-			
-			#NavList {
-				/*width: 90%;*/
 			}
 			
 			.navAdd {
@@ -43,39 +110,12 @@
 				width: 9%;
 				height: 40px;
 				text-align: center;
-				font-size:28px;
+				font-size: 28px;
 				color: #6D6D72;
 				background: #efeff3;
 				z-index: 2;
 				text-align: center;
-    			line-height: 34px;
-    			
-				/*background: url(../images/newAdd.png) no-repeat center center;*/
-			}
-			
-			/*.navAdd a {
-				display: inline-block;
-				margin: 0 auto;
-				margin-top: 5px;
-				width: 80%;
-				height: 80%;
-				background: url(../images/newAdd.png) no-repeat center center;
-				text-align: center;
-				font-size:28px;
-				color: white;
-			}*/
-			
-			
-			.mui-segmented-control.mui-scroll-wrapper .mui-control-item.nav {
-				padding: 0 10px;
-			}
-			
-			/*.mui-table-view.mui-grid-view {
-				white-space: nowrap;
-			}*/
-			
-			.mui-grid-view.mui-grid-9 .mui-table-view-cell {
-				padding: 11px 6px;
+				line-height: 34px;
 			}
 			
 			.view i {
@@ -87,28 +127,26 @@
 				margin-right: 5px;
 			}
 			
-			
-			
 			.view {
 				font-size: 11px;
 				color: #CCCCCC;
 				padding-left: 5px;
 			}
 			
-			#showCityPicker{
+			#showCityPicker {
 				display: none;
 			}
-			.tittle{
+			
+			.tittle {
 				font-size: 16px;
 				color: #333333;
-			
 			}
 			
-			.muiCont{
+			.muiCont {
 				color: #999999;
 			}
 			
-			.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+			.mui-grid-view.mui-grid-9 .mui-table-view-cell {
 				max-height: 80px;
 			}
 		</style>
@@ -116,32 +154,17 @@
 
 	<body>
 
-		<div id="slider" class="mui-slider">
-			<div id="sliderSegmentedControl" class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-				<div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" id="NavList">
-					<div class="mui-scroll Nav">
-					</div>
-					
+		<div class="mui-content">
+			<div id="slider" class="mui-slider mui-fullscreen">
+				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<div class="mui-scroll Nav"></div>
+					<div class="navAdd" style="width: 9%; height: 34px">＋</div>
 				</div>
-				<div class="navAdd" style="width: 9%; height: 34px">＋
-					<!--<a href="newsarea.html"></a>-->
+
+				<div class="mui-slider-group" style="background: white;">
+					<div class="mui-slider-item mui-control-content" style="background: white;"></div>
 				</div>
-				<!--<a class="mui-control-item" href="#22">
-						待办公文
-					</a>
-							<a class="mui-control-item" href="#23">
-						已办公文
-					</a>
-							<a class="mui-control-item" href="#24">
-						全部公文
-					</a>-->
 			</div>
-
-			<!--<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>-->
-			<div class="mui-slider-group newsCont">
-				<div class="mui-slider-item mui-control-content"></div>
-			</div>
-
 		</div>
 		<script type="text/html" id="Nav">
 			{{each list as v }}
@@ -151,61 +174,67 @@
 			<a class="mui-control-item nav"></a>
 		</script>
 
-		<!-- 这个模板是为了以后整个界面切换的，ID是为了绑定切换的，才写的模板 -->
-		<!--<script type="text/html" id="newCont">
-
-			<ul class="mui-table-view">
-				{{each list as v i}}
-				<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentCount}}>
-					{{if v.pics.length == 0}}
-					<div class="mui-table-img" style="display: none;"></div>
-					{{/if}} {{if v.pics.length == 1}}
-					<div class="mui-table-img onePic"><img src="{{v.pics[0]}}" class="mui-media-object mui-pull-left" /></div>
-					{{/if}}
-					<div class="mui-table-text mui-media-body">
-						<p class="mui-table-title muipurelyTitle">{{v.title}}</p>
-						{{if v.pics.length >= 3}}
-						<div class="mui-table-pics muipurelyImg" id="purelyImg">
-							{{include "newsListPics" v}}
-						</div>
-						{{/if}}
-						<div class="muipurelytext">
-							<p class="mui-table-look muipurelylook clearfix">
-								<span class="lookLeft">{{v.publishDate}}{{v.source}}</span>
-								<span class="lookRight"><i class="look" style="margin-right: 8px;"></i>{{v.viewCount}}</span>
-							</p>
-						</div>
-					</div>
-				</li>{{/each}}
-			</ul>
-
-		</script>
-		<script type="text/html" id="newsListPics">
-			{{each pics v i}}
-			<img src="{{v}}" attr='{{v}}'>
-			{{/each}}
-				
-		</script>-->
-
 		<script type="text/html" id="newCont">
+
 			{{if list.typeid ==5}}
-				<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: block;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
+			<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: block;">选择城市:<span id='cityResult' class="ui-alert"></span></div>
 			{{/if}}
-			<ul class="mui-table-view diquCont">
-				
-				{{each list.Data as v i}}
-				
-				{{if v.pics.length<=2 }} 
-					<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentCount}}>
-					<a class="">
-						{{if v.pics.length == 0}}
-						<img class="mui-media-object mui-pull-left" style="display:none" src="../images/Charity_img1.jpg"> {{/if}} 
-							{{if v.pics.length >=1}}
-						<img class="mui-media-object mui-pull-left" src="{{v.thumbImg}}"> 
-							{{/if}}
-							{{if v.thumbImg!=""}}
-						<img class="mui-media-object mui-pull-left" src="{{v.thumbImg}}">
-							{{/if}}
+			<div id="scroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view diquCont">
+
+						{{each list.Data as v i}} {{if v.pics.length
+						<=2 }}<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentCount}}>
+							<a class="">
+								{{if v.pics.length == 0}}
+								<img class="mui-media-object mui-pull-left" style="display:none" src="../images/Charity_img1.jpg"> {{/if}} {{if v.pics.length >=1 && v.pics.length
+								<=2}} <img class="mui-media-object mui-pull-left" src="{{v.pics[0]}}"> {{/if}}
+									<div class="mui-media-body">
+										<div class="mui-ellipsis tittle">{{v.title}}</div>
+										<div class="muiCont">
+											<div class="mui-pull-left">{{v.publishDate}}{{v.source}}</div>
+											<div class="mui-pull-right view"><i></i>{{v.viewCount}}</div>
+										</div>
+									</div>
+							</a>
+							</li>
+							{{/if}} {{if v.pics.length >= 3}}
+							<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentCount}}>
+								<div class="mui-media-body">
+									<div class="mui-ellipsis tittle">{{v.title}}</div>
+									<ul class="mui-table-view mui-grid-view mui-grid-9 imgList">
+
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+											<span class="mui-icon"><img class="" src="{{v.pics[0]}}"></span>
+										</li>
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+											<span class="mui-icon"><img class="" src="{{v.pics[1]}}"></span>
+										</li>
+
+										<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+											<span class="mui-icon"><img class="" src="{{v.pics[2]}}"></span>
+										</li>
+
+									</ul>
+									<div class="muiCont">
+										<div class="mui-pull-left">{{v.publishDate}}{{v.source}}</div>
+										<div class="mui-pull-right view"><i></i>{{v.viewCount}}</div>
+									</div>
+
+							</li>
+
+							{{/if}} {{/each}}
+					</ul>
+					</div>
+				</div>
+		</script>
+		<script type="text/html" id="str">
+			{{each list.Data as v i}} {{if v.pics.length
+			<=2 }} <li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentCount}}>
+				<a class="">
+					{{if v.pics.length == 0}}
+					<img class="mui-media-object mui-pull-left" style="display:none" src="../images/Charity_img1.jpg"> {{/if}} {{if v.pics.length >=1 && v.pics.length
+					<=2}} <img class="mui-media-object mui-pull-left" src="{{v.pics[0]}}"> {{/if}}
 						<div class="mui-media-body">
 							<div class="mui-ellipsis tittle">{{v.title}}</div>
 							<div class="muiCont">
@@ -213,260 +242,313 @@
 								<div class="mui-pull-right view"><i></i>{{v.viewCount}}</div>
 							</div>
 						</div>
-					</a>
-					</li>
-					{{/if}} {{if v.pics.length >= 3}}
-					<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentCount}}>
-						<div class="mui-media-body">
-							<div class="mui-ellipsis tittle">{{v.title}}</div>
-							<ul class="mui-table-view mui-grid-view mui-grid-9 imgList">
-								
-								<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-									<span class="mui-icon"><img class="" src="{{v.pics[0]}}"></span>
-								</li>
-								<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-									<span class="mui-icon"><img class="" src="{{v.pics[1]}}"></span>
-								</li>
-								
-								<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-									<span class="mui-icon"><img class="" src="{{v.pics[2]}}"></span>
-								</li>
-								
-							</ul>
-							<div class="muiCont">
-								<div class="mui-pull-left">{{v.publishDate}}{{v.source}}</div>
-								<div class="mui-pull-right view"><i></i>{{v.viewCount}}</div>
-							</div>
+				</a>
+				</li>
+				{{/if}} {{if v.pics.length >= 3}}
+				<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentCount}}>
+					<div class="mui-media-body">
+						<div class="mui-ellipsis tittle">{{v.title}}</div>
+						<ul class="mui-table-view mui-grid-view mui-grid-9 imgList">
 
-					</li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+								<span class="mui-icon"><img class="" src="{{v.pics[0]}}"></span>
+							</li>
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+								<span class="mui-icon"><img class="" src="{{v.pics[1]}}"></span>
+							</li>
 
-					{{/if}} {{/each}}
-			</ul>
+							<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-4">
+								<span class="mui-icon"><img class="" src="{{v.pics[2]}}"></span>
+							</li>
+
+						</ul>
+						<div class="muiCont">
+							<div class="mui-pull-left">{{v.publishDate}}{{v.source}}</div>
+							<div class="mui-pull-right view"><i></i>{{v.viewCount}}</div>
+						</div>
+
+				</li>
+
+				{{/if}} {{/each}}
 		</script>
 
-		<!--<script type="text/html" id="newsListPics">
-			{{each pics v i}}
-			<li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-				<span class="mui-icon"><img class="" src="{{v}}" alt="../images/111.png"></span>
-			</li>
-			{{/each}}
-				
-		</script>-->
-		
 		<script type="text/html" id="NavcontA">
-			
-		
+
 			<div id='showCityPicker' style="text-align:center;color:#888;background: #e6e6e6;height: 40px;line-height: 40px;display: block;">选择城市:<span id='cityResult' class="ui-alert">{{cont.provice}}{{cont.cityname}}</span></div>
-		
-			{{each cont.Data as v }}
-			<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentcount}}>
-				<a>
-					<div class="mui-media-body">
-						<div class="mui-ellipsis tittle">{{v.Title}}</div>
-						<div class="muiCont">
-							<div class="mui-pull-left">{{(v.CreatedTime).slice(0,10)}}{{v.source}}</div>
-							<div class="mui-pull-right view"><i></i>{{v.ViewsCount}}</div>
-						</div>
-					</div>
-				</a>
-			</li>
-			
-			<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentcount}}>
-				<a>
-					<div class="mui-media-body">
-						<div class="mui-ellipsis tittle">{{v.Title}}</div>
-						<div class="muiCont">
-							<div class="mui-pull-left">{{(v.CreatedTime).slice(0,10)}}{{v.source}}</div>
-							<div class="mui-pull-right view"><i></i>{{v.ViewsCount}}</div>
-						</div>
-					</div>
-				</a>
-			</li>
-			
-			{{/each}}
+			<div id="scroll" class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="mui-table-view diquCont">
+						{{each cont.Data as v }}
+						<li class="mui-table-view-cell mui-media mediaId" id="{{v.id}}" commentCount={{v.commentcount}}>
+							<a>
+								<div class="mui-media-body">
+									<div class="mui-ellipsis tittle">{{v.Title}}</div>
+									<div class="muiCont">
+										<div class="mui-pull-left">{{(v.CreatedTime).slice(0,10)}}{{v.source}}</div>
+										<div class="mui-pull-right view"><i></i>{{v.ViewsCount}}</div>
+									</div>
+								</div>
+							</a>
+						</li>
+						{{/each}}
+					</ul>
+				</div>
+			</div>
 		</script>
 
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery.js"></script>
-		<script src="../js/artTemplate.js"></script>
+		<script src='../js/artTemplate.js'></script>
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
 		<script src="../js/city.data.js" type="text/javascript" charset="utf-8"></script>
 		<script src="../js/mui.picker.js"></script>
 		<script src="../js/mui.poppicker.js"></script>
+
 		<script>
-			$(document).ready(function() {
-				function GetQueryString(name) {
-					var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-					var r = window.location.search.substr(1).match(reg);
-					if(r != null) return unescape(r[2]);
-					return null;
+			mui.init();
+
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+
+			var userID = GetQueryString("userID");
+			console.log(userID)
+			var userID = 10035;
+
+			var urlPath = "http://47.93.192.128:5001/";
+			var NavList = urlPath + "News/GetMyChannelList";
+			var ListUrl = urlPath + "News/NewsList";
+			var groupNav = $(".Nav");
+			var group = $(".mui-slider-group");
+			var pageindex = 1;
+			$.ajax({
+				type: "post",
+				url: urlPath + "News/GetMyChannelList",
+				async: true,
+				dataType: "json",
+				data: {
+					UserId: userID
+				},
+				success: function(data) {
+					console.log(data)
+					var list = data.Data.Data
+					console.log(list);
+					var str = template("Nav", {
+						list: list
+					});
+					$(".Nav").html(str).children(":first").addClass("mui-active");
+					var firstDiv = group.children(":first");
+					var len = list.length;
+					for(var i = 0; i < len; i++) {
+						var id = list[i].typeid;
+						if(i == 0) {
+							firstDiv.attr("id", id);
+							var typeid = firstDiv.attr("id");
+							newCont(typeid, pageindex)
+						} else {
+							firstDiv.clone().attr("id", id).appendTo(group);
+						}
+					}
 				}
 
-				var userID = GetQueryString("userID");
-				console.log(userID)
-				var userID = 10035;
+			});
 
-				var urlPath = "http://47.93.192.128:5001/";
-				var group = $(".newsCont");
+			function newCont(typeid, pageindex) {
+				console.log(typeid, pageindex)
 				$.ajax({
 					type: "post",
-					url: urlPath + "News/GetMyChannelList",
+					url: urlPath + "News/NewsList",
 					async: true,
 					dataType: "json",
 					data: {
-						UserId: userID
+						pageindex: 1, //number	否	页数，不填默认第一页	1
+						typeid: typeid, //number	否	栏目类型id	1
+						proid: "", //number	否	省id	3
+						cityid: "", //number	否	城市id	5
+						areaid: "" //number	否	区域id
 					},
 					success: function(data) {
 						console.log(data)
-						var list = data.Data.Data
-						console.log(list);
-						var str = template("Nav", {
-							list: list
-						});
-						$(".Nav").html(str).children(":first").addClass("mui-active");
-						var firstDiv = group.children(":first");
-						var len = list.length;
-						for(var i = 0; i < len; i++) {
-							var id = list[i].typeid;
-							if(i == 0) {
-								firstDiv.attr("id", id);
-								var typeid = firstDiv.attr("id");
-								newCont(typeid)
-							} else {
-								firstDiv.clone().attr("id", id).appendTo(group);
+						if(data.Data.Success == true) {
+							data.Data.typeid = typeid;
+							var list = data.Data;
+							//							console.log(list)
+							var str = template("newCont", {
+								list: list
+							});
+
+							$("#" + typeid).html(str);
+							if(typeid == 5) {
+								diqu();
 							}
+
+							$(".mediaId").on("tap", function() {
+								var id = $(this).attr('id'); // 获取id
+								var viewCount = $(this).attr('viewCount');
+								var commentCount = $(this).attr("commentCount");
+								console.log(id, userID, commentCount);
+								window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
+							});
+
+							pullRefresh(typeid, pageindex)
+
 						}
+
+					}
+
+				});
+			}
+
+			function diqu() {
+				//开始
+				var _getParam = function(obj, param) {
+					return obj[param] || '';
+				};
+
+				//级联示例
+				var cityPicker = new mui.PopPicker({
+					layer: 2
+				});
+				cityPicker.setData(cityData);
+				var showCityPickerButton = document.getElementById('showCityPicker');
+				var cityResult = document.getElementById('cityResult');
+				showCityPickerButton.addEventListener('tap', function(event) {
+					cityPicker.show(function(items) {
+						cityResult.innerText = items[0].text + items[1].text;
+						var cityname = items[1].text;
+						var provice = items[0].text;
+						var typeid = 5;
+						city(typeid, cityname, provice);
+					});
+				}, false);
+
+				//结束
+			}
+
+			function city(typeid, cityname, provice) {
+				$.ajax({
+					type: "post",
+					url: urlPath + "News/AreaChange",
+					async: true,
+					dataType: "json",
+					data: {
+						AreaName: cityname,
+						TypeId: typeid,
+						ProvinceName: provice
+					},
+					success: function(data) {
+						var cont = data.Data;
+						data.Data.typeid = typeid;
+						data.Data.cityname = cityname;
+						data.Data.provice = provice;
+						console.log(cont, typeid);
+						var str = template("NavcontA", {
+							cont: cont
+						});
+						$("#" + 5).html(str);
+						if(typeid == 5) {
+							diqu();
+						}
+						$(".mediaId").click(function() {
+							var id = $(this).attr('id'); // 获取id
+							var viewCount = $(this).attr('viewCount');
+							var commentCount = $(this).attr("commentCount");
+							console.log(id, userID, commentCount);
+							window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
+						});
+						pullRefresh(typeid, pageindex)
+
+					}
+				});
+			}
+
+			document.getElementById('slider').addEventListener('slide', function(e) {
+				var typeid = groupNav.children().eq(e.detail.slideNumber).attr("name")
+				console.log(typeid, pageindex)
+				newCont(typeid, pageindex)
+
+			});
+
+			function pullRefresh(typeid, pageindex) {
+
+				//阻尼系数
+				var deceleration = mui.os.ios ? 0.003 : 0.0009;
+				mui('.mui-scroll-wrapper').scroll({
+					bounce: false,
+					indicators: true, //是否显示滚动条
+					deceleration: deceleration
+				});
+				mui.ready(function() {
+					//循环初始化所有下拉刷新，上拉加载。
+					mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+						mui(pullRefreshEl).pullToRefresh({
+							down: {
+								callback: function() {
+									var self = this;
+									setTimeout(function() {
+										++pageindex;
+										var ul = self.element.querySelector('.mui-table-view');
+										add(ul, typeid, pageindex)
+										self.endPullDownToRefresh();
+									}, 1000);
+								}
+							}
+
+						});
+					});
+
+					function add(ul, typeid, pageindex) {
+						console.log(typeid, pageindex)
+						$.ajax({
+							type: "post",
+							url: ListUrl,
+							async: true,
+							dataType: "json",
+							data: {
+								type_id: typeid,
+								pageindex: pageindex
+							},
+							success: function(data) {
+								console.log(data)
+								if(data.Data.Success == true) {
+									data.Data.typeid = typeid;
+									var list = data.Data;
+									console.log(list);
+									var fragment = document.createDocumentFragment();
+									var str = template("str", {
+										list: list
+									});
+									fragment.html = str
+									ul.insertBefore(fragment, ul.firstChild);
+									$(".content").on("tap", function() {
+										var id = $(this).attr("id");
+										var commentCount = $(this).attr("commentCount");
+										texts(id, commentCount, userID);
+									})
+
+								} else if(data.Data.Success == false) {
+									mui.toast('没有更多了', {
+										duration: '500',
+										type: 'div'
+									})
+								}
+							}
+						});
+
 					}
 
 				});
 
-				function newCont(typeid) {
-					$.ajax({
-						type: "post",
-						url: urlPath + "News/NewsList",
-						async: true,
-						dataType: "json",
-						data: {
-							pageindex: "", //number	否	页数，不填默认第一页	1
-							typeid: typeid, //number	否	栏目类型id	1
-							proid: "", //number	否	省id	3
-							cityid: "", //number	否	城市id	5
-							areaid: "" //number	否	区域id
-						},
-						success: function(data) {
-							console.log(data)
-							if(data.Data.Success==true){
-								data.Data.typeid = typeid;
-								var list = data.Data;
-								console.log(list)
-								var str = template("newCont", {
-									list: list
-								});
+			}
 
-								$("#" + typeid).html(str);
-								if(typeid==5 ){
-									diqu();
-								}
-
-								$(".mediaId").click(function() {									
-									var  id = $(this).attr('id'); // 获取id
-									var  viewCount = $(this).attr('viewCount');
-									var  commentCount = $(this).attr("commentCount");
-									console.log(id,userID,commentCount);
-									window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
-								});
-								
-							}
-						
-						}
-
-					});
-				}
-
-				
-				function city(typeid,cityname,provice){
-					$.ajax({
-						type:"post",
-						url:urlPath + "News/AreaChange",
-						async:true,
-						dataType:"json",
-						data:{
-							AreaName: cityname,
-							TypeId: typeid,
-							ProvinceName: provice
-						},
-						success:function(data){
-							var cont=data.Data;
-							data.Data.typeid=typeid;
-							data.Data.cityname=cityname;
-							data.Data.provice=provice;
-							console.log(cont,typeid);
-							var str=template("NavcontA",{cont:cont});
-							$("#"+5).html(str);
-							if(typeid==5 ){
-								diqu();
-							}
-//							var cityname=localStorage.getItem("cityname");
-//							var provice=localStorage.getItem("provice");
-//							console.log(cityname,provice)
-//							var cityResult = document.getElementById('cityResult');
-//							cityResult.innerText = provice+cityname;
-							$(".mediaId").click(function() {									
-									var  id = $(this).attr('id'); // 获取id
-									var  viewCount = $(this).attr('viewCount');
-									var  commentCount = $(this).attr("commentCount");
-									console.log(id,userID,commentCount);
-									window.location.href = "newsDetailPage.html?id=" + id + "&userID=" + userID + "&commentCount=" + commentCount;
-								});
-						}
-					});
-				}
-
-				
-				function diqu(){
-					//开始
-					var _getParam = function(obj, param) {
-						return obj[param] || '';
-					};
-				
-					//级联示例
-					var cityPicker = new mui.PopPicker({
-						layer: 2
-					});
-					cityPicker.setData(cityData);
-					var showCityPickerButton = document.getElementById('showCityPicker');
-					var cityResult = document.getElementById('cityResult');
-					showCityPickerButton.addEventListener('tap', function(event) {
-						cityPicker.show(function(items) {
-							cityResult.innerText = items[0].text+items[1].text;
-							var cityname=items[1].text;
-							var provice=items[0].text;
-							var typeid=5;
-//							localStorage.setItem("cityname",cityname);
-//							localStorage.setItem("provice",provice);
-//							console.log(typeid,cityname,provice)
-							city(typeid,cityname,provice);
-						});
-					}, false);
-						
-					//结束
-				}
-				
-		
-				document.getElementById('slider').addEventListener('slide', function(e) {
-					var slide = group.children().eq(e.detail.slideNumber);
-					var typeid = slide.attr("id");
-					console.log(typeid)
-					newCont(typeid);
-					
-				});
-				
-				$(".navAdd").click(function(){
-					window.location.href="newsarea.html?userID="+userID;
-				})
-
+			$(".navAdd").click(function() {
+				window.location.href = "newsarea.html?userID=" + userID;
 			})
 		</script>
-
 	</body>
 
 </html>
