@@ -15,8 +15,10 @@ $(document).ready(function() {
 	}
 	var userID = GetQueryString("userID");
 	console.log(userID)
+//	userID=10035
 	var urlPath="http://47.93.192.128:5001/";
 	var url = urlPath+"News/GetMyChannelList";
+	var urll = urlPath+"News/GetMoreNewsType";
 	function listAjax(){
 		$.ajax({
 		url: url,
@@ -56,7 +58,7 @@ $(document).ready(function() {
 	   }
 	listAjax()
 
-	var urll = 'http://47.93.192.128:5001/News/GetMoreNewsType';
+	
 	$.ajax({
 		url: urll,
 		dataType: 'json',
