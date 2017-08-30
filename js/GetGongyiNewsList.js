@@ -28,9 +28,7 @@ $(document).ready(function() {
 		    })
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			alert(XMLHttpRequest.status);
-			alert(XMLHttpRequest.readyState);
-			alert(textStatus);
+			
 		}
 	});
 });
