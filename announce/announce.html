@@ -95,13 +95,13 @@
 				background-color: #efeff4;
 			}
 			
-			.saiNav {
+			/*.saiNav {
 				display: flex;
 			}
 			
 			.saiNav a {
 				flex: 1;
-			}
+			}*/
 		</style>
 	</head>
 
@@ -110,7 +110,7 @@
 		<div class="mui-content">
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<div class="mui-scroll saiNav" style="width: 100%;">
+					<div class="mui-scroll saiNav">
 
 					</div>
 				</div>
@@ -122,7 +122,7 @@
 		</div>
 		<script type="text/html" id="saiNav">
 			{{each list as v }}
-			<a class="mui-control-item" href="#{{v.Id}}" name="{{v.Id}}">{{v.Title}}</a>
+			<a class="mui-control-item" href="#{{v.Id}}" name="{{v.Id}}" style="padding: 0 10px;">{{v.Title}}</a>
 			{{/each}}
 		</script>
 
