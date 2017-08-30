@@ -111,6 +111,11 @@
 			.saiNav a{
 				flex: 1;
 			}
+			
+			.tittle{
+				font-size: 16px;
+				color: #333333;
+			}
 		</style>
 	</head>
 
@@ -283,10 +288,7 @@
 			}
 
 			document.getElementById('slider').addEventListener('slide', function(e) {
-				if(e.detail.slideNumber == 0) {
-					var tyid = group.children().eq(e.detail.slideNumber).attr("name")
-					saiAjax(tyid);
-				}
+				
 				var typeid = group.children().eq(e.detail.slideNumber).attr("name")
 				contAjax(typeid)
 			});
