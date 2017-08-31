@@ -22,7 +22,7 @@ $(document).ready(function() {
 			if(data.Data.Success==true){
 				var str = template("protocol-temp", {activition: data.Data.Data.result})
 				$(".activationRecord").html(str);
-				$(".activationRecordLi").on("tap",function () {
+				$(".mui-table-view-cell").on("tap",function () {
 			        var id=$(this).attr('id');// 获取id
 			        localStorage.setItem("ActivityId",id)
 			        window.location.href = "training_con.html?id=" + id;

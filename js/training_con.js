@@ -14,7 +14,7 @@ $(document).ready(function() {
 			var str = template("peixunCon", data)
 			$(".peixunCon").html(str);
 			$(".activationRecordLi").click(function () {
-		        let id=$(this).attr('id');// 获取id
+		        var  id=$(this).attr('id');// 获取id
 		        window.location.href = "training_con.html?id=" + id;
 		    })
 		},
