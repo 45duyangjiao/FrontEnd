@@ -1,24 +1,44 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html style="height: 100%;">
 
 	<head>
-		<meta charset="UTF-8">
-		<title>道馆</title>
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link href="../css/mui.min.css" rel="stylesheet" />
+		<meta charset="utf-8">
+		<title>道馆活动记录</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/training.css" />
+		<link rel="stylesheet" href="../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../css/app.css" />
+		<script src="../js/jquery-1.9.1.min.js"></script>
+		<script src="../js/flexable.js"></script>
+
+		<!--<script src="../js/flexable.js"></script>
+		<script src="../js/zepto_1.1.3.js"></script>
+		<script src="../js/common.js"></script>-->
+
+		<style>
+			body {
+				background: #f1f1f1;
+			}
+			
+			#daoCon {
+				display: none;
+			}
+		</style>
+
 	</head>
 
 	<body>
-		<!--下拉刷新容器-->
-		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
-		  <div class="mui-scroll">
-		    <!--数据列表-->
-		    <ul class="mui-table-view mui-table-view-chevron">
-		      
-		    </ul>
-		  </div>
+		<div>莫阿基德爱妃但是大家分类快速地方接口是大风歌水电费公司肯定发 </div>
+		<div class="dg_record">
+			<ul class="mui-table-view mui-table-view-member">
+				
+			</ul>
 		</div>
-		
+
 		<script type="text/html" id="cont">
 			{{each activition as v  }}
 				<li class="mui-table-view-cell mui-media">
@@ -34,7 +54,6 @@
 		</script>
 		
 		<script src="../js/mui.min.js"></script>
-		<script src="../js/jquery.js"></script>
 		<script type="text/javascript" src="../js/artTemplate.js"></script>
 		<script>
 			function GetQueryString(name) {
@@ -46,8 +65,8 @@
 
 			var user_Id = GetQueryString("user_Id");
 			var DGId = GetQueryString("DGId");
-			var user_Id = 10047;
-			var DGId = 23
+//			var user_Id = 10047;
+//			var DGId = 23
 			console.log(user_Id,DGId)
 			var urlPath = "http://47.93.192.128:5001/";
 			var NavUrl = urlPath + "Daoguan/Activity_Record";
