@@ -373,8 +373,7 @@
 									var self = this;
 									setTimeout(function() {
 										++pageindex;
-										var ul = self.element.querySelector('.mui-table-view');
-										//ul.insertBefore(createFragment(ul,index,5,true,typeid), ul.firstChild);											
+										var ul = self.element.querySelector('.mui-table-view');											
 										add(ul, typeid, pageindex)
 										self.endPullDownToRefresh();
 									}, 1000);
