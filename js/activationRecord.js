@@ -7,7 +7,7 @@ function GetQueryString(name) {
 
 var user_Id = GetQueryString("user_Id");
 console.log(user_Id)
-var user_Id=10047
+//var user_Id=10047
 $(document).ready(function() {
 	var url = 'http://47.93.192.128:5001/Center/ActivictyRecord';
 	$.ajax({
@@ -24,7 +24,6 @@ $(document).ready(function() {
 				$(".activationRecord").html(str);
 				$(".mui-table-view-cell").on("tap",function () {
 			        var id=$(this).attr('id');// 获取id
-			        localStorage.setItem("ActivityId",id)
 			        window.location.href = "training_con.html?id=" + id;
 			   });
 			};
