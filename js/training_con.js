@@ -22,15 +22,7 @@ $(document).ready(function() {
 			console.log(data);
 			var str = template("peixunCon", data)
 			$(".peixunCon").html(str);
-			$(".activationRecordLi").click(function () {
-		        var  id=$(this).attr('id');// 获取id
-		        window.location.href = "training_con.html?id=" + id;
-		    })
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			alert(XMLHttpRequest.status);
-			alert(XMLHttpRequest.readyState);
-			alert(textStatus);
+			
 		}
 	});
 });
