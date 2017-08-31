@@ -12,36 +12,23 @@
 	</head>
 	<style>
 		#association{
-	      padding: 0px 14px 50px 14px;
+	      padding: 30px 14px 50px 14px;
 			
 		}
 		#segmented{
 			position: fixed;
 		    top: 0;
 		    background: #fff;
-		    border-bottom: 1px solid #f0f0f0;
 		}
 		.mui-segmented-control.mui-scroll-wrapper .mui-scroll{
 			width: 100%!important;
-		}
-		#item3mobile h3{
-			font-size: 0.30rem;
-			margin-bottom:10px;
-			text-align: center;
-		}
-		#association strong{
-			font-size: 0.30rem;
-		}
-		.mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item{
-			border-top: none!important;
-    border-bottom: none!important;
 		}
 		
 	</style>
 	<body>
 		<div id="slider" class="mui-slider">
 		    <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" id="segmented">
-		        <div>
+		        <div class="mui-scroll">
 		            <a class="mui-control-item mui-active" href="#item1mobile">简介</a>
 		            <a class="mui-control-item" href="#item2mobile"> 组织结构</a>
 		            <a class="mui-control-item" href="#item3mobile">委员会名单</a>
@@ -79,7 +66,6 @@
 		<script src="../js/mui.min.js"></script>
 		<script>
 			mui.init()
-			mui('#slider').slider().setStopped(true);
 			var urlPath="http://47.93.192.128:5001/";
 			var url = urlPath+"Home/AboutUs";
 			$.ajax({
@@ -100,7 +86,6 @@
                     alert(e)
 				}
 			});
-			
 		</script>
 	</body>
 </html>
