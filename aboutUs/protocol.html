@@ -95,35 +95,7 @@
 				<p>本协议是您和中国跆协APP最终的、完整的、排他的协议，且取代和合并之前当事人关于此类事项（包括之前的最终用户许可、服务条款）的讨论和协议。除非中国跆协书面同意，您不得转让本协议所规定的权利义务，任何违反上述规定企图转让的行为均无效。</p>
 			</div>
 		</div>
-		<script type="text/javascript" charset="utf-8">
-			mui.init();
-			
-			options = {
-				scrollY: true, //是否竖向滚动
-				scrollX: false, //是否横向滚动
-				startX: 0, //初始化时滚动至x
-				startY: 0, //初始化时滚动至y
-				indicators: false, //是否显示滚动条
-				deceleration: 0.0006, //阻尼系数,系数越小滑动越灵敏
-				bounce: false //是否启用回弹
-			}
-			mui('.mui-scroll-wrapper').scroll({
-				deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
-			});
-			scroll.options
-			
-			mui.ajax("url",{
-				dataType:'json',//服务器返回json格式数据
-				type:'post',//HTTP请求类型
-				timeout:10000,//超时时间设置为10秒；
-				success:function(data){
-					/*data是后台处理好，前台是显示用的*/
-				},
-				error:function(xhr,type,errorThrown){
-					console.log(type);
-				}
-			}) 
-		</script>
+		
 	</body>
 
 </html>

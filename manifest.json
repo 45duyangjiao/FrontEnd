@@ -207,7 +207,9 @@
 					"css/common.css",
 					"css/attestation.css",
 					"js/jquery.js",
-					"news/newsList.html"
+					"news/newsList.html",
+					"js/common.js",
+					"images/ztxx.png"
 				],
 				"refer": [
 					"index_con.html"
@@ -267,7 +269,6 @@
 				"js/announceDetail.js",
 				"js/announce.js",
 				"img/map_img1.jpg",
-				"js/common.js",
 				"img/select2-spinner.gif",
 				"js/newsList.js",
 				"js/mui.js",

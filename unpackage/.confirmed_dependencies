@@ -11,7 +11,9 @@
 			"img/help.png",
 			"images/help.png",
 			"js/jquery.js",
-			"news/newsList.html"
+			"news/newsList.html",
+			"js/common.js",
+			"images/ztxx.png"
 		],
 		"refer": [
 			"result.html",
