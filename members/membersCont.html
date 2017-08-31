@@ -1,4 +1,4 @@
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -25,46 +25,43 @@
 		<div class="daoCon"></div>
 
 		<script type="text/html" id="daoCon">
+			{{each data as v }}
 			<div class="mui-table-view peixun_info">
-				<h1 class="mui-h4 mui-table-view-cell mui-collapse">{{title}}</h1>
+				<h1 class="mui-h4 mui-table-view-cell mui-collapse">{{v.title}}</h1>
 				<div id="Time" class="mui-table-view-cell mui-collapse">
 					<i class="mui-icon iconfont icon-time"></i>
 					<p class="">培训时间</p>
-					<span class="">{{activity_time}}至{{activity_Endtime}}</span>
+					<span class="">{{v.activity_time}}至{{v.activity_Endtime}}</span>
 				</div>
 				<div id="Adresse" class="mui-table-view-cell mui-collapse">
 					<i class="mui-icon mui-icon-location"></i>
 					<p>培训地址</p>
-					<span>{{address}}</span>
+					<span>{{v.address}}</span>
 				</div>
 				<div id="Contact" class="mui-table-view-cell mui-collapse">
 					<i class="mui-icon mui-icon-person"></i>
 					<p>负责人</p>
-					<span>{{principal}}</span>
+					<span>{{v.principal}}</span>
 				</div>
 				<div id="Phone" class="mui-table-view-cell mui-collapse">
 					<i class="mui-icon mui-icon-phone"></i>
 					<p>联系电话</p>
-					<span>{{phone}}</span>
+					<span>{{v.phone}}</span>
 				</div>
 			</div>
 			<ul class="peixun_new mui-content-padded">
 				<h2 class="mui-h4"><i></i>培训详情</h2>
-				<p class="mui-text-justify">{{content}}</p>
+				<p class="mui-text-justify">{{v.content}}</p>
 				<ul class="imgList">
-
-					{{each pics as value}}
+					{{each v.pics as value}}
 					<li><img src="http://47.93.192.128:5001{{value}}"/></li>
 					{{/each}}
-
-				
-					
 
 				</ul>
 			</div>
 			<button class="mui-btn mui-btn-primary mui-btn-block">已举办过的活动</button>
 			
-			
+			{{/each}}
 		</script>
 
 		<script src="../js/jquery-1.9.1.min.js"></script>
@@ -73,4 +70,4 @@
 		<script type="text/javascript" src="../js/artTemplate.js" ></script>
 		
 	</body>
-</html>-->
+</html>

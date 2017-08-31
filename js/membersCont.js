@@ -18,15 +18,9 @@ $(document).ready(function() {
 		},
 		success: function(data) {
 			console.log(data)
-			var data=data.Data.Data[0];
-			
-			var str = template("daoCon", data)
+			var data=data.Data.Data.Data;
+			var str = template("daoCon", {data:data})
 			$(".daoCon").html(str);
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			alert(XMLHttpRequest.status);
-			alert(XMLHttpRequest.readyState);
-			alert(textStatus);
 		}
 	});
 });

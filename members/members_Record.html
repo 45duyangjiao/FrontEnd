@@ -3,7 +3,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>道馆</title>
+		<title>道馆活动</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
 	</head>
@@ -21,9 +21,9 @@
 		
 		<script type="text/html" id="cont">
 			{{each activition as v  }}
-				<li class="mui-table-view-cell mui-media">
+				<li class="mui-table-view-cell mui-media" id="{{v.Id}}">
 					<img class="mui-media-object mui-pull-left" src="{{v.pic}}">
-					<div class="mui-media-body" onclick="goDatail({{v.Id}} )">
+					<div class="mui-media-body">
 						<h4 class="mui-ellipsis">{{v.title }}</h4>
 						<p class="mui-ellipsis">培训时间：{{v.activity_time}}至{{v.activity_Endtime}}
 						</p>
@@ -73,9 +73,11 @@
 						var activition = data.Data.Data.Data;
 						var str=template("cont",{activition:activition});
 						$(".mui-table-view").html(str);
+						$(".mui-media").on("tap",function(){
+							var id=$(this).attr("id");
+							window.location.href="membersCont.html?id="+id
+						})
 					}  
-					
-
 				}
 				
 			});
