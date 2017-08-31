@@ -6,8 +6,6 @@ function GetQueryString(name) {
 }
 
 var user_Id = GetQueryString("user_Id");
-console.log(user_Id);
-alert('tttts')
 $(document).ready(function() {
 	var url = 'http://47.93.192.128:5001/Center/ActivictyRecord';
 	$.ajax({
@@ -18,19 +16,24 @@ $(document).ready(function() {
 			UserId: user_Id
 		},
 		success: function(data) {
-			var str = template("protocol-temp", {activition: data.Data.Data.result})
-			$(".activationRecord").html(str);
-			$(".activationRecordLi").click(function () {
-		        let id=$(this).attr('id');// 获取id
-		        localStorage.setItem("ActivityId",id)
-		        window.location.href = "training_con.html?id=" + id;
-		    })
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
-			alert(XMLHttpRequest.status);
-			alert(XMLHttpRequest.readyState);
-			alert(textStatus);
+			console.log(data)
+			if(data.Data.Success==true){
+				var str = template("protocol-temp", {activition: data.Data.Data.result})
+				$(".activationRecord").html(str);
+				$(".activationRecordLi").click(function () {
+			        let id=$(this).attr('id');// 获取id
+			        localStorage.setItem("ActivityId",id)
+			        window.location.href = "training_con.html?id=" + id;
+			   });
+			};
+			if(data.Data.Success==false){
+				mui.toast("暂无数据",{
+					duration: '500',
+					type: 'div'
+				})
+			}
 		}
+		
 	});
 });
 
