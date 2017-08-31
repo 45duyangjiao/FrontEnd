@@ -173,7 +173,7 @@ $(document).ready(function() {
 		//点击完成
 			$(".supDelate").hide();
 			$('.floatR').html("编辑")
-            window.location.href = urlPath+"FrontEnd/news/newsList.html?userID="+userID;
+//          window.location.href = urlPath+"FrontEnd/news/newsList.html?userID="+userID;
             
 		}
   
