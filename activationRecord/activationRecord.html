@@ -15,14 +15,14 @@
 	<body>
 		<div class="mui-scroll-wrapper" id="protocol">
 			<div class="mui-scroll">
-				<ul class="activationRecord">	
+				<ul class="activationRecord mui-table-view">	
 				</ul>
 			</div>
 		</div>
 		<script type="text/html" id="protocol-temp">
 			
 			{{each activition as value}}
-			<li class="activationRecordLi" id="{{value.ActivityId}}">
+			<li class="activationRecordLi mui-table-view-cell mui-media" id="{{value.ActivityId}}">
 				<div class="EventTitle">
 					{{value.title}}
 				</div>
