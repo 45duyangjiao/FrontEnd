@@ -13,11 +13,13 @@
 			"js/jquery.js",
 			"news/newsList.html",
 			"js/common.js",
-			"images/ztxx.png"
+			"images/ztxx.png",
+			"activationRecord/activationRecord.html"
 		],
 		"refer": [
 			"result.html",
-			"news/newsList.html"
+			"news/newsList.html",
+			"activationRecord/activationRecord.html"
 		]
 	},
 	"result.html": {
@@ -61,6 +63,28 @@
 			"css/common.css",
 			"css/mui.min.css",
 			"js/flexable.js"
+		]
+	},
+	"activationRecord/activationRecord.html": {
+		"resources": [
+			"js/zepto_1.1.3.js",
+			"css/activationRecord.css",
+			"js/activationRecord.js",
+			"js/artTemplate.js",
+			"activationRecord/training_con.html"
+		],
+		"refer": [
+			"activationRecord/training_con.html"
+		]
+	},
+	"activationRecord/training_con.html": {
+		"resources": [
+			"js/training_con.js",
+			"js/jquery-1.9.1.min.js",
+			"fonts/mui.ttf",
+			"css/iconfont.css",
+			"fonts/iconfont.ttf",
+			"css/training.css"
 		]
 	}
 }
