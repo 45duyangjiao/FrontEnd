@@ -509,8 +509,7 @@
 									var self = this;
 									setTimeout(function() {
 										++pageindex;
-										var ul = self.element.querySelector('.mui-table-view');
-										add(ul, typeid, pageindex)
+										add(typeid, pageindex)
 										self.endPullDownToRefresh();
 									}, 1000);
 								}
@@ -519,7 +518,7 @@
 						});
 					});
 
-					function add(ul, typeid, pageindex) {
+					function add(typeid, pageindex) {
 						console.log(typeid, pageindex)
 						$.ajax({
 							type: "post",
@@ -541,12 +540,13 @@
 									data.Data.typeid = typeid;
 									var list = data.Data;
 									console.log(list);
+									var table = document.body.querySelector('.mui-table-view');
 									var fragment = document.createDocumentFragment();
 									var str = template("str", {
 										list: list
 									});
-									fragment.html = str
-									ul.insertBefore(fragment, ul.firstChild);
+									console.log(table,str)
+									table.innerHTML=table.innerHTML+str
 									$(".content").on("tap", function() {
 										var id = $(this).attr("id");
 										var commentCount = $(this).attr("commentCount");
