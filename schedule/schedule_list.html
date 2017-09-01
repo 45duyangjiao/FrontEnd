@@ -244,7 +244,7 @@
 						if(i == 0) {
 							firstDiv.attr("id", id);
 							var typeid = firstDiv.attr("id");
-							contAjax(typeid)
+							contAjax(typeid,pageindex)
 						} else {
 							firstDiv.clone().attr("id", id).appendTo(contGroup);
 						}
@@ -252,7 +252,7 @@
 				}
 			});
 
-			function contAjax(typeid) {
+			function contAjax(typeid,pageindex) {
 				$.ajax({
 					type: "post",
 					url: ListUrl,
@@ -260,7 +260,7 @@
 					dataType: "json",
 					data: {
 						MatchNavBarId: typeid,
-						pageindex: 1
+						PageIndex: pageindex
 					},
 					success: function(data) {
 						console.log(data)
@@ -290,7 +290,7 @@
 			document.getElementById('slider').addEventListener('slide', function(e) {
 				
 				var typeid = group.children().eq(e.detail.slideNumber).attr("name")
-				contAjax(typeid)
+				contAjax(typeid,pageindex)
 			});
 
 			function address(typeid) {
@@ -392,14 +392,13 @@
 							dataType: "json",
 							data: {
 								MatchNavBarId: typeid,
-								pageindex: pageindex
+								Pageindex: pageindex
 							},
 							success: function(data) {
 								console.log(data)
-								if(data.Data.Success == true) {
+								if(data.Data.Success == true && data.Data.Msg!=="赛事列表为空") {
 									data.Data.typeid = typeid;
 									var cont = data.Data.Data;
-									console.log(cont);
 									var fragment = document.createDocumentFragment();
 									var li;
 									for(var i = 0; i < cont.length; i++) {
@@ -422,6 +421,8 @@
 									}
 
 									ul.insertBefore(fragment, ul.firstChild);
+									
+									
 									if(typeid == 17) {
 										address(typeid)
 									}
@@ -430,7 +431,7 @@
 										var id = $(this).attr("id")
 										window.location.href = "scheduleContent.html?id=" + id;
 									})
-								} else if(data.Data.Success == false) {
+								} else if(data.Data.Success == false || data.Data.Msg=="赛事列表为空") {
 									mui.toast('没有更多了', {
 										duration: '500',
 										type: 'div'
