@@ -288,7 +288,6 @@
 			}
 
 			document.getElementById('slider').addEventListener('slide', function(e) {
-				
 				var typeid = group.children().eq(e.detail.slideNumber).attr("name")
 				contAjax(typeid,pageindex)
 			});
