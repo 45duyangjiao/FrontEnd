@@ -40,12 +40,23 @@ $(document).ready(function() {
 						var memberNo = baseInfor.userNo;
 						var faceP = baseInfor.facephoto;
 						var imgFacephoto = document.createElement("img");
-						    faceP = faceP.slice(10,faceP.length)
-						    facePic = "http://www.chntkd.org.cn/"+faceP
+//						    
+
 						    if(!faceP == ''){
-						    	 imgFacephoto.setAttribute("src", facePic);
+						    	if(faceP.indexOf('Face')>-1){
+						    		faceP = faceP.slice(10,faceP.length)
+						            facePic = "http://www.chntkd.org.cn/"+faceP						    		
+						    		imgFacephoto.setAttribute("src", facePic);
+						    	    imgFacephoto.setAttribute("style", "width:80%");
+						    	}else{
+						    		facePic = "http://www.chntkd.org.cn/"+faceP	
+						    		imgFacephoto.setAttribute("src", facePic);
+						    	    imgFacephoto.setAttribute("style", "width:80%");
+						    	}
+						    	 
 						    }else{
-						    	 imgFacephoto.setAttribute("src", "../images/111.png");
+						    	 imgFacephoto.setAttribute("src", "../images/111.jpg");
+						    	 imgFacephoto.setAttribute("style", "width:80%");
 						    }
 						document.getElementById('faceP').appendChild(imgFacephoto);
 						  var divDom = '<h5 class="certList">资格证信息</h5>'
