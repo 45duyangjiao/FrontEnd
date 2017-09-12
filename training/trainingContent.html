@@ -55,7 +55,7 @@
 					<span></span>
 				</div>
 			</div>
-			<button class="mui-btn mui-btn-primary mui-btn-block">立即报名</button>
+			<button class="mui-btn mui-btn-primary mui-btn-block" id="isSignUp" style="display:none">立即报名</button>
 			<br />
 		</div>
 
@@ -107,6 +107,11 @@
 					$(".mui-btn-block").click(function(){
 						btnOpen(id,'+type+')
 					})
+					if(data.Data.Data.IsSignUp == true){
+						$("#isSignUp").css("display","block");
+					}else if(data.Data.Data.IsSignUp == false){
+						$("#isSignUp").css("display","none");
+					}
 				},
 				error: function() {
 

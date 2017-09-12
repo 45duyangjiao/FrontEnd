@@ -54,14 +54,13 @@ $(document).ready(function() {
 							day = "0" + day;
 						}
 						var myDate = date.getFullYear() + "/" + mon + "/" +  day;
-						console.log(myDate);
+						// console.log(myDate);
 						var endTime = baseInfor.endTime.substring(0,10).replace(/-/g,"/");
-						console.log(endTime);
+						// console.log(endTime);
 						if(Date.parse(myDate)-Date.parse(endTime)>0){
 							// console.log("111")
 							$("#memberStatus").html("已过期");
 							$("#memberStatus").css("color","red");
-
 						}
 						//停止
 						var memberNo = baseInfor.userNo;
@@ -100,17 +99,21 @@ $(document).ready(function() {
 						'</span></div><div><span class="commonColor">通过时间：</span><span class="commonRight">'+certInfor[i].PassTime+
 						'</span></div><div><span class="commonColor">说明：</span><span class="commonRight" id='+i+'>'+certInfor[i].Memo+
 						'</span></div></li>'
-						 document.getElementById('certInfor').innerHTML = divDom ;
+						$("#certInfor").html(divDom)
+						 // document.getElementById('certInfor').innerHTML = divDom ;
 						 if(certInfor[0].Memo == ""){
 							$("#0").parent().hide();
 						 }else{
 						 	$("#0").parent().show();
 						 }
-						 if(certInfor[1].Memo == ""){
-							$("#1").parent().hide();
-						 }else{
-						 	$("#1").parent().show();
+						 if(certInfor[1]){
+						 	if(certInfor[1].Memo == ""){
+								$("#1").parent().hide();
+						 	}else{
+						 		$("#1").parent().show();
+						 	}
 						 }
+
 						}
 
 
