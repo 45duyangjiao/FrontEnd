@@ -16,14 +16,14 @@
 			color: #333;
 			font-size: 0.3rem;
 		}
-		
+
 		.coverMore {
 			background: #ccc;
 			text-align: center;
 			color: #333;
 			font-size: 0.3rem;
 		}
-		
+
 		.coverOrshow {
 			display: none;
 		}
@@ -31,7 +31,7 @@
 			line-height: 1.07rem;
             border-bottom: 6px solid #f1f1f1;;
 		    padding: 0 0.32rem;
-		   
+
 		}
 		.certList{
 			padding: 10px;
@@ -42,7 +42,7 @@
 		#loadingP{
 			width: 40px;
 		}
-		#loadingdiv{	
+		#loadingdiv{
 		  margin-top: 50%;
 		  text-align: center;
 		}
@@ -52,54 +52,71 @@
 		<div class="identifyResult"></div>
 		<div id="loadingdiv"><img id="loadingP" src="../images/timg.gif"/></div>
 		<ul id="certInfor" class="certInfor" style="padding-bottom: 150px;">
-			
+
 		</ul>
 		<div class="NOMsg"></div>
-		
-		<script type="text/html" id="identifyResult">
 
+		<script type="text/html" id="identifyResult1">
 			<div class="identifyImg">
-				<div class="resultShowTil"> 
+				<div class="resultShowTil">
 					认证查询结果
 				</div>
 				<div class="memberImage">
 					<div class="Img_img" id="faceP">
-						
+
 					</div>
 				</div>
 			</div>
-			<ul id="resultUl">			
-				<li><span class="commonColor">会员姓名：</span><span class="commonRight">{{name}}</span></li>
+			<ul id="resultUl">
+				<li><span class="commonColor">姓名：</span><span class="commonRight">{{name}}</span></li>
 				<li><span class="commonColor">性别：</span>
 					{{if sex == 1}}
 					   <span class="commonRight">男</span>
-					{{else if sex == 2}}  
+					{{else if sex == 2}}
 					   <span class="commonRight">女</span>
 					{{else}}
 					   <span class="commonRight"></span>
 					{{/if}}
 				</li>
-				<li><span class="commonColor">会员账号：</span><span id="memberNumber" class="commonRight">{{userNo}}</span></li>
-				<li><span class="commonColor">验证码：</span><span id="identifyCode" class="commonRight">{{usercode}}</span></li>
+				<li><span class="commonColor">会员编号：</span><span id="memberNumber" class="commonRight">{{userNo}}</span></li>
 				<li><span class="commonColor">出生日期：</span><span id="memberBirth" class="commonRight">{{birthday}}</span></li>
-				<li><span class="commonColor">起始时间：</span><span id="startTime" class="commonRight">{{(beginTime).substring(0,10)}}</span></li>				
-				<li><span class="commonColor">到期时间：</span><span id="endTime" class="commonRight">{{(endTime).substring(0,10)}}</span></li>
+				<li><span class="commonColor">会员证开始日期：</span><span id="startTime" class="commonRight">{{(beginTime).substring(0,10)}}</span></li>
+				<li><span class="commonColor">会员证到期日期：</span><span id="endTime" class="commonRight">{{(endTime).substring(0,10)}}</span></li>
+			</ul>
+		</script>
+		<script type="text/html" id="identifyResult2">
+			<div class="identifyImg">
+				<div class="resultShowTil">
+					认证查询结果
+				</div>
+				<div class="memberImage">
+					<div class="Img_img" id="faceP">
+
+					</div>
+				</div>
+			</div>
+			<ul id="resultUl">
+				<li><span class="commonColor">会员名称：</span><span class="commonRight">{{name}}</span></li>
+				<li><span class="commonColor">会员状态：</span><span id="memberStatus" class="commonRight">激活</span></li>
+				<li><span class="commonColor">会员开始日期：</span><span id="startTime" class="commonRight">{{(beginTime).substring(0,10)}}</span></li>
+				<li><span class="commonColor">会员到期日期：</span><span id="endTime" class="commonRight">{{(endTime).substring(0,10)}}</span></li>
+				<li><span class="commonColor">办理地址：</span><span class="commonRight">{{address}}</span></li>
 				<li><span class="commonColor">电话：</span><span class="commonRight">{{phone}}</span></li>
 				<li><span class="commonColor">地址：</span><span class="commonRight">{{address}}</span></li>
 			</ul>
 		</script>
-	   
+
 		<script type="text/html" id="NOMsg">
 			<div>暂无会员信息</div>
 		</script>
-	
+
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/jquery-1.9.1.min.js"></script>
 		<script src="../js/zepto_1.1.3.js"></script>
 		<script src="../js/flexable.js"></script>
 		<script src="../js/identifyresult.js"></script>
 		<script src="../js/artTemplate.js"></script>
-		
+
 	</body>
 
 </html>

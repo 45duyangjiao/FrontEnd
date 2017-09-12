@@ -13,7 +13,7 @@
 	<style>
 		#association{
 	      padding: 30px 14px 50px 14px;
-			
+
 		}
 		#segmented{
 			position: fixed;
@@ -23,7 +23,7 @@
 		.mui-segmented-control.mui-scroll-wrapper .mui-scroll{
 			width: 100%!important;
 		}
-		
+
 	</style>
 	<body>
 		<div id="slider" class="mui-slider">
@@ -40,14 +40,14 @@
                 <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
                     <ul class="mui-table-view">
                         <li class="mui-table-view-cell">
-                          <div id="association"></div>  
+                          <div id="association"></div>
                         </li>
                     </ul>
                 </div>
                 <div id="item2mobile" class="mui-slider-item mui-control-content ">
                     <ul class="mui-table-view">
                         <li class="mui-table-view-cell">
-                            
+
                             <div id="jiagou"></div>
                         </li>
                     </ul>
@@ -59,10 +59,10 @@
                         </li>
                     </ul>
                 </div>
-                
+
             </div>
         </div>
-		
+
 		<script src="../js/mui.min.js"></script>
 		<script>
 			mui.init()
@@ -72,16 +72,33 @@
 				type: "post",
 				url: url,
 				data: {
-					
+
 				},
 				datatype: "json",
 				success: function(data) {
-					data = eval('(' + data + ')');
-					document.getElementById('association').innerHTML = data.Data.Data.jianjie;
-					document.getElementById('jiagou').innerHTML = data.Data.Data.jiagou;
-					document.getElementById('mingdan').innerHTML = data.Data.Data.mingdan;
-					
-				},
+                    data = eval('(' + data + ')');
+                    document.getElementById('association').innerHTML = data.Data.Data.jianjie;
+                    console.log($("#item1mobile").height());
+                    $(".mui-slider-group").css("height",$("#item1mobile").height());
+
+
+                    document.getElementById('slider').addEventListener('slide', function(e) {
+                        console.log(e);
+                        if (e.detail.slideNumber === 0){
+                            document.getElementById('association').innerHTML = data.Data.Data.jianjie;
+                            $(".mui-slider-group").css("height",$("#association").height());
+                        } else if (e.detail.slideNumber === 1) {
+                            document.getElementById('jiagou').innerHTML = data.Data.Data.jiagou;
+                            console.log($("#jiagou").height());
+                            $(".mui-slider-group").css("height",$("#jiagou").height());
+                        } else if (e.detail.slideNumber === 2) {
+                            document.getElementById('mingdan').innerHTML = data.Data.Data.mingdan;
+                            console.log($("#mingdan").height());
+                            $(".mui-slider-group").css("height",$("#mingdan").height());
+                        }
+                    });
+
+                },
 				error: function(e) {
                     alert(e)
 				}

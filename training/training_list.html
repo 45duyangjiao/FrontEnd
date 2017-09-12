@@ -14,12 +14,12 @@
 			body {
 				background-color: #efeff4;
 			}
-			
+
 			.mui-bar~.mui-content .mui-fullscreen {
 				top: 44px;
 				height: auto;
 			}
-			
+
 			.mui-pull-top-tips {
 				position: absolute;
 				top: -20px;
@@ -30,11 +30,11 @@
 				border-radius: 100%;
 				z-index: 1;
 			}
-			
+
 			.mui-bar~.mui-pull-top-tips {
 				top: 24px;
 			}
-			
+
 			.mui-pull-top-wrapper {
 				width: 42px;
 				height: 42px;
@@ -47,28 +47,28 @@
 				box-shadow: 0 4px 10px #bbb;
 				overflow: hidden;
 			}
-			
+
 			.mui-pull-top-tips.mui-transitioning {
 				-webkit-transition-duration: 200ms;
 				transition-duration: 200ms;
 			}
-			
+
 			.mui-pull-top-tips .mui-pull-loading {
 				/*-webkit-backface-visibility: hidden;
 				-webkit-transition-duration: 400ms;
 				transition-duration: 400ms;*/
 				margin: 0;
 			}
-			
+
 			.mui-pull-top-wrapper .mui-icon,
 			.mui-pull-top-wrapper .mui-spinner {
 				margin-top: 7px;
 			}
-			
+
 			.mui-pull-top-wrapper .mui-icon.mui-reverse {
 				/*-webkit-transform: rotate(180deg) translateZ(0);*/
 			}
-			
+
 			.mui-pull-bottom-tips {
 				text-align: center;
 				background-color: #efeff4;
@@ -76,7 +76,7 @@
 				line-height: 40px;
 				color: #777;
 			}
-			
+
 			.mui-pull-top-canvas {
 				overflow: hidden;
 				background-color: #fafafa;
@@ -86,37 +86,41 @@
 				height: 40px;
 				margin: 0 auto;
 			}
-			
+
 			.mui-pull-top-canvas canvas {
 				width: 40px;
 			}
-			
+
 			.mui-slider-indicator.mui-segmented-control {
 				background-color: #efeff4;
 			}
-			
+
 			.mui-scroll .saiNav {
 				width: 100% !important;
 			}
-			
+
 			.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
 				padding: 0 30px;
 			}
-			
+
 			#sliderSegmentedControl {
 				width: 100% !important;
 			}
-			
+
 			.saiNav{
 				display: flex;
 			}
 			.saiNav a{
 				flex: 1;
 			}
-			
+
 			.tittle{
 				font-size: 16px;
 				color: #333333;
+			}
+			.mui-ellipsis{
+				word-break: break-all;
+				white-space: normal;
 			}
 		</style>
 	</head>
@@ -220,7 +224,7 @@
 		<script src="../js/mui.picker.js"></script>
 		<script src="../js/mui.poppicker.js"></script>
 		<script>
-			
+
 			mui.init();
 			var urlPath = "http://47.93.192.128:5001/";
 			var NavUrl = urlPath + "Train/TrainNavBar";
@@ -259,7 +263,7 @@
 					}
 				}
 			});
-			
+
 			function contAjax(typeid,pageindex) {
 				$.ajax({
 					type: "post",
@@ -282,7 +286,7 @@
 						if(typeid == 22) {
 							address(typeid)
 						}
-						
+
 						$(".contID").on("tap", function() {
 							var id = $(this).attr("id")
 							window.location.href = "trainingContent.html?id=" + id;
@@ -302,7 +306,7 @@
 				var _getParam = function(obj, param) {
 					return obj[param] || '';
 				};
-				//					
+				//
 				//级联示例
 				var cityPicker = new mui.PopPicker({
 					layer: 2
@@ -349,7 +353,7 @@
 						})
 						var pageindex=1;
 						pullRefresh(typeid,pageindex);
-						
+
 						if(data.Data.Success ==true && data.Data.Data.length ==0){
 							mui.toast('暂无数据', {
 								duration: '500',
@@ -379,7 +383,7 @@
 									setTimeout(function() {
 										++pageindex;
 										var ul = self.element.querySelector('.mui-table-view');
-										
+
 										add(ul, typeid, pageindex)
 										self.endPullDownToRefresh();
 									}, 1000);

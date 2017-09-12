@@ -25,9 +25,12 @@
 			.mui-content-padded{
 				padding: 10px;
 			}
+			/* table{
+				border：1px solid #000;
+			} */
 		</style>
 	</head>
-	
+
 	<body>
 		<div class="peixunCon_box">
 			<div class="peixun_new mui-content-padded">
@@ -55,9 +58,9 @@
 			<button class="mui-btn mui-btn-primary mui-btn-block">立即报名</button>
 			<br />
 		</div>
-		
-		
-		
+
+
+
 
 		<script>
 			function GetQueryString(name) {
@@ -83,12 +86,16 @@
 				},
 				datatype: "json",
 				success: function(data) {
+					console.log(data)
 					data = eval('(' + data + ')');
 					console.log(data)
 					var con_h2=data.Data.Data.Title;
 					var con_con=data.Data.Data.content;
 					$(".peixun_new>h2").html(con_h2)
 					$(".peixun_new>p").html(con_con)
+					// console.log($(".peixun_new>p").find("table"))
+					$(".peixun_new>p").find("table").css('border','1px solid #8f8f94').css('margin','auto')
+					$(".peixun_new>p").find("table>tbody>tr>td").css('border','1px solid #8f8f94').css('padding','2px')
 					var con_name=data.Data.Data.gameName;
 					var con_age=data.Data.Data.BirthAge;
 					var con_six=data.Data.Data.genderClaim;
@@ -102,7 +109,7 @@
 					})
 				},
 				error: function() {
-					
+
 				}
 			});
 		</script>

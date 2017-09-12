@@ -8,7 +8,7 @@ img{
 	color:#333;
 	line-height:0.5rem;
 	margin:0.3rem 0;
-		
+
 }
 .newsDetailFrom{
 	margin-bottom: 0.3rem;
@@ -19,7 +19,7 @@ img{
 }
 
 .newsImgBox{
-	
+
 }
 .newsImgBox .newsImg{
 	height:4.15rem;
@@ -46,7 +46,7 @@ img{
 	border:1px solid #dddddd;
 	border-bottom:0;
 	padding:0 0.3rem;
-	
+
 }
 .newsDetailComments li{
 	line-height:1.2rem;
@@ -100,7 +100,7 @@ img{
 .pComments{
 	width:100%;
 	overflow:hidden;
-	white-space:nowrap;
+	word-break:break-all;
 	text-overflow: ellipsis;
 	font-size:0.24rem;
 	color:#333;

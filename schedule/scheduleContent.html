@@ -14,6 +14,8 @@
 		<style>
 			body{
 				background: #fff;
+				overflow-x:hidden;
+				overflow-y:auto;
 			}
 			.mui-table-view-cell:after{
 				left: 0;
@@ -26,8 +28,12 @@
 				padding: 10px;
 			}
 			.peixun_new > p {
-           text-indent: 0px!important;
-      }
+           		text-indent: 0px!important;
+      		}
+			.mui-text-justify{
+				white-space: normal;
+				word-break: break-all;
+			}
 		</style>
 	</head>
 
@@ -58,9 +64,9 @@
 			<!--<button class="mui-btn mui-btn-primary mui-btn-block">立即报名</button>-->
 			<br />
 		</div>
-		
-		
-		
+
+
+
 
 		<script>
 			function GetQueryString(name) {
@@ -91,6 +97,8 @@
 					var con_con=data.Data.Data.content;
 					$(".peixun_new>h2").html(con_h2)
 					$(".peixun_new>p").html(con_con)
+					$(".peixun_new>p").find("table").css('border','1px solid #8f8f94').css('margin','auto')
+					$(".peixun_new>p").find("table>tbody>tr>td").css('border','1px solid #8f8f94').css('padding','2px')
 					var con_name=data.Data.Data.gameName;
 					var con_age=data.Data.Data.BirthAge;
 					var con_six=data.Data.Data.genderClaim;
