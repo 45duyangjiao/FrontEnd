@@ -66,9 +66,11 @@ $(document).ready(function() {
 						var memberNo = baseInfor.userNo;
 						var faceP = baseInfor.facephoto;
 						var memberBirth =baseInfor.birthday
-						var imgFacephoto = document.createElement("img");
+						// var imgFacephoto = document.createElement("img");
 
-						    if(faceP !== ''){
+						    if(faceP !== null){
+						    	var imgFacephoto = document.createElement("img");
+						    	$("#faceP").html(imgFacephoto)
 						    	if(faceP.indexOf('Face')>-1){
 						    		faceP = faceP.slice(10,faceP.length)
 						            facePic = "http://www.chntkd.org.cn/"+faceP
@@ -80,12 +82,12 @@ $(document).ready(function() {
 						    	    imgFacephoto.setAttribute("style", "width:80%");
 						    	}
 
-						    }else if(faceP == null){
+						    }/*else if(faceP == null){
 						    	 imgFacephoto.setAttribute("src", "../images/111.jpg");
 						    	 imgFacephoto.setAttribute("style", "width:80%");
-						    }
+						    }*/
 
-						document.getElementById('faceP').appendChild(imgFacephoto);
+						// document.getElementById('faceP').appendChild(imgFacephoto);
 						if(memberBirth == null){
 						    $("#memberBirth").parent().hide();
 						}else{
