@@ -66,7 +66,6 @@ $(document).ready(function() {
 						var memberNo = baseInfor.userNo;
 						var faceP = baseInfor.facephoto;
 						var memberBirth =baseInfor.birthday
-						// var imgFacephoto = document.createElement("img");
 
 						    if(faceP !== null){
 						    	var imgFacephoto = document.createElement("img");
@@ -82,12 +81,7 @@ $(document).ready(function() {
 						    	    imgFacephoto.setAttribute("style", "width:80%");
 						    	}
 
-						    }/*else if(faceP == null){
-						    	 imgFacephoto.setAttribute("src", "../images/111.jpg");
-						    	 imgFacephoto.setAttribute("style", "width:80%");
-						    }*/
-
-						// document.getElementById('faceP').appendChild(imgFacephoto);
+						    }
 						if(memberBirth == null){
 						    $("#memberBirth").parent().hide();
 						}else{
