@@ -14,12 +14,12 @@
 			body {
 				background-color: #efeff4;
 			}
-			
+
 			.mui-bar~.mui-content .mui-fullscreen {
 				top: 44px;
 				height: auto;
 			}
-			
+
 			.mui-pull-top-tips {
 				position: absolute;
 				top: -20px;
@@ -30,11 +30,11 @@
 				border-radius: 100%;
 				z-index: 1;
 			}
-			
+
 			.mui-bar~.mui-pull-top-tips {
 				top: 24px;
 			}
-			
+
 			.mui-pull-top-wrapper {
 				width: 42px;
 				height: 42px;
@@ -47,28 +47,28 @@
 				box-shadow: 0 4px 10px #bbb;
 				overflow: hidden;
 			}
-			
+
 			.mui-pull-top-tips.mui-transitioning {
 				-webkit-transition-duration: 200ms;
 				transition-duration: 200ms;
 			}
-			
+
 			.mui-pull-top-tips .mui-pull-loading {
 				/*-webkit-backface-visibility: hidden;
 				-webkit-transition-duration: 400ms;
 				transition-duration: 400ms;*/
 				margin: 0;
 			}
-			
+
 			.mui-pull-top-wrapper .mui-icon,
 			.mui-pull-top-wrapper .mui-spinner {
 				margin-top: 7px;
 			}
-			
+
 			.mui-pull-top-wrapper .mui-icon.mui-reverse {
 				/*-webkit-transform: rotate(180deg) translateZ(0);*/
 			}
-			
+
 			.mui-pull-bottom-tips {
 				text-align: center;
 				background-color: #efeff4;
@@ -76,7 +76,7 @@
 				line-height: 40px;
 				color: #777;
 			}
-			
+
 			.mui-pull-top-canvas {
 				overflow: hidden;
 				background-color: #fafafa;
@@ -86,23 +86,23 @@
 				height: 40px;
 				margin: 0 auto;
 			}
-			
+
 			.mui-pull-top-canvas canvas {
 				width: 40px;
 			}
-			
+
 			.mui-slider-indicator.mui-segmented-control {
 				background-color: #efeff4;
 			}
-			
+
 			.mui-segmented-control.mui-scroll-wrapper .mui-control-item {
 				padding: 0px 10px;
 			}
-			
+
 			#sliderSegmentedControl {
 				position: relative;
 			}
-			
+
 			.navAdd {
 				position: absolute;
 				top: 0;
@@ -117,7 +117,7 @@
 				text-align: center;
 				line-height: 34px;
 			}
-			
+
 			.view i {
 				display: inline-block;
 				width: 13px;
@@ -126,26 +126,29 @@
 				background-size: 100% 100%;
 				margin-right: 5px;
 			}
-			
+
 			.view {
 				font-size: 11px;
 				color: #CCCCCC;
 				padding-left: 5px;
 			}
-			
+
 			#showCityPicker {
 				display: none;
 			}
-			
+
 			.tittle {
 				font-size: 16px;
 				color: #333333;
+				word-break:break-all;
+				white-space: normal;
+				line-height:20px;
 			}
-			
+
 			.muiCont {
 				color: #999999;
 			}
-			
+
 			.mui-grid-view.mui-grid-9 .mui-table-view-cell {
 				max-height: 80px;
 			}
@@ -330,7 +333,7 @@
 				async: true,
 				dataType: "json",
 				data: {
-					UserId: userID
+					UserId: userID //10035
 				},
 				success: function(data) {
 					console.log(data)
@@ -370,7 +373,7 @@
 						cityid: "", //number	否	城市id	5
 						areaid: "", //number	否	区域id
 						cityname:"",//string	否	城市名称	郑州市
-						userid:userID   //	number	否	登录用户id 未登录可以不传
+						userid:userID   //	number	否	登录用户id 未登录可以不传   10035
 					},
 					success: function(data) {
 						console.log(data)
@@ -403,20 +406,20 @@
 								type: 'div'
 							})
 						}
-						
+
 
 					}
 
 				});
 			}
-			
+
 			document.getElementById('slider').addEventListener('slide', function(e) {
 				var typeid = groupNav.children().eq(e.detail.slideNumber).attr("name")
 				console.log(typeid, pageindex)
 				newCont(typeid, pageindex)
 
 			});
-			
+
 			function diqu() {
 				//开始
 				var _getParam = function(obj, param) {
@@ -484,12 +487,12 @@
 								type: 'div'
 							})
 						}
-						
+
 					}
 				});
 			}
 
-			
+
 
 			function pullRefresh(typeid, pageindex) {
 

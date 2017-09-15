@@ -88,14 +88,20 @@ $(document).ready(function() {
 						    $("#memberBirth").parent().show();
 						}
 						var divDom = '<h5 class="certList">资格证信息</h5>'
+						$("#certInfor").html(divDom);
+						var divDom1 = '';
 						for(i=0;i<certInfor.length;i++){
-							divDom +='<li><div><span class="commonColor">证书编号：</span><span class="commonRight">'+certInfor[i].CertNo+
+							divDom1 ='<li><div><span class="commonColor">证书编号：</span><span class="commonRight">'+certInfor[i].CertNo+
 						'</span></div><div><span class="commonColor">证书等级：</span><span class="commonRight">'+certInfor[i].CertGrade+
 						'</span></div><div><span class="commonColor">证书类型：</span><span class="commonRight">'+certInfor[i].TypeName+
 						'</span></div><div><span class="commonColor">通过时间：</span><span class="commonRight">'+certInfor[i].PassTime+
 						'</span></div><div><span class="commonColor">说明：</span><span class="commonRight" id='+i+'>'+certInfor[i].Memo+
 						'</span></div></li>'
-						$("#certInfor").html(divDom)
+						$("#certInfor").append(divDom1);
+						$("#certInfor").find("li").css("display","none");
+						$("#certInfor>.certList").click(function(){
+							$("#certInfor").find("li").css("display","block");
+						})
 						 // document.getElementById('certInfor').innerHTML = divDom ;
 						 if(certInfor[0].Memo == ""){
 							$("#0").parent().hide();

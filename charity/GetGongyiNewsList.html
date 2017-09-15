@@ -30,12 +30,12 @@
 			<div class="mui-scroll">
 				<!--数据列表-->
 				<ul class="mui-table-view mui-table-view-chevron" id="content">
-					
+
 				</ul>
 			</div>
 		</div>
-		
-		
+
+
 		<script src="../js/mui.min.js"></script>
 		<script type="text/javascript" src="../js/jquery.js"></script>
 		<script src="../js/artTemplate.js"></script>
@@ -48,21 +48,21 @@
 			{{/each}}
 		</script>
 		<script type="text/javascript">
-			
+
 			function GetQueryString(name) {
 				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
 				var r = window.location.search.substr(1).match(reg);
 				if(r != null) return unescape(r[2]);
 				return null;
 			}
-			
+
 			var userID=GetQueryString("userID");
 			console.log(userID)
-			
+
 			var urlPath = "http://47.93.192.128:5001/";
 			var contUrl = urlPath + "News/GetGongyiNewsList";
 			var pageindex=1;
-			
+
 			$.ajax({
 				url: contUrl,
 				dataType: 'json',
@@ -80,9 +80,9 @@
 				        window.location.href = "newsContent.html?id=" + id+"&commentCount="+commentCount+"&userID="+userID;
 				    })
 				}
-			})		
-			
-			
+			})
+
+
 			mui.init({
 				pullRefresh: {
 					container: '#refreshContainer',
@@ -108,9 +108,9 @@
 					mui('#refreshContainer').pullRefresh().endPulldownToRefresh(); //refresh completed
 				}, 1500);
 			}
-			
-			
-			
+
+
+
 			function add(contUrl,pageindex){
 				console.log(pageindex)
 				$.ajax({
@@ -125,7 +125,7 @@
 						var str = template("cont", {content: data.Data.Data});
 						var table = document.body.querySelector('.mui-table-view');
 						table.innerHTML=table.innerHTML+str;
-						
+
 						if(data.Data.Success==false){
 							mui.toast('没有更多了', {
 								duration: '500',
@@ -138,10 +138,10 @@
 					        window.location.href = "newsContent.html?id=" + id+"&commentCount="+commentCount+"&userID="+userID;
 					    })
 					}
-					
+
 				});
 			}
-			
+
 		</script>
 	</body>
 
