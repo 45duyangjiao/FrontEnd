@@ -100,13 +100,12 @@ $(document).ready(function() {
 						$("#certInfor").append(divDom1);
 						$("#certInfor").find("li .commonRight").css("float","right")
 						$("#certInfor").find("li").css("display","none");
-						$("#certInfor>.certList").click(function(){
+						/*$("#certInfor>.certList").click(function(){
 							$("#certInfor").find("li").css("display","block");
+						})*/
+						$("#certInfor>.certList").click(function(){
+							$("#certInfor").find("li").toggle();
 						})
-						// $("#certInfor>.certList").click(function(){
-						// 	$("#certInfor").find("li").toggleClass('toggle');
-						// })
-						 // document.getElementById('certInfor').innerHTML = divDom ;
 						 if(certInfor[0].Memo == ""){
 							$("#0").parent().hide();
 						 }else{
