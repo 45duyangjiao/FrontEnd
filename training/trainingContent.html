@@ -70,6 +70,8 @@
 				return null;
 			}
 			var id = GetQueryString("id");
+			var enabled = GetQueryString("apply_enabled");
+			console.log(enabled);
 			console.log(id)
 			var TRAIN="train";
 			function btnOpen(id,type) {
@@ -82,7 +84,8 @@
 				type: "post",
 				url: DetailUrl,
 				data: {
-					id: id
+					id: id,
+					apply_enabled:enabled
 				},
 				datatype: "json",
 				success: function(data) {
@@ -107,9 +110,9 @@
 					$(".mui-btn-block").click(function(){
 						btnOpen(id,'+type+')
 					})
-					if(data.Data.Data.IsSignUp == true){
+					if(data.Data.Data.IsSignUp == true && enabled == 1){
 						$("#isSignUp").css("display","block");
-					}else if(data.Data.Data.IsSignUp == false){
+					}else if(data.Data.Data.IsSignUp == false && enabled == 0){
 						$("#isSignUp").css("display","none");
 					}
 				},

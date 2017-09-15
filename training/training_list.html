@@ -201,7 +201,7 @@
 
 		<script type="text/html" id="pullRefresh">
 			{{each cont.Data as v }}
-			<li class="mui-table-view-cell mui-media contID" id="{{v.id}}">
+			<li class="mui-table-view-cell mui-media contID" id="{{v.id}}" >
 				<a>
 					{{if v.ThumbImg.length !==0}}
 					<img class="mui-media-object mui-pull-left" src="{{v.ThumbImg}}" style="padding: 5px;"> {{/if}}
@@ -226,6 +226,15 @@
 		<script>
 
 			mui.init();
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+			var enabled = GetQueryString("apply_enabled");
+			console.log(enabled);
+
 			var urlPath = "http://47.93.192.128:5001/";
 			var NavUrl = urlPath + "Train/TrainNavBar";
 			var ListUrl = urlPath + "Train/TrainList";
@@ -283,19 +292,29 @@
 							cont: cont
 						});
 						$("#" + typeid).html(str);
+						$()
 						if(typeid == 22) {
 							address(typeid)
 						}
 
 						$(".contID").on("tap", function() {
 							var id = $(this).attr("id")
-							window.location.href = "trainingContent.html?id=" + id;
+							var apply_enabled = $(this).attr("enabled")
+							console.log(apply_enabled)
+							window.location.href = "trainingContent.html?id=" + id + "&apply_enabled="+apply_enabled;
 						})
 						//下拉刷新开始
 						pullRefresh(typeid,pageindex)
 						//下拉刷新结束
 					}
-				});
+				}).done(function(){
+					// alert('nima')
+					 var nima = document.getElementsByClassName('contID');
+		            console.log(nima)
+		            for (var i = 0; i<nima.length; i++) {
+		            	nima[i].setAttribute("enabled", enabled);
+		            };
+				})
 			}
 			document.getElementById('slider').addEventListener('slide', function(e) {
 				var typeid = group.children().eq(e.detail.slideNumber).attr("name");
@@ -349,7 +368,8 @@
 						address(typeid);
 						$(".contID").on("tap", function() {
 							var id = $(this).attr("id")
-							window.location.href = "trainingContent.html?id=" + id;
+							var apply_enabled = $(this).attr("enabled");
+							window.location.href = "trainingContent.html?id=" + id + "&apply_enabled="+apply_enabled;
 						})
 						var pageindex=1;
 						pullRefresh(typeid,pageindex);
@@ -361,6 +381,13 @@
 							})
 						}
 					}
+				}).done(function(){
+					// alert('nima')
+					 var nima = document.getElementsByClassName('contID');
+		            console.log(nima)
+		            for (var i = 0; i<nima.length; i++) {
+		            	nima[i].setAttribute("enabled", enabled);
+		            };
 				});
 			}
 
@@ -438,7 +465,8 @@
 
 									$(".contID").on("tap", function() {
 										var id = $(this).attr("id")
-										window.location.href = "trainingContent.html?id=" + id;
+										var apply_enabled = $(this).attr("enabled");
+										window.location.href = "trainingContent.html?id=" + id +"&apply_enabled=" + apply_enabled;
 									})
 								} else if(data.Data.Success == false) {
 									mui.toast('没有更多了', {
@@ -447,6 +475,12 @@
 									})
 								}
 							}
+						}).done(function(){
+							 var nima = document.getElementsByClassName('contID');
+				            console.log(nima)
+				            for (var i = 0; i<nima.length; i++) {
+				            	nima[i].setAttribute("enabled", enabled);
+				            };
 						});
 
 					}
