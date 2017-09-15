@@ -91,17 +91,21 @@ $(document).ready(function() {
 						$("#certInfor").html(divDom);
 						var divDom1 = '';
 						for(i=0;i<certInfor.length;i++){
-							divDom1 ='<li><div><span class="commonColor">证书编号：</span><span class="commonRight">'+certInfor[i].CertNo+
+							divDom1 ='<li class="toggle"><div><span class="commonColor">证书编号：</span><span class="commonRight">'+certInfor[i].CertNo+
 						'</span></div><div><span class="commonColor">证书等级：</span><span class="commonRight">'+certInfor[i].CertGrade+
 						'</span></div><div><span class="commonColor">证书类型：</span><span class="commonRight">'+certInfor[i].TypeName+
 						'</span></div><div><span class="commonColor">通过时间：</span><span class="commonRight">'+certInfor[i].PassTime+
 						'</span></div><div><span class="commonColor">说明：</span><span class="commonRight" id='+i+'>'+certInfor[i].Memo+
 						'</span></div></li>'
 						$("#certInfor").append(divDom1);
+						$("#certInfor").find("li .commonRight").css("float","right")
 						$("#certInfor").find("li").css("display","none");
 						$("#certInfor>.certList").click(function(){
 							$("#certInfor").find("li").css("display","block");
 						})
+						// $("#certInfor>.certList").click(function(){
+						// 	$("#certInfor").find("li").toggleClass('toggle');
+						// })
 						 // document.getElementById('certInfor').innerHTML = divDom ;
 						 if(certInfor[0].Memo == ""){
 							$("#0").parent().hide();
