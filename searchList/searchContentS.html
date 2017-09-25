@@ -45,6 +45,8 @@
 			}
 			var id = GetQueryString("id");
 			var key=GetQueryString("key");
+			var enabled = GetQueryString("apply_enabled");
+			console.log(enabled);
 
 			var testUrl = location.search;
 			    testUrl = testUrl.slice(1,testUrl.length).split('&')[0];
@@ -61,7 +63,8 @@
 				type: "post",
 				url: searchUrl,
 				data: {
-					id: keyId
+					id: keyId,
+					// apply_enabled:
 				},
 				datatype: "json",
 				success: function(data) {
@@ -77,11 +80,11 @@
 						console.log(searchD)
 						console.log(searchD.honor[0])
 						if(!searchD.honor[0] == undefined){
-						    div.innerHTML = '<div style="padding: 10px"><div style="font-weight: 600;margin-bottom: 10px;">'+searchD.tilte+'</div><div><span style="font-size: 10px;color: #676666;">'+searchD.publishDate+'</span><span style="font-size: 8px;color: #676666;float: right;"></span></div><div style="margin-top: 20px;    margin-bottom: 30px;"><img style="margin: 0 auto;" src="'+searchD.thumbImg+'"/></div><div>'+searchD.content+'</div><div></div><div style="border-bottom: 1px solid #ccc;padding: 10px;font-size: 14px;"><span>比赛项目名称:</span></div><div style="border-bottom: 1px solid #ccc;padding: 10px;font-size: 14px;"><span>出生年龄段:</span></div><div style="border-bottom: 1px solid #ccc; padding: 10px;font-size: 14px;"><span>男女要求:</span></div><div style="border-bottom: 1px solid #ccc; padding: 10px;font-size: 14px;"><span>体重要求:</span></div><button style="background: #3765bb;color: #fff;width: 100%; padding: 10px 0px; margin-bottom: 50px;margin-top: 30px;">立即报名</button></div>'
+						    div.innerHTML = '<div style="padding: 10px"><div style="font-weight: 600;margin-bottom: 10px;">'+searchD.tilte+'</div><div><span style="font-size: 10px;color: #676666;">'+searchD.publishDate+'</span><span style="font-size: 8px;color: #676666;float: right;"></span></div><div style="margin-top: 20px;    margin-bottom: 30px;"><img style="margin: 0 auto;" src="'+searchD.thumbImg+'"/></div><div>'+searchD.content+'</div><div></div><div style="border-bottom: 1px solid #ccc;padding: 10px;font-size: 14px;"><span>比赛项目名称:</span></div><div style="border-bottom: 1px solid #ccc;padding: 10px;font-size: 14px;"><span>出生年龄段:</span></div><div style="border-bottom: 1px solid #ccc; padding: 10px;font-size: 14px;"><span>男女要求:</span></div><div style="border-bottom: 1px solid #ccc; padding: 10px;font-size: 14px;"><span>体重要求:</span></div><button style="background: #3765bb;color: #fff;width: 100%; padding: 10px 0px; margin-bottom: 50px;margin-top: 30px; display:none;">立即报名</button></div>'
 
 
 						}else{
-						    div.innerHTML = '<div style="padding: 10px"><div style="font-weight: 600;margin-bottom: 10px;">'+searchD.tilte+'</div><div><span style="font-size: 10px;color: #676666;">'+searchD.publishDate+'</span><span style="font-size: 8px;color: #676666;float: right;"></span></div><div style="margin-top: 20px;    margin-bottom: 30px;"><img style="margin: 0 auto;" src="'+searchD.thumbImg+'"/></div><div>'+searchD.content+'</div><div></div><div style="border-bottom: 1px solid #ccc;padding: 10px;font-size: 14px;"><span>比赛项目名称:</span></div><div style="border-bottom: 1px solid #ccc;padding: 10px;font-size: 14px;"><span>出生年龄段:</span></div><div style="border-bottom: 1px solid #ccc; padding: 10px;font-size: 14px;"><span>男女要求:</span></div><div style="border-bottom: 1px solid #ccc; padding: 10px;font-size: 14px;"><span>体重要求:</span></div><button style="background: #3765bb;color: #fff;width: 100%; padding: 10px 0px; margin-bottom: 50px;margin-top: 30px;">立即报名</button></div>'
+						    div.innerHTML = '<div style="padding: 10px"><div style="font-weight: 600;margin-bottom: 10px;">'+searchD.tilte+'</div><div><span style="font-size: 10px;color: #676666;">'+searchD.publishDate+'</span><span style="font-size: 8px;color: #676666;float: right;"></span></div><div style="margin-top: 20px;    margin-bottom: 30px;"><img style="margin: 0 auto;" src="'+searchD.thumbImg+'"/></div><div>'+searchD.content+'</div><div></div><div style="border-bottom: 1px solid #ccc;padding: 10px;font-size: 14px;"><span>比赛项目名称:</span></div><div style="border-bottom: 1px solid #ccc;padding: 10px;font-size: 14px;"><span>出生年龄段:</span></div><div style="border-bottom: 1px solid #ccc; padding: 10px;font-size: 14px;"><span>男女要求:</span></div><div style="border-bottom: 1px solid #ccc; padding: 10px;font-size: 14px;"><span>体重要求:</span></div><button style="background: #3765bb;color: #fff;width: 100%; padding: 10px 0px; margin-bottom: 50px;margin-top: 30px;display:none;">立即报名</button></div>'
 
 						}
 
@@ -98,6 +101,11 @@
 					document.querySelector(".mui-scroll").appendChild(fragment); //输出到#item1mobile的页面内容
 					$(".announceDetailPageT").find("table").css('border','1px solid #8f8f94').css('margin','auto');
 					$(".announceDetailPageT").find("table>tbody>tr>td").css('border','1px solid #8f8f94').css('padding','2px');
+					if(enabled == 1){
+						$(".announceDetailPageT").find("button").css("display","block");
+					}else if(enabled == 0){
+						$("#isSignUp").find("button").css("display","none");
+					}
 
 				},
 				error: function(e) {

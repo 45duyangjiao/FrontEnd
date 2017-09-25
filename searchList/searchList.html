@@ -52,52 +52,62 @@
 		</div>
 
 		<script>
-			
-			var key=window.location.href
-			key=decodeURIComponent(key.substr(key.lastIndexOf("=")).slice(1));
-			
+			function GetQueryString(name) {
+				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+				var r = window.location.search.substr(1).match(reg);
+				if(r != null) return unescape(r[2]);
+				return null;
+			}
+			var enabled = GetQueryString("apply_enabled");
+			var searchtest = GetQueryString("searchtest");
+
+			// var key=window.location.href
+			// key=decodeURIComponent(key.substr(key.lastIndexOf("=")).slice(1));
+			// console.log(key);
+
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
 			function texts(id,typeName) {
-				
+
 				if(typeName == "名人堂"){
-					window.location.href = "searchContent.html?id=" + id
+					window.location.href = "searchContent.html?id=" + id + "&apply_enabled=" + enabled
 				}else if(typeName == "赛事"){
-					
-					window.location.href = "searchContentS.html?id=" + id
+
+					window.location.href = "searchContentS.html?id=" + id + "&apply_enabled=" + enabled
 				}else if(typeName == "培训"){
-					window.location.href = "searchContentS.html?id=" + id
+					window.location.href = "searchContentS.html?id=" + id + "&apply_enabled=" + enabled
 				}else if(typeName == "新闻"){
-					window.location.href = "searchContentNews.html?id=" + id
+					window.location.href = "searchContentNews.html?id=" + id + "&apply_enabled=" + enabled
 				}else if(typeName == "公益"){
-					window.location.href = "searchContentNews.html?id=" + id
+					window.location.href = "searchContentNews.html?id=" + id + "&apply_enabled=" + enabled
 				}else if(typeName == "公告"){
-					window.location.href = "searchContentNews.html?id=" + id
+					window.location.href = "searchContentNews.html?id=" + id + "&apply_enabled=" + enabled
 				}else{
-					window.location.href = "searchContentNews.html?id=" + id
+					window.location.href = "searchContentNews.html?id=" + id + "&apply_enabled=" + enabled
 				}
-				
+
 			}
-			
+
 			//默认加载
 			$.ajax({
 				type: "post",
 				url: searchUrl,
 				data: {
-					key:key
+					// key:key
+					key:searchtest
 				},
 				datatype: "json",
 				success: function(data) {
-					
-					
+
+
 					data = eval('(' + data + ')');
 					//模板类型
-					
+
 					//var typeNameArr = data.Data.query;
 //					var typeName = typeNameArr.map(function(item,index){
 //						return typeName = item.typeName;
-//						
+//
 //					})
-				
+
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var li;
 					console.log(data)
@@ -105,8 +115,8 @@
 					for(var i = 0; i < data.Data.query.length; i++) { //循环输出data中的数据
 							li = document.createElement('li');
 							li.className = 'mxhLi';
-							
-							if(data.Data.query[i].pic.length > 0) {
+
+							if(data.Data.query[i].pic.length !== 0) {
 								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+data.Data.query[i].typeName+'\')"><div class="muipurelyTitle">' +
 									data.Data.query[i].Title +
 									'</div><div class="muipurelyImg" id="purelyImg"><img src="' +
