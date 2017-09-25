@@ -21,7 +21,7 @@
 		<div class="mui-scroll-wrapper" id="protocol">
 			<div class="mui-scroll">
 				<div class="newsCont"></div>
-				<ul class="newsDetailComments List">	
+				<ul class="newsDetailComments List">
 				</ul>
 			</div>
 		</div>
@@ -52,7 +52,7 @@
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					//					console.log(data.Data.Data[i].id)
 					var div = document.createElement('div');
-					
+
 					div.className = 'announceDetailPage';
 					div.innerHTML = '<div class="announceDetailTil">' +
 						data.Data.Data.tilte +
@@ -60,7 +60,7 @@
 						data.Data.Data.publishDate +
 						'</span><span class="floatR Rfrom">' +
 						data.Data.Data.source +
-						'</span></div><div class="announceDetailMainbody">' +
+						'</span></div><img src='+data.Data.Data.thumbImg+' alt=""><div class="announceDetailMainbody">' +
 						data.Data.Data.content +
 						'</div>'
 					fragment.appendChild(div);
@@ -73,17 +73,17 @@
 
 				}
 			});
-			
-			
-			
+
+
+
 //			function reply(id,replyId){
 //				window.location.href = "../news/reply.html?id=" + id+"&replyId="+replyId;
 //			}
-			
+
 			function reply(id,replyId,name,userID){
 				window.location.href = "../news/reply.html?id=" + id+"&replyId="+replyId+"&name="+name+"&userID="+userID;
 			}
-			
+
 			var CommentUrl = urlPath+"News/GetNewsReplyList";
 			//默认加载
 			$.ajax({
@@ -102,7 +102,7 @@
 						for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
 							li = document.createElement('li');
 							li.className = 'clearfix';
-							li.id=data.Data.Data[i].id;		
+							li.id=data.Data.Data[i].id;
 							li.innerHTML = '<div class="floatL avatar"><img src="'+
 							data.Data.Data[i].userImg+
 							'" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL">'+
@@ -163,17 +163,17 @@
 									},
 									success:function(){
 										Acitve.siblings()[0].innerHTML = Number(Acitve.siblings()[0].innerHTML)+ 1
-										
+
 									},
 								});
 							}
-					
+
 							},
 							error:function(){}
-							
+
 						});
 					})
-				
+
 				},
 				error: function() {
 
