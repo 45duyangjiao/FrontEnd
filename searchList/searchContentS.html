@@ -14,7 +14,7 @@
 		<!--<script src="../js/mui.min.js"></script>-->
 		<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="../js/flexable.js"></script>
-		
+
 	</head>
 
 	<body>
@@ -45,18 +45,18 @@
 			}
 			var id = GetQueryString("id");
 			var key=GetQueryString("key");
-			
+
 			var testUrl = location.search;
 			    testUrl = testUrl.slice(1,testUrl.length).split('&')[0];
 			    testUrlLength = testUrl.length;
 			    keyId = testUrl.slice(3,testUrlLength);
-			    
-			   
+
+
 //			testUrl=decodeURIComponent(testUrl.substr(testUrl.lastIndexOf("=")).slice(1))
-			
+
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchArticleDetail";
 			//默认加载
-			
+
 			$.ajax({
 				type: "post",
 				url: searchUrl,
@@ -65,44 +65,47 @@
 				},
 				datatype: "json",
 				success: function(data) {
-					
+
 					data = eval('(' + data + ')');
-					
+
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var div = document.createElement('div');
 					div.className = 'announceDetailPageT';
-					
+
 					if(data.Data.Msg == "查询成功") {
 						var searchD = data.Data.Data;
 						console.log(searchD)
 						console.log(searchD.honor[0])
 						if(!searchD.honor[0] == undefined){
 						    div.innerHTML = '<div style="padding: 10px"><div style="font-weight: 600;margin-bottom: 10px;">'+searchD.tilte+'</div><div><span style="font-size: 10px;color: #676666;">'+searchD.publishDate+'</span><span style="font-size: 8px;color: #676666;float: right;"></span></div><div style="margin-top: 20px;    margin-bottom: 30px;"><img style="margin: 0 auto;" src="'+searchD.thumbImg+'"/></div><div>'+searchD.content+'</div><div></div><div style="border-bottom: 1px solid #ccc;padding: 10px;font-size: 14px;"><span>比赛项目名称:</span></div><div style="border-bottom: 1px solid #ccc;padding: 10px;font-size: 14px;"><span>出生年龄段:</span></div><div style="border-bottom: 1px solid #ccc; padding: 10px;font-size: 14px;"><span>男女要求:</span></div><div style="border-bottom: 1px solid #ccc; padding: 10px;font-size: 14px;"><span>体重要求:</span></div><button style="background: #3765bb;color: #fff;width: 100%; padding: 10px 0px; margin-bottom: 50px;margin-top: 30px;">立即报名</button></div>'
-						    
-						   
+
+
 						}else{
 						    div.innerHTML = '<div style="padding: 10px"><div style="font-weight: 600;margin-bottom: 10px;">'+searchD.tilte+'</div><div><span style="font-size: 10px;color: #676666;">'+searchD.publishDate+'</span><span style="font-size: 8px;color: #676666;float: right;"></span></div><div style="margin-top: 20px;    margin-bottom: 30px;"><img style="margin: 0 auto;" src="'+searchD.thumbImg+'"/></div><div>'+searchD.content+'</div><div></div><div style="border-bottom: 1px solid #ccc;padding: 10px;font-size: 14px;"><span>比赛项目名称:</span></div><div style="border-bottom: 1px solid #ccc;padding: 10px;font-size: 14px;"><span>出生年龄段:</span></div><div style="border-bottom: 1px solid #ccc; padding: 10px;font-size: 14px;"><span>男女要求:</span></div><div style="border-bottom: 1px solid #ccc; padding: 10px;font-size: 14px;"><span>体重要求:</span></div><button style="background: #3765bb;color: #fff;width: 100%; padding: 10px 0px; margin-bottom: 50px;margin-top: 30px;">立即报名</button></div>'
-							
+
 						}
-						
+
 					    fragment.appendChild(div);
+
 
 
 					}else{
 
-								div.innerHTML = '<div class="announceDetailTil">未搜索到相关内容</div>'
-								fragment.appendChild(div);
+						div.innerHTML = '<div class="announceDetailTil">未搜索到相关内容</div>'
+						fragment.appendChild(div);
 					}
 
 					document.querySelector(".mui-scroll").appendChild(fragment); //输出到#item1mobile的页面内容
+					$(".announceDetailPageT").find("table").css('border','1px solid #8f8f94').css('margin','auto');
+					$(".announceDetailPageT").find("table>tbody>tr>td").css('border','1px solid #8f8f94').css('padding','2px');
 
 				},
 				error: function(e) {
-                    
+
 				}
 			});
 		</script>
-       
+
 	</body>
 
 </html>
