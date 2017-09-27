@@ -72,9 +72,9 @@
 			// var search = encodeURI(searchtest)
 			// console.log(search);
 
-			// var key=window.location.href
-			// key=decodeURIComponent(key.substr(key.lastIndexOf("=")).slice(1));
-			// console.log(key);
+			var key=window.location.href
+			key=decodeURIComponent(key.substr(key.indexOf("=")).slice(1));
+			console.log(key);
 
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
 			function texts(id,typeName) {
@@ -103,8 +103,8 @@
 				type: "post",
 				url: searchUrl,
 				data: {
-					// key:key
-					key:searchtest
+					key:key
+					// key:searchtest
 					// key:search
 				},
 				datatype: "json",
