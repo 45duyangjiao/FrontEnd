@@ -73,7 +73,7 @@
 			// console.log(search);
 
 			var key=window.location.href
-			key=decodeURIComponent(key.substr(key.indexOf("=")).slice(1));
+			key=decodeURIComponent(key.substr(key.indexOf("=")).slice(1).split("&")[0]);
 			console.log(key);
 
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchByKey";
