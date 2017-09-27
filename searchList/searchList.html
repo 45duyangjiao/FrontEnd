@@ -16,6 +16,14 @@
 			.mui-fullscreen{
 				position: relative;
 			}
+			.mui-table-Img{
+				width: 60px;
+				height: 60px;
+			}
+			.mui-table-Img img{
+				width: 100%;
+				height: 100%;
+			}
 		</style>
 	</head>
 
@@ -23,14 +31,15 @@
 		<div class="mui-content">
 			<div id="slider" class="mui-slider mui-fullscreen">
 				<ul class="searchListPage" id="List">
-					<!--<li class="mxhLi" onclick="texts(1030,11)">
+					<!-- <li class="mxhLi" onclick="texts(1030,11)">
 						<div class="mui-table-Img"><img src="../images/img1.png" /></div>
 						<div class="mui-table-text">
 							<p class="mui-table-Tile">2017年全国大众跆拳道一级以上裁判员年审复训培训班</p>
 							<p class="mui-table-look"><span class="lookLeft">2017年5月20日 中跆协官网</span><span class="lookRight"><i class="look"></i> 5686</span></p>
 						</div>
-					</li>
-					<li class="mxhLi">
+					</li> -->
+
+					<!-- <li class="mxhLi">
 						<div class="muipurelyTitle">2017年亚跆联新品势学习班汇报分享新品势学习班汇报分享</div>
 						<div class="muipurelytext ">
 							<p class="muipurelylook clearfix"><span class="lookLeft">2017年5月20日 CCTV5</span><span class="lookRight"><i class="look"></i> 1.5万</span></p>
@@ -46,7 +55,7 @@
 						<div class="muipurelytext ">
 							<p class="muipurelylook clearfix"><span class="lookLeft">2017年5月20日 CCTV5</span><span class="lookRight"><i class="look"></i> 1.5万</span></p>
 						</div>
-					</li>-->
+					</li> -->
 				</ul>
 			</div>
 		</div>
@@ -60,6 +69,8 @@
 			}
 			var enabled = GetQueryString("apply_enabled");
 			var searchtest = GetQueryString("searchtest");
+			// var search = encodeURI(searchtest)
+			// console.log(search);
 
 			// var key=window.location.href
 			// key=decodeURIComponent(key.substr(key.lastIndexOf("=")).slice(1));
@@ -94,6 +105,7 @@
 				data: {
 					// key:key
 					key:searchtest
+					// key:search
 				},
 				datatype: "json",
 				success: function(data) {
@@ -116,29 +128,50 @@
 							li = document.createElement('li');
 							li.className = 'mxhLi';
 
-							if(data.Data.query[i].pic.length !== 0) {
-								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+data.Data.query[i].typeName+'\')"><div class="muipurelyTitle">' +
-									data.Data.query[i].Title +
-									'</div><div class="muipurelyImg" id="purelyImg"><img src="' +
-									data.Data.query[i].pic + '"><img src="' + data.Data.query[i].pic[1] + '"><img src="' + data.Data.query[i].pic[2] +
-									'"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
-									data.Data.query[i].createTime +
-									'</span></p></div></div>'
+							// if(data.Data.query[i].pic.length !== 0) {
+							// 	li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+data.Data.query[i].typeName+'\')"><div class="muipurelyTitle">' +
+							// 		data.Data.query[i].Title +
+							// 		'</div><div class="muipurelyImg" id="purelyImg"><img src="' +
+							// 		data.Data.query[i].pic + '"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
+							// 		data.Data.query[i].createTime +
+							// 		'</span></p></div></div>'
+							// } else if(data.Data.query[i].pic.length == 0) {
+							// 	li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+typeName+'\')"><div class="muipurelyTitle">' +
+							// 		data.Data.query[i].Title +
+							// 		'</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
+							// 		data.Data.query[i].createTime +
+							// 		'</span></p></div></div>'
+							// }
+
+
+							if(data.Data.query[i].pic.length != 0) {
+								// li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+data.Data.query[i].typeName+'\')"><div class="muipurelyTitle">' +
+								// 	data.Data.query[i].Title +
+								// 	'</div><div class="muipurelyImg" id="purelyImg"><img src="' +
+								// 	data.Data.query[i].pic + '"><img src="' + data.Data.query[i].pic[1] + '"><img src="' + data.Data.query[i].pic[2] +
+								// 	'"></div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
+								// 	data.Data.query[i].createTime +
+								// 	'</span></p></div></div>'
+								li.innerHTML='<div onclick="texts(' + data.Data.query[i].Id + ',\''+data.Data.query[i].typeName+'\')"><div class="mui-table-Img"><img src="'+data.Data.query[i].pic+'" /></div>'
+										+'<div class="mui-table-text">'
+										+'<p class="mui-table-Tile">'+data.Data.query[i].Title+'</p>'
+										+'<p class="mui-table-look"><span class="lookLeft">'+data.Data.query[i].createTime+' 中跆协官网</span><span class="lookRight"><i 										class="look"></i> 5686</span></p>'
+										+'</div></div>'
+
 							} else if(data.Data.query[i].pic.length == 0) {
-								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+typeName+'\')"><div class="mui-table-Img"><img src="' +
-									data.Data.query[i].pic +
-									'" /></div><div class="mui-table-text"><p class="mui-table-Tile">' +
+								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+typeName+'\')"><div class="mui-table-text"><p class="mui-table-Tile">' +
 									data.Data.query[i].Title +
 									'</p><p class="mui-table-look"><span class="lookLeft">' +
 									data.Data.query[i].createTime +
 									'</span></p></div></div>'
-							} else {
-								li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+typeName+'\')"><div class="muipurelyTitle">' +
-									data.Data.query[i].Title +
-									'</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
-									data.Data.query[i].createTime +
-									'</span></p></div></div>'
 							}
+							// else {
+							// 	li.innerHTML = '<div onclick="texts(' + data.Data.query[i].Id + ',\''+typeName+'\')"><div class="muipurelyTitle">' +
+							// 		data.Data.query[i].Title +
+							// 		'</div><div class="muipurelytext "><p class="muipurelylook clearfix"><span class="lookLeft">' +
+							// 		data.Data.query[i].createTime +
+							// 		'</span></p></div></div>'
+							// }
 							fragment.appendChild(li);
 						}
 					}
