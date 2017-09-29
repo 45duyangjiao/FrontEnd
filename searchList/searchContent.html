@@ -13,8 +13,9 @@
 		<!--<script src="../js/jquery-1.9.1.min.js"></script>-->
 		<!--<script src="../js/mui.min.js"></script>-->
 		<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="../js/artTemplate.js"></script>
 		<script src="../js/flexable.js"></script>
-		
+
 	</head>
 
 	<body>
@@ -35,7 +36,17 @@
 				</div>-->
 			</div>
 		</div>
-
+		<script type="text/html" id="successTmp">
+		{{if honor}}
+			{{each honor as value i}}
+			<div style="border-bottom: 1px solid #efefef;padding: 12px;font-size: 14px;color: #989696;background: #fff;">
+			<span>{{value.year}}</span>
+			<span style="margin: 0px 10px;">{{value.name}}</span>
+			<span>{{value.honorType}}</span>
+			</div>
+			{{/each}}
+		{{/if}}
+		</script>
 		<script>
 			function GetQueryString(name) {
 				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -45,18 +56,18 @@
 			}
 			var id = GetQueryString("id");
 			var key=GetQueryString("key");
-			
+
 			var testUrl = location.search;
 			    testUrl = testUrl.slice(1,testUrl.length).split('&')[0];
 			    testUrlLength = testUrl.length;
 			    keyId = testUrl.slice(3,testUrlLength);
-			    
-			   
+
+
 //			testUrl=decodeURIComponent(testUrl.substr(testUrl.lastIndexOf("=")).slice(1))
-			
+
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchArticleDetail";
 			//默认加载
-			
+
 			$.ajax({
 				type: "post",
 				url: searchUrl,
@@ -65,25 +76,30 @@
 				},
 				datatype: "json",
 				success: function(data) {
-					
+
 					data = eval('(' + data + ')');
-					
+					console.log(data)
+
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var div = document.createElement('div');
 					div.className = 'announceDetailPageT';
-					
+
 					if(data.Data.Msg == "查询成功") {
 						var searchD = data.Data.Data;
-						if(searchD.honor[0]){
-						div.innerHTML = '<div><div style="background: #f9f9f9;position: relative;"><div style="position: absolute;top: 10px; background: #fff; border-radius: 5px;left: 10%; width: 80%;"><div style="width:15%;float:left"><img style="margin-top:10px" src="'+searchD.thumbImg+'"></div><div style="width:85%;padding: 15px 0px 30px 5px;"><div>'+searchD.tilte+'</div><div style="font-size:14px;color:#989696">'+searchD.content+'</div></div></div><div style="clear:both"></div><div style="height:40px;background:#e4e4e4"></div><div style="color:#000;padding-top: 70px;background: #fbfbfb;padding-left: 10%;">嘉宾介绍:</div><div style="color:#989696;font-size:14px;padding-left:20px;padding: 5px 30px 10px 15%;    background: #fbfbfb;">'+searchD.content+'</div></div><div style="border-left:5px solid #2985d0;padding: 5px;">所获荣誉</div><div style="border-bottom: 1px solid #efefef;padding: 12px;font-size: 14px;color: #989696;background: #fff;"><span>'+searchD.honor[0].year+'</span><span style="margin: 0px 10px;">'+searchD.honor[0].name+'</span><span>'+searchD.honor[0].honorType+'</span></div></div>'
-							
+						div.innerHTML = '<div><div style="background: #f9f9f9;position: relative;"><div style="position: absolute;top: 10px; background: #fff; border-radius: 5px;left: 10%; width: 80%;"><div style="width:15%;float:left"><img style="margin-top:10px" src="'+searchD.thumbImg+'"></div><div style="width:85%;padding: 15px 0px 30px 5px;"><div>'+searchD.tilte+'</div><div style="font-size:14px;color:#989696">'+searchD.content+'</div></div></div><div style="clear:both"></div><div style="height:40px;background:#e4e4e4"></div><div style="color:#000;padding-top: 70px;background: #fbfbfb;padding-left: 10%;">嘉宾介绍:</div><div style="color:#989696;font-size:14px;padding-left:20px;padding: 5px 30px 10px 15%;    background: #fbfbfb;">'+searchD.content+'</div></div><div style="border-left:5px solid #2985d0;padding: 5px;">所获荣誉</div><div id="success">123</div></div>'
+
+						/*if(searchD.honor.length!=0){
+
+						div.innerHTML = '<div><div style="background: #f9f9f9;position: relative;"><div style="position: absolute;top: 10px; background: #fff; border-radius: 5px;left: 10%; width: 80%;"><div style="width:15%;float:left"><img style="margin-top:10px" src="'+searchD.thumbImg+'"></div><div style="width:85%;padding: 15px 0px 30px 5px;"><div>'+searchD.tilte+'</div><div style="font-size:14px;color:#989696">'+searchD.content+'</div></div></div><div style="clear:both"></div><div style="height:40px;background:#e4e4e4"></div><div style="color:#000;padding-top: 70px;background: #fbfbfb;padding-left: 10%;">嘉宾介绍:</div><div style="color:#989696;font-size:14px;padding-left:20px;padding: 5px 30px 10px 15%;    background: #fbfbfb;">'+searchD.content+'</div></div><div style="border-left:5px solid #2985d0;padding: 5px;">所获荣誉</div><div id="success"></div></div>'
+
+
 						}else{
 						div.innerHTML = '<div><div style="background: #f9f9f9;position: relative;"><div style="position: absolute;top: 10px; background: #fff; border-radius: 5px;left: 10%; width: 80%;"><div style="width:15%;float:left"><img style="margin-top:10px" src="'+searchD.thumbImg+'"></div><div style="width:85%;padding: 15px 0px 30px 5px;"><div>'+searchD.tilte+'</div><div style="font-size:14px;color:#989696">'+searchD.content+'</div></div></div><div style="clear:both"></div><div style="height:40px;background:#e4e4e4"></div><div style="color:#000;padding-top: 70px;background: #fbfbfb;padding-left: 10%;">嘉宾介绍:</div><div style="color:#989696;font-size:14px;padding-left:20px;padding: 5px 30px 10px 15%;    background: #fbfbfb;">'+searchD.content+'</div></div><div style="border-left:5px solid #2985d0;padding: 5px;">所获荣誉</div></div>'
-							
-						}
-						
-					    fragment.appendChild(div);
 
+						}*/
+
+					    fragment.appendChild(div);
+					    
 
 					}else{
 
@@ -93,9 +109,14 @@
 
 					document.querySelector(".mui-scroll").appendChild(fragment); //输出到#item1mobile的页面内容
 
+					    console.log($("#success"))
+					    var html = template("successTmp",searchD);
+					    $("#success").html(html)
+					$(".announceDetailPageT").find("table").css('border','1px solid #8f8f94').css('margin','auto');
+					$(".announceDetailPageT").find("table>tbody>tr>td").css('border','1px solid #8f8f94').css('padding','2px');
 				},
 				error: function(e) {
-                    
+
 				}
 			});
 		</script>
