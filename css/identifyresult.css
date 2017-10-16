@@ -11,7 +11,7 @@
 	width:100%;
 	height:3.5rem;
 	background:url(../images/memberBg.png) no-repeat center center;
-	background-size:100% 100%;	
+	background-size:100% 100%;
 }
 .resultShowTil{
 	height:1.22rem;
@@ -50,10 +50,10 @@
 	-moz-flex:1;
 }
 #resultUl li{
-	line-height:1.07rem;
+	// line-height:1.07rem;
 	border-bottom:1px solid  #eaeaea;
-	padding:0 0.32rem;
-	height:1.07rem;
+	padding:0.32rem;
+	// height:1.07rem;
 }
 #resultUl  .commonColor{
 	color:#333333;
@@ -61,7 +61,8 @@
 	font-size:0.32rem;
 }
 #resultUl li  .commonRight{
-	color:#666;
+	color:#333333;
 	float: right;
-	font-size:0.24rem;
+	font-size:0.32rem;
+	line-height:0.4rem;
 }
