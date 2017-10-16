@@ -14,7 +14,7 @@
 		<!--<script src="../js/mui.min.js"></script>-->
 		<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="../js/flexable.js"></script>
-		
+
 	</head>
 
 	<body>
@@ -45,18 +45,18 @@
 			}
 			var id = GetQueryString("id");
 			var key=GetQueryString("key");
-			
+
 			var testUrl = location.search;
 			    testUrl = testUrl.slice(1,testUrl.length).split('&')[0];
 			    testUrlLength = testUrl.length;
 			    keyId = testUrl.slice(3,testUrlLength);
-			    
-			   
+
+
 //			testUrl=decodeURIComponent(testUrl.substr(testUrl.lastIndexOf("=")).slice(1))
-			
+
 			var searchUrl = "http://47.93.192.128:5001/Search/SearchArticleDetail";
 			//默认加载
-			
+
 			$.ajax({
 				type: "post",
 				url: searchUrl,
@@ -65,25 +65,26 @@
 				},
 				datatype: "json",
 				success: function(data) {
-					
+
 					data = eval('(' + data + ')');
-					
+					console.log(data);
+
 					var fragment = document.createDocumentFragment(); //创建一个代码片段
 					var div = document.createElement('div');
 					div.className = 'announceDetailPageT';
-					
+
 					if(data.Data.Msg == "查询成功") {
 						var searchD = data.Data.Data;
 						console.log(searchD)
 						console.log(searchD.honor[0])
 						if(!searchD.honor[0] == undefined){
 						    div.innerHTML = '<div style="padding: 10px"><div style="font-weight: 600;margin-bottom: 10px;">'+searchD.tilte+'</div><div><span style="font-size: 10px;color: #676666;">'+searchD.publishDate+'</span><span style="font-size: 8px;color: #676666;float: right;">'+searchD.source+'</span></div><div style="margin-top: 20px"><img src="'+searchD.thumbImg+'"/></div><div>'+searchD.content+'</div><div></div></div>'
-						   
+
 						}else{
 						    div.innerHTML = '<div style="padding: 10px"><div style="font-weight: 600;margin-bottom: 10px;">'+searchD.tilte+'</div><div><span style="font-size: 10px;color: #676666;">'+searchD.publishDate+'</span><span style="font-size: 8px;color: #676666;float: right;">'+searchD.source+'</span></div><div style="margin-top: 20px"><img src="'+searchD.thumbImg+'"/></div><div>'+searchD.content+'</div><div></div></div>'
-							
+
 						}
-						
+
 					    fragment.appendChild(div);
 
 
@@ -97,7 +98,7 @@
 
 				},
 				error: function(e) {
-                    
+
 				}
 			});
 		</script>

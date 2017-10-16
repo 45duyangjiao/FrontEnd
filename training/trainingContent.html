@@ -101,35 +101,6 @@
 			</div>
 			<button class="mui-btn mui-btn-primary mui-btn-block" id="isSignUp" onclick="btnOpen()">立即报名</button>
 		</script>
-		<!-- <div class="peixunCon_box">
-			<div class="peixun_new mui-content-padded">
-				<h2 class="mui-h4 mui-text-center"></h2>
-				<p class="mui-text-justify"></p>
-			</div>
-			<div class="mui-table-view peixun_info">
-				<div id="con_name" class="mui-table-view-cell mui-collapse">
-					<p><i class="time"></i>培训时间：</p>
-					<span class="">123</span>
-				</div>
-				<div id="con_age" class="mui-table-view-cell mui-collapse">
-					<p><i class="mui-icon mui-icon-location"></i>培训地址：</p>
-					<span> 123</span>
-				</div>
-				<div id="con_six" class="mui-table-view-cell mui-collapse">
-					<p><i class="mui-icon mui-icon-person"></i>负责人：</p>
-					<span>123</span>
-				</div>
-				<div id="con_weight" class="mui-table-view-cell mui-collapse">
-					<p><i class="mui-icon mui-icon-phone"></i>联系电话：</p>
-					<span></span>
-				</div>
-			</div>
-
-		</div> -->
-
-
-
-<!-- <button class="mui-btn mui-btn-primary mui-btn-block" id="isSignUp" style="display:none">立即报名</button> -->
 			<br />
 		<script>
 			function GetQueryString(name) {
@@ -174,9 +145,9 @@
 						// btnOpen(id,enabled);
 						btnOpen(id,'+type+');
 					})
-					if(data.IsSignUp == true && enabled == 1){
+					if(data.IsSignUp == true || enabled == 1){
 						$("#isSignUp").css("display","block");
-					}else if(data.IsSignUp == false && enabled == 0){
+					}else if(data.IsSignUp == false || enabled == 0){
 						$("#isSignUp").css("display","none");
 					}
 				},

@@ -152,6 +152,9 @@
 			.mui-grid-view.mui-grid-9 .mui-table-view-cell {
 				max-height: 80px;
 			}
+			.mui-scroll-wrapper{
+				position:absolute;
+			}
 		</style>
 	</head>
 
@@ -333,7 +336,7 @@
 				async: true,
 				dataType: "json",
 				data: {
-					UserId: userID //10035
+					UserId: 10035//userID //10035
 				},
 				success: function(data) {
 					console.log(data)
