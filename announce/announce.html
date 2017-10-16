@@ -379,17 +379,6 @@
 				});
 
 			}
-			$(window).scroll(function(){
-			    var winH = $(".mui-slider-item").height(),
-			        domH = $(document).height(),
-			        scrollTop = $(".mui-slider-item").scrollTop();
-			    //下面的1是距离底部只有1px的意思，可根据个人需要修改
-			    if(domH - winH - scrollTop < 1){
-			    	console.log("到底了")
-			    }else{
-			        return false;
-			    }
-			});
 			function texts(id,commentCount,userID) {
 				window.location.href = "announceContent.html?id=" + id+"&commentCount="+commentCount+"&userID="+10005;
 			}
