@@ -30,12 +30,13 @@ $(document).ready(function() {
 			$(".announceDetail").html(str);
 			var strr = template("contnent", obj);
 			$(".announceDetailMainbody").html(strr);
-
+			$(".announceDetailMainbody").find("table").css('border','1px solid #8f8f94').css('margin','auto');
+			$(".announceDetailMainbody").find("table>tbody>tr>td").css('border','1px solid #8f8f94').css('padding','2px')
 			function reply(id, replyId, name, userID) {
 				window.location.href = "../news/reply.html?id=" + id + "&replyId=" + replyId + "&name=" + name + "&userID=" + 10005;
 			};
-			
-			
+
+
 			var CommentUrl = urlPath+"News/GetNewsReplyList";
 			//默认加载
 			$.ajax({
@@ -75,7 +76,7 @@ $(document).ready(function() {
 						var name = $(this).attr("name");
 						reply(id, replyId, name, userID)
 					});
-					
+
 					$(".zan").click(function(){
 						$(this).addClass("active")
 						var Acitve=$(this);
@@ -117,17 +118,17 @@ $(document).ready(function() {
 									},
 									success:function(){
 										Acitve.siblings()[0].innerHTML = Number(Acitve.siblings()[0].innerHTML)+ 1
-										
+
 									},
 								});
 							}
-					
+
 							},
 							error:function(){}
-							
+
 						});
 					})
-				
+
 				},
 				error: function() {
 
