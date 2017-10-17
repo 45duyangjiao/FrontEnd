@@ -8,6 +8,7 @@ function GetQueryString(name) {
 
 var memberNo = GetQueryString("memberNo");
 var idcard = GetQueryString("idcard");
+console.log(idcard)
 $(document).ready(function() {
 	var url = 'http://www.chntkd.org.cn/webinterface/APP_interface/json/membership.ashx';
 	document.getElementById('loadingdiv').style.display = "block";
@@ -89,38 +90,32 @@ $(document).ready(function() {
 						}
 						var divDom = '<h5 class="certList">资格证信息</h5>'
 						$("#certInfor").html(divDom);
-						var divDom1 = '';
-						for(i=0;i<certInfor.length;i++){
-							divDom1 ='<li class="toggle"><div><span class="commonColor">证书编号：</span><span class="commonRight">'+certInfor[i].CertNo+
+						var divDom1 = '<ul class="toggle"></ul>';
+						var divDom2='';
+						console.log(certInfor.length);
+						for(var i=0;i<certInfor.length;i++){
+							divDom2 +='<li><div><span class="commonColor">证书编号：</span><span class="commonRight">'+certInfor[i].CertNo+
 						'</span></div><div><span class="commonColor">证书等级：</span><span class="commonRight">'+certInfor[i].CertGrade+
 						'</span></div><div><span class="commonColor">证书类型：</span><span class="commonRight">'+certInfor[i].TypeName+
 						'</span></div><div><span class="commonColor">通过时间：</span><span class="commonRight">'+certInfor[i].PassTime+
 						'</span></div><div><span class="commonColor">说明：</span><span class="commonRight" id='+i+'>'+certInfor[i].Memo+
 						'</span></div></li>'
-						$("#certInfor").append(divDom1);
-						$("#certInfor").find("li .commonRight").css("float","right")
-						$("#certInfor").find("li").css("display","none");
-						/*$("#certInfor>.certList").click(function(){
-							$("#certInfor").find("li").css("display","block");
-						})*/
-						$("#certInfor>.certList").click(function(){
-							$("#certInfor").find("li").toggle();
-						})
-						 if(certInfor[0].Memo == ""){
-							$("#0").parent().hide();
-						 }else{
-						 	$("#0").parent().show();
-						 }
-						 if(certInfor[1]){
-						 	if(certInfor[1].Memo == ""){
-								$("#1").parent().hide();
-						 	}else{
-						 		$("#1").parent().show();
-						 	}
-						 }
+
 
 						}
-
+						$("#certInfor").append(divDom1);
+						$(".toggle").html(divDom2);
+						$("#certInfor").find("li .commonRight").css("float","right")
+						$("#certInfor>.certList").click(function(){
+							$("#certInfor").find("ul").toggleClass("toggle");
+						})
+						for(var i=0;i<certInfor.length;i++){
+							if(certInfor[i].Memo == ""){
+								$("#"+i).parent().hide();
+							 }else{
+							 	$("#"+i).parent().show();
+							 }
+						}
 
 
 					} else {
