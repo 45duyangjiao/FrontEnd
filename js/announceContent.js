@@ -30,7 +30,7 @@ $(document).ready(function() {
 			$(".announceDetail").html(str);
 			var strr = template("contnent", obj);
 			$(".announceDetailMainbody").html(strr);
-			$(".announceDetailMainbody").find("table").css('border','1px solid #8f8f94').css('margin','auto');
+			$(".announceDetailMainbody").find("table").css('border','1px solid #8f8f94').css('margin','auto').css('width', '6.4rem').css('text-align', 'center');;
 			$(".announceDetailMainbody").find("table>tbody>tr>td").css('border','1px solid #8f8f94').css('padding','2px')
 			function reply(id, replyId, name, userID) {
 				window.location.href = "../news/reply.html?id=" + id + "&replyId=" + replyId + "&name=" + name + "&userID=" + 10005;
