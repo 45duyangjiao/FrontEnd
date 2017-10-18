@@ -88,7 +88,7 @@ $(document).ready(function() {
 						}else{
 						    $("#memberBirth").parent().show();
 						}
-						var divDom = '<h5 class="certList">资格证信息</h5>'
+						var divDom = '<h5 class="certList">查看资格证信息</h5>'
 						$("#certInfor").html(divDom);
 						var divDom1 = '<ul class="toggle"></ul>';
 						var divDom2='';
