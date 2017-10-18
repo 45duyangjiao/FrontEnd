@@ -116,7 +116,7 @@ img {
   display: inline-block;
 }
 .peixun_new > p {
-  text-indent: 30px;
+  // text-indent: 30px;
 }
 .peixun_Input {
   border: 1px solid #c8c7cc;
