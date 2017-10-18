@@ -39,7 +39,7 @@
 		<script type="text/html" id="successTmp">
 		{{if honor}}
 			{{each honor as value i}}
-			<div style="border-bottom: 1px solid #efefef;padding: 12px;font-size: 14px;color: #989696;background: #fff;">
+			<div style="border-bottom: 1px solid #efefef;padding: 12px;font-size: 12px;color: #989696;background: #fff;">
 			<span>{{value.year}}</span>
 			<span style="margin: 0px 10px;">{{value.name}}</span>
 			<span>{{value.honorType}}</span>
@@ -86,7 +86,7 @@
 
 					if(data.Data.Msg == "查询成功") {
 						var searchD = data.Data.Data;
-						div.innerHTML = '<div><div style="background: #f9f9f9;position: relative;"><div style="position: absolute;top: 10px; background: #fff; border-radius: 5px;left: 10%; width: 80%;"><div style="width:15%;float:left"><img style="margin-top:10px" src="'+searchD.thumbImg+'"></div><div style="width:85%;padding: 15px 0px 30px 5px;"><div>'+searchD.tilte+'</div><div style="font-size:14px;color:#989696">'+searchD.content+'</div></div></div><div style="clear:both"></div><div style="height:40px;background:#e4e4e4"></div><div style="color:#000;padding-top: 70px;background: #fbfbfb;padding-left: 10%;">嘉宾介绍:</div><div style="color:#989696;font-size:14px;padding-left:20px;padding: 5px 30px 10px 15%;    background: #fbfbfb;">'+searchD.content+'</div></div><div style="border-left:5px solid #2985d0;padding: 5px;">所获荣誉</div><div id="success">123</div></div>'
+						div.innerHTML = '<div><div style="background: #f9f9f9;position: relative;"><div style="position: absolute;top: 10px; background: #fff; border-radius: 5px;left: 10%; width: 80%;"><div style="width:15%;float:left"><img style="margin-top:10px" src="'+searchD.thumbImg+'"></div><div style="width:85%;padding: 15px 0px 30px 5px;"><div>'+searchD.tilte+'</div><div style="font-size:14px;color:#989696">'+searchD.content+'</div></div></div><div style="clear:both"></div><div style="height:40px;background:#e4e4e4"></div><div style="color:#000;padding-top: 70px;background: #fbfbfb;padding-left: 10%;">嘉宾介绍:</div><div style="color:#989696;font-size:14px;padding-left:20px;padding: 5px 30px 10px 15%;    background: #fbfbfb;">'+searchD.content+'</div></div><div style="border-left:5px solid #2985d0;padding: 5px;">所获荣誉</div><div id="success"></div></div>'
 
 						/*if(searchD.honor.length!=0){
 
@@ -99,7 +99,7 @@
 						}*/
 
 					    fragment.appendChild(div);
-					    
+
 
 					}else{
 
@@ -112,6 +112,7 @@
 					    console.log($("#success"))
 					    var html = template("successTmp",searchD);
 					    $("#success").html(html)
+
 					$(".announceDetailPageT").find("table").css('border','1px solid #8f8f94').css('margin','auto');
 					$(".announceDetailPageT").find("table>tbody>tr>td").css('border','1px solid #8f8f94').css('padding','2px');
 				},
