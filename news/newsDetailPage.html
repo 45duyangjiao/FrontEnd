@@ -210,6 +210,9 @@
 
 
 					document.querySelector("#List").appendChild(fragment);//输出到#item1mobile的页面内容
+					$(".pComments").find("table").css('border','1px solid #8f8f94').css('margin','auto').css('width', '6.4rem').css('text-align', 'center');
+					$(".pComments").find("table>tbody>tr>td").css('border','1px solid #8f8f94').css('padding','2px');
+
 					$(".commontsReply").click(function(){
 						var replyId=$(this).parent().parent().parent().attr("id");
 						var name=$(this).attr("name");
