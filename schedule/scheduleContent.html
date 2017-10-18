@@ -14,8 +14,8 @@
 		<style>
 			body{
 				background: #fff;
-				overflow-x:hidden;
-				overflow-y:auto;
+				/* overflow-x:hidden; */
+				/* overflow-y:auto; */
 			}
 			.mui-table-view-cell:after{
 				left: 0;
@@ -97,10 +97,11 @@
 					var con_con=data.Data.Data.content;
 					$(".peixun_new>h2").html(con_h2)
 					$(".peixun_new>p").html(con_con)
-					$(".peixun_new>p").find("table").css('border','1px solid #8f8f94').css('margin','auto')
+					$(".peixun_new>p").find("table").css('border','1px solid #8f8f94').css('margin','auto').css('width', '6.4rem').css('text-align', 'center');
 					$(".peixun_new>p").find("table>tbody>tr>td").css('border','1px solid #8f8f94').css('padding','2px')
 					var con_name=data.Data.Data.gameName;
 					var con_age=data.Data.Data.BirthAge;
+					console.log(con_age);
 					var con_six=data.Data.Data.genderClaim;
 					var con_weight=data.Data.Data.weightClaim;
 					$("#con_name>span").html(con_name)
