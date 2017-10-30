@@ -1,0 +1,315 @@
+<!doctype html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>新闻详情</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link href="./css/common.css" rel="stylesheet" />
+        <link href="./css/newsDetailPage.css" rel="stylesheet" />
+        <link href="./css/mui.min.css" rel="stylesheet" />
+        <script src="./js/jquery-1.9.1.min.js"></script>
+        <script src="./js/flexable.js"></script>
+        <!--<style type="text/css">
+            .mui-media-object.mui-pull-left {
+                margin: 10px;
+            }
+
+            .newsDetailTile {
+                font-size: 0.34rem;
+                color: #333;
+                line-height: 0.5rem;
+                margin: 0.3rem 0;
+            }
+
+            .newsDetailFrom {
+                margin-bottom: 0.3rem;
+            }
+
+            .newsDetailTime {
+                font-size: 0.24rem;
+                color: #999;
+            }
+
+            .floatR i.zan{
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                background: url(../images/good.png) no-repeat center center;
+                background-size:100% 100%;
+                margin-right: 10px;
+            }
+
+            .floatR i.active{
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                background:url(../images/goods.png) no-repeat center center;
+                background-size:100% 100%;
+                margin-right: 10px;
+            }
+        </style>-->
+        <style type="text/css">
+            body{
+                /*overflow-x:hidden;
+                overflow-y:auto; */
+            }
+            .newsDetailTile{
+                text-align: center;
+                margin-top:80px;
+            }
+
+            .contImg img ,.imgnum img{
+                padding: 5px;
+            }
+
+            .mui-table-view.mui-grid-view{
+                white-space: "";
+            }
+
+            .mui-grid-view.mui-grid-9 .mui-table-view-cell{
+                max-height: 80px;
+            }
+            #header {
+                width:7.5rem;
+                height: 80px;
+                background-color:#fff;
+                position: fixed;
+                top:0;
+                left:0;
+                z-index:100;
+            }
+            #header > h4 {
+                padding: 0;
+                text-align: center;
+                font-size: 0.48rem;
+                color: #010101;
+                font-weight: 400;
+                line-height: 80px;
+            }
+            #header > .back {
+                font-size: 1rem;
+                color: #010101;
+                line-height: 80px;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 10px;
+                width: 50px;
+                height: 80px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!--<ul class="mui-table-view">
+            <li class="mui-table-view-cell mui-media">
+                <img class="mui-media-object mui-pull-left" src="../images/Charity_img1.jpg">
+                <div class="mui-media-body">
+                    <div><span class="floatL">nihao</span><span class="floatR"><i class="zan"></i>333</span></div>
+                </div>
+                <div class="mui-ellipsis">时代锋灰更丰富付付付付付付付付付付付付付付付付付付付付付付付色的方价格合</div>
+                <div>3453463456345<span class="commontsReply" name='+i+'>回复</span></div>
+            </li>
+        </ul>-->
+
+
+            <div class="mui-scroll-wrapper" id="protocol">
+                <div class="mui-scroll" style="padding:0 10px;">
+                    <header id="header">
+                        <i onclick="javascript:history.go(-1)" class='back'>‹</i>
+                        <h4>活动详情</h4>
+                    </header>
+                    <div class="newsDetailPage">
+                        <div id="con_tilte" class="newsDetailTile"></div>
+                            <div class="clearfix newsDetailFrom">
+                                <span id="con_pub" class="floatL newsDetailTime"></span>
+                                <span id="con_source" class="floatR newsDetailTime"></span>
+                            </div>
+                            <div class="contImg"></div>
+                        <div id="con_con" class="newsImgBox"></div>
+                        <div class="imgnum">
+
+                        </div>
+                        <div class="newsDetailComments" id="List"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        <script>
+            function GetQueryString(name) {
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);
+                if(r != null) return unescape(r[2]);
+                return null;
+            }
+            var id = GetQueryString("id");
+            var userID=GetQueryString("userID");
+            var viewCount = GetQueryString("viewCount");
+            console.log(id)
+            var urlPath="http://47.93.192.128:5001/";
+            var DetailUrl = urlPath+"News/NewsInfo";
+            //默认加载
+            $.ajax({
+                type: "post",
+                url: DetailUrl,
+                data: {
+                    id: id
+                },
+                datatype: "json",
+                success: function(data) {
+                    data = eval('(' + data + ')');
+                    console.log(data)
+                    var con_tilte=data.Data.Data.tilte;
+                    var con_con=data.Data.Data.content;
+                    $("#con_tilte").html(con_tilte)
+                    $("#con_con").html(con_con)
+                    var con_pub=data.Data.Data.publishDate;
+                    var con_source=data.Data.Data.source;
+                    $("#con_pub").html(con_pub)
+                    $("#con_source").html(con_source);
+                    var imgList=data.Data.Data.pics;
+                    console.log(imgList);
+                    if(imgList.length>=1){
+                        var img=document.createElement("img");
+                        img.setAttribute("src",imgList[0])
+                    document.querySelector(".contImg").appendChild(img);
+                    }
+
+                    var fragment=document.createDocumentFragment();
+
+                    if(imgList.length>1){
+                        for (var i=1 ,len=imgList.length; i<len; i++) {
+                            var img=document.createElement("img");
+                                img.setAttribute("src",imgList[i]);
+                            fragment.appendChild(img);
+                        }
+                        document.querySelector(".imgnum").appendChild(fragment);
+                    }
+                    $(".newsDetailPage").find("table").css('border','1px solid #8f8f94').css('margin','auto').css('width', '6.4rem').css('text-align', 'center');
+                    $(".newsDetailPage").find("table>tbody>tr>td").css('border','1px solid #8f8f94').css('padding','2px');
+
+                },
+                error: function(e) {
+                    alert(e)
+                }
+            });
+
+            function reply(id,replyId,name,userID){
+                window.location.href = "reply.html?id=" + id+"&replyId="+replyId+"&name="+name+"&userID="+userID+"&userID="+10005;
+            }
+
+            var CommentUrl = urlPath+"News/GetNewsReplyList";
+            //默认加载
+            $.ajax({
+                type: "post",
+                url: CommentUrl,
+                data: {
+                    articleId: id,
+                    pageindex:""
+                },
+                datatype: "json",
+                success: function(data) {
+                    data = eval('(' + data + ')');
+                    console.log(data)
+                    var fragment = document.createDocumentFragment(); //创建一个代码片段
+                    var li;
+                    if(typeof(data.Data.Data) != "undefined") {
+                        for(var i = 0; i < data.Data.Data.length; i++) { //循环输出data中的数据
+                            li = document.createElement('li');
+                            li.className = 'clearfix';
+                            li.id=data.Data.Data[i].id;
+                            li.innerHTML = '<div class="floatL avatar"><img src="'+
+                            data.Data.Data[i].userImg+
+                            '" /></div><div class="floatR commentsOthers"><p class="clearfix pName"><span class="floatL">'+
+                            data.Data.Data[i].userName+
+                            '</span><span class="floatR"><i class="zan"></i><a class="count" style="color:#333">'+
+                            data.Data.Data[i].likecount+
+                            '</a></span></p><p class="pComments">'+
+                            data.Data.Data[i].content+
+                            '</p><p class="pTime"><span>'+
+                            data.Data.Data[i].commentTime+
+                            '</span><span class="commontsReply" name='+i+'>回复</span></p></div></a>'
+                            fragment.appendChild(li);
+
+                        }
+                    }
+
+
+                    document.querySelector("#List").appendChild(fragment);//输出到#item1mobile的页面内容
+                    $(".pComments").find("table").css('border','1px solid #8f8f94').css('margin','auto').css('width', '6.4rem').css('text-align', 'center');
+                    $(".pComments").find("table>tbody>tr>td").css('border','1px solid #8f8f94').css('padding','2px');
+
+                    $(".commontsReply").click(function(){
+                        var replyId=$(this).parent().parent().parent().attr("id");
+                        var name=$(this).attr("name");
+                        reply(id,replyId,name,userID)
+                    });
+
+
+                    $(".zan").click(function(){
+                        $(this).addClass("active")
+                        var Acitve=$(this);
+                        var commentId=Acitve.parent().parent().parent().parent().attr("id");
+                        $.ajax({
+                            type:"post",
+                            url:urlPath+"ThumbsUp/isThumbsUp",
+                            async:true,
+                            dataType:"json",
+                            data:{
+                                commentId:commentId,
+                                userId:userID
+                            },
+                            success:function(data){
+                            var IsThumbsUp=data.Data.Data.IsThumbsUp;
+                            if(IsThumbsUp==true){
+                                $.ajax({
+                                    type:"post",
+                                    url:urlPath+"ThumbsUp/Thumbs_Down",
+                                    async:true,
+                                    data:{
+                                        commentId:commentId,
+                                        userId:userID
+                                    },
+                                    success:function(){
+                                        Acitve.siblings()[0].innerHTML = Number(Acitve.siblings()[0].innerHTML)- 1
+                                        Acitve.removeClass("active")
+                                    },
+                                });
+                            }else if(IsThumbsUp==false){
+                                $.ajax({
+                                    type:"post",
+                                    url:urlPath+"ThumbsUp/Thumbs_Up",
+                                    async:true,
+                                    data:{
+                                        commentId:commentId,
+                                        userId:userID
+                                    },
+                                    success:function(){
+                                        Acitve.siblings()[0].innerHTML = Number(Acitve.siblings()[0].innerHTML)+ 1
+
+                                    },
+                                });
+                            }
+
+                            },
+                            error:function(){}
+
+                        });
+                    })
+
+                },
+                error: function() {
+
+                }
+            });
+        </script>
+    </body>
+
+</html>
