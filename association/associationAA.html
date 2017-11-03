@@ -27,7 +27,7 @@
 	</style>
 	<body>
 		<div id="slider" class="mui-slider">
-		    <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted" id="segmented">
+		    <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted " id="segmented">
 		        <div class="mui-scroll">
 		            <a class="mui-control-item mui-active" href="#item1mobile">简介</a>
 		            <a class="mui-control-item" href="#item2mobile"> 组织结构</a>
@@ -80,7 +80,6 @@
                     document.getElementById('association').innerHTML = data.Data.Data.jianjie;
                     console.log($("#item1mobile").height());
                     $(".mui-slider-group").css("height",$("#item1mobile").height());
-
 
                     document.getElementById('slider').addEventListener('slide', function(e) {
                         console.log(e);
