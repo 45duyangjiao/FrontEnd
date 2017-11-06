@@ -6,6 +6,8 @@
 		<title>认证查询</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../css/mui.min.css" rel="stylesheet" />
+        <link href="../css/mui.picker.css" rel="stylesheet" />
+        <link href="../css/mui.poppicker.css" rel="stylesheet" />
 		<link href="../css/common.css" rel="stylesheet" />
 		<script src="../js/flexable.js"></script>
 		<script src="../js/jquery.js"></script>
@@ -26,7 +28,8 @@
 
 	</style>
 	<body>
-		<div id="slider" class="mui-slider">
+    <div class="mui-content">
+		<div id="slider" class="mui-slider ">
 		    <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted " id="segmented">
 		        <div class="mui-scroll">
 		            <a class="mui-control-item mui-active" href="#item1mobile">简介</a>
@@ -36,8 +39,9 @@
 		    </div>
 
 
-            <div class="mui-slider-group" style="margin-top: 39px;">
+            <div class="mui-slider-group mui-fullscreen" >
                 <div id="item1mobile" class="mui-slider-item mui-control-content mui-active">
+
                     <ul class="mui-table-view">
                         <li class="mui-table-view-cell">
                           <div id="association"></div>
@@ -62,7 +66,7 @@
 
             </div>
         </div>
-
+    </div>
 		<script src="../js/mui.min.js"></script>
 		<script>
 			mui.init()
